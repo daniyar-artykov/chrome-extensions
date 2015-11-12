@@ -19,7 +19,8 @@
 	</div>
 </section>
 <section class="settings-group">
-	<form id="proxyCredentials" name="proxyCredentials" ng-submit="saveOptions()">
+	<form id="proxyCredentials" name="proxyCredentials"
+		ng-submit="saveOptions()">
 		<h3>Proxy Credentials</h3>
 		<!-- <p class="help-block">{{'options_downloadOptionsHelp' | tr}}</p> -->
 		<div class="form-group">
@@ -38,8 +39,13 @@
 				placeholder="Number of attempts" class="form-control" />
 		</div>
 		<div class="form-group">
-			<button id="save" type="submit" class="btn btn-success">Save</button>
-			<button id="reset" ng-click="reset()" class="btn btn-default">Reset</button>
+			<button id="save" type="submit" class="btn btn-success">
+				<span class="glyphicon glyphicon-floppy-disk"></span>Save
+			</button>
+			<button id="reset" type="button" ng-click="reset()"
+				class="btn btn-default">
+				<span class="glyphicon glyphicon-refresh"></span>Reset
+			</button>
 		</div>
 	</form>
 </section>

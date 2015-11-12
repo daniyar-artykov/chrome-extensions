@@ -252,6 +252,8 @@
 	  		localStorage["proxy_retry"] = DEFAULT_RETRY_ATTEMPTS;
 	  		document.getElementById("retry").value = DEFAULT_RETRY_ATTEMPTS;
 	  	}
+	  	
+	  	return $scope.proxyCredentialsSaved();
 	  };
 
 	  $rootScope.reset = function() {
@@ -283,6 +285,11 @@
 	  	inputRetry.value = retry;
 	  }
 	  
+	  // check is init
+	  $rootScope.isInitialized = function(){
+			return typeof localStorage["initialized"] === 'string' && localStorage["initialized"] === 'true';
+		}
+	  
 	  $scope.$on('$viewContentLoaded', $rootScope.restoreOptions);
 	  
 	  omegaTarget.state('web.restoreOnlineUrl').then(function(url) {
@@ -308,13 +315,23 @@
         message: 'Options imported.'
       });
     };
+    $scope.proxyCredentialsSaved = function() {
+        return $rootScope.showAlert({
+          type: 'success',
+          i18n: 'proxy_credentials_savedSuccess',
+          message: 'Proxy Credentials saved.'
+        });
+      };
     $scope.restoreLocal = function(content) {
       $scope.restoringLocal = true;
       return $rootScope.resetOptions(content).then((function() {
+      	localStorage["initialized"] = true;
         return $scope.importSuccess();
       }), function() {
+      	localStorage["initialized"] = false;
         return $scope.restoreLocalError();
       })["finally"](function() {
+      	localStorage["initialized"] = false;
         return $scope.restoringLocal = false;
       });
     };
@@ -347,11 +364,14 @@
         responseType: "text"
       }).then((function(result) {
         return $rootScope.resetOptions(result.data).then((function() {
+        	localStorage["initialized"] = true;
           return $scope.importSuccess();
         }), function() {
+        	localStorage["initialized"] = false;
           return $scope.restoreLocalError();
         });
       }), $scope.downloadError)["finally"](function() {
+      	localStorage["initialized"] = false;
         return $scope.restoringOnline = false;
       });
     };

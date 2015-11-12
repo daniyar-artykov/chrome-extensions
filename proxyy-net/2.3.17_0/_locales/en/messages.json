@@ -413,6 +413,9 @@
    "options_importSuccess": {
       "message": "Options imported."
    },
+   "proxy_credentials_savedSuccess": {
+      "message": "Proxy Credentials saved."
+   },
    "options_makeBackup": {
       "message": "Make backup"
    },
