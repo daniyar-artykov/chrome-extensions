@@ -1,0 +1,32 @@
+{
+   "browser_action": {
+      "default_icon": "images/icon.png",
+      "default_popup": "forms/popup.html"
+   },
+   "content_scripts": [ {
+      "js": [ "scripts/ee.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*" ]
+   }, {
+      "js": [ "external/jquery-2.1.1.min.js", "scripts/pd.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*" ]
+   }, {
+      "js": [ "scripts/ls.min.js", "scripts/ddnew.js", "scripts/main.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*loginHome*", "https://www.irctc.co.in/*home" ]
+   }, {
+      "js": [ "scripts/jp.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*home" ]
+   }, {
+      "js": [ "external/jquery-2.1.1.min.js", "scripts/tss.min.js", "scripts/main.min.js", "scripts/ddnew.js" ],
+      "matches": [ "https://www.irctc.co.in/*mainpage*", "https://www.irctc.co.in/*trainbetweenstns*" ]
+   }, {
+      "js": [ "external/jquery-2.1.1.min.js", "scripts/ps.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*" ]
+   } ],
+   "description": "Tatkal Extension",
+   "manifest_version": 2,
+   "name": "Tatkal Extension",
+   "permissions": [ "storage", "tabs" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0",
+   "web_accessible_resources": [ "images/icon.png" ]
+}

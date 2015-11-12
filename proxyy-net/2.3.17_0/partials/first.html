@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <button type="button" ng-click="$dismiss()" class="close"><span aria-hidden="true">×</span><span class="sr-only">{{'dialog_close' | tr}}</span></button>
+    <h4 class="modal-title">{{'options_modalHeader_welcome' | tr}}</h4></div>
+<div class="modal-body">
+    <p ng-show="upgrade">{{'options_welcomeUpgrade' | tr}}</p>
+    <p ng-show="upgrade">{{'options_welcomeUpgradeGuide' | tr}}</p>
+    <p ng-show="!upgrade">{{'options_welcomeNormal' | tr}}</p>
+    <p ng-show="!upgrade">{{'options_welcomeNormalGuide' | tr}}</p>
+</div>
+<div class="modal-footer">
+         <div class="input-group width-limit">
+            <span class="input-group-btn"><button ng-click="restoreOnline()" ladda="restoringOnline" class="btn btn-default">{{'options_restoreOnlineSubmit' | tr}}</button></span></div>
+    </div>
+</div>

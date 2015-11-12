@@ -1,0 +1,1439 @@
+body {
+	background-color: #fafafa;
+	color: #444;
+	font: arial;
+	/* height: 3500px */
+}
+
+#pageTitle {
+	margin: 0 auto;
+	width: 100%;
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	height: 50px;
+	background: -webkit-linear-gradient(right, #C8E2F3, #1F6794);
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+}
+
+.boxHead p, .boxHead h4 {
+	background-color: #4A9ACE;
+	color: #fff !important;
+	/* height: 35px; */
+	padding: 3px 0 3px 5px;
+}
+
+.boxHead p {
+	background-color: #4A9ACE;
+	color: #fff !important;
+	/* height: 35px; */
+	padding: 3px 0 3px 5px;
+}
+
+#pageTitle #logo {
+	position: relative;
+	padding: 5px;
+	height: 45px;
+	left: 140px
+}
+
+#containerParent {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/* background-image: url("../images/train.jpg"); */
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: fixed
+}
+
+button {
+	width: 120px;
+	height: 30px;
+	display: block;
+	border: 0;
+	background-color: #4c99cc;
+	cursor: pointer;
+	margin: 20px;
+	outline: none;
+}
+
+button:hover {
+	background-color: #388CC4; /*#dfdfdf */
+}
+
+#pageTabContainer {
+	max-width: 1240px;
+	min-width: 1240px;
+	position: absolute;
+	height: 30px;
+	top: 50px;
+	left: 0;
+	right: 0;
+	margin: 20px auto 0;
+	z-index: 2;
+	border: 1px solid #D4EBEB;
+}
+
+#pageTabContainer button {
+	position: relative;
+	width: auto;
+	height: 40px;
+	float: right;
+	margin: 0;
+	outline: none;
+	cursor: pointer;
+	background: url(../images/bluest.gif) repeat;
+	border-width: 0;
+	padding: 0 20px;
+	color: #2d2b2b;
+	border-right: 1px solid #ABD8D8;
+	font: bold 12px arial;
+}
+
+#pageTabContainer button .activeButtonIndicator {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2px;
+	background-color: #34495e;
+	opacity: 0;
+	transition: opacity .3s
+}
+
+#pageTabContainer button:hover {
+	color: #2d2b2b;
+	background: url(../images/bluest_hover.gif) repeat-x;
+}
+
+#pageTabContainer button:first-child {
+	border-top-right-radius: 5px
+}
+
+#pageTabContainer button:last-child {
+	border-left: 1px solid #f3f3f3;
+	border-top-left-radius: 5px
+}
+
+#pageTabContainer button.active {
+	color: #34495e
+}
+
+#pageTabContainer button.active .activeButtonIndicator {
+	opacity: 1
+}
+
+#formContainer {
+	background-color: #fff;
+	position: absolute;
+	margin: 0 auto 20px;
+	top: 110px;
+	left: 0;
+	right: 0;
+	padding: 40px 50px 40px 40px;
+	max-width: 1240px;
+	min-width: 1240px;
+	box-sizing: border-box;
+	border: 1px solid #f3f3f3;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+	display: none;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+	z-index: 1
+}
+
+#instructionsContainer, #aboutContainer {
+	background-color: #fff;
+	position: absolute;
+	margin: 0 auto 20px;
+	top: 110px;
+	left: 0;
+	right: 0;
+	max-width: 1240px;
+	min-width: 1240px;
+	box-sizing: border-box;
+	border: 1px solid #f3f3f3;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+	display: none;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+	z-index: 1
+}
+
+#feedbackContainer {
+	background-color: #fff;
+	position: absolute;
+	margin: 0 auto 20px;
+	top: 110px;
+	left: 0;
+	right: 0;
+	padding: 40px 50px 40px 40px;
+	max-width: 1240px;
+	min-width: 1240px;
+	box-sizing: border-box;
+	border: 1px solid #f3f3f3;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+	display: none;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+	z-index: 1
+}
+
+.ztJourneyDate {
+	position: relative
+}
+
+.ztJourneyDate #ztDatePickerBtn {
+	position: absolute;
+	left: 425px;
+	top: 10px;
+	cursor: pointer;
+	height: 20px;
+	width: 20px
+}
+
+.ztTicketType {
+	position: relative
+}
+
+.ztTicketType #ztTicketTypeSelect {
+	height: 30px;
+	margin-left: 10px;
+	box-sizing: border-box;
+	padding: 5px;
+	width: 250px
+}
+
+.ztHandicapPsgType {
+	position: relative
+}
+
+.ztHandicapPsgType #ztPHConcessionInput {
+	position: relative;
+	height: 15px;
+	width: 15px;
+	top: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 5px;
+	float: left;
+}
+
+.ztHandicapPsgType #ztHandicapPsgTypeLabel {
+	text-align: left;
+	height: 30px;
+	line-height: 30px;
+	width: 300px;
+	display: block;
+	margin-left: 200px;
+	float: none;
+	/*color: #444; */
+	font-size: 15px;
+	font-family: Arial, Verdana, sans-serif;
+	/* font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+	font: 15px arial; */
+	color: #2E64FE;
+	font-weight: bold;
+}
+
+.formTitleButton {
+	width: 40px;
+	height: 40px;
+	margin: 2px;
+	border-radius: 40px;
+	cursor: pointer;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+	background-position: center;
+	background-size: 25px;
+	background-repeat: no-repeat
+}
+
+#formContainerTitle #ztFormLeftContainer #ztAddForm {
+	margin: 2px;
+	cursor: pointer;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+	background-position: center;
+	background-size: 25px;
+	background-repeat: no-repeat
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons,
+	#formContainerTitle #ztDeleteForm {
+	width: 40px;
+	height: 40px;
+	margin: 2px;
+	border-radius: 40px;
+	cursor: pointer;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+	background-position: center;
+	background-size: 25px;
+	background-repeat: no-repeat
+}
+
+#ztAddFormGuideButton {
+	margin: 2px;
+	cursor: pointer;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+	background-position: center;
+	background-size: 25px;
+	background-repeat: no-repeat
+}
+
+#formContainerTitle {
+	position: relative;
+	height: 70px;
+	width: 100%;
+	margin-bottom: 20px;
+	box-sizing: border-box
+}
+
+#formContainerTitle #ztFormLeftContainer {
+	position: absolute;
+	left: 0;
+	padding: 10px
+}
+
+#formContainerTitle #ztFormLeftContainer #ztAddForm {
+	position: relative;
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+	float: left;
+	left: 0;
+	z-index: 98;
+	background-color: #db4437
+}
+
+#formContainerTitle #ztFormLeftContainer #ztAddForm #imageDiv {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	background-image: url("../forms/add.svg");
+	background-color: #db4437;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: transform 300ms
+}
+
+#formContainerTitle #ztFormLeftContainer #ztAddForm:active #imageDiv {
+	transform: scale(0.8)
+}
+
+#formContainerTitle #ztFormLeftContainer #formList {
+	height: 44px;
+	float: left
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons {
+	float: left;
+	opacity: 0;
+	transform: scale(0);
+	transition: transform 80ms, opacity 80ms;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	/* font-size: 15px;
+	font-weight: bold;
+	font-family: "Segoe UI", Tahoma, sans-serif; */
+	font: bold 15px arial;
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:hover {
+	color: #555
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(1)
+	{
+	background-color: #818994
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(2)
+	{
+	background-color: #a6a1ab
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(3)
+	{
+	background-color: #ccb7b6
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(4)
+	{
+	background-color: #e8dcc5
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(5)
+	{
+	background-color: #e0e8ac
+}
+
+#formContainerTitle #ztFormLeftContainer #formList .formButtons:nth-child(6)
+	{
+	background-color: #b4c48b
+}
+
+#formContainerTitle #ztFormLeftContainer:hover #imageDiv {
+	transform: rotate(270deg)
+}
+
+#formContainerTitle #ztFormLeftContainer:hover #formList .formButtons {
+	transform: scale(1);
+	opacity: 1
+}
+
+#formContainerTitle #ztDeleteForm {
+	position: absolute;
+	right: 0;
+	display: none;
+	background-image: url("../forms/delete.svg");
+	background-color: #fff
+}
+
+#instructionsContainer {
+	display: block;
+	padding: 50px 60px 70px
+}
+
+#instructions {
+	font-size: 15px
+}
+
+#instructions ul {
+	list-style: circle
+}
+
+#instructions ul li {
+	padding: 5px;
+	line-height: 28px
+}
+
+#aboutContainer {
+	display: none;
+	padding: 50px 60px 70px;
+	font-size: 15px
+}
+
+#aboutContainer p {
+	text-align: justify;
+	line-height: 28px
+}
+
+#privacy {
+	padding-top: 20px
+}
+
+#feedbackContainer {
+	display: none
+}
+
+#feedbackContainer #feedbackFormWrapper {
+	width: 560px;
+	height: 360px;
+	position: relative;
+	overflow: hidden;
+	left: 20px;
+	padding: 0 0 20px
+}
+
+#feedbackContainer #feedbackFormWrapper iframe {
+	width: 600px;
+	height: 440px;
+	position: absolute;
+	top: -90px;
+	left: -20px;
+	overflow: hidden
+}
+
+#feedbackContainer #contactUs {
+	position: absolute;
+	right: 300px;
+	height: 200px;
+	top: 75px
+}
+
+#feedbackContainer #contactUs h4 {
+	font-size: 16px
+}
+
+#feedbackContainer #contactUs p.contact {
+	padding-left: 20px;
+	font-size: 14px;
+	margin: 20px 0 10px 10px
+}
+
+#feedbackContainer #contactUs p.mail {
+	padding-left: 20px;
+	font-size: 13px;
+	margin: 5px 0 5px 50px;
+	position: relative
+}
+
+#feedbackContainer #contactUs p.mail a {
+	text-decoration: none;
+	color: #444
+}
+
+#feedbackContainer #contactUs p.mail a:before {
+	content: '';
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	top: 3px;
+	left: 0;
+	background-image: url("../forms/mail.svg");
+	background-size: 100%;
+	background-position: center;
+	cursor: pointer
+}
+
+hr {
+	margin: 50px 0;
+	border-top: 1px solid #ccc;
+	border-width: 1px 0 0
+}
+
+hr.headingDivider {
+	margin: 0 0 5px
+}
+
+.subHeading p:first-child, .loginDetails p:first-child,
+	.journeyPlanDetails p:first-child, .trainDetails p:first-child,
+	.paymentDetails p:first-child, .cardDetails p:first-child {
+	line-height: 25px;
+	color: #34495e;
+	/* font-size: 17px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: bold; */
+	font: bold 17px arial;
+}
+
+.subHeading p:last-child, .loginDetails p:last-child,
+	.journeyPlanDetails p:last-child, .trainDetails p:last-child,
+	.paymentDetails p:last-child, .cardDetails p:last-child {
+	margin-left: 0;
+	color: #444;
+	/* font-size: 14px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: normal */
+	font: 14px arial;
+}
+
+.label, .radioGroup span, #formDetails #formNameDiv span, .loginDetails div span,
+	.journeyPlanDetails div span, .trainDetails .trainNumber span {
+	width: 150px;
+	text-align: right;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	float: left;
+	margin-left: 40px;
+	color: #444;
+	font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+}
+
+.inputClass, #formDetails #formNameDiv input, .loginDetails div input {
+	width: 150px;
+	height: 30px;
+	margin-left: 10px;
+	box-sizing: border-box;
+	padding: 5px
+}
+
+.journeyPlanDetails div input, .trainDetails .trainNumber input {
+	height: 30px;
+	margin-left: 10px;
+	box-sizing: border-box;
+	padding: 5px
+}
+
+.radioGroup {
+	height: 30px;
+	padding: 5px 0
+}
+
+.radioGroup .radioButton {
+	height: 30px;
+	float: left;
+	padding-left: 15px;
+	position: relative
+}
+
+.radioGroup .radioButton input {
+	height: 25px;
+	float: left
+}
+
+.radioGroup .radioButton label {
+	padding-left: 25px;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	color: #666;
+	font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+}
+
+#bookingCondRadioButtonGroup {
+	margin-left: 90px
+}
+
+#bookingCondRadioButtonGroup .bookingCondRadioButton {
+	height: 30px;
+	padding-left: 10px;
+	position: relative
+}
+
+#bookingCondRadioButtonGroup .bookingCondRadioButton input {
+	height: 25px;
+	float: left
+}
+
+#bookingCondRadioButtonGroup .bookingCondRadioButton label {
+	padding-left: 25px;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	color: #666;
+	font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+	/* font: 15px arial; */
+}
+
+#formDetails #formNameDiv, .loginDetails div, .journeyPlanDetails div {
+	padding: 5px 0
+}
+
+.journeyPlanDetails {
+	position: relative
+}
+
+.journeyPlanDetails div input {
+	width: 250px
+}
+
+.journeyPlanDetails #swapToNFro {
+	position: absolute;
+	top: 60px;
+	left: 460px;
+	width: 30px;
+	height: 25px;
+	background-image: url("../forms/swap.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 25;
+	border-radius: 25px;
+	border-width: 1px;
+	border-color: #ccc;
+	cursor: pointer
+}
+
+.trainDetails .trainNumber {
+	padding: 5px 0
+}
+
+.trainDetails .trainNumber input {
+	width: 60px
+}
+
+.detailsDesc h4 {
+	color: #34495e;
+	margin-bottom: 3px;
+	/* font-size: 17px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: bold; */
+	font: bold 17px arial;
+}
+
+.detailsDesc p {
+	margin-left: 0;
+	color: #444;
+	/* font-size: 14px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: normal; */
+	font: 14px arial;
+}
+
+.row {
+	position: relative;
+	display: block;
+	margin: 1em
+}
+
+.row::before {
+	display: table;
+	content: ''
+}
+
+.row::after {
+	display: table;
+	content: '';
+	clear: both
+}
+
+.form-control {
+	width: 100%;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	height: 30px;
+	padding-left: 5px;
+	box-sizing: border-box;
+	color: #555
+}
+
+.form-control::-webkit-input-placeholder {
+	color: #ccc
+}
+
+.form-control:-moz-placeholder {
+	color: #ccc
+}
+
+.form-control::-moz-placeholder {
+	color: #ccc
+}
+
+.form-control:-ms-input-placeholder {
+	color: #ccc
+}
+
+input[type='checkbox'] {
+	margin: 5px 0 0 30px
+}
+
+.tableHeading {
+	margin-top: 25px;
+	margin-bottom: 0;
+	text-align: center;
+	color: #34495e;
+	/* font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: bold; */
+	font: bold 15px arial;
+}
+
+.adultPassengerDetails .column1 {
+	height: 30px;
+	width: 21%;
+	float: left;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+
+.adultPassengerDetails .column2 {
+	height: 30px;
+	width: 8%;
+	float: left;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+
+.adultPassengerDetails .column5 {
+	display: none;
+	float: left;
+	box-sizing: border-box
+}
+
+.adultPassengerDetails.adjustForPH {
+	font-size: 12px
+}
+
+.adultPassengerDetails.adjustForPH .tableHeading {
+	font-size: 12px;
+	height: 50px
+}
+
+.adultPassengerDetails.adjustForPH .column1 {
+	height: 25px;
+	width: 14%;
+	padding-right: 7px
+}
+
+.adultPassengerDetails.adjustForPH .column2 {
+	height: 25px;
+	width: 6%;
+	padding-right: 7px
+}
+
+.adultPassengerDetails.adjustForPH .column5 {
+	display: block;
+	height: 25px;
+	width: 8%;
+	padding-right: 7px
+}
+
+.adultPassengerDetails.adjustForPH .form-control {
+	height: 25px
+}
+
+.clearBtn {
+	position: absolute;
+	right: 0;
+	top: -4px;
+	float: left;
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+	background-image: url(../images/clear.png);
+	background-position: center;
+	background-size: 18px;
+	background-repeat: no-repeat
+}
+
+.clearBtn.childPsgCtrl {
+	left: 750px;
+	top: 0;
+	background-size: 18px
+}
+
+.column3 {
+	height: 30px;
+	width: 25%;
+	float: left;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+
+.column4 {
+	height: 30px;
+	width: 20%;
+	float: left;
+	padding-right: 10px;
+	box-sizing: border-box
+}
+
+.formAdditionalDetails {
+	margin: 1em 0
+}
+
+.mobileNum {
+	width: 50%;
+	margin-top: 20px
+}
+
+.mobileNum span {
+	width: 180px;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	float: left;
+	text-align: right;
+	color: #444;
+	/* font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal; */
+	font: 15px arial;
+}
+
+.mobileNum input {
+	margin-left: 15px;
+	padding-left: 10px;
+	width: 200px
+}
+
+.addDetailsCtrl {
+	width: 75%;
+	margin-top: 20px
+}
+
+.addDetailsCtrl label {
+	width: 80%;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	color: #444;
+	font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+}
+
+.addDetailsCtrl input {
+	width: 30px;
+	margin-top: 10px;
+	margin-left: 50px;
+	float: left;
+	box-sizing: border-box
+}
+
+.coachOpt {
+	width: 75%;
+	margin-top: 20px
+}
+
+.coachOpt span {
+	width: 180px;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	float: left;
+	color: #444;
+	font-size: 15px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: Normal;
+	/* font: 15px arial; */
+}
+
+.coachOpt input[type='checkbox'] {
+	width: 30px;
+	margin-top: 10px;
+	margin-left: 50px;
+	float: left;
+	box-sizing: border-box
+}
+
+.coachOpt #coachID {
+	width: 100px;
+	box-sizing: border-box
+}
+
+.paymentDetails .labelData {
+	width: 20%;
+	color: #2e64fe;
+	font-weight: bold
+}
+
+.paymentDetails .contentData, .paymentDetails .dummyData {
+	width: 40%
+}
+
+.cardDetails {
+	width: 70%;
+	margin-left: 10%
+}
+
+.cardDetails.ztPrepaidCard #ztCardtypeRow {
+	display: none
+}
+
+.cardDetails .labelData {
+	width: 20%;
+	text-align: right;
+	padding-right: 20px;
+	color: #444;
+	/* font-family: "Segoe UI", Tahoma, sans-serif;
+	font-size: 14px; */
+	font: 14px arial;
+}
+
+.cardDetails .contentData {
+	width: 40%;
+	font-size: 12px
+}
+
+.cardDetails .dummyData {
+	width: 45%
+}
+
+.cardDetails #monthSelector {
+	width: 26%;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-right: 35px;
+	position: relative
+}
+
+.cardDetails #monthSelector::after {
+	content: '';
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	height: 90%;
+	width: 20px;
+	pointer-events: none;
+	background-color: white;
+	background-image: url("../forms/dropdownarrow.svg");
+	background-size: 20px;
+	background-position: center right;
+	background-repeat: no-repeat
+}
+
+.expiryMonth {
+	height: 30px;
+	margin-right: 5px;
+	border: 0;
+	padding: 0
+}
+
+.expiryMonth option {
+	height: 20px;
+	line-height: 20px;
+	font-size: 13px;
+	padding-top: 4px;
+	box-sizing: border-box
+}
+
+.expiryYear {
+	width: 50px;
+	height: 32px;
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 2px;
+	padding: 5px
+}
+
+#formButtonsContainer {
+	/* position: relative;
+	margin: 20px auto 0;
+	height: 70px;
+	width: 430px; */
+	margin-left: -8px;
+	width: 100%;
+	position: fixed;
+	z-index: 99;
+	bottom: 0;
+	height: 70px;
+	/* background: #EAF4FB; */
+	background: -webkit-linear-gradient(right, #EAF4FB, #C8E2F3);
+}
+
+#formButtonsContainer button {
+	float: right;
+	position: relative;
+	box-shadow: 0 2px rgba(0, 0, 0, 0.18);
+	border-radius: 0;
+}
+
+#formButtonsContainer .buttons-container {
+	float: right;
+	position: relative;
+	margin-right: 80px;
+}
+
+#formButtonsContainer #dirtyFlag {
+	width: 8px;
+	height: 30px;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #df0000;
+	/* border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px */
+}
+
+#formButtonsContainer #dirtyFlag.clean {
+	background-color: #006837
+}
+
+#formButtonsContainer #resetIcon {
+	width: 20px;
+	height: 32px;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	background-image: url("../forms/reset.svg");
+	background-size: 20px;
+	background-position: center;
+	background-repeat: no-repeat
+}
+
+#formButtonsContainer #saveIcon {
+	width: 20px;
+	height: 32px;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	background-size: 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../images/save.png")
+}
+
+#formButtonsContainer .buttonText {
+	/* color: #FFFFFF; */
+	position: absolute;
+	left: 30px;
+	top: 9px;
+	/* font-family: 'Helvetica Neue', Arial, sans-serif; */
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	/* font-weight: bold; */
+}
+
+#fromStation, #toStation {
+	text-transform: uppercase
+}
+
+.ui-autocomplete {
+	list-style-type: none;
+	background-color: #fff;
+	border: 1px solid black;
+	width: 200px;
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll
+}
+
+.ui-menu-item {
+	width: 210px;
+	height: 23px;
+	line-height: 23px;
+	color: #444;
+	/* font-family: "Segoe UI", Tahoma, sans-serif;
+	font-size: 14px; */
+	font: 14px arial;
+}
+
+.ui-state-focus, .ui-widget-content .ui-state-focus {
+	border: 1px solid #34495e;
+	font-weight: bold;
+	color: #34495e;
+	background-color: #ccc
+}
+
+.ui-datepicker {
+	width: 250px
+}
+
+.ui-widget {
+	font-size: 15px
+}
+
+.ui-state-focus a, .ui-state-focus a:hover, .ui-state-focus a:link,
+	.ui-state-focus a:visited {
+	color: #34495e;
+	text-decoration: none
+}
+
+.ui-widget-content .ui-widget-header {
+	/*border: 1px solid #34495e;
+	background: #34495e; */
+	border: 1px solid #4297d7;
+	background: #5c9ccc
+		url("../images/ui-bg_gloss-wave_55_5c9ccc_500x100.png") 50% 50%
+		repeat-x;
+	color: #fff;
+	/* font-family: "Segoe UI", Tahoma, sans-serif; */
+	font: arial;
+}
+
+.ui-widget-content .ui-widget-header .ui-icon-circle-triangle-w {
+	/*background-image: url("../forms/arrow_left.svg");
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;*/
+	background-image: url("../images/ui-icons_d8e7f3_256x240.png");
+	background-position: -80px -192px;
+	width: 16px;
+    height: 16px;
+}
+
+.ui-widget-content .ui-widget-header .ui-icon-circle-triangle-e {
+	/*background-image: url("../forms/arrow_right.svg");*/
+	background-image: url("../images/ui-icons_d8e7f3_256x240.png");
+	/*background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;*/
+	background-position: -48px -192px;
+	width: 16px;
+    height: 16px;
+}
+
+.ui-datepicker-week-end a {
+    color: red !important;
+}
+
+.ui-widget-content .ui-state-default {
+	/* font-weight: bold;
+	font-family: "Segoe UI", Tahoma, sans-serif; */
+	
+	/*border: 1px solid #ccc;
+	background: #f6f6f6;
+	color: #444;
+	font: bold arial; */
+	
+	border: 1px solid #c5dbec;
+    background: #dfeffc url("../images/ui-bg_glass_85_dfeffc_1x400.png") 50% 50% repeat-x;
+    font-weight: bold;
+    color: #2e6e9e;
+}
+
+.ui-widget-content .ui-state-active {
+	border: 1px solid #10495e;
+	background: #fff;
+	font-weight: bold;
+	color: #00495e
+}
+
+.ui-widget-content .ui-state-hover {
+	border: 1px solid #34495e;
+	background: #ccc;
+	font-weight: bold;
+	color: #34495e
+}
+
+#shareButtonsContainer {
+	height: 84px;
+	width: 84px;
+	box-sizing: border-box;
+	position: absolute;
+	margin: 0 auto;
+	right: 100px;
+	top: 250px
+}
+
+#shareButtonsContainer a {
+	width: 42px;
+	text-decoration: none
+}
+
+#shareButtonsContainer a img {
+	height: 32px;
+	width: 32px
+}
+
+#aboutPopup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+	z-index: 99;
+	opacity: 0;
+	-webkit-transition: opacity .3s ease-in
+}
+
+#aboutPopup #aboutPopupContent {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 400px;
+	width: 800px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 20px 60px 70px;
+	font-size: 15px
+}
+
+#aboutPopup #aboutPopupContent p {
+	text-align: justify;
+	line-height: 28px
+}
+
+#aboutPopup #aboutPopupContent img {
+	position: relative;
+	display: block;
+	height: 40px
+}
+
+#aboutPopup.active {
+	opacity: 1
+}
+
+#ztFormGuideMask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+	z-index: 97;
+	opacity: 0;
+	-webkit-transition: opacity .3s ease-in
+}
+
+#ztFormGuideMask.active {
+	opacity: 1
+}
+
+#ztAddFormGuide {
+	position: absolute;
+	margin: 0 auto;
+	top: 85px;
+	left: 0;
+	right: 0;
+	padding: 0 40px;
+	height: 100px;
+	max-width: 1240px;
+	min-width: 1240px;
+	box-sizing: border-box
+}
+
+#ztAddFormGuideContent {
+	position: absolute;
+	left: 30px;
+	top: 0;
+	width: 175px;
+	height: 60px;
+	line-height: 60px;
+	background-color: #fff;
+	border-radius: 10px;
+	text-align: center;
+	font-style: italic;
+	font-size: 15px
+}
+
+#ztAddFormGuideContent::after {
+	content: '';
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-top-color: #fff;
+	border-bottom: 0;
+	position: absolute;
+	left: 35px;
+	bottom: -10px
+}
+
+#ztAddFormGuideButton {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+	left: 51px;
+	top: 75px;
+	background-color: #db4437
+}
+
+#ztAddFormGuideButton #guideImageDiv {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+	background-image: url("../forms/add.svg");
+	background-color: #db4437;
+	background-position: center;
+	background-repeat: no-repeat
+}
+
+#alertPopup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+	z-index: 99;
+	opacity: 0;
+	-webkit-transition: opacity .3s ease-in
+}
+
+#alertPopup #alertPopupContent {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 160px;
+	width: 400px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 20px;
+	font-size: 15px
+}
+
+#alertPopup #alertPopupContent p {
+	text-align: justify;
+	line-height: 28px
+}
+
+#alertPopup #alertPopupContent img {
+	position: relative;
+	display: block;
+	height: 30px
+}
+
+#alertPopup #alertPopupContent .buttonContainer {
+	margin: 0 auto;
+	width: 280px
+}
+
+#alertPopup #alertPopupContent .buttonContainer button {
+	float: left;
+	width: 100px;
+	margin-top: 10px
+}
+
+#alertPopup.active {
+	opacity: 1
+}
+
+.selectWrapper {
+	width: 100%;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	box-sizing: border-box;
+	position: relative
+}
+
+.selectWrapper::after {
+	content: '';
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	height: 90%;
+	width: 20px;
+	box-sizing: border-box;
+	pointer-events: none;
+	background-color: white;
+	background-image: url("../forms/dropdownarrow.svg");
+	background-size: 20px;
+	background-position: center right;
+	background-repeat: no-repeat
+}
+
+.selectWrapper .form-control {
+	border: 0;
+	padding: 0
+}
+
+.selectWrapper .form-control option {
+	height: 25px;
+	line-height: 25px;
+	font-size: 13px;
+	padding-top: 5px;
+	box-sizing: border-box
+}
+
+.formAdditionalDetails h4 {
+	color: #34495e;
+	margin-bottom: 3px;
+	/* font-size: 17px;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-weight: bold; */
+	font: bold 17px arial;
+}
+
+#scrollup {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #ccc;
+	background-image: url("../forms/toparrow.svg");
+	background-size: 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #fff;
+	display: none;
+	cursor: pointer;
+	z-index: 999
+}
