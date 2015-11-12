@@ -289,6 +289,7 @@ main .page-header {
   position: fixed;
   top: 0;
   width: inherit;
+  background-color: #fff;
   /*background-color: rgba(255, 255, 255, 0.6);
   background-image: -webkit-linear-gradient(top, #ffffff, rgba(255, 255, 255, 0.6));
   background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.6));*/
@@ -501,4 +502,12 @@ button.btn.btn-default.ng-binding.ladda-button {
 }
 #firstInitialize .ladda-label {
     font-weight: 600;
+}
+#proxyCredentials {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#proxyCredentials input {
+	width: 60% !important;
 }

@@ -1,15 +1,45 @@
 <div class="page-header">
-    <!-- <h2>{{'options_tab_ui' | tr}}</h2> -->
-    <section class="settings-group">
-    <h3>Proxee.Net Browser Proxy</h3><br>
-    <div id='firstInitialize'>
-        <!-- <label>Click Here</label> --><p>Thank you for choosing Proxee.net. To set up please press 'Initialize'.</p>
-        <div class="input-group width-limit">
-            <span class="input-group-btn"><button ng-click="restoreOnline()" ladda="restoringOnline" data-spinner-color="#000000" class="btn btn-default"><span class="glyphicon glyphicon-lock"></span> {{'options_restoreOnlineSubmit' | tr}}</button></span>
-        </div>
-        <br><br><br>
-        <p id='initFooter'> For more information about our service please visit <a href="http://browserproxy.chicago1.proxee.net/">Proxee.net</a>.
-
-    </div>
-    </section>
+	<h2>Proxee.Net Browser Proxy</h2>
 </div>
+<section class="settings-group">
+	<div id='firstInitialize'>
+		<p>Thank you for choosing Proxee.net. To set up please press
+			'Initialize'.</p>
+		<div class="input-group width-limit">
+			<span class="input-group-btn"><button
+					ng-click="restoreOnline()" ladda="restoringOnline"
+					data-spinner-color="#000000" class="btn btn-default">
+					<span class="glyphicon glyphicon-lock"></span>
+					{{'options_restoreOnlineSubmit' | tr}}
+				</button></span>
+		</div>
+		<p id='initFooter'>
+			For more information about our service please visit <a
+				href="http://browserproxy.chicago1.proxee.net/">Proxee.net</a>.
+	</div>
+</section>
+<section class="settings-group">
+	<form id="proxyCredentials" name="proxyCredentials" ng-submit="saveOptions()">
+		<h3>Proxy Credentials</h3>
+		<!-- <p class="help-block">{{'options_downloadOptionsHelp' | tr}}</p> -->
+		<div class="form-group">
+			<label for="username">Proxy username</label> <input id="username"
+				type="text" name="username" required="required"
+				placeholder="Username" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="password">Proxy password</label> <input id="password"
+				type="password" name="password" required="required"
+				placeholder="Password" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="retry">Unsuccessful attempts limit <i>(min:
+					2)</i></label> <input id="retry" type="number" name="retry"
+				placeholder="Number of attempts" class="form-control" />
+		</div>
+		<div class="form-group">
+			<button id="save" type="submit" class="btn btn-success">Save</button>
+			<button id="reset" ng-click="reset()" class="btn btn-default">Reset</button>
+		</div>
+	</form>
+</section>
