@@ -236,60 +236,67 @@
 (function() {
   angular.module('omega').controller('IoCtrl', function($scope, $rootScope, $window, $http, omegaTarget) {
 	  
-	  var DEFAULT_RETRY_ATTEMPTS = 2;
+	  var DEFAULT_RETRY_ATTEMPTS = 5;
 	  $rootScope.saveOptions = function() {
-	  	var inputLogin = document.getElementById("username");
-	  	var inputPassword = document.getElementById("password");
-	  	var inputRetry = document.getElementById("retry");
+		  var inputLogin = document.getElementById("username");
+		  var inputPassword = document.getElementById("password");
+		  var inputRetry = document.getElementById("retry");
+		  var useCredentials = document.getElementById("useCredentials");
 
-	  	localStorage["proxy_login"] = inputLogin.value;
-	  	localStorage["proxy_password"] = inputPassword.value;
+		  //console.log(useCredentials.checked);
 
-	  	var retry = parseInt(inputRetry.value);
-	  	if (retry !== NaN && retry >= 2) {
-	  		localStorage["proxy_retry"] = retry;
-	  	} else {
-	  		localStorage["proxy_retry"] = DEFAULT_RETRY_ATTEMPTS;
-	  		document.getElementById("retry").value = DEFAULT_RETRY_ATTEMPTS;
-	  	}
-	  	
-	  	return $scope.proxyCredentialsSaved();
+		  localStorage["proxy_login"] = inputLogin.value;
+		  localStorage["proxy_password"] = inputPassword.value;
+		  localStorage["use_credentials"] = useCredentials.checked;
+
+		  var retry = parseInt(inputRetry.value);
+		  if (retry !== NaN && retry >= 2) {
+			  localStorage["proxy_retry"] = retry;
+		  } else {
+			  localStorage["proxy_retry"] = DEFAULT_RETRY_ATTEMPTS;
+			  document.getElementById("retry").value = DEFAULT_RETRY_ATTEMPTS;
+		  }
+
+		  return $scope.proxyCredentialsSaved();
 	  };
 
 	  $rootScope.reset = function() {
-		var inputLogin = document.getElementById("username");
-	  	var inputPassword = document.getElementById("password");
-	  	var inputRetry = document.getElementById("retry");
+		  var inputLogin = document.getElementById("username");
+		  var inputPassword = document.getElementById("password");
+		  var inputRetry = document.getElementById("retry");
+		  var useCredentials = document.getElementById("useCredentials");
 
-	  	inputLogin.value = '';
-	  	inputPassword.value = '';
-	  	inputRetry.value = DEFAULT_RETRY_ATTEMPTS;
+		  inputLogin.value = '';
+		  inputPassword.value = '';
+		  inputRetry.value = DEFAULT_RETRY_ATTEMPTS;
+		  useCredentials.checked = false;
 
-	  	localStorage["proxy_login"] = '';
-	  	localStorage["proxy_password"] = '';
-	  	localStorage["proxy_retry"] = DEFAULT_RETRY_ATTEMPTS;
+		  localStorage["proxy_login"] = '';
+		  localStorage["proxy_password"] = '';
+		  localStorage["proxy_retry"] = DEFAULT_RETRY_ATTEMPTS;
+		  localStorage["use_credentials"] = false;
 	  }
 
 	  // Restores options to saved value from localStorage.
 	  $rootScope.restoreOptions = function() {
-	  	var login = localStorage["proxy_login"] || "";
-	  	var password = localStorage["proxy_password"] || "";
-	  	var retry = localStorage["proxy_retry"] || DEFAULT_RETRY_ATTEMPTS || 5;
+		  var login = localStorage["proxy_login"] || "";
+		  var password = localStorage["proxy_password"] || "";
+		  var retry = localStorage["proxy_retry"] || DEFAULT_RETRY_ATTEMPTS;
+		  var useCredentials = typeof localStorage["use_credentials"] === 'string' && localStorage["use_credentials"] === 'true';
+		  
+//		  alert(login + " | " + password + " | " + retry + " | " + useCredentials);
+		  
+		  var inputLogin = document.getElementById("username");
+		  var inputPassword = document.getElementById("password");
+		  var inputRetry = document.getElementById("retry");
+		  var inputUseCredentials = document.getElementById("useCredentials");
 
-	  	var inputLogin = document.getElementById("username");
-	  	var inputPassword = document.getElementById("password");
-	  	var inputRetry = document.getElementById("retry");
-
-	  	inputLogin.value = login;
-	  	inputPassword.value = password;
-	  	inputRetry.value = retry;
+		  inputLogin.value = login;
+		  inputPassword.value = password;
+		  inputRetry.value = retry;
+		  inputUseCredentials.checked = useCredentials;
 	  }
-	  
-	  // check is init
-	  $rootScope.isInitialized = function(){
-			return typeof localStorage["initialized"] === 'string' && localStorage["initialized"] === 'true';
-		}
-	  
+
 	  $scope.$on('$viewContentLoaded', $rootScope.restoreOptions);
 	  
 	  omegaTarget.state('web.restoreOnlineUrl').then(function(url) {
