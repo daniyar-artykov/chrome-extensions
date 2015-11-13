@@ -1,0 +1,20 @@
+/*  ext_save.css
+ *
+ *  Description:
+ *  Extra small changes to play nice with Chrome.
+ *
+ *  Contents:
+ *  Global
+ */
+
+/*=Global
+--------------------------------------------------------------------------------------- */
+.pkt_ext_container  .pkt_ext_close {
+	background: url(chrome-extension://__MSG_@@extension_id__/sites/global/tag_close@1x.png) center center no-repeat !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+    .pkt_ext_container  .pkt_ext_close {
+        background-image: url(chrome-extension://__MSG_@@extension_id__/sites/global/tag_close@2x.png) !important;
+        background-size: 8px 8px !important;
+    }
+}
