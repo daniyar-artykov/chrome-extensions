@@ -29,10 +29,10 @@ chrome.webRequest.onAuthRequired.addListener(
 	function(details) {
 	
 		var locked = isLocked();
+		var idstr = details.requestId.toString();
 	
 		if(details.isProxy === true && !locked){
-
-			var idstr = details.requestId.toString();
+		
 			console.log('AUTH - ' + details.requestId);
 			//console.log(JSON.stringify(details));
 			

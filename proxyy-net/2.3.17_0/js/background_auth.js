@@ -22,7 +22,7 @@ chrome.webRequest.onAuthRequired.addListener(
 				chrome.notifications.create(NOTIFICATION_ID, {
 					'type': 'basic',
 					'iconUrl': 'img/icons/error-128.png',
-					'title': 'Proxyy.net authentication error!',
+					'title': 'Proxee.net authentication error!',
 					'message': 'Please, check you username/password! For your safety, the use of proxy credentials locked. To unlock it check "Use this credentials" in extension settings and save.',
 					'isClickable': true,
 					'priority': 2
