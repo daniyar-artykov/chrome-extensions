@@ -1,0 +1,50 @@
+{
+   "background": {
+      "page": "html/background.html"
+   },
+   "browser_action": {
+      "default_icon": {
+         "19": "img/browser-action-icon-19.png",
+         "38": "img/browser-action-icon-38.png"
+      },
+      "default_title": "__MSG_toolbarButtonTitle__"
+   },
+   "content_scripts": [ {
+      "js": [ "js/keyboard-shortcut.js" ],
+      "matches": [ "*://*/*" ]
+   }, {
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "js/login-inject.js" ],
+      "matches": [ "*://getpocket.com/extension_login_success" ]
+   }, {
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "js/logout-inject.js" ],
+      "matches": [ "*://getpocket.com/login?e=4" ]
+   }, {
+      "css": [ "sites/twitter/twitter.ril.css" ],
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "sites/twitter/twitter.ril.js" ],
+      "matches": [ "*://twitter.com/*" ]
+   }, {
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "sites/hackernews/hn.pocket.js" ],
+      "matches": [ "http://*.ycombinator.org/*", "https://*.ycombinator.org/*", "http://*.ycombinator.com/*", "https://*.ycombinator.com/*" ]
+   }, {
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "sites/reddit/reddit.pocket.js" ],
+      "matches": [ "*://*.reddit.com/*" ]
+   }, {
+      "css": [ "sites/yahoo/yahoo.pocket.css", "sites/yahoo/yahoo.pocket.chrome.css" ],
+      "js": [ "js/jquery-2.1.1.min.js", "js/shared.js", "sites/yahoo/yahoo.pocket.js", "sites/yahoo/yahoo-share-button.pocket.js" ],
+      "matches": [ "*://*.yahoo.com/*" ]
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_extDescriptionGoogleChrome__",
+   "icons": {
+      "128": "img/icon-128.png",
+      "16": "img/icon-16.png",
+      "48": "img/icon-48.png"
+   },
+   "manifest_version": 2,
+   "name": "Save to Pocket",
+   "options_page": "html/options.html",
+   "permissions": [ "tabs", "contextMenus", "cookies", "notifications", "https://readitlaterlist.com/", "http://*/*", "https://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.9.22",
+   "web_accessible_resources": [ "sites/global/fonts/ProximaNova-Reg-webfont.eot", "sites/global/fonts/ProximaNova-Reg-webfont.woff", "sites/global/fonts/ProximaNova-Reg-webfont.ttf", "sites/global/fonts/ProximaNova-Sbold-webfont.eot", "sites/global/fonts/ProximaNova-Sbold-webfont.woff", "sites/global/fonts/ProximaNova-Sbold-webfont.ttf", "sites/global/tag_close@1x.png", "sites/global/tag_close@2x.png", "sites/twitter/twttr-sprite@1x.png", "sites/twitter/twttr-sprite@2x.png", "sites/yahoo/ril-icon-white.png", "sites/yahoo/ril-icon-white@2x.png", "img/pocket-logo.png" ]
+}
