@@ -5,12 +5,11 @@ const URL_GET_SETTINGS = "http://dancerbuddys.com/api.php?app=htc&action=get_set
 const URL_STAT = "http://stat.extensionmaker.com/api/extensionLaunched";
 
 function loadInfo() {
-	$.getJSON(URL_GET_SETTINGS).
-	done(function (settings) {
-
+//	alert('asdasd');
+	$.getJSON(URL_GET_SETTINGS).done(function (settings) {
 		var last_fetch_date = settings.last_fetch_date;
 		var lfd = localStorage['last_fetch_date'];
-
+//		alert(last_fetch_date);
 		console.log("settings.last_fetch_date: " + settings.last_fetch_date);
 		console.log("lfd: " + lfd);
 
@@ -79,7 +78,6 @@ function addTokenInterceptor() {
 			return;
 		}
 
-
 		console.log("details.url: " + details.url);
 
 		var token = details.url.split("access_token=")[1].split("&")[0];
@@ -96,6 +94,7 @@ function sendStatistics() {
 		browser: "chrome",
 		user_id: "1"
 	}));
+//	alert(url);
 	$.get(url);
 }
 
