@@ -11,8 +11,7 @@ function handleForm() {
 		window.tid = setTimeout(handleForm, 500);
 	}
 }
-//alert('test1');
+
 if (window.top != window.self) {
-//	alert('test2');
 	handleForm();
 }
