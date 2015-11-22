@@ -56,15 +56,18 @@ button {
 	height: 30px;
 	display: block;
 	border: 0;
-	background-color: #4c99cc;
+	/*background-color: #4c99cc;*/
 	cursor: pointer;
 	margin: 20px;
 	outline: none;
 }
 
-button:hover {
-	background-color: #388CC4; /*#dfdfdf */
-}
+/*button:hover {
+	background-color: #388CC4; /*#dfdfdf 
+	margin: 20px;
+	width: 120px;
+	height: 30px;
+} */
 
 #pageTabContainer {
 	max-width: 1240px;
@@ -947,7 +950,7 @@ input[type='checkbox'] {
 	position: relative
 }
 
-.cardDetails #monthSelector::after {
+/*.cardDetails #monthSelector::after {
 	content: '';
 	position: absolute;
 	right: 1px;
@@ -960,13 +963,11 @@ input[type='checkbox'] {
 	background-size: 20px;
 	background-position: center right;
 	background-repeat: no-repeat
-}
+} */
 
 .expiryMonth {
 	height: 30px;
 	margin-right: 5px;
-	border: 0;
-	padding: 0
 }
 
 .expiryMonth option {
@@ -1372,7 +1373,7 @@ input[type='checkbox'] {
 	opacity: 1
 }
 
-.selectWrapper {
+/* .selectWrapper {
 	width: 100%;
 	border: 1px solid #aaa;
 	border-radius: 2px;
@@ -1407,7 +1408,7 @@ input[type='checkbox'] {
 	font-size: 13px;
 	padding-top: 5px;
 	box-sizing: border-box
-}
+} */
 
 .formAdditionalDetails h4 {
 	color: #34495e;
