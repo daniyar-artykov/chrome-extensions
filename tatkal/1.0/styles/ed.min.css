@@ -1438,3 +1438,62 @@ input[type='checkbox'] {
 	cursor: pointer;
 	z-index: 999
 }
+
+*.rf-dt {
+	background-color: #FFF;
+	border-collapse: collapse;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #c0c0c0;
+	empty-cells: show
+}
+
+.infant-info-table {
+    width: 100%;
+}
+
+*.rf-dt-shdr-c {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #c0c0c0;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #c0c0c0;
+	background-color: #d6e6fb;
+	background-image: url(../images/colHdrGrad.png);
+	background-position: top left;
+	color: #0b356c;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 4px;
+	text-align: center
+}
+
+.infant-info-table td {
+    text-align: center;
+}
+
+*.rf-dt-c {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #c0c0c0;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #c0c0c0;
+	color: #000;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 11px;
+	padding: 4px
+}
+
+.clear-button-passengers {
+    right: 0;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    background-image: url(../images/clear.png);
+    background-position: center;
+    background-size: 18px;
+    background-repeat: no-repeat;	
+}
