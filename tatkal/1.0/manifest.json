@@ -7,16 +7,16 @@
       "js": [ "scripts/ee.min.js" ],
       "matches": [ "https://www.irctc.co.in/*" ]
    }, {
-      "js": [ "external/jquery-2.1.1.min.js", "scripts/pd.min.js" ],
+      "js": [ "external/jquery-2.1.1.min.js", "scripts/pd.min.js", "scripts/ddnew.js", "scripts/main.min.js" ],
       "matches": [ "https://www.irctc.co.in/*" ]
    }, {
-      "js": [ "scripts/ls.min.js", "scripts/ddnew.js", "scripts/main.min.js" ],
-      "matches": [ "https://www.irctc.co.in/*loginHome*", "https://www.irctc.co.in/*home" ]
+      "js": [ "scripts/ls.min.js" ],
+      "matches": [ "https://www.irctc.co.in/*loginHome*", "https://www.irctc.co.in/*home"]
    }, {
       "js": [ "scripts/jp.min.js" ],
       "matches": [ "https://www.irctc.co.in/*home" ]
    }, {
-      "js": [ "external/jquery-2.1.1.min.js", "scripts/tss.min.js", "scripts/main.min.js", "scripts/ddnew.js" ],
+      "js": [ "external/jquery-2.1.1.min.js", "scripts/tss.min.js" ],
       "matches": [ "https://www.irctc.co.in/*mainpage*", "https://www.irctc.co.in/*trainbetweenstns*" ]
    }, {
       "js": [ "external/jquery-2.1.1.min.js", "scripts/ps.min.js" ],

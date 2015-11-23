@@ -72,1109 +72,1111 @@
 	<div id='aboutContainer'></div>
 
 	<div id='feedbackContainer'></div>
+	<form>
+		<div id='formContainer'>
 
-	<div id='formContainer'>
+			<div id='formContainerTitle'>
 
-		<div id='formContainerTitle'>
+				<div id='ztFormLeftContainer'>
 
-			<div id='ztFormLeftContainer'>
-
-				<div id='ztAddForm'>
-					<div id='imageDiv'></div>
+					<div id='ztAddForm'>
+						<div id='imageDiv'></div>
+					</div>
+					<div id='formList'></div>
 				</div>
-				<div id='formList'></div>
+
+				<div id='ztDeleteForm'></div>
+
 			</div>
 
-			<div id='ztDeleteForm'></div>
+			<div id='formDetails'>
+				<iframe
+					src="http://www.facebook.com/plugins/like.php?locale=en_US&amp;href=https://www.facebook.com/Test-1389602381341305&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=verdana&amp;colorscheme=light"
+					allowtransparency="true"
+					style="border: none; overflow: hidden; width: 85px; height: 21px;"
+					frameborder="0" scrolling="no"></iframe>
+				<a
+					href="https://plus.google.com/share?url=https://plus.google.com/u/0/106746746897301798997/posts"
+					target="_blank"
+					onclick="javascript:window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
+					src="https://www.gstatic.com/images/icons/gplus-32.png"
+					alt="Share on Google+" /></a> <a href="https://twitter.com/d_artykov"
+					class="twitter-follow-button" data-show-screen-name="false"
+					data-show-count="false" target="_blank">Follow</a>
 
-		</div>
+				<div id='formNameDiv'>
+					<span> Form Name: </span> <input type="text" spellcheck="false"
+						name='formNameID' id='formNameID'>
+				</div>
 
-		<div id='formDetails'>
-			<iframe
-				src="http://www.facebook.com/plugins/like.php?locale=en_US&amp;href=https://www.facebook.com/Test-1389602381341305&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=verdana&amp;colorscheme=light"
-				allowtransparency="true"
-				style="border: none; overflow: hidden; width: 85px; height: 21px;"
-				frameborder="0" scrolling="no"></iframe>
-			<a
-				href="https://plus.google.com/share?url=https://plus.google.com/u/0/106746746897301798997/posts"
-				target="_blank"
-				onclick="javascript:window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
-				src="https://www.gstatic.com/images/icons/gplus-32.png"
-				alt="Share on Google+" /></a> <a href="https://twitter.com/d_artykov"
-				class="twitter-follow-button" data-show-screen-name="false"
-				data-show-count="false" target="_blank">Follow</a>
-
-			<div id='formNameDiv'>
-				<span> Form Name: </span> <input type="text" spellcheck="false"
-					name='formNameID' id='formNameID'>
 			</div>
 
-		</div>
+			<div class='loginDetails boxHead'>
 
-		<div class='loginDetails boxHead'>
-
-			<p>Login Details</p>
-			<p style='display: none'>These details will be saved locally</p>
-			<div>
-				<span> User ID: </span> <input type="text" spellcheck="false"
-					name='usernameId' id='usernameId' maxlength="35">
-			</div>
-			<div>
-				<span> Password: </span> <input type="password" name='j_password'
-					id='j_password' maxlength="15" autocomplete='off'>
-			</div>
-		</div>
-
-
-		<div class='journeyPlanDetails boxHead'>
-
-			<p>Journey Plan</p>
-
-			<div>
-				<span> From Station: </span> <input type='text' spellcheck="false"
-					name='jpform:fromStation' id='fromStation'>
-			</div>
-
-			<div>
-				<span> To Station: </span> <input type='text' spellcheck="false"
-					name='jpform:toStation' id='toStation'>
-			</div>
-
-			<div>
-				<span> Boarding Station: </span> <input type='text'
-					spellcheck="false" name='addPassengerForm:boardingStation'
-					id='boardingStation'>
-			</div>
-
-			<div id='swapToNFro' title='Swap From and To'></div>
-
-			<div class='ztJourneyDate'>
-				<span> Journey Date: </span> <input type='text' spellcheck="false"
-					name='jpform:journeyDateInputDate' id='journeyDateInputDate'
-					autocomplete="off" maxlength="0"> <img
-					src="images/calendarIcon.png" id='ztDatePickerBtn'>
-			</div>
-
-			<div class='ztTicketType'>
-				<span> Ticket Type: </span> <select id='ztTicketTypeSelect'
-					name="jpform:ticketType" size="1">
-					<option value="E_TICKET" selected="selected">E-ticket</option>
-					<option value="I_TICKET">I-ticket</option>
-				</select>
-			</div>
-
-			<div class='ztHandicapPsgType'>
-				<input id="ztPHConcessionInput" type="checkbox"
-					name="jpform:handicapPassengers"> <span
-					id='ztHandicapPsgTypeLabel'> I'll book in Handicap
-					concession</span>
-			</div>
-
-		</div>
-
-
-		<div class='trainDetails boxHead'>
-
-			<p>Train Details</p>
-
-			<div class='quota radioGroup'>
-				<span> Quota: </span>
-				<div id='qcbd'>
-					<div class='radioButton'>
-						<input type="radio" name="qouta" value="GN" id='GN'> <label
-							for='GN'> General </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="qouta" value="PT" id='PT'> <label
-							for='PT'> Premium Tatkal </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="qouta" value="HP" id='PH'> <label
-							for='PH'> Physically Handicap </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="qouta" value="L" id='L'> <label
-							for='L'> Ladies </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="qouta" value="CK" id='CK'> <label
-							for='CK'> Tatkal </label>
-					</div>
+				<p>Login Details</p>
+				<p style='display: none'>These details will be saved locally</p>
+				<div>
+					<span> User ID: </span> <input type="text" spellcheck="false"
+						name='usernameId' id='usernameId' maxlength="35">
+				</div>
+				<div>
+					<span> Password: </span> <input type="password" name='j_password'
+						id='j_password' maxlength="15" autocomplete='off'>
 				</div>
 			</div>
 
-			<div class='trainNumber'>
-				<span> Train No: </span> <input type='text' spellcheck="false"
-					name='trainNumber' id='trainNumber' autocomplete='on'
-					class='only_numbers'>
-			</div>
 
-			<div class='trainClass radioGroup'>
-				<span> Class: </span>
-				<div id='class'>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="FC"> <label>
-							FC </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="1A"> <label>
-							1A </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="2A"> <label>
-							2A </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="3A"> <label>
-							3A </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="SL"> <label>
-							SL </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="EC"> <label>
-							EC </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="CC"> <label>
-							CC </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="SS"> <label>
-							SS </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="class" value="2S"> <label>
-							2S </label>
-					</div>
-				</div>
-			</div>
+			<div class='journeyPlanDetails boxHead'>
 
-		</div>
+				<p>Journey Plan</p>
 
-		<hr>
+				<div>
+					<span> From Station: </span> <input type='text' spellcheck="false"
+						name='jpform:fromStation' id='fromStation'>
+				</div>
 
-		<div class='adultPassengerDetails boxHead' id='ztAdultPsgDetails'>
+				<div>
+					<span> To Station: </span> <input type='text' spellcheck="false"
+						name='jpform:toStation' id='toStation'>
+				</div>
 
-			<div class="row-heading">
-				<div class="detailsDesc">
-					<h4>Adult Passangers</h4>
-					<p>Enter details of adult passengers for whom ticket is to be
-						issued.</p>
+				<div>
+					<span> Boarding Station: </span> <input type='text'
+						spellcheck="false" name='addPassengerForm:boardingStation'
+						id='boardingStation'>
 				</div>
-			</div>
 
-			<div class="row tableHeading">
-				<div class="column1">
-					<strong>Passenger Name</strong>
-				</div>
-				<div class="column2">
-					<strong>Age</strong>
-				</div>
-				<div class="column2">
-					<strong>Gender</strong>
-				</div>
-				<div class="column1">
-					<strong>Berth Preference</strong>
-				</div>
-				<div class="column5">
-					<strong>Concession</strong>
-				</div>
-				<div class="column5">
-					<strong>Handicap Card No.</strong>
-				</div>
-				<div class="column5">
-					<strong>DoB(dd-mm-yyyy)</strong>
-				</div>
-				<div class="column5">
-					<strong>Valid Upto(dd-mm-yyyy)</strong>
-				</div>
-				<div class="column2">
-					<strong>Meal</strong>
-				</div>
-				<div class="column2">
-					<strong>Senior</strong>
-				</div>
-				<div class="column1">
-					<strong>AADHAAR No.(Optional)</strong>
-				</div>
-			</div>
+				<div id='swapToNFro' title='Swap From and To'></div>
 
-			<hr class='headingDivider'>
+				<div class='ztJourneyDate'>
+					<span> Journey Date: </span> <input type='text' spellcheck="false"
+						name='jpform:journeyDateInputDate' id='journeyDateInputDate'
+						autocomplete="off" maxlength="0"> <img
+						src="images/calendarIcon.png" id='ztDatePickerBtn'>
+				</div>
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName0" placeholder="Passenger #1">
+				<div class='ztTicketType'>
+					<span> Ticket Type: </span> <select id='ztTicketTypeSelect'
+						name="jpform:ticketType" size="1">
+						<option value="E_TICKET" selected="selected">E-ticket</option>
+						<option value="I_TICKET">I-ticket</option>
+					</select>
 				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge0">
+
+				<div class='ztHandicapPsgType'>
+					<input id="ztPHConcessionInput" type="checkbox"
+						name="jpform:handicapPassengers"> <span
+						id='ztHandicapPsgTypeLabel'> I'll book in Handicap
+						concession</span>
 				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender0" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice0" size="1" class="form-control">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType0" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo0">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB0" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto0" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref0" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt0">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber0">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_0'></div>
+
 			</div>
 
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName1" placeholder="Passenger #2">
-				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge1">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender1" size="1" class="form-control ">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice1" size="1" class="form-control">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType1" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo1">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB1" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto1" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref1" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt1">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber1">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_1'></div>
-			</div>
+			<div class='trainDetails boxHead'>
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName2" placeholder="Passenger #3">
-				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge2">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender2" size="1" class="form-control ">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice2" size="1" class="form-control">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType2" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo2">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB2" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto2" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref2" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt2">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber2">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_2'></div>
-			</div>
+				<p>Train Details</p>
 
+				<div class='quota radioGroup'>
+					<span> Quota: </span>
+					<div id='qcbd'>
+						<div class='radioButton'>
+							<input type="radio" name="qouta" value="GN" id='GN'> <label
+								for='GN'> General </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="qouta" value="PT" id='PT'> <label
+								for='PT'> Premium Tatkal </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="qouta" value="HP" id='PH'> <label
+								for='PH'> Physically Handicap </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="qouta" value="L" id='L'> <label
+								for='L'> Ladies </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="qouta" value="CK" id='CK'> <label
+								for='CK'> Tatkal </label>
+						</div>
+					</div>
+				</div>
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName3" placeholder="Passenger #4">
+				<div class='trainNumber'>
+					<span> Train No: </span> <input type='text' spellcheck="false"
+						name='trainNumber' id='trainNumber' autocomplete='on'
+						class='only_numbers'>
 				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge3">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender3" size="1" class="form-control ">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice3" size="1" class="form-control ">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType3" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo3">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB3" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto3" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref3" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt3">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber3">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_3'></div>
-			</div>
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName4" placeholder="Passenger #5">
-				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge4">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender4" size="1" class="form-control ">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
+				<div class='trainClass radioGroup'>
+					<span> Class: </span>
+					<div id='class'>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="FC"> <label>
+								FC </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="1A"> <label>
+								1A </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="2A"> <label>
+								2A </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="3A"> <label>
+								3A </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="SL"> <label>
+								SL </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="EC"> <label>
+								EC </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="CC"> <label>
+								CC </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="SS"> <label>
+								SS </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="class" value="2S"> <label>
+								2S </label>
+						</div>
 					</div>
 				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice4" size="1" class="form-control ">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType4" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo4">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB4" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto4" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref4" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt4">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber4">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_4'></div>
-			</div>
 
-			<div class="row">
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="psgnName5" placeholder="Passenger #6">
-				</div>
-				<div class="column2">
-					<input type="text" spellcheck="false"
-						class="form-control only_numbers" maxlength="3" id="psgnAge5">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="psgnGender5" size="1" class="form-control ">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="column1">
-					<div class='selectWrapper'>
-						<select id="berthChoice5" size="1" class="form-control ">
-							<option value="  ">No Preference</option>
-							<option value="LB">LOWER</option>
-							<option value="MB">MIDDLE</option>
-							<option value="UB">UPPER</option>
-							<option value="SL">SIDE LOWER</option>
-							<option value="SU">SIDE UPPER</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<div class='selectWrapper'>
-						<select id="concessionType5" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="1">HANDICAP</option>
-							<option value="2">ESCORT</option>
-							<option value="-1">GENERAL</option>
-						</select>
-					</div>
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="20" id="handicapCardNo5">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="psgnDoB5" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column5">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="10" id="validUpto5" placeholder="dd-mm-yyyy">
-				</div>
-				<div class="column2">
-					<div class='selectWrapper'>
-						<select id="mealPref5" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="V">Veg</option>
-							<option value="N">Non-Veg</option>
-						</select>
-					</div>
-				</div>
-				<div class="column2 ">
-					<input type="checkbox" id="concessionOpt5">
-				</div>
-				<div class="column1">
-					<input type="text" spellcheck="false" class="form-control"
-						id="aadhaarCardNumber5">
-				</div>
-				<div class='clearBtn' id='clearadultpsgd_5'></div>
 			</div>
 
 			<hr>
 
-		</div>
+			<div class='adultPassengerDetails boxHead' id='ztAdultPsgDetails'>
+
+				<div class="row-heading">
+					<div class="detailsDesc">
+						<h4>Adult Passangers</h4>
+						<p>Enter details of adult passengers for whom ticket is to be
+							issued.</p>
+					</div>
+				</div>
+
+				<div class="row tableHeading">
+					<div class="column1">
+						<strong>Passenger Name</strong>
+					</div>
+					<div class="column2">
+						<strong>Age</strong>
+					</div>
+					<div class="column2">
+						<strong>Gender</strong>
+					</div>
+					<div class="column1">
+						<strong>Berth Preference</strong>
+					</div>
+					<div class="column5">
+						<strong>Concession</strong>
+					</div>
+					<div class="column5">
+						<strong>Handicap Card No.</strong>
+					</div>
+					<div class="column5">
+						<strong>DoB(dd-mm-yyyy)</strong>
+					</div>
+					<div class="column5">
+						<strong>Valid Upto(dd-mm-yyyy)</strong>
+					</div>
+					<div class="column2">
+						<strong>Meal</strong>
+					</div>
+					<div class="column2">
+						<strong>Senior</strong>
+					</div>
+					<div class="column1">
+						<strong>AADHAAR No.(Optional)</strong>
+					</div>
+				</div>
+
+				<hr class='headingDivider'>
+
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName0" placeholder="Passenger #1">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge0">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender0" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice0" size="1" class="form-control">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType0" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo0">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB0" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto0" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref0" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt0">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber0">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_0'></div>
+				</div>
 
 
-		<div class='childPassengerDetails boxHead'>
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName1" placeholder="Passenger #2">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge1">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender1" size="1" class="form-control ">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice1" size="1" class="form-control">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType1" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo1">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB1" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto1" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref1" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt1">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber1">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_1'></div>
+				</div>
 
-			<div class="row-heading">
-				<div class="detailsDesc">
-					<h4>Child Passengers</h4>
-					<p>Enter details of children below 5 years for whom ticket is
-						not to be issued.</p>
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName2" placeholder="Passenger #3">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge2">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender2" size="1" class="form-control ">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice2" size="1" class="form-control">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType2" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo2">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB2" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto2" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref2" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt2">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber2">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_2'></div>
+				</div>
+
+
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName3" placeholder="Passenger #4">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge3">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender3" size="1" class="form-control ">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice3" size="1" class="form-control ">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType3" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo3">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB3" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto3" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref3" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt3">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber3">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_3'></div>
+				</div>
+
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName4" placeholder="Passenger #5">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge4">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender4" size="1" class="form-control ">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice4" size="1" class="form-control ">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType4" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo4">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB4" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto4" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref4" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt4">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber4">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_4'></div>
+				</div>
+
+				<div class="row">
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="psgnName5" placeholder="Passenger #6">
+					</div>
+					<div class="column2">
+						<input type="text" spellcheck="false"
+							class="form-control only_numbers" maxlength="3" id="psgnAge5">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="psgnGender5" size="1" class="form-control ">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="column1">
+						<div class='selectWrapper'>
+							<select id="berthChoice5" size="1" class="form-control ">
+								<option value="  ">No Preference</option>
+								<option value="LB">LOWER</option>
+								<option value="MB">MIDDLE</option>
+								<option value="UB">UPPER</option>
+								<option value="SL">SIDE LOWER</option>
+								<option value="SU">SIDE UPPER</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<div class='selectWrapper'>
+							<select id="concessionType5" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="1">HANDICAP</option>
+								<option value="2">ESCORT</option>
+								<option value="-1">GENERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="20" id="handicapCardNo5">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="psgnDoB5" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column5">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="10" id="validUpto5" placeholder="dd-mm-yyyy">
+					</div>
+					<div class="column2">
+						<div class='selectWrapper'>
+							<select id="mealPref5" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="V">Veg</option>
+								<option value="N">Non-Veg</option>
+							</select>
+						</div>
+					</div>
+					<div class="column2 ">
+						<input type="checkbox" id="concessionOpt5">
+					</div>
+					<div class="column1">
+						<input type="text" spellcheck="false" class="form-control"
+							id="aadhaarCardNumber5">
+					</div>
+					<div class='clearBtn' id='clearadultpsgd_5'></div>
+				</div>
+
+				<hr>
+
+			</div>
+
+
+			<div class='childPassengerDetails boxHead'>
+
+				<div class="row-heading">
+					<div class="detailsDesc">
+						<h4>Child Passengers</h4>
+						<p>Enter details of children below 5 years for whom ticket is
+							not to be issued.</p>
+					</div>
+
+				</div>
+
+				<div class="row tableHeading">
+					<div class="column3">
+						<strong>Child's Name</strong>
+					</div>
+					<div class="column4">
+						<strong>Age</strong>
+					</div>
+					<div class="column4">
+						<strong>Sex</strong>
+					</div>
+				</div>
+
+				<hr class='headingDivider'>
+
+				<div class="row">
+					<div class="column3">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="infantName0" placeholder="Child Passenger #1">
+					</div>
+					<div class="column4">
+						<div class='selectWrapper'>
+							<select class="form-control" size="1" id="infantAge0">
+								<option value="-1" selected="selected">Select</option>
+								<option value="0">Below one year</option>
+								<option value="1">One year</option>
+								<option value="2">Two years</option>
+								<option value="3">Three years</option>
+								<option value="4">Four years</option>
+							</select>
+						</div>
+					</div>
+					<div class="column4">
+						<div class='selectWrapper'>
+							<select id="infantGender0" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class='clearBtn childPsgCtrl' id='clearinfantd_0'></div>
+				</div>
+
+				<div class="row">
+					<div class="column3">
+						<input type="text" spellcheck="false" class="form-control"
+							maxlength="16" id="infantName1" placeholder="Child Passenger #2">
+					</div>
+					<div class="column4">
+						<div class='selectWrapper'>
+							<select class="form-control" size="1" id="infantAge1">
+								<option value="-1" selected="selected">Select</option>
+								<option value="0">Below one year</option>
+								<option value="1">One year</option>
+								<option value="2">Two years</option>
+								<option value="3">Three years</option>
+								<option value="4">Four years</option>
+							</select>
+						</div>
+					</div>
+					<div class="column4">
+						<div class='selectWrapper'>
+							<select id="infantGender1" size="1" class="form-control">
+								<option value=" ">Select</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class='clearBtn childPsgCtrl' id='clearinfantd_1'></div>
 				</div>
 
 			</div>
 
-			<div class="row tableHeading">
-				<div class="column3">
-					<strong>Child's Name</strong>
+			<hr>
+
+			<div class="formAdditionalDetails boxHead">
+
+				<h4>Additional Details</h4>
+
+				<div class="row mobileNum">
+					<span> Mobile Number: </span> <input type="text" spellcheck="false"
+						class="form-control only_numbers" maxlength="10" id="mobileNo">
 				</div>
-				<div class="column4">
-					<strong>Age</strong>
+
+				<div class="row addDetailsCtrl">
+					<input type="checkbox" id="autoUpgrade"> <label
+						class="control-label">Consider for auto upgradation</label>
 				</div>
-				<div class="column4">
-					<strong>Sex</strong>
+
+				<div class='row  addDetailsCtrl'>
+					<input id="onlyConfirmBerths" name="onlyConfirmBerths"
+						type="checkbox"> <label name='control-label'> Book
+						only if confirm berths are allotted </span>
+				</div>
+
+				<div id='bookingCondRadioButtonGroup'>
+					<div class='bookingCondRadioButton row'>
+						<input type="radio" name="bookingCond" checked="checked" value="3"
+							id='bc3'> <label for='bc3'> None </label>
+					</div>
+					<div class='bookingCondRadioButton row'>
+						<input type="radio" name="bookingCond" value="6" id='bc6'>
+						<label for='bc6'> Book , only if all berths are allotted
+							in same coach </label>
+					</div>
+					<div class='bookingCondRadioButton row'>
+						<input type="radio" name="bookingCond" value="4" id='bc4'>
+						<label for='bc4'> Book, only if at least 1 lower berth is
+							allotted </label>
+					</div>
+					<div class='bookingCondRadioButton row'>
+						<input type="radio" name="bookingCond" value="5" id='bc5'>
+						<label for='bc5'> Book, only if 2 lower berths are
+							allotted. </label>
+					</div>
+				</div>
+
+				<div class="row coachOpt">
+					<input type="checkbox" id="prefCoachOpt"> <span
+						class="control-label"> Preferred Coach ID : </span> <input
+						type="text" spellcheck="false" class="form-control only_numbers"
+						maxlength="4" id="coachID">
+				</div>
+
+			</div>
+
+			<hr>
+
+
+			<div class='paymentDetails boxHead'>
+
+				<p>Payment Details</p>
+
+				<div class="row radioGroup">
+					<span> Payment Type: </span>
+					<div id='paymentType'>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="NETBANKING" id='nb'>
+							<label for='nb'> NetBanking </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="CREDIT_CARD"
+								id='cc'> <label for='cc'>Payment Gateway /
+								Credit Card </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="DEBIT_CARD" id='dc'>
+							<label for='dc'>Debit Card </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="CASH_CARD" id='cac'>
+							<label for='cac'>Cash Card / Wallets </label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="IRCTC_PREPAID"
+								id='irctcpp'> <label for='irctcpp'>IRCTC Prepaid</label>
+						</div>
+						<div class='radioButton'>
+							<input type="radio" name="paymentType" value="EMI" id='emiType'>
+							<label for='emiType'> EMI </label>
+						</div>
+					</div>
+				</div>
+
+
+				<div id="NETBANKING" class="row" style="width: 100%; display: none;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select Bank :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankINBList" name="jpBook:bankINBList"
+											class="form-control NETBANKING" size="1">
+											<option value="-1">Select Bank</option>
+											<option value="1">State Bank of India</option>
+											<option value="10">State Bank of India and
+												Associates</option>
+											<option value="22">Federal Bank</option>
+											<option value="29">Indian Bank</option>
+											<option value="28">Union Bank of India</option>
+											<option value="31">Andhra Bank</option>
+											<option value="34">Punjab National Bank</option>
+											<option value="35">Allahabad Bank</option>
+											<option value="38">Vijaya Bank</option>
+											<option value="39">AXIS Bank</option>
+											<option value="36">HDFC Bank</option>
+											<option value="37">Bank of Baroda</option>
+											<option value="42">Karnataka Bank</option>
+											<option value="43">Oriental Bank of Commerce</option>
+											<option value="40">Karur Vysya Bank</option>
+											<option value="46">Kotak Mahindra Bank</option>
+											<option value="47">ING Vysya Bank (now Kotak)</option>
+											<option value="44">ICICI Bank</option>
+											<option value="45">IndusInd Bank</option>
+											<option value="51">IMPS</option>
+											<option value="50">Central Bank of India</option>
+											<option value="48">Bank of India</option>
+											<option value="54">Syndicate Bank</option>
+											<option value="53">Bank of Maharashatra</option>
+											<option value="52">IDBI Bank</option>
+											<option value="56">Corporation Bank</option>
+											<option value="60">Yes Bank</option>
+											<option value="64">Nepal SBI Bank Ltd.</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="CREDIT_CARD" class="row" style="width: 100%;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select a Payment
+										gateway :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankPGList" name="jpBook:bankPGList"
+											class="form-control CREDIT_CARD" size="1">
+											<option value="-1">Select Bank</option>
+											<option value="4">Visa/Master Card(Powered By ICICI
+												BANK)</option>
+											<option value="17">Visa/Master Card(Powered By CITI
+												BANK)</option>
+											<option value="21">Visa/Master Card(Powered By HDFC
+												BANK)</option>
+											<option value="27">American Express</option>
+											<option value="30">Visa/Master Card(Powered By AXIS
+												BANK)</option>
+											<option value="58">RuPay Card(Powered By kotak BANK)</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="DEBIT_CARD" class="row" style="width: 100%; display: none;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select Bank :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankDCList" name="jpBook:bankDCList"
+											class="form-control DEBIT_CARD" size="1">
+											<option value="-1">Select Bank</option>
+											<option value="3">State Bank of India</option>
+											<option value="9">Punjab National Bank</option>
+											<option value="15">Indian Bank</option>
+											<option value="16">Union Bank of India</option>
+											<option value="19">Bank of India</option>
+											<option value="25">Andhra Bank</option>
+											<option value="26">Canara Bank</option>
+											<option value="32">CITI Bank</option>
+											<option value="41">ICICI Bank</option>
+											<option value="57">HDFC Bank</option>
+											<option value="66">AXIS Bank</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="CASH_CARD" class="row" style="width: 100%; display: none;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select a Cash card /
+										Wallets :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankCCList" name="jpBook:bankCCList"
+											class="form-control CASH_CARD" size="1">
+											<option value="-1">Select Cash card</option>
+											<option value="23">ITZ Cash Card</option>
+											<option value="33">I Cash Card</option>
+											<option value="55">OXI Cash Card</option>
+											<option value="63">Paytm Wallet</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="IRCTC_PREPAID" class="row"
+					style="width: 100%; display: none;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select an Option :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankPrepaidList" name="jpBook:bankPrepaidList"
+											class="form-control IRCTC_PREPAID" size="1">
+											<option value="-1">Select</option>
+											<option value="59">IRCTC Union Bank prepaid (RuPay)</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="EMI" class="row" style="width: 100%; display: none;">
+					<table width="100%" border="0">
+						<tbody>
+							<tr>
+								<td class='labelData'><label>Select a Bank :</label></td>
+								<td class='contentData'>
+									<div class='selectWrapper'>
+										<select id="bankEMIList" name="jpBook:bankEMIList"
+											class="form-control EMI" size="1">
+											<option value="-1">Select Bank</option>
+											<option value="49">CITI Bank</option>
+										</select>
+									</div>
+								</td>
+								<td class="dummyData"></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
-			<hr class='headingDivider'>
+			<div id='cardDetailsID' style='display: none' class='cardDetails'>
 
-			<div class="row">
-				<div class="column3">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="infantName0" placeholder="Child Passenger #1">
-				</div>
-				<div class="column4">
-					<div class='selectWrapper'>
-						<select class="form-control" size="1" id="infantAge0">
-							<option value="-1" selected="selected">Select</option>
-							<option value="0">Below one year</option>
-							<option value="1">One year</option>
-							<option value="2">Two years</option>
-							<option value="3">Three years</option>
-							<option value="4">Four years</option>
-						</select>
-					</div>
-				</div>
-				<div class="column4">
-					<div class='selectWrapper'>
-						<select id="infantGender0" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class='clearBtn childPsgCtrl' id='clearinfantd_0'></div>
-			</div>
+				<p>Card Details</p>
 
-			<div class="row">
-				<div class="column3">
-					<input type="text" spellcheck="false" class="form-control"
-						maxlength="16" id="infantName1" placeholder="Child Passenger #2">
-				</div>
-				<div class="column4">
-					<div class='selectWrapper'>
-						<select class="form-control" size="1" id="infantAge1">
-							<option value="-1" selected="selected">Select</option>
-							<option value="0">Below one year</option>
-							<option value="1">One year</option>
-							<option value="2">Two years</option>
-							<option value="3">Three years</option>
-							<option value="4">Four years</option>
-						</select>
-					</div>
-				</div>
-				<div class="column4">
-					<div class='selectWrapper'>
-						<select id="infantGender1" size="1" class="form-control">
-							<option value=" ">Select</option>
-							<option value="M">Male</option>
-							<option value="F">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class='clearBtn childPsgCtrl' id='clearinfantd_1'></div>
-			</div>
-
-		</div>
-
-		<hr>
-
-		<div class="formAdditionalDetails boxHead">
-
-			<h4>Additional Details</h4>
-
-			<div class="row mobileNum">
-				<span> Mobile Number: </span> <input type="text" spellcheck="false"
-					class="form-control only_numbers" maxlength="10" id="mobileNo">
-			</div>
-
-			<div class="row addDetailsCtrl">
-				<input type="checkbox" id="autoUpgrade"> <label
-					class="control-label">Consider for auto upgradation</label>
-			</div>
-
-			<div class='row  addDetailsCtrl'>
-				<input id="onlyConfirmBerths" name="onlyConfirmBerths"
-					type="checkbox"> <label name='control-label'> Book
-					only if confirm berths are allotted </span>
-			</div>
-
-			<div id='bookingCondRadioButtonGroup'>
-				<div class='bookingCondRadioButton row'>
-					<input type="radio" name="bookingCond" checked="checked" value="3"
-						id='bc3'> <label for='bc3'> None </label>
-				</div>
-				<div class='bookingCondRadioButton row'>
-					<input type="radio" name="bookingCond" value="6" id='bc6'>
-					<label for='bc6'> Book , only if all berths are allotted in
-						same coach </label>
-				</div>
-				<div class='bookingCondRadioButton row'>
-					<input type="radio" name="bookingCond" value="4" id='bc4'>
-					<label for='bc4'> Book, only if at least 1 lower berth is
-						allotted </label>
-				</div>
-				<div class='bookingCondRadioButton row'>
-					<input type="radio" name="bookingCond" value="5" id='bc5'>
-					<label for='bc5'> Book, only if 2 lower berths are
-						allotted. </label>
-				</div>
-			</div>
-
-			<div class="row coachOpt">
-				<input type="checkbox" id="prefCoachOpt"> <span
-					class="control-label"> Preferred Coach ID : </span> <input
-					type="text" spellcheck="false" class="form-control only_numbers"
-					maxlength="4" id="coachID">
-			</div>
-
-		</div>
-
-		<hr>
-
-
-		<div class='paymentDetails boxHead'>
-
-			<p>Payment Details</p>
-
-			<div class="row radioGroup">
-				<span> Payment Type: </span>
-				<div id='paymentType'>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="NETBANKING" id='nb'>
-						<label for='nb'> NetBanking </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="CREDIT_CARD" id='cc'>
-						<label for='cc'>Payment Gateway / Credit Card </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="DEBIT_CARD" id='dc'>
-						<label for='dc'>Debit Card </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="CASH_CARD" id='cac'>
-						<label for='cac'>Cash Card / Wallets </label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="IRCTC_PREPAID"
-							id='irctcpp'> <label for='irctcpp'>IRCTC Prepaid</label>
-					</div>
-					<div class='radioButton'>
-						<input type="radio" name="paymentType" value="EMI" id='emiType'>
-						<label for='emiType'> EMI </label>
-					</div>
-				</div>
-			</div>
-
-
-			<div id="NETBANKING" class="row" style="width: 100%; display: none;">
-				<table width="100%" border="0">
+				<table width="100%" border="0" cellspacing='10px'
+					id="card-input-table">
 					<tbody>
-						<tr>
-							<td class='labelData'><label>Select Bank :</label></td>
+						<tr id='ztCardtypeRow'>
+							<td class='labelData'>Card Type :</td>
 							<td class='contentData'>
 								<div class='selectWrapper'>
-									<select id="bankINBList" name="jpBook:bankINBList"
-										class="form-control NETBANKING" size="1">
-										<option value="-1">Select Bank</option>
-										<option value="1">State Bank of India</option>
-										<option value="10">State Bank of India and Associates</option>
-										<option value="22">Federal Bank</option>
-										<option value="29">Indian Bank</option>
-										<option value="28">Union Bank of India</option>
-										<option value="31">Andhra Bank</option>
-										<option value="34">Punjab National Bank</option>
-										<option value="35">Allahabad Bank</option>
-										<option value="38">Vijaya Bank</option>
-										<option value="39">AXIS Bank</option>
-										<option value="36">HDFC Bank</option>
-										<option value="37">Bank of Baroda</option>
-										<option value="42">Karnataka Bank</option>
-										<option value="43">Oriental Bank of Commerce</option>
-										<option value="40">Karur Vysya Bank</option>
-										<option value="46">Kotak Mahindra Bank</option>
-										<option value="47">ING Vysya Bank (now Kotak)</option>
-										<option value="44">ICICI Bank</option>
-										<option value="45">IndusInd Bank</option>
-										<option value="51">IMPS</option>
-										<option value="50">Central Bank of India</option>
-										<option value="48">Bank of India</option>
-										<option value="54">Syndicate Bank</option>
-										<option value="53">Bank of Maharashatra</option>
-										<option value="52">IDBI Bank</option>
-										<option value="56">Corporation Bank</option>
-										<option value="60">Yes Bank</option>
-										<option value="64">Nepal SBI Bank Ltd.</option>
+									<select name="card_type" id="card_type_id" class='form-control'
+										size='1'>
+										<option value="VISA">VISA</option>
+										<option value="MC">MASTER</option>
 									</select>
 								</div>
 							</td>
 							<td class="dummyData"></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<div id="CREDIT_CARD" class="row" style="width: 100%;">
-				<table width="100%" border="0">
-					<tbody>
 						<tr>
-							<td class='labelData'><label>Select a Payment
-									gateway :</label></td>
-							<td class='contentData'>
-								<div class='selectWrapper'>
-									<select id="bankPGList" name="jpBook:bankPGList"
-										class="form-control CREDIT_CARD" size="1">
-										<option value="-1">Select Bank</option>
-										<option value="4">Visa/Master Card(Powered By ICICI
-											BANK)</option>
-										<option value="17">Visa/Master Card(Powered By CITI
-											BANK)</option>
-										<option value="21">Visa/Master Card(Powered By HDFC
-											BANK)</option>
-										<option value="27">American Express</option>
-										<option value="30">Visa/Master Card(Powered By AXIS
-											BANK)</option>
-										<option value="58">RuPay Card(Powered By kotak BANK)</option>
+							<td class='labelData'>Card Number :</td>
+							<td class='contentData'><input type="text"
+								spellcheck="false" class='form-control only_numbers'
+								name="card_no" maxlength="23" size="39" id="card_no_id"
+								autocomplete="off" placeholder="Please enter your card number"></td>
+						</tr>
+						<tr>
+							<td class='labelData'>Card Expiry Date :</td>
+							<td class='contentData'>Month :
+								<div class='selectWrapper' id='monthSelector'>
+									<select name="card_expiry_mon" width='100'
+										id="card_expiry_mon_id" class='expiryMonth'>
+										<option selected="selected" value="mm">mm</option>
+										<option value="01">01 (Jan)</option>
+										<option value="02">02 (Feb)</option>
+										<option value="03">03 (Mar)</option>
+										<option value="04">04 (Apr)</option>
+										<option value="05">05 (May)</option>
+										<option value="06">06 (Jun)</option>
+										<option value="07">07 (Jul)</option>
+										<option value="08">08 (Aug)</option>
+										<option value="09">09 (Sep)</option>
+										<option value="10">10 (Oct)</option>
+										<option value="11">11 (Nov)</option>
+										<option value="12">12 (Dec)</option>
 									</select>
-								</div>
+								</div> Year(yyyy) : <input type="text" spellcheck="false"
+								name="card_expiry_year" maxlength="4" size="4"
+								id="card_expiry_year_id" class='expiryYear only_numbers'
+								autocomplete="off">
 							</td>
 							<td class="dummyData"></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
 
-			<div id="DEBIT_CARD" class="row" style="width: 100%; display: none;">
-				<table width="100%" border="0">
-					<tbody>
 						<tr>
-							<td class='labelData'><label>Select Bank :</label></td>
-							<td class='contentData'>
-								<div class='selectWrapper'>
-									<select id="bankDCList" name="jpBook:bankDCList"
-										class="form-control DEBIT_CARD" size="1">
-										<option value="-1">Select Bank</option>
-										<option value="3">State Bank of India</option>
-										<option value="9">Punjab National Bank</option>
-										<option value="15">Indian Bank</option>
-										<option value="16">Union Bank of India</option>
-										<option value="19">Bank of India</option>
-										<option value="25">Andhra Bank</option>
-										<option value="26">Canara Bank</option>
-										<option value="32">CITI Bank</option>
-										<option value="41">ICICI Bank</option>
-										<option value="57">HDFC Bank</option>
-										<option value="66">AXIS Bank</option>
-									</select>
-								</div>
-							</td>
+							<td class='labelData'>CVV Number:</td>
+							<td class='contentData'><input type="password" name="cvv_no"
+								maxlength="4" size="4" id="cvv_no_id"
+								class='form-control only_numbers'></td>
+							<td><span style="font-style: italic;"><font
+									color="red"> * </font>We don't store CVV/CVC number anywhere,
+									it will get saved on your local HDD</span></td>
 							<td class="dummyData"></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
 
-			<div id="CASH_CARD" class="row" style="width: 100%; display: none;">
-				<table width="100%" border="0">
-					<tbody>
 						<tr>
-							<td class='labelData'><label>Select a Cash card /
-									Wallets :</label></td>
-							<td class='contentData'>
-								<div class='selectWrapper'>
-									<select id="bankCCList" name="jpBook:bankCCList"
-										class="form-control CASH_CARD" size="1">
-										<option value="-1">Select Cash card</option>
-										<option value="23">ITZ Cash Card</option>
-										<option value="33">I Cash Card</option>
-										<option value="55">OXI Cash Card</option>
-										<option value="63">Paytm Wallet</option>
-									</select>
-								</div>
-							</td>
-							<td class="dummyData"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<div id="IRCTC_PREPAID" class="row"
-				style="width: 100%; display: none;">
-				<table width="100%" border="0">
-					<tbody>
-						<tr>
-							<td class='labelData'><label>Select an Option :</label></td>
-							<td class='contentData'>
-								<div class='selectWrapper'>
-									<select id="bankPrepaidList" name="jpBook:bankPrepaidList"
-										class="form-control IRCTC_PREPAID" size="1">
-										<option value="-1">Select</option>
-										<option value="59">IRCTC Union Bank prepaid (RuPay)</option>
-									</select>
-								</div>
-							</td>
-							<td class="dummyData"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<div id="EMI" class="row" style="width: 100%; display: none;">
-				<table width="100%" border="0">
-					<tbody>
-						<tr>
-							<td class='labelData'><label>Select a Bank :</label></td>
-							<td class='contentData'>
-								<div class='selectWrapper'>
-									<select id="bankEMIList" name="jpBook:bankEMIList"
-										class="form-control EMI" size="1">
-										<option value="-1">Select Bank</option>
-										<option value="49">CITI Bank</option>
-									</select>
-								</div>
-							</td>
+							<td class='labelData'>Name on Card :</td>
+							<td class='contentData'><input type="text"
+								spellcheck="false" name="card_name" maxlength="35" size="39"
+								class='form-control' id="card_name_id"
+								placeholder="Please enter your name specified on the card"></td>
 							<td class="dummyData"></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
-
-		<div id='cardDetailsID' style='display: none' class='cardDetails'>
-
-			<p>Card Details</p>
-
-			<table width="100%" border="0" cellspacing='10px'
-				id="card-input-table">
-				<tbody>
-					<tr id='ztCardtypeRow'>
-						<td class='labelData'>Card Type :</td>
-						<td class='contentData'>
-							<div class='selectWrapper'>
-								<select name="card_type" id="card_type_id" class='form-control'
-									size='1'>
-									<option value="VISA">VISA</option>
-									<option value="MC">MASTER</option>
-								</select>
-							</div>
-						</td>
-						<td class="dummyData"></td>
-					</tr>
-					<tr>
-						<td class='labelData'>Card Number :</td>
-						<td class='contentData'><input type="text" spellcheck="false"
-							class='form-control only_numbers' name="card_no" maxlength="23"
-							size="39" id="card_no_id" autocomplete="off"
-							placeholder="Please enter your card number"></td>
-					</tr>
-					<tr>
-						<td class='labelData'>Card Expiry Date :</td>
-						<td class='contentData'>Month :
-							<div class='selectWrapper' id='monthSelector'>
-								<select name="card_expiry_mon" width='100'
-									id="card_expiry_mon_id" class='expiryMonth'>
-									<option selected="selected" value="mm">mm</option>
-									<option value="01">01 (Jan)</option>
-									<option value="02">02 (Feb)</option>
-									<option value="03">03 (Mar)</option>
-									<option value="04">04 (Apr)</option>
-									<option value="05">05 (May)</option>
-									<option value="06">06 (Jun)</option>
-									<option value="07">07 (Jul)</option>
-									<option value="08">08 (Aug)</option>
-									<option value="09">09 (Sep)</option>
-									<option value="10">10 (Oct)</option>
-									<option value="11">11 (Nov)</option>
-									<option value="12">12 (Dec)</option>
-								</select>
-							</div> Year(yyyy) : <input type="text" spellcheck="false"
-							name="card_expiry_year" maxlength="4" size="4"
-							id="card_expiry_year_id" class='expiryYear only_numbers'
-							autocomplete="off">
-						</td>
-						<td class="dummyData"></td>
-					</tr>
-
-					<tr>
-						<td class='labelData'>CVV Number:</td>
-						<td class='contentData'><input type="password" name="cvv_no"
-							maxlength="4" size="4" id="cvv_no_id"
-							class='form-control only_numbers'></td>
-						<td><span style="font-style: italic;"><font
-								color="red"> * </font>We don't store CVV/CVC number anywhere, it
-								will get saved on your local HDD</span></td>
-						<td class="dummyData"></td>
-					</tr>
-
-					<tr>
-						<td class='labelData'>Name on Card :</td>
-						<td class='contentData'><input type="text" spellcheck="false"
-							name="card_name" maxlength="35" size="39" class='form-control'
-							id="card_name_id"
-							placeholder="Please enter your name specified on the card"></td>
-						<td class="dummyData"></td>
-					</tr>
-				</tbody>
-			</table>
+		<div id='formButtonsContainer'>
+			<div class="buttons-container">
+				<BUTTON id='reset_new' type="reset">
+					<span class='buttonText'> RESET </span> <span id='resetIcon'></span>
+				</BUTTON>
+				<BUTTON id='submit'>
+					<span id='dirtyFlag' class='clean'></span> <span class='buttonText'
+						id='submitText'> SAVED </span> <span id='saveIcon'></span>
+				</BUTTON>
+			</div>
 		</div>
-	</div>
-	<div id='formButtonsContainer'>
-		<div class="buttons-container">
-			<BUTTON id='reset'>
-				<span class='buttonText'> RESET </span> <span id='resetIcon'></span>
-			</BUTTON>
-			<BUTTON id='submit'>
-				<span id='dirtyFlag' class='clean'></span> <span class='buttonText'
-					id='submitText'> SAVED </span> <span id='saveIcon'></span>
-			</BUTTON>
-		</div>
-	</div>
-
+	</form>
 </body>
 
 </html>
