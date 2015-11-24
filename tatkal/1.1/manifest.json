@@ -1,4 +1,6 @@
 {
+   "icons": { "48": "images/icon48.png",
+          "128": "images/icon128.png" },
    "browser_action": {
       "default_icon": "images/icon.png",
       "default_popup": "forms/popup.html"
@@ -27,6 +29,6 @@
    "name": "Tatkal Extension",
    "permissions": [ "storage", "tabs" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0",
+   "version": "1.1",
    "web_accessible_resources": [ "images/icon.png" ]
 }
