@@ -9,12 +9,11 @@
 <!-- <link rel="stylesheet" type="text/css" href="styles/bluetabs.css" /> -->
 <script src="external/jquery-2.1.1.min.js"></script>
 <script src="external/jquery-ui.min.js"></script>
+<!-- <script src="external/jquery.validate.min.js"></script>  -->
 
 <script type="text/javascript" src='scripts/sls.min.js'></script>
 <script type="text/javascript" src='scripts/sd.min.js'></script>
-<script type="text/javascript" src='scripts/twitter.min.js'>
-	
-</script>
+<script type="text/javascript" src='scripts/twitter.min.js'></script>
 </head>
 <body>
 	<div id='pageTitle'>
@@ -28,6 +27,7 @@
 		<div id='aboutPopupContent'>
 
 			<!-- <img src='images/logo2.png'> -->
+			<a id="closeAboutPopup" href="#" title="Close" class="close">X</a>
 
 			<p>Need a text here.</p>
 		</div>
@@ -72,7 +72,7 @@
 	<div id='aboutContainer'></div>
 
 	<div id='feedbackContainer'></div>
-	<form>
+	<form id='mainForm' method='post'>
 		<div id='formContainer'>
 
 			<div id='formContainerTitle'>
@@ -102,8 +102,7 @@
 					src="https://www.gstatic.com/images/icons/gplus-32.png"
 					alt="Share on Google+" /></a> <a href="https://twitter.com/d_artykov"
 					class="twitter-follow-button" data-show-screen-name="false"
-					data-show-count="false" target="_blank">Follow</a>
-
+					data-show-count="false" target="_blank">Follow</a> <br /> <br />
 				<div id='formNameDiv'>
 					<span> Form Name: </span> <input type="text" spellcheck="false"
 						name='formNameID' id='formNameID'>
@@ -113,31 +112,31 @@
 
 			<div class='loginDetails boxHead'>
 
-				<p>Login Details</p>
+				<p>1. Login Details</p>
 				<p style='display: none'>These details will be saved locally</p>
 				<div>
 					<span> User ID: </span> <input type="text" spellcheck="false"
-						name='usernameId' id='usernameId' maxlength="35">
+						name='usernameId' id='usernameId' maxlength="35" required>
 				</div>
 				<div>
 					<span> Password: </span> <input type="password" name='j_password'
-						id='j_password' maxlength="15" autocomplete='off'>
+						id='j_password' maxlength="15" autocomplete='off' required>
 				</div>
 			</div>
 
 
 			<div class='journeyPlanDetails boxHead'>
 
-				<p>Journey Plan</p>
+				<p>2. Journey Plan</p>
 
 				<div>
 					<span> From Station: </span> <input type='text' spellcheck="false"
-						name='jpform:fromStation' id='fromStation'>
+						name='jpform:fromStation' id='fromStation' required>
 				</div>
 
 				<div>
 					<span> To Station: </span> <input type='text' spellcheck="false"
-						name='jpform:toStation' id='toStation'>
+						name='jpform:toStation' id='toStation' required>
 				</div>
 
 				<div>
@@ -151,7 +150,7 @@
 				<div class='ztJourneyDate'>
 					<span> Journey Date: </span> <input type='text' spellcheck="false"
 						name='jpform:journeyDateInputDate' id='journeyDateInputDate'
-						autocomplete="off" maxlength="0"> <img
+						autocomplete="off" maxlength="0" required> <img
 						src="images/calendarIcon.png" id='ztDatePickerBtn'>
 				</div>
 
@@ -166,8 +165,9 @@
 				<div class='ztHandicapPsgType'>
 					<input id="ztPHConcessionInput" type="checkbox"
 						name="jpform:handicapPassengers"> <span
-						id='ztHandicapPsgTypeLabel'> I'll book in Handicap
-						concession</span>
+						id='ztHandicapPsgTypeLabel'
+						style="color: #2E64FE; font-weight: bold;"> I'll book in
+						Handicap concession</span>
 				</div>
 
 			</div>
@@ -175,7 +175,7 @@
 
 			<div class='trainDetails boxHead'>
 
-				<p>Train Details</p>
+				<p>3. Train Details</p>
 
 				<div class='quota radioGroup'>
 					<span> Quota: </span>
@@ -259,7 +259,7 @@
 
 				<div class="row-heading">
 					<div class="detailsDesc">
-						<h4>Adult Passangers</h4>
+						<h4>4. Adult Passangers</h4>
 						<p>Enter details of adult passengers for whom ticket is to be
 							issued.</p>
 					</div>
@@ -306,16 +306,16 @@
 				<div class="row">
 					<div class="column1">
 						<input type="text" spellcheck="false" class="form-control"
-							maxlength="16" id="psgnName0" placeholder="Passenger #1">
+							maxlength="16" id="psgnName0" placeholder="Passenger #1" required>
 					</div>
 					<div class="column2">
-						<input type="text" spellcheck="false"
+						<input type="text" spellcheck="false" required
 							class="form-control only_numbers" maxlength="3" id="psgnAge0">
 					</div>
 					<div class="column2">
 						<div class='selectWrapper'>
-							<select id="psgnGender0" size="1" class="form-control">
-								<option value=" ">Select</option>
+							<select id="psgnGender0" size="1" class="form-control" required>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -324,7 +324,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice0" size="1" class="form-control">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -336,10 +336,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType0" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -358,7 +358,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref0" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -387,7 +387,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="psgnGender1" size="1" class="form-control ">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -396,7 +396,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice1" size="1" class="form-control">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -408,10 +408,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType1" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -430,7 +430,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref1" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -458,7 +458,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="psgnGender2" size="1" class="form-control ">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -467,7 +467,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice2" size="1" class="form-control">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -479,10 +479,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType2" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -501,7 +501,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref2" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -530,7 +530,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="psgnGender3" size="1" class="form-control ">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -539,7 +539,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice3" size="1" class="form-control ">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -551,10 +551,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType3" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -573,7 +573,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref3" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -601,7 +601,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="psgnGender4" size="1" class="form-control ">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -610,7 +610,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice4" size="1" class="form-control ">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -622,10 +622,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType4" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -644,7 +644,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref4" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -672,7 +672,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="psgnGender5" size="1" class="form-control ">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -681,7 +681,7 @@
 					<div class="column1">
 						<div class='selectWrapper'>
 							<select id="berthChoice5" size="1" class="form-control ">
-								<option value="  ">No Preference</option>
+								<option value="">No Preference</option>
 								<option value="LB">LOWER</option>
 								<option value="MB">MIDDLE</option>
 								<option value="UB">UPPER</option>
@@ -693,10 +693,10 @@
 					<div class="column5">
 						<div class='selectWrapper'>
 							<select id="concessionType5" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="1">HANDICAP</option>
 								<option value="2">ESCORT</option>
-								<option value="-1">GENERAL</option>
+								<option value="">GENERAL</option>
 							</select>
 						</div>
 					</div>
@@ -715,7 +715,7 @@
 					<div class="column2">
 						<div class='selectWrapper'>
 							<select id="mealPref5" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="V">Veg</option>
 								<option value="N">Non-Veg</option>
 							</select>
@@ -739,81 +739,12 @@
 
 				<div class="row-heading">
 					<div class="detailsDesc">
-						<h4>Child Passengers</h4>
+						<h4>5. Child Passengers</h4>
 						<p>Enter details of children below 5 years for whom ticket is
 							not to be issued.</p>
 					</div>
 
 				</div>
-
-				<!-- 
-			<table class="rf-dt infant-info-table">
-				<colgroup span="5"></colgroup>
-				<thead>
-					<tr>
-						<th class="rf-dt-shdr-c" scope="col">S. No.</th>
-						<th class="rf-dt-shdr-c" scope="col">Name</th>
-						<th class="rf-dt-shdr-c" scope="col">Age</th>
-						<th class="rf-dt-shdr-c" scope="col">Gender</th>
-						<th class="rf-dt-shdr-c" scope="col"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="rf-dt-c"><span class="labelfont">1</span></td>
-						<td class="rf-dt-c"><input id="infantName0" type="text"
-							value="" class="input-style1 infant-name" maxlength="16"
-							size="20" style="width: 100px;" placeholder="Child Passenger #1"></td>
-						<td class="rf-dt-c"><select id="infantAge0"
-							class="input-style1 infant-age" size="1">
-								<option value="-1" selected="selected">Select</option>
-								<option value="0">Below one year</option>
-								<option value="1">One year</option>
-								<option value="2">Two years</option>
-								<option value="3">Three years</option>
-								<option value="4">Four years</option>
-						</select></td>
-						<td class="rf-dt-c"><select id="infantGender0"
-							class="input-style1 infant-gender" size="1">
-								<option value=" ">Select</option>
-								<option value="M">Male</option>
-								<option value="F">Female</option>
-						</select></td>
-						<td class="rf-dt-c">
-							<div>
-								<div class='clear-button-passengers' id='clearinfantd_0'></div>
-							</div>
-						</td>
-					</tr>
-					<tr class="rf-dt-r rf-dt-fst-r bg-light-blue">
-						<td class="rf-dt-c"><span class="labelfont">2</span></td>
-						<td class="rf-dt-c"><input id="infantName1" type="text"
-							value="" class="input-style1 infant-name" maxlength="16"
-							size="20" style="width: 100px;" placeholder="Child Passenger #2"></td>
-						<td class="rf-dt-c"><select id="infantAge1"
-							class="input-style1 infant-age" size="1">
-								<option value="-1" selected="selected">Select</option>
-								<option value="0">Below one year</option>
-								<option value="1">One year</option>
-								<option value="2">Two years</option>
-								<option value="3">Three years</option>
-								<option value="4">Four years</option>
-						</select></td>
-						<td class="rf-dt-c"><select id="infantGender1"
-							class="input-style1 infant-gender" size="1">
-								<option value=" ">Select</option>
-								<option value="M">Male</option>
-								<option value="F">Female</option>
-						</select></td>
-						<td class="rf-dt-c">
-							<div>
-								<div class='clear-button-passengers' id='clearinfantd_1'></div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
- -->
 
 				<div class="row tableHeading">
 					<div class="column3">
@@ -849,7 +780,7 @@
 					<div class="column4">
 						<div class='selectWrapper'>
 							<select id="infantGender0" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -878,7 +809,7 @@
 					<div class="column4">
 						<div class='selectWrapper'>
 							<select id="infantGender1" size="1" class="form-control">
-								<option value=" ">Select</option>
+								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
@@ -893,7 +824,7 @@
 
 			<div class="formAdditionalDetails boxHead">
 
-				<h4>Additional Details</h4>
+				<h4>6. Additional Details</h4>
 
 				<div class="row mobileNum">
 					<span> Mobile Number: </span> <input type="text" spellcheck="false"
@@ -907,8 +838,8 @@
 
 				<div class='row  addDetailsCtrl'>
 					<input id="onlyConfirmBerths" name="onlyConfirmBerths"
-						type="checkbox"> <label name='control-label'> Book
-						only if confirm berths are allotted </span>
+						type="checkbox"> <label class='control-label'>
+						Book only if confirm berths are allotted </label>
 				</div>
 
 				<div id='bookingCondRadioButtonGroup'>
@@ -947,14 +878,14 @@
 
 			<div class='paymentDetails boxHead'>
 
-				<p>Payment Details</p>
+				<p>7. Payment Details</p>
 
 				<div class="row radioGroup">
 					<span> Payment Type: </span>
 					<div id='paymentType'>
 						<div class='radioButton'>
-							<input type="radio" name="paymentType" value="NETBANKING" id='nb'>
-							<label for='nb'> NetBanking </label>
+							<input type="radio" name="paymentType" value="NETBANKING" id='nb'
+								required> <label for='nb'> NetBanking </label>
 						</div>
 						<div class='radioButton'>
 							<input type="radio" name="paymentType" value="CREDIT_CARD"
@@ -989,8 +920,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankINBList" name="jpBook:bankINBList"
-											class="form-control NETBANKING" size="1">
-											<option value="-1">Select Bank</option>
+											class="form-control NETBANKING" size="1" required>
+											<option value="">Select Bank</option>
 											<option value="1">State Bank of India</option>
 											<option value="10">State Bank of India and
 												Associates</option>
@@ -1038,8 +969,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankPGList" name="jpBook:bankPGList"
-											class="form-control CREDIT_CARD" size="1">
-											<option value="-1">Select Bank</option>
+											class="form-control CREDIT_CARD" size="1" required>
+											<option value="">Select Bank</option>
 											<option value="4">Visa/Master Card(Powered By ICICI
 												BANK)</option>
 											<option value="17">Visa/Master Card(Powered By CITI
@@ -1067,8 +998,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankDCList" name="jpBook:bankDCList"
-											class="form-control DEBIT_CARD" size="1">
-											<option value="-1">Select Bank</option>
+											class="form-control DEBIT_CARD" size="1" required>
+											<option value="">Select Bank</option>
 											<option value="3">State Bank of India</option>
 											<option value="9">Punjab National Bank</option>
 											<option value="15">Indian Bank</option>
@@ -1098,8 +1029,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankCCList" name="jpBook:bankCCList"
-											class="form-control CASH_CARD" size="1">
-											<option value="-1">Select Cash card</option>
+											class="form-control CASH_CARD" size="1" required>
+											<option value="">Select Cash card</option>
 											<option value="23">ITZ Cash Card</option>
 											<option value="33">I Cash Card</option>
 											<option value="55">OXI Cash Card</option>
@@ -1122,8 +1053,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankPrepaidList" name="jpBook:bankPrepaidList"
-											class="form-control IRCTC_PREPAID" size="1">
-											<option value="-1">Select</option>
+											class="form-control IRCTC_PREPAID" size="1" required>
+											<option value="">Select</option>
 											<option value="59">IRCTC Union Bank prepaid (RuPay)</option>
 										</select>
 									</div>
@@ -1142,8 +1073,8 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankEMIList" name="jpBook:bankEMIList"
-											class="form-control EMI" size="1">
-											<option value="-1">Select Bank</option>
+											class="form-control EMI" size="1" required>
+											<option value="">Select Bank</option>
 											<option value="49">CITI Bank</option>
 										</select>
 									</div>
@@ -1157,7 +1088,7 @@
 
 			<div id='cardDetailsID' style='display: none' class='cardDetails'>
 
-				<p>Card Details</p>
+				<p>8. Card Details</p>
 
 				<table width="100%" border="0" cellspacing='10px'
 					id="card-input-table">
@@ -1177,7 +1108,7 @@
 						</tr>
 						<tr>
 							<td class='labelData'>Card Number :</td>
-							<td class='contentData'><input type="text"
+							<td class='contentData'><input type="text" required
 								spellcheck="false" class='form-control only_numbers'
 								name="card_no" maxlength="23" size="39" id="card_no_id"
 								autocomplete="off" placeholder="Please enter your card number"></td>
@@ -1187,8 +1118,8 @@
 							<td class='contentData'>Month :
 								<div class='selectWrapper' id='monthSelector'>
 									<select name="card_expiry_mon" width='100'
-										id="card_expiry_mon_id" class='expiryMonth'>
-										<option selected="selected" value="mm">mm</option>
+										id="card_expiry_mon_id" class='expiryMonth' required>
+										<option selected="selected" value="">mm</option>
 										<option value="01">01 (Jan)</option>
 										<option value="02">02 (Feb)</option>
 										<option value="03">03 (Mar)</option>
@@ -1203,7 +1134,7 @@
 										<option value="12">12 (Dec)</option>
 									</select>
 								</div> Year(yyyy) : <input type="text" spellcheck="false"
-								name="card_expiry_year" maxlength="4" size="4"
+								name="card_expiry_year" maxlength="4" size="4" required
 								id="card_expiry_year_id" class='expiryYear only_numbers'
 								autocomplete="off">
 							</td>
@@ -1213,11 +1144,11 @@
 						<tr>
 							<td class='labelData'>CVV Number:</td>
 							<td class='contentData'><input type="password" name="cvv_no"
-								maxlength="4" size="4" id="cvv_no_id"
-								class='form-control only_numbers'></td>
-							<td><span style="font-style: italic;"><font
-									color="red"> * </font>We don't store CVV/CVC number anywhere,
-									it will get saved on your local HDD</span></td>
+								maxlength="4" size="4" id="cvv_no_id" required
+								class='form-control only_numbers' style="width: 50px;"><span
+								style="font-style: italic; height: 30px; position: absolute;"><font
+									color="red"> &nbsp;&nbsp;* </font>We don't store CVV/CVC number
+									anywhere, it will get saved on your local HDD</span></td>
 							<td class="dummyData"></td>
 						</tr>
 
@@ -1225,7 +1156,7 @@
 							<td class='labelData'>Name on Card :</td>
 							<td class='contentData'><input type="text"
 								spellcheck="false" name="card_name" maxlength="35" size="39"
-								class='form-control' id="card_name_id"
+								class='form-control' id="card_name_id" required
 								placeholder="Please enter your name specified on the card"></td>
 							<td class="dummyData"></td>
 						</tr>
@@ -1238,7 +1169,7 @@
 				<BUTTON id='reset_new' type="reset">
 					<span class='buttonText'> RESET </span> <span id='resetIcon'></span>
 				</BUTTON>
-				<BUTTON id='submit'>
+				<BUTTON id='submitButton'>
 					<span id='dirtyFlag' class='clean'></span> <span class='buttonText'
 						id='submitText'> SAVED </span> <span id='saveIcon'></span>
 				</BUTTON>
@@ -1246,7 +1177,6 @@
 		</div>
 	</form>
 </body>
-
 </html>
 
 

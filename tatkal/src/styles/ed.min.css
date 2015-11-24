@@ -18,14 +18,14 @@ body {
 }
 
 .boxHead p, .boxHead h4 {
-	background-color: #4A9ACE;
+	background-color: #3665c2;
 	color: #fff !important;
 	/* height: 35px; */
 	padding: 3px 0 3px 5px;
 }
 
 .boxHead p {
-	background-color: #4A9ACE;
+	background-color: #3665c2;
 	color: #fff !important;
 	/* height: 35px; */
 	padding: 3px 0 3px 5px;
@@ -61,13 +61,6 @@ button {
 	margin: 20px;
 	outline: none;
 }
-
-/*button:hover {
-	background-color: #388CC4; /*#dfdfdf 
-	margin: 20px;
-	width: 120px;
-	height: 30px;
-} */
 
 #pageTabContainer {
 	max-width: 1240px;
@@ -138,7 +131,7 @@ button {
 	top: 110px;
 	left: 0;
 	right: 0;
-	padding: 40px 50px 40px 40px;
+	padding: 12px 50px 40px 40px;
 	max-width: 1240px;
 	min-width: 1240px;
 	box-sizing: border-box;
@@ -193,11 +186,11 @@ button {
 
 .ztJourneyDate #ztDatePickerBtn {
 	position: absolute;
-	left: 425px;
-	top: 10px;
-	cursor: pointer;
-	height: 20px;
-	width: 20px
+    left: 431px;
+    top: 6px;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
 }
 
 .ztTicketType {
@@ -205,7 +198,7 @@ button {
 }
 
 .ztTicketType #ztTicketTypeSelect {
-	height: 30px;
+	height: 25px;
 	margin-left: 10px;
 	box-sizing: border-box;
 	padding: 5px;
@@ -236,7 +229,7 @@ button {
 	margin-left: 200px;
 	float: none;
 	/*color: #444; */
-	font-size: 15px;
+	font-size: 11px;
 	font-family: Arial, Verdana, sans-serif;
 	/* font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: Normal;
@@ -268,10 +261,10 @@ button {
 
 #formContainerTitle #ztFormLeftContainer #formList .formButtons,
 	#formContainerTitle #ztDeleteForm {
-	width: 40px;
-	height: 40px;
+	width: 38px;
+	height: 38px;
 	margin: 2px;
-	border-radius: 40px;
+	border-radius: 38px;
 	cursor: pointer;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 	background-position: center;
@@ -292,7 +285,7 @@ button {
 	position: relative;
 	height: 70px;
 	width: 100%;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px; */
 	box-sizing: border-box
 }
 
@@ -304,9 +297,9 @@ button {
 
 #formContainerTitle #ztFormLeftContainer #ztAddForm {
 	position: relative;
-	width: 45px;
-	height: 45px;
-	border-radius: 45px;
+	width: 38px;
+	height: 38px;
+	border-radius: 38px;
 	float: left;
 	left: 0;
 	z-index: 98;
@@ -320,9 +313,9 @@ button {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	width: 40px;
-	height: 40px;
-	border-radius: 40px;
+	width: 35px;
+	height: 35px;
+	border-radius: 35px;
 	background-image: url("../forms/add.svg");
 	background-color: #db4437;
 	background-position: center;
@@ -335,7 +328,7 @@ button {
 }
 
 #formContainerTitle #ztFormLeftContainer #formList {
-	height: 44px;
+	height: 38px;
 	float: left
 }
 
@@ -519,7 +512,7 @@ hr.headingDivider {
 	/* font-size: 17px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: bold; */
-	font: bold 17px arial;
+	font: bold 13px arial;
 }
 
 .subHeading p:last-child, .loginDetails p:last-child,
@@ -543,21 +536,22 @@ hr.headingDivider {
 	float: left;
 	margin-left: 40px;
 	color: #444;
-	font-size: 15px;
+	font: 12px arial;
+	/*font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-weight: Normal;
+	font-weight: Normal;*/
 }
 
 .inputClass, #formDetails #formNameDiv input, .loginDetails div input {
-	width: 150px;
-	height: 30px;
+	/*width: 150px;*/
+	height: 20px;
 	margin-left: 10px;
 	box-sizing: border-box;
 	padding: 5px
 }
 
 .journeyPlanDetails div input, .trainDetails .trainNumber input {
-	height: 30px;
+	height: 20px;
 	margin-left: 10px;
 	box-sizing: border-box;
 	padding: 5px
@@ -576,7 +570,7 @@ hr.headingDivider {
 }
 
 .radioGroup .radioButton input {
-	height: 25px;
+	/*height: 25px;*/
 	float: left
 }
 
@@ -586,9 +580,10 @@ hr.headingDivider {
 	height: 30px;
 	line-height: 30px;
 	color: #666;
-	font-size: 15px;
+	font: 12px arial;
+	/*font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-weight: Normal;
+	font-weight: Normal;*/
 }
 
 #bookingCondRadioButtonGroup {
@@ -602,7 +597,7 @@ hr.headingDivider {
 }
 
 #bookingCondRadioButtonGroup .bookingCondRadioButton input {
-	height: 25px;
+	/*height: 25px; */
 	float: left
 }
 
@@ -612,10 +607,10 @@ hr.headingDivider {
 	height: 30px;
 	line-height: 30px;
 	color: #666;
-	font-size: 15px;
+	/*font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-weight: Normal;
-	/* font: 15px arial; */
+	font-weight: Normal;*/
+	font: 12px arial; 
 }
 
 #formDetails #formNameDiv, .loginDetails div, .journeyPlanDetails div {
@@ -660,7 +655,7 @@ hr.headingDivider {
 	/* font-size: 17px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: bold; */
-	font: bold 17px arial;
+	font: bold 13px arial;
 }
 
 .detailsDesc p {
@@ -693,7 +688,7 @@ hr.headingDivider {
 	width: 100%;
 	border: 1px solid #aaa;
 	border-radius: 2px;
-	height: 30px;
+	height: 20px;
 	padding-left: 5px;
 	box-sizing: border-box;
 	color: #555
@@ -727,7 +722,7 @@ input[type='checkbox'] {
 	/* font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: bold; */
-	font: bold 15px arial;
+	font: bold 13px arial;
 }
 
 .adultPassengerDetails .column1 {
@@ -800,7 +795,7 @@ input[type='checkbox'] {
 
 .clearBtn.childPsgCtrl {
 	left: 750px;
-	top: 0;
+	top: -7px;
 	background-size: 18px
 }
 
@@ -840,7 +835,7 @@ input[type='checkbox'] {
 	/* font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: Normal; */
-	font: 15px arial;
+	font: 12px arial;
 }
 
 .mobileNum input {
@@ -860,14 +855,15 @@ input[type='checkbox'] {
 	line-height: 30px;
 	display: block;
 	color: #444;
-	font-size: 15px;
+	font: 12px arial;
+	/*font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-weight: Normal;
+	font-weight: Normal; */
 }
 
 .addDetailsCtrl input {
 	width: 30px;
-	margin-top: 10px;
+	margin-top: 0;
 	margin-left: 50px;
 	float: left;
 	box-sizing: border-box
@@ -885,15 +881,15 @@ input[type='checkbox'] {
 	display: block;
 	float: left;
 	color: #444;
-	font-size: 15px;
+	/*font-size: 15px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
-	font-weight: Normal;
-	/* font: 15px arial; */
+	font-weight: Normal; */
+	font: 12px arial;
 }
 
 .coachOpt input[type='checkbox'] {
 	width: 30px;
-	margin-top: 10px;
+	margin-top: 0;
 	margin-left: 50px;
 	float: left;
 	box-sizing: border-box
@@ -964,9 +960,8 @@ input[type='checkbox'] {
 	background-position: center right;
 	background-repeat: no-repeat
 } */
-
 .expiryMonth {
-	height: 30px;
+	height: 20px;
 	margin-right: 5px;
 }
 
@@ -980,7 +975,7 @@ input[type='checkbox'] {
 
 .expiryYear {
 	width: 50px;
-	height: 32px;
+	height: 20px;
 	border: 1px solid grey;
 	box-sizing: border-box;
 	border-radius: 2px;
@@ -1131,7 +1126,7 @@ input[type='checkbox'] {
 	background-image: url("../images/ui-icons_d8e7f3_256x240.png");
 	background-position: -80px -192px;
 	width: 16px;
-    height: 16px;
+	height: 16px;
 }
 
 .ui-widget-content .ui-widget-header .ui-icon-circle-triangle-e {
@@ -1143,26 +1138,25 @@ input[type='checkbox'] {
 	cursor: pointer;*/
 	background-position: -48px -192px;
 	width: 16px;
-    height: 16px;
+	height: 16px;
 }
 
 .ui-datepicker-week-end a {
-    color: red !important;
+	color: red !important;
 }
 
 .ui-widget-content .ui-state-default {
 	/* font-weight: bold;
 	font-family: "Segoe UI", Tahoma, sans-serif; */
-	
 	/*border: 1px solid #ccc;
 	background: #f6f6f6;
 	color: #444;
 	font: bold arial; */
-	
 	border: 1px solid #c5dbec;
-    background: #dfeffc url("../images/ui-bg_glass_85_dfeffc_1x400.png") 50% 50% repeat-x;
-    font-weight: bold;
-    color: #2e6e9e;
+	background: #dfeffc url("../images/ui-bg_glass_85_dfeffc_1x400.png") 50%
+		50% repeat-x;
+	font-weight: bold;
+	color: #2e6e9e;
 }
 
 .ui-widget-content .ui-state-active {
@@ -1409,14 +1403,13 @@ input[type='checkbox'] {
 	padding-top: 5px;
 	box-sizing: border-box
 } */
-
 .formAdditionalDetails h4 {
 	color: #34495e;
 	margin-bottom: 3px;
 	/* font-size: 17px;
 	font-family: "Segoe UI", Tahoma, sans-serif;
 	font-weight: bold; */
-	font: bold 17px arial;
+	font: bold 13px arial;
 }
 
 #scrollup {
@@ -1439,7 +1432,7 @@ input[type='checkbox'] {
 	z-index: 999
 }
 
-*.rf-dt {
+/**.rf-dt {
 	background-color: #FFF;
 	border-collapse: collapse;
 	border-width: 1px;
@@ -1449,7 +1442,7 @@ input[type='checkbox'] {
 }
 
 .infant-info-table {
-    width: 100%;
+	width: 100%;
 }
 
 *.rf-dt-shdr-c {
@@ -1471,7 +1464,7 @@ input[type='checkbox'] {
 }
 
 .infant-info-table td {
-    text-align: center;
+	text-align: center;
 }
 
 *.rf-dt-c {
@@ -1488,12 +1481,38 @@ input[type='checkbox'] {
 }
 
 .clear-button-passengers {
-    right: 0;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-    background-image: url(../images/clear.png);
-    background-position: center;
-    background-size: 18px;
-    background-repeat: no-repeat;	
+	right: 0;
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+	background-image: url(../images/clear.png);
+	background-position: center;
+	background-size: 18px;
+	background-repeat: no-repeat;
+}*/
+.close {
+	background: #4c99cc;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: 12px;
+	text-align: center;
+	top: 10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+	background: #bed6f8;
+}
+
+a.close:visited {
+	color: #FFFFFF;
 }

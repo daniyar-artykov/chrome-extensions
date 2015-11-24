@@ -29,6 +29,6 @@
    "name": "Tatkal Extension",
    "permissions": [ "storage", "tabs" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.1",
+   "version": "1.2",
    "web_accessible_resources": [ "images/icon.png" ]
 }
