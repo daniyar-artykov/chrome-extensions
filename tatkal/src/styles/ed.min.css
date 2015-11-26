@@ -1516,3 +1516,7 @@ input[type='checkbox'] {
 a.close:visited {
 	color: #FFFFFF;
 }
+
+.highlight-field {
+  border:2px solid #FFFF00 !important;
+}

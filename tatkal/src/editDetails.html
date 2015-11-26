@@ -116,11 +116,11 @@
 				<p style='display: none'>These details will be saved locally</p>
 				<div>
 					<span> User ID: </span> <input type="text" spellcheck="false"
-						name='usernameId' id='usernameId' maxlength="35" required>
+						name='usernameId' id='usernameId' maxlength="35" >
 				</div>
 				<div>
 					<span> Password: </span> <input type="password" name='j_password'
-						id='j_password' maxlength="15" autocomplete='off' required>
+						id='j_password' maxlength="15" autocomplete='off' >
 				</div>
 			</div>
 
@@ -131,12 +131,12 @@
 
 				<div>
 					<span> From Station: </span> <input type='text' spellcheck="false"
-						name='jpform:fromStation' id='fromStation' required>
+						name='jpform:fromStation' id='fromStation' >
 				</div>
 
 				<div>
 					<span> To Station: </span> <input type='text' spellcheck="false"
-						name='jpform:toStation' id='toStation' required>
+						name='jpform:toStation' id='toStation' >
 				</div>
 
 				<div>
@@ -150,7 +150,7 @@
 				<div class='ztJourneyDate'>
 					<span> Journey Date: </span> <input type='text' spellcheck="false"
 						name='jpform:journeyDateInputDate' id='journeyDateInputDate'
-						autocomplete="off" maxlength="0" required> <img
+						autocomplete="off" maxlength="0" > <img
 						src="images/calendarIcon.png" id='ztDatePickerBtn'>
 				</div>
 
@@ -171,7 +171,6 @@
 				</div>
 
 			</div>
-
 
 			<div class='trainDetails boxHead'>
 
@@ -306,15 +305,15 @@
 				<div class="row">
 					<div class="column1">
 						<input type="text" spellcheck="false" class="form-control"
-							maxlength="16" id="psgnName0" placeholder="Passenger #1" required>
+							maxlength="16" id="psgnName0" placeholder="Passenger #1" >
 					</div>
 					<div class="column2">
-						<input type="text" spellcheck="false" required
+						<input type="text" spellcheck="false" 
 							class="form-control only_numbers" maxlength="3" id="psgnAge0">
 					</div>
 					<div class="column2">
 						<div class='selectWrapper'>
-							<select id="psgnGender0" size="1" class="form-control" required>
+							<select id="psgnGender0" size="1" class="form-control" >
 								<option value="">Select</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
@@ -885,7 +884,7 @@
 					<div id='paymentType'>
 						<div class='radioButton'>
 							<input type="radio" name="paymentType" value="NETBANKING" id='nb'
-								required> <label for='nb'> NetBanking </label>
+								> <label for='nb'> NetBanking </label>
 						</div>
 						<div class='radioButton'>
 							<input type="radio" name="paymentType" value="CREDIT_CARD"
@@ -920,7 +919,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankINBList" name="jpBook:bankINBList"
-											class="form-control NETBANKING" size="1" required>
+											class="form-control NETBANKING" size="1" >
 											<option value="">Select Bank</option>
 											<option value="1">State Bank of India</option>
 											<option value="10">State Bank of India and
@@ -969,7 +968,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankPGList" name="jpBook:bankPGList"
-											class="form-control CREDIT_CARD" size="1" required>
+											class="form-control CREDIT_CARD" size="1" >
 											<option value="">Select Bank</option>
 											<option value="4">Visa/Master Card(Powered By ICICI
 												BANK)</option>
@@ -998,7 +997,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankDCList" name="jpBook:bankDCList"
-											class="form-control DEBIT_CARD" size="1" required>
+											class="form-control DEBIT_CARD" size="1" >
 											<option value="">Select Bank</option>
 											<option value="3">State Bank of India</option>
 											<option value="9">Punjab National Bank</option>
@@ -1029,7 +1028,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankCCList" name="jpBook:bankCCList"
-											class="form-control CASH_CARD" size="1" required>
+											class="form-control CASH_CARD" size="1" >
 											<option value="">Select Cash card</option>
 											<option value="23">ITZ Cash Card</option>
 											<option value="33">I Cash Card</option>
@@ -1053,7 +1052,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankPrepaidList" name="jpBook:bankPrepaidList"
-											class="form-control IRCTC_PREPAID" size="1" required>
+											class="form-control IRCTC_PREPAID" size="1" >
 											<option value="">Select</option>
 											<option value="59">IRCTC Union Bank prepaid (RuPay)</option>
 										</select>
@@ -1073,7 +1072,7 @@
 								<td class='contentData'>
 									<div class='selectWrapper'>
 										<select id="bankEMIList" name="jpBook:bankEMIList"
-											class="form-control EMI" size="1" required>
+											class="form-control EMI" size="1" >
 											<option value="">Select Bank</option>
 											<option value="49">CITI Bank</option>
 										</select>
@@ -1108,7 +1107,7 @@
 						</tr>
 						<tr>
 							<td class='labelData'>Card Number :</td>
-							<td class='contentData'><input type="text" required
+							<td class='contentData'><input type="text" 
 								spellcheck="false" class='form-control only_numbers'
 								name="card_no" maxlength="23" size="39" id="card_no_id"
 								autocomplete="off" placeholder="Please enter your card number"></td>
@@ -1118,7 +1117,7 @@
 							<td class='contentData'>Month :
 								<div class='selectWrapper' id='monthSelector'>
 									<select name="card_expiry_mon" width='100'
-										id="card_expiry_mon_id" class='expiryMonth' required>
+										id="card_expiry_mon_id" class='expiryMonth' >
 										<option selected="selected" value="">mm</option>
 										<option value="01">01 (Jan)</option>
 										<option value="02">02 (Feb)</option>
@@ -1134,7 +1133,7 @@
 										<option value="12">12 (Dec)</option>
 									</select>
 								</div> Year(yyyy) : <input type="text" spellcheck="false"
-								name="card_expiry_year" maxlength="4" size="4" required
+								name="card_expiry_year" maxlength="4" size="4" 
 								id="card_expiry_year_id" class='expiryYear only_numbers'
 								autocomplete="off">
 							</td>
@@ -1144,7 +1143,7 @@
 						<tr>
 							<td class='labelData'>CVV Number:</td>
 							<td class='contentData'><input type="password" name="cvv_no"
-								maxlength="4" size="4" id="cvv_no_id" required
+								maxlength="4" size="4" id="cvv_no_id" 
 								class='form-control only_numbers' style="width: 50px;"><span
 								style="font-style: italic; height: 30px; position: absolute;"><font
 									color="red"> &nbsp;&nbsp;* </font>We don't store CVV/CVC number
@@ -1156,7 +1155,7 @@
 							<td class='labelData'>Name on Card :</td>
 							<td class='contentData'><input type="text"
 								spellcheck="false" name="card_name" maxlength="35" size="39"
-								class='form-control' id="card_name_id" required
+								class='form-control' id="card_name_id" 
 								placeholder="Please enter your name specified on the card"></td>
 							<td class="dummyData"></td>
 						</tr>
@@ -1169,7 +1168,7 @@
 				<BUTTON id='reset_new' type="reset">
 					<span class='buttonText'> RESET </span> <span id='resetIcon'></span>
 				</BUTTON>
-				<BUTTON id='submitButton'>
+				<BUTTON id='submitButton' type="button">
 					<span id='dirtyFlag' class='clean'></span> <span class='buttonText'
 						id='submitText'> SAVED </span> <span id='saveIcon'></span>
 				</BUTTON>
