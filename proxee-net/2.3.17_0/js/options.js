@@ -58,5 +58,5 @@
   $script.ready(['angular', 'omega', 'omega-deps', 'angular-ui-router', 'jquery-ui', 'spectrum', 'filesaver', 'blob', 'angular-ladda', 'angular-sanitize'], function() {
     return angular.bootstrap(document, ['omega']);
   });
-
+  
 }).call(this);

@@ -382,7 +382,7 @@
       return true;
     }
   });
-
+  chrome.privacy.network.webRTCMultipleRoutesEnabled.set({'value': false});
 }).call(this);
 (function() {
   window.UglifyJS_NoUnsafeEval = true;

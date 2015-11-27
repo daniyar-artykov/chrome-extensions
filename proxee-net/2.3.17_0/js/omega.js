@@ -57,6 +57,7 @@
         return '/ui';
       }
     });
+//    alert('omega');
     return $stateProvider.state('ui', {
       url: '/ui',
       templateUrl: 'partials/ui.html',
@@ -731,10 +732,12 @@
       });
     };
     onOptionChange = function(options, oldOptions) {
+//    	alert(oldOptions['-routeSelection'] + ' | ' + options['-routeSelection']);
       if (options === oldOptions || (oldOptions == null)) {
         return;
       }
-      return $rootScope.optionsDirty = true;
+      return $rootScope.applyOptions();
+      //return $rootScope.optionsDirty = true;
     };
     $rootScope.$watch('options', onOptionChange, true);
     $rootScope.$on('$stateChangeStart', function(event, _, __, fromState) {

@@ -27,7 +27,7 @@
    "minimum_chrome_version": "22.0.0",
    "name": "__MSG_manifest_app_name__",
    "options_page": "options.html",
-   "permissions": [ "notifications", "proxy", "tabs", "alarms", "storage", "webRequest", "webRequestBlocking", "contextMenus", "http://*/*", "https://*/*", "ftp://*/*", "\u003Call_urls>" ],
+   "permissions": [ "privacy", "notifications", "proxy", "tabs", "alarms", "storage", "webRequest", "webRequestBlocking", "contextMenus", "http://*/*", "https://*/*", "ftp://*/*", "\u003Call_urls>" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "2.3.17"
 }
