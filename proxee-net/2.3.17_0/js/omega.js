@@ -736,6 +736,7 @@
 		};
 
 		onOptionChange = function(options, oldOptions) {
+//			alert('changed');
 			if (options === oldOptions || (oldOptions == null)) {
 				return;
 			}
@@ -755,6 +756,10 @@
 					}
 				}
 //				alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
+
+				localStorage["multiple_routes_enabled"] = multiRoutes;
+				localStorage["non_proxied_udp_enabled"] = nonProxiedUdp;
+
 				chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
 					'value': multiRoutes
 				});
@@ -771,7 +776,7 @@
 		};
 
 		$rootScope.restoreRadios = function(multiRoutes, nonProxiedUdp) {
-
+//			alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
 			var radios = document.getElementsByName('routeselection');
 			if (multiRoutes) {
 				if (nonProxiedUdp) {
@@ -795,6 +800,19 @@
 
 		//Restores checkbox states.
 		$rootScope.restoreMultiRoutesOption = function() {
+
+//			var multiRoutesEnabled = localStorage["multiple_routes_enabled"];
+
+//			alert('multiRoutesEnabled: ' + multiRoutesEnabled);
+//			if(multiRoutesEnabled === 'true') {
+//			alert('ttt');
+//			chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+//			'value': true
+//			});
+//			}
+			if($rootScope.firstRunT === 'new') {
+				chrome.privacy.network.webRTCMultipleRoutesEnabled.set({'value': false});
+			}
 			var multiRoutes = true;
 			chrome.privacy.network.webRTCMultipleRoutesEnabled.get({},
 					function(details) {
@@ -806,6 +824,18 @@
 
 		$rootScope.restoreNonProxiedUdpOption = function(multiRoutes) {
 			try {
+				if($rootScope.firstRunT === 'new') {
+					chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+						'value': false
+					});
+					try {
+						chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
+							'value': false
+						});
+					} catch (err) {
+						console.log('setting webRTCNonProxiedUdpEnabled is not supported.');
+					}
+				}
 				var nonProxiedUdp = true;
 				chrome.privacy.network.webRTCNonProxiedUdpEnabled.get({},
 						function(details) {
