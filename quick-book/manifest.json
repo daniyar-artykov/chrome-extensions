@@ -1,0 +1,21 @@
+{
+   "background": {
+   },
+   "default_locale": "ru",
+   "description": "Quick Book Extension Description",
+   "icons": {
+      "128": "images/icon_128.png",
+      "16": "images/icon_16.png"
+   },
+   "manifest_version": 2,
+   "minimum_chrome_version": "42.0.2311.135",
+   "name": "Quick Book Extension",
+   "browser_action": {
+      "default_icon": "img/icons/omega-32.png",
+      "default_popup": "popup.html",
+      "default_title": "__MSG_manifest_icon_default_title__"
+   },
+   "permissions": [ ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.1"
+}

@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://epay.railways.kz/ktz4/proc?pa=clients -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<title></title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- base libs -->
+<script src="./from_drop_down_files/jquery-1.9.1.min.js"></script>
+<style type="text/css"></style>
+<script src="./from_drop_down_files/jquery.maskedinput.min.js"></script>
+
+<!-- jquery ui -->
+<script src="./from_drop_down_files/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="./from_drop_down_files/jquery.ui.datepicker-ru.js"></script>
+<link href="./from_drop_down_files/jquery-ui-1.10.3.custom.min.css"
+	rel="stylesheet" media="screen">
+
+<!-- bootstrap -->
+<link href="./from_drop_down_files/bootstrap.custom.min.css"
+	rel="stylesheet" media="screen">
+<script src="./from_drop_down_files/bootstrap.custom.min.js"></script>
+
+<!-- font-awesome -->
+<link href="./from_drop_down_files/font-awesome.min.css"
+	rel="stylesheet">
+
+<!-- project files -->
+<link href="./from_drop_down_files/screen.min.css" rel="stylesheet"
+	media="screen">
+<script src="./from_drop_down_files/interface.js"></script>
+
+<!-- IE SUPPORT -->
+<!--[if lte IE 8]>
+			<link href="design5/css/ie.min.css" rel="stylesheet" media="screen">
+			<script src="design5/js/libs/html5shiv.min.js"></script>
+			<script src="design5/js/libs/selectivizr-min.js"></script>
+			<script src="design5/js/libs/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<form
+		action="https://epay.railways.kz/ktz4/proc;jsessionid=pWrlWcSGnVRP9WlwfMLJd1FphvnFJXrPtqnnTSXwTyrJcGFLqysN!562897047"
+		name="formHeader" method="POST">
+		<input type="hidden" name="pa" value="clients"> <input
+			type="hidden" name="sa" value=""> <input type="hidden"
+			name="STEP" value=""> <input type="hidden"
+			name="FROM_STATION" value=""> <input type="hidden"
+			name="TO_STATION" value=""> <input type="hidden" name="DATE"
+			value="30.11.2015"> <input type="hidden" name="TIME" value="">
+	</form>
+	<script type="text/javascript">
+    if(typeof String.prototype.trim !== 'function') {
+        String.prototype.trim = function() {
+            return this.replace(/^\s+|\s+$/g, '');
+        }
+    }
+    function sbmHead(){
+        document.forms.formHeader.submit();
+    }
+</script>
+	<!-- #wrapper -->
+	<section id="wrapper">
+
+		<!-- #header -->
+		<header id="header">
+			<div class="container clearfix">
+
+				<!-- logo -->
+				<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+					class="logo pull-left" onclick="sbmHead();"></a>
+				<!-- end logo -->
+				<font color="white">build #243277</font>
+				<!-- menu-language -->
+				<figure class="menu-language pull-left">
+					<ul class="list-unstyled">
+
+						<li><a
+							href="https://epay.railways.kz/ktz4/proc?pa=clients&sa=LANG_LOCALE_EVENT&LOCALE=KZ"
+							class="link"><span>Қаз</span></a></li>
+						<li><a
+							href="https://epay.railways.kz/ktz4/proc?pa=clients&sa=LANG_LOCALE_EVENT&LOCALE=RU"
+							class="link active"><span>Рус</span></a></li>
+					</ul>
+				</figure>
+				<!-- end menu-language -->
+
+				<!-- contacts -->
+				<figure class="contacts pull-left">
+					<b>105</b>
+					<i>Справочная служба</i>
+					<br>
+				</figure>
+				<!-- end contacts -->
+
+				<!-- auth -->
+				<figure class="auth pull-right">
+					<!-- tabs-auth -->
+					<figure class="tabs-auth">
+						<ul class="nav nav-tabs">
+							<li class="active"><a
+								href="https://epay.railways.kz/ktz4/proc?pa=clients#"><span>Пассажирам</span></a></li>
+							<li><a href="https://epay.railways.kz/SVPayments/index.jsf"><span>Грузовые
+										перевозки</span></a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="userDiv" class="tab-pane active">
+
+
+
+
+
+
+
+
+								<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									onclick="restoreFormLogin();"
+									class="link link-dashed link-login jsLinkAuth"
+									data-action="login"><i class="fa fa-lock"></i> <span><b>Войти</b></span></a>
+								<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									onclick="registrBegin();"
+									class="btn btn-blue link-reg jsLinkAuth" data-action="reg"><b>Зарегистрироваться</b></a>
+
+
+							</div>
+							<div class="tab-pane"></div>
+						</div>
+					</figure>
+					<!-- end tabs-auth -->
+				</figure>
+				<!-- end auth -->
+
+			</div>
+		</header>
+		<!-- end #header-->
+
+		<!-- begin modal-auth #####################################################################################################-->
+		<div class="modal fade" id="modal-auth">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- tabs-modal -->
+					<figure class="tabs-modal">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<ul class="nav nav-tabs">
+								<li class="active jsAuthTab jsAuthTab1"><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#form-tab1"
+									onclick="restoreFormLogin();" data-toggle="tab"
+									class="link link-dashed"><span>Вход</span></a></li>
+								<li class="jsAuthTab jsAuthTab2"><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#form-tab2"
+									onclick="registrBegin();" data-toggle="tab"
+									class="link link-dashed"><span>Регистрация пассажира</span></a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane jsAuthTab jsAuthTab1 active" id="form-tab1">
+								<form class="jsRequiredContainer" id="jsFormLogin"
+									action="https://epay.railways.kz/ktz4/proc" method="POST">
+									<div class="modal-body">
+										<!-- form-login -->
+										<figure class="form-login form-horizontal">
+											<div class="form-group required">
+												<div id="loginErrDiv"></div>
+												<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+												<div class="col-xs-5">
+													<input type="text" name="CLIENT_LOGIN" class="form-control"
+														required="">
+												</div>
+											</div>
+											<div class="form-group required">
+												<label class="control-label col-xs-3"><span><b>Пароль</b></span></label>
+												<div class="col-xs-5">
+													<input type="password" name="CLIENT_PWD"
+														class="form-control" required="">
+												</div>
+												<div class="col-xs-4">
+													<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+														class="link link-dashed link-in-form jsLink"><span>Забыли
+															пароль?</span></a>
+												</div>
+											</div>
+										</figure>
+										<!-- end form-login -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" onclick="loginDo(1);" id="sbmLogin"
+													class="btn btn-blue" required="">
+													<b>Вход</b>
+												</button>
+											</div>
+											<div id="plsWait"></div>
+										</div>
+									</div>
+								</form>
+								<script type="text/javascript">
+    function loginDo(step){
+        var req;
+        var login=document.forms.jsFormLogin.CLIENT_LOGIN.value;
+        var pwd=document.forms.jsFormLogin.CLIENT_PWD.value;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                document.getElementById("sbmLogin").disabled="false";
+                document.getElementById("plsWait").innerHTML="";
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        if(document.getElementById("LichCab")!=undefined && step==2){
+                            document.location.href="proc?pa=clients"
+                        }else{
+                            updateUserDiv();
+                        }
+                        $('#modal-auth').modal('hide');
+                    }else{
+                        var obj = document.getElementById('loginErrDiv');
+                        obj.innerHTML="<font color='red'><b>"+resp+"</b></font>";
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=LOGIN_EVENT&STEP="+step
+                       + "&CLIENT_LOGIN="+login
+                       + "&CLIENT_PWD="+pwd;
+
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+            document.getElementById("sbmLogin").disabled="true";
+            document.getElementById("plsWait").innerHTML="подождите...";
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function updateUserDiv(){
+        var req;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                if (req.readyState == 4 && req.status == 200){
+                    document.getElementById("userDiv").innerHTML=req.responseText.trim();
+                    loadFormLoginEvents();
+                }
+            };
+            req.open("POST", '/ktz4/include5/user_menu.jsp', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send("");
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function pwdRecoveryDo(){
+
+        var req;
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        var loginForm = document.getElementById("jsFormLogin");
+                        loginForm.style="";
+                        var loginForm = document.getElementById("jsFormPassRecovery");
+                        loginForm.style="display: none";
+                        updateUserDiv();
+                        clearPasswordRecoveryForm();
+                        $('#modal-auth').modal('hide');
+                    }else{
+                        var obj = document.getElementById('pwdRecoveryForm');
+                        obj.innerHTML=resp;
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=INFO_CHANGE_EVENT&STEP=2";
+
+            if(document.forms.jsFormPassRecovery.CLIENT_LOGIN!=undefined){
+                reqStr = reqStr+"&CLIENT_LOGIN="+document.forms.jsFormPassRecovery.CLIENT_LOGIN.value;
+            }
+            if(document.getElementById("CLIENT_SECRET_ANSWER")!=undefined){
+                reqStr = reqStr+"&CLIENT_SECRET_ANSWER="+document.getElementById("CLIENT_SECRET_ANSWER").value;
+            }
+            if(document.getElementById("CLIENT_PWD")!=undefined){
+                reqStr = reqStr+"&CLIENT_PWD="+document.getElementById("CLIENT_PWD").value;
+            }
+            if(document.getElementById("CLIENT_PWD2")!=undefined){
+                reqStr = reqStr+"&CLIENT_PWD2="+document.getElementById("CLIENT_PWD2").value;
+            }
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function restoreFormLogin(){
+        var loginForm = document.getElementById("jsFormLogin");
+        loginForm.style="";
+        var loginForm = document.getElementById("jsFormPassRecovery");
+        loginForm.style="display: none";
+        clearPasswordRecoveryForm();
+    }
+    function clearPasswordRecoveryForm(){
+        document.getElementById("pwdRecoveryForm").innerHTML=
+									"<!-- form-pass-recovery -->"
+									+"<figure class=\"form-pass-recovery form-horizontal\">"
+									+"	<div class=\"form-group required\">"
+									+"		<label class=\"control-label col-xs-12\">"
+									+"			<span><b>Восстановление пароля</b></span>"
+									+"			<p class=\"help-line\">Введите свой логин, затем ответьте на&nbsp;свой секретный вопрос</p>"
+									+"		</label>"
+									+"	</div>"
+									+"	<div class=\"form-group required\">"
+									+"		<label class=\"control-label col-xs-3\"><span><b>Логин</b></span></label>"
+									+"		<div class=\"col-xs-5\">"
+									+"			<input name=\"CLIENT_LOGIN\" type=\"text\" class=\"form-control\" required />"
+									+"		</div>"
+									+"		<div class=\"col-xs-4\">"
+									+"			<a href=\"#\"  onclick=\"restoreFormLogin();\" class=\"link link-dashed link-in-form jsLink\"><span>Вернуться к&nbsp;форме входа</span></a>"
+									+"		</div>"
+									+"	</div>"
+									+"</figure><!-- end form-pass-recovery -->";
+    }
+</script>
+								<form class="jsRequiredContainer" id="jsFormPassRecovery"
+									style="display: none;">
+									<div class="modal-body" id="pwdRecoveryForm">
+										<!-- form-pass-recovery -->
+										<figure class="form-pass-recovery form-horizontal">
+											<div class="form-group required">
+												<label class="control-label col-xs-12"> <span><b>Восстановление
+															пароля</b></span>
+													<p class="help-line">Введите свой логин, затем ответьте
+														на&nbsp;свой секретный вопрос</p>
+												</label>
+											</div>
+											<div class="form-group required">
+												<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+												<div class="col-xs-5">
+													<input name="CLIENT_LOGIN" type="text" class="form-control"
+														required="">
+												</div>
+												<div class="col-xs-4">
+													<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+														onclick="restoreFormLogin();"
+														class="link link-dashed link-in-form jsLink"><span>Вернуться
+															к&nbsp;форме входа</span></a>
+												</div>
+											</div>
+										</figure>
+										<!-- end form-pass-recovery -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" onclick="pwdRecoveryDo();"
+													class="btn btn-blue jsStep1 jsBtn" required=""
+													disabled="disabled">
+													<b>Далее</b>
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<script type="text/javascript">
+    function registrBegin(){
+       document.getElementById("jsFormReg").reset();
+       document.getElementById("registrErrDiv").innerHTML="";
+       document.getElementById("registrErrDiv2").innerHTML="";
+       var curl = "proc?pa=clients&sa=REGISTRATION_EVENT&STEP=2";
+       document.getElementById("captchaImg").src=curl;
+    }
+    function registrDo(){
+
+        var req;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                document.getElementById("sbmReg").disabled="true";
+                document.getElementById("plsWaitReg").innerHTML="";
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        updateUserDiv();
+                        $('#modal-auth').modal('hide');
+                    }else if(resp.indexOf("ERROR=")==0){
+                        var obj = document.getElementById('registrErrDiv');
+                        obj.innerHTML="<font color='red'><b>"+resp.substring(6)+"</b></font>";
+                        var obj2 = document.getElementById('registrErrDiv2');
+                        obj2.innerHTML="<font color='red'><b>"+resp.substring(6)+"</b></font>";
+                    }else{
+                        var obj = document.getElementById('registrErrDiv');
+                        obj.innerHTML="<font color='red'><b>ошибка при регистрации, попробуйте еще раз</b></font>";
+                        var obj2 = document.getElementById('registrErrDiv2');
+                        obj2.innerHTML="<font color='red'><b>ошибка при регистрации, попробуйте еще раз</b></font>";
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=REGISTRATION_EVENT&STEP=1"
+                       + "&CLIENT_LOGIN="+document.forms.jsFormReg.CLIENT_LOGIN.value
+                       + "&CLIENT_EMAIL="+document.forms.jsFormReg.CLIENT_EMAIL.value
+                       + "&CLIENT_F="+document.forms.jsFormReg.CLIENT_F.value
+                       + "&CLIENT_I="+document.forms.jsFormReg.CLIENT_I.value
+                       + "&CLIENT_O="+document.forms.jsFormReg.CLIENT_O.value
+                       + "&CLIENT_PHONE="+document.forms.jsFormReg.CLIENT_PHONE.value
+                       + "&CLIENT_PWD="+document.forms.jsFormReg.CLIENT_PWD.value
+                       + "&CLIENT_PWD2="+document.forms.jsFormReg.CLIENT_PWD2.value
+                       + "&CLIENT_SECRET1="+document.forms.jsFormReg.CLIENT_SECRET1.value
+                       + "&CLIENT_SECRET2="+document.forms.jsFormReg.CLIENT_SECRET2.value
+                       + "&CLIENT_PIC_NUM="+document.forms.jsFormReg.CLIENT_PIC_NUM.value
+                       + "&CLIENT_SECRET_ANSWER="+document.forms.jsFormReg.CLIENT_SECRET_ANSWER.value;
+
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+            document.getElementById("sbmReg").disabled="true";
+            document.getElementById("plsWaitReg").innerHTML="подождите...";
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+</script>
+							<div class="tab-pane jsAuthTab jsAuthTab2" id="form-tab2">
+								<form class="jsRequiredContainer" id="jsFormReg">
+									<div class="modal-body">
+										<!-- form-reg -->
+										<figure class="form-reg form-horizontal">
+											<fieldset>
+												<div class="form-group required">
+													<div id="registrErrDiv"></div>
+													<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_LOGIN" type="text"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Пароль</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PWD" type="password"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Повторите
+																пароль</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PWD2" type="password"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="help help-block">
+													<p class="help-line">Укажите свой адрес электронной
+														почты и&nbsp;номер мобильного телефона, чтобы получать
+														информацию о&nbsp;приобретённом билете.</p>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Электронная
+															почта</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_EMAIL" type="email"
+															class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Мобильный
+															телефон</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PHONE" type="text"
+															class="form-control jsMask ready"
+															data-mask="+7 999 999-99-99">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Фамилия</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_F" type="text" class="form-control"
+															required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Имя</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_I" type="text" class="form-control"
+															required="">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Отчество</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_O" type="text" class="form-control">
+													</div>
+												</div>
+											</fieldset>
+											<fieldset>
+												<div class="form-group required group-pad">
+													<label class="control-label col-xs-8"><span><b>Если
+																вы забудете пароль</b></span></label>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Выберите
+															вопрос</span></label>
+													<div class="col-xs-5">
+														<select name="CLIENT_SECRET1" class="form-control">
+															<option value="Девичья фамилия матери">Девичья
+																фамилия матери</option>
+															<option value="Как зовут вашу собаку">Как зовут
+																вашу собаку</option>
+															<option value="Номер паспорта">Номер паспорта</option>
+															<option value="Любимое блюдо">Любимое блюдо</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>или
+															укажите свой</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_SECRET2" type="text"
+															class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Ответ
+															на вопрос</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_SECRET_ANSWER" type="text"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required group-captcha">
+													<label class="control-label col-xs-3"><span><b>Введите
+																число с&nbsp;картинки</b></span></label>
+													<div class="col-xs-5">
+														<div class="row">
+															<div class="col-xs-8">
+																<img id="captchaImg"
+																	src="./from_typing_files/captcha.png">
+															</div>
+															<div class="col-xs-4">
+																<input name="CLIENT_PIC_NUM" type="text"
+																	class="form-control jsOnlyDig" required="">
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</figure>
+										<!-- end form-reg -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div id="registrErrDiv2"></div>
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" id="sbmReg" onclick="registrDo();"
+													class="btn btn-blue" required="" disabled="disabled">
+													<b>Зарегистрироваться</b>
+												</button>
+												<p class="help-line help-required jsRequiredTip">Заполните
+													все поля, отмеченные</p>
+											</div>
+											<div id="plsWaitReg"></div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</figure>
+					<!-- end tabs-modal -->
+				</div>
+			</div>
+		</div>
+		<!-- end modal-auth #####################################################################################################-->
+
+		<!-- main-nav -->
+		<figure class="main-nav">
+			<div class="container clearfix">
+
+				<menu class="pull-left clearfix">
+					<li><a id="mainNav1"
+						href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+						class="active" onclick="sbmHead();"><span>Купить билет</span></a></li>
+					<li><a id="mainNav2"
+						href="https://epay.railways.kz/ktz4/clients/pravila.jsp"><span>Правила
+								пользования</span></a></li>
+					<li><a id="mainNav3"
+						href="https://epay.railways.kz/ktz4/clients/info.jsp"><span>Информация
+								для пассажиров</span></a></li>
+					<li><a id="mainNav4"
+						href="https://epay.railways.kz/ktz4/clients/news.jsp"><span>Новости</span></a></li>
+					<li><a id="mainNav5"
+						href="https://epay.railways.kz/ktz4/clients/spravka.jsp"><span>Справочная
+								служба</span></a></li>
+				</menu>
+				<script type="text/javascript">
+    var mn1 = document.getElementById("mainNav1");
+    var mn2 = document.getElementById("mainNav2");
+    var mn3 = document.getElementById("mainNav3");
+    var mn4 = document.getElementById("mainNav4");
+    var mn5 = document.getElementById("mainNav5");
+    if(window.location.pathname.indexOf("pravila")>0){mn1.className="";mn2.className="active";}
+    if(window.location.pathname.indexOf("info")>0){mn1.className="";mn3.className="active";}
+    if(window.location.pathname.indexOf("news")>0){mn1.className="";mn4.className="active";}
+    if(window.location.pathname.indexOf("spravka")>0){mn1.className="";mn5.className="active";}
+</script>
+
+
+			</div>
+		</figure>
+		<!-- end main-nav -->
+
+
+
+		<!-- #content -->
+		<main id="content" class="content">
+		<div class="container">
+
+			<!-- content-main -->
+			<section class="content-main">
+
+				<!-- steps-nav -->
+				<figure class="steps-nav">
+					<table>
+						<tbody>
+							<tr>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="active"><span>1. Выбор направления</span></a></th>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="disabled"><span>2. Расписание</span></a></th>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="disabled"><span>3. Наличие мест</span></a></th>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="disabled"><span>4. Информация о пассажирах</span></a></th>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="disabled"><span>5. Оплата</span></a></th>
+								<th><a
+									href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+									class="disabled"><span>6. Билет</span></a></th>
+							</tr>
+						</tbody>
+					</table>
+				</figure>
+				<!-- end steps-nav -->
+
+				<!-- form-search-tickets -->
+				<figure class="form-search-tickets">
+					<div class="block-in">
+						<div class="form-group group-location">
+							<label class="control-label">Направление</label>
+							<div class="column clearfix">
+								<div class="col col-left">
+									<div class="clearfix">
+										<span role="status" aria-live="polite"
+											class="ui-helper-hidden-accessible">1 result is
+											available, use up and down arrow keys to navigate.</span><input
+											type="text"
+											class="form-control input-lg input-text ui-autocomplete-input"
+											placeholder="Откуда?" id="FROM_STATION" value="" required=""
+											autocomplete="off">
+										<button type="button"
+											class="btn btn-default input-lg btn-toggle jsTooltip"
+											id="StupidChangeDirection" onclick="changeDir();"
+											data-toggle="tooltip" data-placement="top"
+											data-original-title="Поменять направления местами">
+											<i class="fa fa-exchange"></i>
+										</button>
+										<span role="status" aria-live="polite"
+											class="ui-helper-hidden-accessible">2 results are
+											available, use up and down arrow keys to navigate.</span><input
+											type="text"
+											class="form-control input-lg input-text ui-autocomplete-input"
+											placeholder="Куда?" id="TO_STATION" value="" required=""
+											autocomplete="off">
+										<script>
+<!--STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT,  -->
+        function changeDir(){
+            var from = document.forms.form1.FROM_STATION.value;
+            var to = document.forms.form1.TO_STATION.value;
+            document.forms.form1.FROM_STATION.value=to;
+            document.forms.form1.TO_STATION.value=from;
+
+            var from1 = document.getElementById("FROM_STATION").value;
+            var to1 = document.getElementById("TO_STATION").value;
+            document.getElementById("FROM_STATION").value=to1;
+            document.getElementById("TO_STATION").value=from1;
+        }
+	$(function() {
+		function setFrom(id) {
+                    document.forms.form1.FROM_STATION.value=id;
+		}
+		function setTo(id) {
+                    document.forms.form1.TO_STATION.value=id;
+		}
+
+		$( "#FROM_STATION" ).autocomplete({
+			source: "json4.jsp",
+			minLength: 2,
+			select: function( event, ui ) {
+				setFrom(ui.item.id);
+			},
+			change: function( event, ui ) {
+                                if(ui.item==null){
+                                    setFrom('');
+                                }else{
+                                    setFrom(ui.item.id);
+                                }
+			}
+		});
+		$( "#TO_STATION" ).autocomplete({
+			source: "json4.jsp",
+			minLength: 2,
+			select: function( event, ui ) {
+				setTo(ui.item.id);
+			},
+			change: function( event, ui ) {
+                                if(ui.item==null){
+                                    setTo('');
+                                }else{
+                                    setTo(ui.item.id);
+                                }
+			}
+		});
+	});
+<!--STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT, STATION SELECT,  -->
+												</script>
+									</div>
+									<p class="help-line">Начните вводить название станции,
+										затем выберите станцию из&nbsp;предложенного списка</p>
+								</div>
+								<div class="col col-right">
+									<div class="clearfix">
+										<span class="datepicker-wrapper"> <input type="text"
+											class="form-control input-lg input-date only-ready"
+											id="jsCalendarInp" placeholder="Когда?" value="30.11.2015">
+											<input type="text"
+											class="form-control input-lg input-date invisible hasDatepicker"
+											id="jsCalendar" value="30.11.2015">
+										<button type="button" class="ui-datepicker-trigger">
+												<i class="fa fa-calendar"></i>
+											</button>
+										</span>
+									</div>
+									<p class="help-line">Выберите дату в&nbsp;календаре</p>
+									<script>
+<!--CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR -->
+		var calendar 			= $('#jsCalendar');
+		var calendar_inp 		= $('#jsCalendarInp');
+		calendar.datepicker({
+			numberOfMonths: 	2,
+			firstDay: 			1,
+			minDate: 			0,
+			maxDate: 			"+45D",
+			showCurrentAtPos: 	0,
+			multiSeparator: 	'+',
+			dateFormat: 		'dd.mm.yy',
+			showOn: 			'button',
+			buttonImageOnly: 	false,
+			buttonText: 		'<i class="fa fa-calendar"></i>',
+			onSelect: 	function(dateText,inst){
+				date_text(calendar,calendar_inp);
+                                document.forms.form1.DATE.value=document.getElementById('jsCalendar').value;
+			},
+  			beforeShow: function(input, inst) {
+				var calendar_div = inst.dpDiv;
+				setTimeout(function() {
+					calendar_div.position({
+						my: 'right top',
+						at: 'right bottom',
+						collision: 'none',
+						of: input
+					});
+				}, 1);
+			}															
+		});
+<!--CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR CALENDAR -->
+											</script>
+								</div>
+							</div>
+						</div>
+						<div class="form-inline">
+							<div class="column clearfix">
+								<div class="col col-left clearfix">
+
+									<p class="help-line">
+										В&nbsp;одном заказе может быть оформлено<br> <b>до&nbsp;4-х
+											железнодорожных билетов</b> с&nbsp;указанием персональных данных
+										всех пассажиров.
+									</p>
+								</div>
+
+								<div class="col col-right">
+									<div class="btn-group" data-toggle="buttons">
+										<label class="btn btn-default btn-xs jsTooltip"
+											data-toggle="tooltip" data-container="body"
+											data-placement="bottom" data-original-title="00:00 — 06:00"><input
+											type="checkbox" id="dt1" name="dt1" value="0">ночь</label> <label
+											class="btn btn-default btn-xs jsTooltip"
+											data-toggle="tooltip" data-container="body"
+											data-placement="bottom" data-original-title="06:00 — 12:00"><input
+											type="checkbox" id="dt2" name="dt2" value="1">утро</label> <label
+											class="btn btn-default btn-xs jsTooltip"
+											data-toggle="tooltip" data-container="body"
+											data-placement="bottom" data-original-title="12:00 — 18:00"><input
+											type="checkbox" id="dt3" name="dt3" value="2">день</label> <label
+											class="btn btn-default btn-xs jsTooltip"
+											data-toggle="tooltip" data-container="body"
+											data-placement="bottom" data-original-title="18:00 — 24:00"><input
+											type="checkbox" id="dt4" name="dt4" value="3">вечер</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form action="https://epay.railways.kz/ktz4/proc" method="POST"
+						name="form1" id="formSubmit">
+						<input type="hidden" name="pa" value="express3" id="primaryAction">
+						<input type="hidden" name="sa" value="GET_P62G60_EVENT"
+							id="secondaryAction"> <input type="hidden" name="STEP"
+							value="1"> <input type="hidden" name="TIME" value="">
+						<input type="hidden" name="FROM_STATION"
+							value="Туркестан(2700860)"> <input type="hidden"
+							name="TO_STATION" value="АЛМА АТА 2(2700001)"> <input
+							type="hidden" name="DATE" value="30.11.2015">
+						<div class="form-controls clearfix">
+							<button type="button" class="btn btn-blue"
+								onclick="checkSbmEnabled(&#39;1&#39;);" id="Mesta">
+								<b>Поиск мест</b>
+							</button>
+							<button type="button" class="btn btn-blue"
+								onclick="checkSbmEnabled(&#39;2&#39;);" id="Mesta">
+								<b>Расписание</b>
+							</button>
+							<p class="help-line jsLocationTip">Выберите станции
+								отправления и назначение</p>
+						</div>
+					</form>
+					<script>
+        function checkSbmEnabled(kuda){
+//            console.log("document.forms.form1.FROM_STATION.value="+document.forms.form1.FROM_STATION.value);
+//            console.log("document.forms.form1.TO_STATION.value="+document.forms.form1.TO_STATION.value);
+//            console.log("document.forms.form1.DATE.value="+document.forms.form1.DATE.value);
+            if(document.forms.form1.FROM_STATION.value.length>0
+               && document.forms.form1.TO_STATION.value.length>0 
+               && document.forms.form1.DATE.value.length==10){
+
+               var time = "";
+               if(document.getElementById("dt1").checked){time=time+"0";}
+               if(document.getElementById("dt2").checked){time=time+"1";}
+               if(document.getElementById("dt3").checked){time=time+"2";}
+               if(document.getElementById("dt4").checked){time=time+"3";}
+               document.forms.form1.TIME.value = time; 
+               document.forms.form1.STEP.value=kuda;
+               document.forms.form1.submit();
+               return true;
+            }else{
+               alert("Нужно выбрать станции отправляния, назначения и дату поездки");
+               return false;
+            }
+        }
+</script>
+
+				</figure>
+				<!-- end form-search-tickets -->
+
+			</section>
+			<!-- end content-main -->
+
+		</div>
+
+		<div class="content-white">
+			<div class="container">
+
+				<div align="center">
+					<img src="./from_typing_files/banner_ru.jpg"
+						onclick="document.location.href=&#39;clients/action_info.jsp&#39;;">
+					<p></p>
+					<div align="center">
+						<h2>
+							<font color="red">ИНФОРМАЦИЯ ДЛЯ ПАССАЖИРОВ!</font>
+						</h2>
+					</div>
+					<div align="justify">
+						<font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;АО
+							«Пассажирские перевозки» сообщает, что на все &nbsp;скоростные
+							&nbsp;пассажирские &nbsp;поезда «Тулпар-Тальго» &nbsp;начиная
+							&nbsp;отправлением с 17 сентября 2015 года по 25 ноября 2015
+							года: <br>- внедрены дополнительные скидки в вагонах класса
+							«Гранд» и «Бизнес» до 40%, в вагонах класса «Турист» до 25%; <br>-
+							установлена стоимость проезда в выходные, праздничные и
+							предпраздничные дни на уровне стоимости проезда в будние дни.
+						</font>
+					</div>
+					<font size="3"> <br>
+					</font>
+				</div>
+				<table cellspacing="10" cellpadding="10">
+					<tbody>
+						<tr>
+							<td><img src="./from_typing_files/A4_flayer.jpg"
+								width="450px" height="632px"
+								onclick="document.location.href=&#39;clients/vopros-otvet.jsp&#39;;">
+							</td>
+							<td><img src="./from_typing_files/news1oct2014rus-1.jpg"
+								width="450px" height="632px"></td>
+						</tr>
+						<tr>
+							<td>
+								<div align="left">
+									<small><em>*Для получения более детальной
+											информации нажмите на баннер</em></small>
+								</div>
+
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+						</tr>
+					</tbody>
+				</table>
+				<font size="3"> </font>
+			</div>
+			<font size="3">
+				<div align="center">
+					<h2>
+						<font color="red">НОВЫЕ ВОЗМОЖНОСТИ ПОКУПКИ ЭЛЕКТРОННЫХ
+							БИЛЕТОВ!</font>
+					</h2>
+					<font color="red">Уважаемые пассажиры, пользователи!</font>
+					<p>С 26 МАРТА 2014 ГОДА ПРЕДОСТАВЛЯЮТСЯ НОВЫЕ ВОЗМОЖНОСТИ
+						ОФОРМЛЕНИЯ ЭЛЕКТРОННЫХ БИЛЕТОВ С ЭЛЕКТРОННОЙ РЕГИСТРАЦИЕЙ И БЕЗ
+						РЕГИСТРАЦИИ, ПОСАДКИ В ПОЕЗД БЕЗ ОБРАЩЕНИЯ В КАССУ ИЛИ
+						ТРАНЗАКЦИОННЫЙ ТЕРМИНАЛ САМООБСЛУЖИВАНИЯ</p>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<h1>НОВЫЕ ВОЗМОЖНОСТИ</h1>
+						<ul class="list-unstyled">
+							<li>ВОЗМОЖНОСТЬ ОФОРМЛЕНИЯ ЭЛЕКТРОННЫХ БИЛЕТОВ НА ПОЕЗДА В
+								МЕЖДУНАРОДНОМ, ВНУТРИРЕСПУБЛИКАНСКОМ СООБЩЕНИЯХ ФОРМИРОВАНИЯ АО
+								«НК «КТЖ» И ТРАНЗИТНЫЕ ПОЕЗДА ЧУЖИХ Ж/Д АДМИНИСТРАЦИЙ.</li>
+							<li>ЭЛЕКТРОННЫЕ БИЛЕТЫ МОЖНО ОФОРМИТЬ ОТ 45 СУТОК ДО 1 ЧАСА
+								ДО ОТПРАВЛЕНИЯ ПОЕЗДА С НАЧАЛЬНОЙ СТАНЦИИ ФОРМИРОВАНИЯ И/ИЛИ
+								ОБОРОТА ПОЕЗДА</li>
+							<li>ВОЗМОЖНОСТЬ ПОСАДКИ ВО ВНУТРИРЕСПУБЛИКАНСКИЕ ПОЕЗДА
+								ФОРМИРОВАНИЯ АО «НК «КТЖ» ПО ЭЛЕКТРОННОМУ БИЛЕТУ С ЭЛЕКТРОННОЙ
+								РЕГИСТРАЦИЕЙ БЕЗ РАСПЕЧАТКИ БЛАНКА БИЛЕТА В КАССЕ И/ИЛИ
+								ТРАНЗАЦИОННОМ ТЕРМИНАЛЕ САМООБСЛУЖИВАНИЯ</li>
+							<li>ВОЗМОЖНОСТЬ ВОЗВРАТА ЭЛЕКТРОННОГО БИЛЕТА ЧЕРЕЗ САЙТ ИЛИ
+								КАССУ</li>
+							<ul>
+							</ul>
+						</ul>
+					</div>
+					<div class="col-xs-4">
+						<h2>ОСНОВНЫЕ ШАГИ</h2>
+						<ol>
+							<li>Зарегистрируйтесь на сайте.</li>
+							<li>Оформите электронный билет на поезд с электронной
+								регистрацией или без регистрации.</li>
+							<li>При оформлении электронного билета с электронной
+								регистрацией распечатайте у себя на принтере электронный билет.</li>
+							<li>При посадке в поезд по электронному билету с электронной
+								регистрацией предъявите проводнику распечатку электронного
+								билета и документ, удостоверяющий личность пассажира.</li>
+							<li>Для посадки в поезд по электронному билету без
+								регистрации пассажиру необходимо распечатать электронный билет
+								на бланке строгой отчетности в кассе или транзакционном
+								терминале самообслуживания, предъявить проводнику билет и
+								документ, удостоверяющий личность пассажира.</li>
+							<ol>
+							</ol>
+						</ol>
+					</div>
+					<div class="col-xs-4">
+						<h2>ПОЛЕЗНАЯ ИНФОРМАЦИЯ</h2>
+						<ul>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/spravka.jsp#3el">Перечень
+									поездов, на которые можно оформить электронные билеты.</a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/tokens/astanaSorokovayaElReg.htm">Форма
+									электронного билета с электронной регистрацией.</a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/tokens/astanaSorokovaya.htm">Форма
+									электронного билета без регистрации.</a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/tokens/krs_example.htm">Форма
+									квитанции разных сборов при возврате электронного билета.</a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/pravila.jsp#11">Порядок
+									возврата электронного билета.</a></li>
+							<li><a href="mailto:vitrina@railways.kz">Вопросы по
+									разблокировки логина просим Вас направлять на электронный адрес
+									vitrina@railways.kz.</a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/spravka.jsp#5g1">Информация
+									о месте нахождения пунктов продажи пассажирских агентств АО «НК
+									«КТЖ» ст. Петропавловск.</a></li>
+							<ul>
+							</ul>
+						</ul>
+					</div>
+				</div>
+				<div align="center">
+					<font color="red"><b>Уважаемые пользователи!!!</b></font> <b><p>В
+							связи с отключением услуги СмС-информирование, информация о
+							приобретенных билетах 2015 году будет предоставляться по
+							электронной почте (email). При необходимости получения информации
+							о приобретенных билетах просим Вас указывать адрес электронной
+							почты в личных данных!</p></b>
+				</div>
+			</font>
+		</div>
+		<font size="3">
+
+
+			<div class="container">
+
+				<!-- divisions-list -->
+				<figure class="divisions-list text-center">
+					<h2>Полезные ссылки и&nbsp;подразделения</h2>
+					<ul class="list-unstyled clearfix">
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://railways.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic01.jpg">
+										</div>
+										<div class="title">
+											<b>АО «НК «Қазақстан темір жолы»</b>
+										</div>
+										<div class="links">railways.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://temirzholy.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic01.jpg">
+										</div>
+										<div class="title">
+											<b>АО «Пассажирcкие перевозки»</b>
+										</div>
+										<div class="links">temirzholy.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://vokzal-service.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic02.jpg">
+										</div>
+										<div class="title">
+											<b>АО «Вокзал-Сервис»</b>
+										</div>
+										<div class="links">vokzal-service.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://pp-service.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic03.jpg">
+										</div>
+										<div class="title">
+											<b>АО «Пригородные перевозки»</b>
+										</div>
+										<div class="links">pp-service.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://iservice.railways.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic04.jpg">
+										</div>
+										<div class="title">
+											<b>«Информ-Сервис»</b>
+										</div>
+										<div class="links">iservice.railways.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+						<li>
+							<!-- division-item -->
+							<article class="division-item">
+								<div class="division-item-in">
+									<a href="http://cargo.railways.kz/" target="_blank">
+										<div class="img">
+											<img src="./from_typing_files/pic01.jpg">
+										</div>
+										<div class="title">
+											<b>Грузовые перевозки</b>
+										</div>
+										<div class="links">cargo.railways.kz</div>
+									</a>
+								</div>
+							</article>
+							<!-- end division-item -->
+						</li>
+					</ul>
+				</figure>
+				<!-- end divisions-list -->
+
+			</div>
+
+		</font></main>
+		<!-- end #content -->
+		<font size="3"> </font>
+	</section>
+	<div id="ui-datepicker-div"
+		class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+	<!-- end #wrapper -->
+	<font size="3"> <!-- #footer --> <footer id="footer">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-xs-3">
+						<h5>
+							<a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+								class="link" onclick="sbmHead();"><span>Купить билет</span></a>
+						</h5>
+						<ul class="list-inline list-auth-links">
+							<li><a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+								class="link link-dashed jsLinkAuth" data-action="login"><i
+									class="fa fa-lock"></i> <span>Вход</span></a></li>
+							<li><a href="https://epay.railways.kz/ktz4/proc?pa=clients#"
+								onclick="registrBegin();" class="link jsLinkAuth"
+								data-action="reg"><span>Регистрация</span></a></li>
+						</ul>
+						<a href="https://epay.railways.kz/SVPayments/index.jsf"
+							class="btn btn-blue-invert btn-sm"><b>Грузовые перевозки</b></a>
+					</div>
+					<div class="col-xs-3">
+						<div class="title">
+							<h5>Помощь</h5>
+							<h5>
+								<a href="https://epay.railways.kz/ktz4/clients/news.jsp"
+									class="link"><span>Новости</span></a>
+							</h5>
+						</div>
+						<ul class="list-unstyled">
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/pravila.jsp#4"
+								class="link"><span>Как оформить заказ</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/info.jsp#3"
+								class="link"><span>Как оплатить заказ</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/info.jsp#4"
+								class="link"><span>Процедура получения билетов</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/info.jsp#5"
+								class="link"><span>Возврат билетов</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/info.jsp#9"
+								class="link"><span>Информация для пассажиров</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/pravila.jsp"
+								class="link"><span>Правила пользования</span></a></li>
+						</ul>
+					</div>
+					<div class="col-xs-3">
+						<div class="title">
+							<h5>Справочная информация</h5>
+						</div>
+						<ul class="list-unstyled">
+							<li><a href="https://epay.railways.kz/ktz4/maps/map.jsp"
+								class="link"><span>Карта маршрутов</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/spravka.jsp#3"
+								class="link"><span>Перечень направлений</span></a></li>
+							<li><a
+								href="https://epay.railways.kz/ktz4/clients/spravka.jsp#4"
+								class="link"><span>Поезда СНГ</span></a></li>
+						</ul>
+					</div>
+					<div class="col-xs-3">
+						<div class="title">
+							<h5>Техническая поддержка сайта</h5>
+						</div>
+						<!-- contacts -->
+						<figure class="contacts">
+							<b>&nbsp;&nbsp;&nbsp;&nbsp;+7 7172 60-66-60</b>
+							<br>
+							<b>&nbsp;&nbsp;&nbsp;&nbsp;+7 7172 60-66-56</b>
+							<br>
+							<a href="mailto:vitrina@railways.kz" class="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>vitrina@railways.kz</span></a>
+							<!--						<div>
+							<a href="#" target="_blank" class="link link-block"><span><b>Контактная информация</b></span></a>
+						</div>-->
+						</figure>
+						<!-- end contacts -->
+						<!-- social-links -->
+						<!--					<figure class="social-links">
+						<ul class="list-unstyled clearfix">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-vk"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-youtube"></i></a></li>
+						</ul>-->
+						<!-- end social-links -->
+					</div>
+				</div>
+
+				<!-- copyright -->
+				<figure class="copyright">
+					©&nbsp;
+					<a href="http://railways.kz/" class="link"><span><b>АО&nbsp;«НК&nbsp;«Қазақстан
+								темір жолы»</b></span></a>, 2013.
+				</figure>
+				<!-- end copyright -->
+
+			</div>
+		</footer>
+		<!-- end #footer -->
+
+
+
+
+	</font>
+	<ul
+		class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
+		id="ui-id-1" tabindex="0"
+		style="display: none; top: 302px; left: 313.5px; width: 225px;">
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-21"
+			class="ui-corner-all" tabindex="-1">Туркестан</a></li>
+	</ul>
+	<ul
+		class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
+		id="ui-id-2" tabindex="0"
+		style="display: none; width: 225px; top: 302px; left: 598.5px;">
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-22"
+			class="ui-corner-all" tabindex="-1">АЛМА АТА 2</a></li>
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-23"
+			class="ui-corner-all" tabindex="-1">АЛМА АТА 1</a></li>
+	</ul>
+</body>
+</html>
