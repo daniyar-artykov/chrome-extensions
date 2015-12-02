@@ -11,6 +11,7 @@ document.getElementById('options-btn').onclick = function() {
 			};
 			props.url = options_url;
 			chrome.tabs.update(tabs[0].id, props);
+			window.close();
 		} else {
 			chrome.tabs.getSelected(null, function(tab) {
 				if('chrome://newtab/' === tab.url) {
@@ -19,6 +20,7 @@ document.getElementById('options-btn').onclick = function() {
 					};
 					props.url = options_url;
 					chrome.tabs.update(tab.id, props);
+					window.close();
 				} else {
 					chrome.tabs.create({
 						url: options_url
