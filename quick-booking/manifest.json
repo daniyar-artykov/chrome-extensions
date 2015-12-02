@@ -6,6 +6,12 @@
       "128": "images/icons/128.png",
       "16": "images/icons/16.png"
    },
+   
+   "content_scripts": [ {
+      "js": [ "js/railways.js" ],
+      "matches": [ "https://epay.railways.kz/*" ]
+      } ], 
+      
    "manifest_version": 2,
    "minimum_chrome_version": "42.0.2311.135",
    "name": "Quick Booking Extension",
