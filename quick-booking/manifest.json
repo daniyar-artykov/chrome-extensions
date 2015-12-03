@@ -8,7 +8,7 @@
    },
    
    "content_scripts": [ {
-      "js": [ "js/railways.js" ],
+      "js": [ "libs/jquery-2.1.4.js", "js/railways.js" ],
       "matches": [ "https://epay.railways.kz/*" ]
       } ], 
       

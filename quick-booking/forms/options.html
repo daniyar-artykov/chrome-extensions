@@ -7,16 +7,31 @@
 <link rel="stylesheet" type="text/css" href="../css/options.css" />
 <link rel="stylesheet" type="text/css"
 	href="../libs/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../libs/jquery-ui-1.11.4.css" />
 <title>Quick Booking Options</title>
 </head>
 <body>
-	<input id="login" type="text" />
-	<input id="password" type="password" />
+	<input id="login" type="text" placeholder="Пользователь" />
+	<input id="password" type="password" placeholder="Пароль" />
+	<br />
+	<input id="from-station" type="text" placeholder="Откуда?" />
+	<input id="from-station-hidden" type="hidden" />
+	<button type="button" id="revert-direction-btn"
+		class="btn btn-default btn-sm">
+		<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+	</button>
+	<input id="to-station" type="text" placeholder="Куда?" />
+	<input id="to-station-hidden" type="hidden" />
+	<br />
+	<input type="text" id="journey-date" />
+	<br />
 	<button type="button" id="save-btn" class="btn btn-success btn-sm">
 		<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
 		Save
 	</button>
 	<script src="../libs/jquery-2.1.4.js"></script>
+	<script src="../libs/jquery-ui-1.11.4.js"></script>
 	<script src="../js/options.js"></script>
 </body>
 </html>
