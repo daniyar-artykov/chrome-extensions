@@ -7,10 +7,10 @@ $(document).ready(function() {
 	$('#from-station').autocomplete({
 		source: 'https://epay.railways.kz/ktz4/json4.jsp',
 		minLength: 2,
-		select: function( event, ui ) {
+		select: function(event, ui) {
 			setFrom(ui.item.id);
 		},
-		change: function( event, ui ) {
+		change: function(event, ui) {
 			if(ui.item == null) {
 				setFrom('');
 			} else {
@@ -21,10 +21,10 @@ $(document).ready(function() {
 	$('#to-station').autocomplete({
 		source: 'https://epay.railways.kz/ktz4/json4.jsp',
 		minLength: 2,
-		select: function( event, ui ) {
+		select: function(event, ui) {
 			setTo(ui.item.id);
 		},
-		change: function( event, ui ) {
+		change: function(event, ui) {
 			if(ui.item == null) {
 				setTo('');
 			} else {
