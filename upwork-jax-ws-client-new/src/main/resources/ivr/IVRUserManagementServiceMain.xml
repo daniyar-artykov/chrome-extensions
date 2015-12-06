@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://webservices.nes.accenture.com/" name="IIVRUserManagementService" targetNamespace="http://webservices.nes.accenture.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.nes.accenture.com/" xmlns:ns2="http://ivr.webservicedto.nes.accenture.com" xmlns:ns1="http://ivr.webservicedto.dto.nes.accenture.com" elementFormDefault="unqualified" targetNamespace="http://webservices.nes.accenture.com/" version="1.0">
+
+  <xs:import namespace="http://ivr.webservicedto.dto.nes.accenture.com"/>
+
+  <xs:import namespace="http://ivr.webservicedto.nes.accenture.com"/>
+
+  <xs:element name="authorizeUser" type="tns:authorizeUser"/>
+
+  <xs:element name="authorizeUserResponse" type="tns:authorizeUserResponse"/>
+
+  <xs:element name="resetPIN" type="tns:resetPIN"/>
+
+  <xs:element name="resetPINResponse" type="tns:resetPINResponse"/>
+
+  <xs:complexType name="authorizeUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="authorizeUserRequestDTO" type="ns1:AuthorizeUserRequestDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="authorizeUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns2:AuthorizeUserResponseDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resetPIN">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="requestpinRequestDTO" type="ns1:ResetPinRequestDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resetPINResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns2:ResetPinResponseDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://util.nes.accenture.com" version="1.0">
+
+  <xs:complexType name="baseResponseDTO">
+    <xs:sequence>
+      <xs:element name="code" type="xs:int"/>
+      <xs:element minOccurs="0" name="errorDetails" type="xs:string"/>
+      <xs:element minOccurs="0" name="inputRequest" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://util.nes.accenture.com" targetNamespace="http://ivr.webservicedto.nes.accenture.com" version="1.0">
+
+  <xs:import namespace="http://util.nes.accenture.com"/>
+
+  <xs:complexType name="AuthorizeUserResponseDTO">
+    <xs:complexContent>
+      <xs:extension base="ns1:baseResponseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="messageCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ResetPinResponseDTO">
+    <xs:complexContent>
+      <xs:extension base="ns1:baseResponseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="messageCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ivr.webservicedto.dto.nes.accenture.com" version="1.0">
+
+  <xs:complexType name="AuthorizeUserRequestDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="establishmentID" type="xs:string"/>
+      <xs:element minOccurs="0" name="languageKey" type="xs:long"/>
+      <xs:element minOccurs="0" name="telephone" type="xs:string"/>
+      <xs:element minOccurs="0" name="uniqueID" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ResetPinRequestDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateOfBirth" type="xs:string"/>
+      <xs:element minOccurs="0" name="establishmentId" type="xs:string"/>
+      <xs:element minOccurs="0" name="isEmployer" type="xs:long"/>
+      <xs:element minOccurs="0" name="languageKey" type="xs:long"/>
+      <xs:element name="selfServicecategory" type="xs:int"/>
+      <xs:element minOccurs="0" name="uniqueId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+
+<xsd:schema attributeFormDefault="unqualified"
+		elementFormDefault="qualified" version="1.0"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:element name="wsse:Security">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="Assertion">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="Issuer" type="xsd:string" />
+								<xsd:element name="ds:Signature">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="ds:SignedInfo">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="ds:CanonicalizationMethod">
+															<xsd:complexType>
+																<xsd:attribute name="Algorithm" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+														<xsd:element name="ds:SignatureMethod">
+															<xsd:complexType>
+																<xsd:attribute name="Algorithm" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+														<xsd:element name="ds:Reference">
+															<xsd:complexType>
+																<xsd:sequence>
+																	<xsd:element name="ds:Transforms">
+																		<xsd:complexType>
+																			<xsd:sequence>
+																				<xsd:element name="ds:Transform">
+																					<xsd:complexType>
+																						<xsd:attribute name="Algorithm"
+																							type="xsd:string" />
+																					</xsd:complexType>
+																				</xsd:element>
+																			</xsd:sequence>
+																		</xsd:complexType>
+																	</xsd:element>
+																	<xsd:element name="ds:DigestMethod">
+																		<xsd:complexType>
+																			<xsd:attribute name="Algorithm" type="xsd:string" />
+																		</xsd:complexType>
+																	</xsd:element>
+																	<xsd:element name="ds:DigestValue" type="xsd:string" />
+																</xsd:sequence>
+																<xsd:attribute name="URI" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="ds:SignatureValue" type="xsd:string" />
+											<xsd:element name="KeyInfo">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="ds:X509Data">
+															<xsd:complexType>
+																<xsd:sequence>
+																	<xsd:element name="ds:X509Certificate"
+																		type="xsd:string" />
+																</xsd:sequence>
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="Subject">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="SubjectConfirmation">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="SubjectConfirmationData">
+															<xsd:complexType>
+																<xsd:attribute name="NotOnOrAfter" type="xsd:dateTime" />
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+													<xsd:attribute name="Method" type="xsd:string" />
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="Conditions">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="AudienceRestriction">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="Audience" type="xsd:string" />
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="NotBefore" type="xsd:dateTime" />
+										<xsd:attribute name="NotOnOrAfter" type="xsd:dateTime" />
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="AttributeStatement">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="Attribute">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="AttributeValue" type="xsd:string" />
+													</xsd:sequence>
+													<xsd:attribute name="Name" type="xsd:string" />
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="AuthnStatement">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="AuthnContext">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="AuthnContextClassRef" type="xsd:string" />
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="AuthnInstant" type="xsd:dateTime" />
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+							<xsd:attribute name="ID" type="xsd:string" />
+							<xsd:attribute name="IssueInstant" type="xsd:dateTime" />
+							<xsd:attribute name="Version" type="xsd:decimal" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+
+  </wsdl:types>
+  <wsdl:message name="resetPIN">
+    <wsdl:part element="ns1:resetPIN" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resetPINResponse">
+    <wsdl:part element="ns1:resetPINResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authorizeUserResponse">
+    <wsdl:part element="ns1:authorizeUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authorizeUser">
+    <wsdl:part element="ns1:authorizeUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IIVRUserManagementService">
+    <wsdl:operation name="authorizeUser">
+      <wsdl:input message="ns1:authorizeUser" name="authorizeUser">
+    </wsdl:input>
+      <wsdl:output message="ns1:authorizeUserResponse" name="authorizeUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPIN">
+      <wsdl:input message="ns1:resetPIN" name="resetPIN">
+    </wsdl:input>
+      <wsdl:output message="ns1:resetPINResponse" name="resetPINResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

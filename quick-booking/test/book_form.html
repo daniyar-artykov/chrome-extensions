@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://epay.railways.kz/ktz4/proc -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<title></title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- base libs -->
+<script src="./book_form_files/jquery-1.9.1.min.js"></script>
+<script src="./book_form_files/jquery.maskedinput.min.js"></script>
+
+<!-- jquery ui -->
+<script src="./book_form_files/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="./book_form_files/jquery.ui.datepicker-ru.js"></script>
+<link href="./book_form_files/jquery-ui-1.10.3.custom.min.css"
+	rel="stylesheet" media="screen">
+
+<!-- bootstrap -->
+<link href="./book_form_files/bootstrap.custom.min.css" rel="stylesheet"
+	media="screen">
+<script src="./book_form_files/bootstrap.custom.min.js"></script>
+
+<!-- font-awesome -->
+<link href="./book_form_files/font-awesome.min.css" rel="stylesheet">
+
+<!-- project files -->
+<link href="./book_form_files/screen.min.css" rel="stylesheet"
+	media="screen">
+<script src="./book_form_files/interface.js"></script>
+
+<!-- IE SUPPORT -->
+<!--[if lte IE 8]>
+			<link href="design5/css/ie.min.css" rel="stylesheet" media="screen">
+			<script src="design5/js/libs/html5shiv.min.js"></script>
+			<script src="design5/js/libs/selectivizr-min.js"></script>
+			<script src="design5/js/libs/respond.min.js"></script>
+		<![endif]-->
+<style type="text/css"></style>
+</head>
+
+<body>
+
+	<form action="https://epay.railways.kz/ktz4/proc" name="formHeader"
+		method="POST">
+		<input type="hidden" name="pa" value="clients"> <input
+			type="hidden" name="sa" value=""> <input type="hidden"
+			name="STEP" value=""> <input type="hidden"
+			name="FROM_STATION" value="АЛМА АТА 2(2700001)"> <input
+			type="hidden" name="TO_STATION" value="Туркестан(2700860)"> <input
+			type="hidden" name="DATE" value="12.01.2016"> <input
+			type="hidden" name="TIME" value="">
+	</form>
+	<script type="text/javascript">
+    if(typeof String.prototype.trim !== 'function') {
+        String.prototype.trim = function() {
+            return this.replace(/^\s+|\s+$/g, '');
+        }
+    }
+    function sbmHead(){
+        document.forms.formHeader.submit();
+    }
+</script>
+	<!-- #wrapper -->
+	<section id="wrapper">
+
+		<!-- #header -->
+		<header id="header">
+			<div class="container clearfix">
+
+				<!-- logo -->
+				<a href="https://epay.railways.kz/ktz4/proc#" class="logo pull-left"
+					onclick="sbmHead();"></a>
+				<!-- end logo -->
+				<font color="white">build #243277</font>
+				<!-- menu-language -->
+				<figure class="menu-language pull-left">
+					<ul class="list-unstyled">
+
+						<li><a
+							href="https://epay.railways.kz/ktz4/proc?pa=clients&amp;sa=LANG_LOCALE_EVENT&amp;LOCALE=KZ"
+							class="link"><span>Қаз</span></a></li>
+						<li><a
+							href="https://epay.railways.kz/ktz4/proc?pa=clients&amp;sa=LANG_LOCALE_EVENT&amp;LOCALE=RU"
+							class="link active"><span>Рус</span></a></li>
+					</ul>
+				</figure>
+				<!-- end menu-language -->
+
+				<!-- contacts -->
+				<figure class="contacts pull-left">
+					<b>105</b>
+					<i>Справочная служба</i>
+					<br>
+				</figure>
+				<!-- end contacts -->
+
+				<!-- auth -->
+				<figure class="auth pull-right">
+					<!-- tabs-auth -->
+					<figure class="tabs-auth">
+						<ul class="nav nav-tabs">
+							<li class="active"><a
+								href="https://epay.railways.kz/ktz4/proc#"><span>Пассажирам</span></a></li>
+							<li><a href="https://epay.railways.kz/SVPayments/index.jsf"><span>Грузовые
+										перевозки</span></a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="userDiv" class="tab-pane active">
+
+
+
+
+
+
+
+
+
+								<figure class="menu-user">
+									<div class="btn-group">
+										<button class="btn btn-block dropdown-toggle"
+											data-toggle="dropdown" type="button">
+											<span class="caret"></span> <i class="fa fa-user"></i> <b>Артыков
+												Данияр Фахритдинович</b>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+
+											<li><a
+												href="https://epay.railways.kz/ktz4/proc?pa=orders&amp;sa=ORDER_LIST_EVENT"
+												tabindex="-1" role="menuitem">Мои заказы</a></li>
+
+											<li><a
+												href="https://epay.railways.kz/ktz4/proc?pa=clients&amp;sa=INFO_CHANGE_EVENT"
+												tabindex="-1" role="menuitem">Изменить личные данные</a></li>
+
+											<li><a
+												href="https://epay.railways.kz/ktz4/proc?pa=clients&amp;sa=INFO_CHANGE_EVENT&amp;STEP=4"
+												tabindex="-1" role="menuitem">Сменить пароль</a></li>
+											<li class="divider"></li>
+											<li><a href="https://epay.railways.kz/ktz4/proc#"
+												tabindex="-1" role="menuitem" onclick="loginDo(2);"> <i
+													class="fa fa-sign-out"></i> Выйти
+											</a></li>
+										</ul>
+									</div>
+								</figure>
+								<input type="hidden" id="CLIENT_ID" name="CLIENT_ID"
+									value="189658">
+
+
+							</div>
+							<div class="tab-pane"></div>
+						</div>
+					</figure>
+					<!-- end tabs-auth -->
+				</figure>
+				<!-- end auth -->
+
+			</div>
+		</header>
+		<!-- end #header-->
+
+		<!-- begin modal-auth #####################################################################################################-->
+		<div class="modal fade" id="modal-auth">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- tabs-modal -->
+					<figure class="tabs-modal">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<ul class="nav nav-tabs">
+								<li class="active jsAuthTab jsAuthTab1"><a
+									href="https://epay.railways.kz/ktz4/proc#form-tab1"
+									onclick="restoreFormLogin();" data-toggle="tab"
+									class="link link-dashed"><span>Вход</span></a></li>
+								<li class="jsAuthTab jsAuthTab2"><a
+									href="https://epay.railways.kz/ktz4/proc#form-tab2"
+									onclick="registrBegin();" data-toggle="tab"
+									class="link link-dashed"><span>Регистрация пассажира</span></a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane jsAuthTab jsAuthTab1 active" id="form-tab1">
+								<form class="jsRequiredContainer" id="jsFormLogin"
+									action="https://epay.railways.kz/ktz4/proc" method="POST">
+									<div class="modal-body">
+										<!-- form-login -->
+										<figure class="form-login form-horizontal">
+											<div class="form-group required">
+												<div id="loginErrDiv"></div>
+												<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+												<div class="col-xs-5">
+													<input type="text" name="CLIENT_LOGIN" class="form-control"
+														required="">
+												</div>
+											</div>
+											<div class="form-group required">
+												<label class="control-label col-xs-3"><span><b>Пароль</b></span></label>
+												<div class="col-xs-5">
+													<input type="password" name="CLIENT_PWD"
+														class="form-control" required="">
+												</div>
+												<div class="col-xs-4">
+													<a href="https://epay.railways.kz/ktz4/proc#"
+														class="link link-dashed link-in-form jsLink"><span>Забыли
+															пароль?</span></a>
+												</div>
+											</div>
+										</figure>
+										<!-- end form-login -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" onclick="loginDo(1);" id="sbmLogin"
+													class="btn btn-blue" required="">
+													<b>Вход</b>
+												</button>
+											</div>
+											<div id="plsWait"></div>
+										</div>
+									</div>
+								</form>
+								<script type="text/javascript">
+    function loginDo(step){
+        var req;
+        var login=document.forms.jsFormLogin.CLIENT_LOGIN.value;
+        var pwd=document.forms.jsFormLogin.CLIENT_PWD.value;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                document.getElementById("sbmLogin").disabled="false";
+                document.getElementById("plsWait").innerHTML="";
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        if(document.getElementById("LichCab")!=undefined && step==2){
+                            document.location.href="proc?pa=clients"
+                        }else{
+                            updateUserDiv();
+                        }
+                        $('#modal-auth').modal('hide');
+                    }else{
+                        var obj = document.getElementById('loginErrDiv');
+                        obj.innerHTML="<font color='red'><b>"+resp+"</b></font>";
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=LOGIN_EVENT&STEP="+step
+                       + "&CLIENT_LOGIN="+login
+                       + "&CLIENT_PWD="+pwd;
+
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+            document.getElementById("sbmLogin").disabled="true";
+            document.getElementById("plsWait").innerHTML="подождите...";
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function updateUserDiv(){
+        var req;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                if (req.readyState == 4 && req.status == 200){
+                    document.getElementById("userDiv").innerHTML=req.responseText.trim();
+                    loadFormLoginEvents();
+                }
+            };
+            req.open("POST", '/ktz4/include5/user_menu.jsp', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send("");
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function pwdRecoveryDo(){
+
+        var req;
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        var loginForm = document.getElementById("jsFormLogin");
+                        loginForm.style="";
+                        var loginForm = document.getElementById("jsFormPassRecovery");
+                        loginForm.style="display: none";
+                        updateUserDiv();
+                        clearPasswordRecoveryForm();
+                        $('#modal-auth').modal('hide');
+                    }else{
+                        var obj = document.getElementById('pwdRecoveryForm');
+                        obj.innerHTML=resp;
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=INFO_CHANGE_EVENT&STEP=2";
+
+            if(document.forms.jsFormPassRecovery.CLIENT_LOGIN!=undefined){
+                reqStr = reqStr+"&CLIENT_LOGIN="+document.forms.jsFormPassRecovery.CLIENT_LOGIN.value;
+            }
+            if(document.getElementById("CLIENT_SECRET_ANSWER")!=undefined){
+                reqStr = reqStr+"&CLIENT_SECRET_ANSWER="+document.getElementById("CLIENT_SECRET_ANSWER").value;
+            }
+            if(document.getElementById("CLIENT_PWD")!=undefined){
+                reqStr = reqStr+"&CLIENT_PWD="+document.getElementById("CLIENT_PWD").value;
+            }
+            if(document.getElementById("CLIENT_PWD2")!=undefined){
+                reqStr = reqStr+"&CLIENT_PWD2="+document.getElementById("CLIENT_PWD2").value;
+            }
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+    function restoreFormLogin(){
+        var loginForm = document.getElementById("jsFormLogin");
+        loginForm.style="";
+        var loginForm = document.getElementById("jsFormPassRecovery");
+        loginForm.style="display: none";
+        clearPasswordRecoveryForm();
+    }
+    function clearPasswordRecoveryForm(){
+        document.getElementById("pwdRecoveryForm").innerHTML=
+									"<!-- form-pass-recovery -->"
+									+"<figure class=\"form-pass-recovery form-horizontal\">"
+									+"	<div class=\"form-group required\">"
+									+"		<label class=\"control-label col-xs-12\">"
+									+"			<span><b>Восстановление пароля</b></span>"
+									+"			<p class=\"help-line\">Введите свой логин, затем ответьте на&nbsp;свой секретный вопрос</p>"
+									+"		</label>"
+									+"	</div>"
+									+"	<div class=\"form-group required\">"
+									+"		<label class=\"control-label col-xs-3\"><span><b>Логин</b></span></label>"
+									+"		<div class=\"col-xs-5\">"
+									+"			<input name=\"CLIENT_LOGIN\" type=\"text\" class=\"form-control\" required />"
+									+"		</div>"
+									+"		<div class=\"col-xs-4\">"
+									+"			<a href=\"#\"  onclick=\"restoreFormLogin();\" class=\"link link-dashed link-in-form jsLink\"><span>Вернуться к&nbsp;форме входа</span></a>"
+									+"		</div>"
+									+"	</div>"
+									+"</figure><!-- end form-pass-recovery -->";
+    }
+</script>
+								<form class="jsRequiredContainer" id="jsFormPassRecovery"
+									style="display: none;">
+									<div class="modal-body" id="pwdRecoveryForm">
+										<!-- form-pass-recovery -->
+										<figure class="form-pass-recovery form-horizontal">
+											<div class="form-group required">
+												<label class="control-label col-xs-12"> <span><b>Восстановление
+															пароля</b></span>
+													<p class="help-line">Введите свой логин, затем ответьте
+														на&nbsp;свой секретный вопрос</p>
+												</label>
+											</div>
+											<div class="form-group required">
+												<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+												<div class="col-xs-5">
+													<input name="CLIENT_LOGIN" type="text" class="form-control"
+														required="">
+												</div>
+												<div class="col-xs-4">
+													<a href="https://epay.railways.kz/ktz4/proc#"
+														onclick="restoreFormLogin();"
+														class="link link-dashed link-in-form jsLink"><span>Вернуться
+															к&nbsp;форме входа</span></a>
+												</div>
+											</div>
+										</figure>
+										<!-- end form-pass-recovery -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" onclick="pwdRecoveryDo();"
+													class="btn btn-blue jsStep1 jsBtn" required=""
+													disabled="disabled">
+													<b>Далее</b>
+												</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<script type="text/javascript">
+    function registrBegin(){
+       document.getElementById("jsFormReg").reset();
+       document.getElementById("registrErrDiv").innerHTML="";
+       document.getElementById("registrErrDiv2").innerHTML="";
+       var curl = "proc?pa=clients&sa=REGISTRATION_EVENT&STEP=2";
+       document.getElementById("captchaImg").src=curl;
+    }
+    function registrDo(){
+
+        var req;
+
+        if (window.XMLHttpRequest)  req = new XMLHttpRequest();
+        else if(window.ActiveXObject) {
+            try {
+                req = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (e){}
+            try {
+                req = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e){}
+        }
+
+        if (req) {
+            req.onreadystatechange = function(){
+                document.getElementById("sbmReg").disabled="true";
+                document.getElementById("plsWaitReg").innerHTML="";
+                if (req.readyState == 4 && req.status == 200){
+                    var resp = req.responseText.trim();
+                    if(resp=="LOGIN_OK"){
+                        updateUserDiv();
+                        $('#modal-auth').modal('hide');
+                    }else if(resp.indexOf("ERROR=")==0){
+                        var obj = document.getElementById('registrErrDiv');
+                        obj.innerHTML="<font color='red'><b>"+resp.substring(6)+"</b></font>";
+                        var obj2 = document.getElementById('registrErrDiv2');
+                        obj2.innerHTML="<font color='red'><b>"+resp.substring(6)+"</b></font>";
+                    }else{
+                        var obj = document.getElementById('registrErrDiv');
+                        obj.innerHTML="<font color='red'><b>ошибка при регистрации, попробуйте еще раз</b></font>";
+                        var obj2 = document.getElementById('registrErrDiv2');
+                        obj2.innerHTML="<font color='red'><b>ошибка при регистрации, попробуйте еще раз</b></font>";
+                    }
+                }
+            };
+            var reqStr = "pa=clients&sa=REGISTRATION_EVENT&STEP=1"
+                       + "&CLIENT_LOGIN="+document.forms.jsFormReg.CLIENT_LOGIN.value
+                       + "&CLIENT_EMAIL="+document.forms.jsFormReg.CLIENT_EMAIL.value
+                       + "&CLIENT_F="+document.forms.jsFormReg.CLIENT_F.value
+                       + "&CLIENT_I="+document.forms.jsFormReg.CLIENT_I.value
+                       + "&CLIENT_O="+document.forms.jsFormReg.CLIENT_O.value
+                       + "&CLIENT_PHONE="+document.forms.jsFormReg.CLIENT_PHONE.value
+                       + "&CLIENT_PWD="+document.forms.jsFormReg.CLIENT_PWD.value
+                       + "&CLIENT_PWD2="+document.forms.jsFormReg.CLIENT_PWD2.value
+                       + "&CLIENT_SECRET1="+document.forms.jsFormReg.CLIENT_SECRET1.value
+                       + "&CLIENT_SECRET2="+document.forms.jsFormReg.CLIENT_SECRET2.value
+                       + "&CLIENT_PIC_NUM="+document.forms.jsFormReg.CLIENT_PIC_NUM.value
+                       + "&CLIENT_SECRET_ANSWER="+document.forms.jsFormReg.CLIENT_SECRET_ANSWER.value;
+
+            req.open("POST", '/ktz4/proc', true);
+            req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            req.send(reqStr);
+            document.getElementById("sbmReg").disabled="true";
+            document.getElementById("plsWaitReg").innerHTML="подождите...";
+        }else{
+            alert("Браузер не поддерживает AJAX.");
+        }
+    }
+</script>
+							<div class="tab-pane jsAuthTab jsAuthTab2" id="form-tab2">
+								<form class="jsRequiredContainer" id="jsFormReg">
+									<div class="modal-body">
+										<!-- form-reg -->
+										<figure class="form-reg form-horizontal">
+											<fieldset>
+												<div class="form-group required">
+													<div id="registrErrDiv"></div>
+													<label class="control-label col-xs-3"><span><b>Логин</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_LOGIN" type="text"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Пароль</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PWD" type="password"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Повторите
+																пароль</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PWD2" type="password"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="help help-block">
+													<p class="help-line">Укажите свой адрес электронной
+														почты и&nbsp;номер мобильного телефона, чтобы получать
+														информацию о&nbsp;приобретённом билете.</p>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Электронная
+															почта</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_EMAIL" type="email"
+															class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Мобильный
+															телефон</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_PHONE" type="text"
+															class="form-control jsMask ready"
+															data-mask="+7 999 999-99-99">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Фамилия</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_F" type="text" class="form-control"
+															required="">
+													</div>
+												</div>
+												<div class="form-group required">
+													<label class="control-label col-xs-3"><span><b>Имя</b></span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_I" type="text" class="form-control"
+															required="">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Отчество</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_O" type="text" class="form-control">
+													</div>
+												</div>
+											</fieldset>
+											<fieldset>
+												<div class="form-group required group-pad">
+													<label class="control-label col-xs-8"><span><b>Если
+																вы забудете пароль</b></span></label>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Выберите
+															вопрос</span></label>
+													<div class="col-xs-5">
+														<select name="CLIENT_SECRET1" class="form-control">
+															<option value="Девичья фамилия матери">Девичья
+																фамилия матери</option>
+															<option value="Как зовут вашу собаку">Как зовут
+																вашу собаку</option>
+															<option value="Номер паспорта">Номер паспорта</option>
+															<option value="Любимое блюдо">Любимое блюдо</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>или
+															укажите свой</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_SECRET2" type="text"
+															class="form-control">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-xs-3"><span>Ответ
+															на вопрос</span></label>
+													<div class="col-xs-5">
+														<input name="CLIENT_SECRET_ANSWER" type="text"
+															class="form-control" required="">
+													</div>
+												</div>
+												<div class="form-group required group-captcha">
+													<label class="control-label col-xs-3"><span><b>Введите
+																число с&nbsp;картинки</b></span></label>
+													<div class="col-xs-5">
+														<div class="row">
+															<div class="col-xs-8">
+																<img id="captchaImg" src="./book_form_files/captcha.png">
+															</div>
+															<div class="col-xs-4">
+																<input name="CLIENT_PIC_NUM" type="text"
+																	class="form-control jsOnlyDig" required="">
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</figure>
+										<!-- end form-reg -->
+									</div>
+									<div class="modal-footer">
+										<div class="row">
+											<div id="registrErrDiv2"></div>
+											<div class="col-xs-9 col-xs-offset-3">
+												<button type="Button" id="sbmReg" onclick="registrDo();"
+													class="btn btn-blue" required="" disabled="disabled">
+													<b>Зарегистрироваться</b>
+												</button>
+												<p class="help-line help-required jsRequiredTip">Заполните
+													все поля, отмеченные</p>
+											</div>
+											<div id="plsWaitReg"></div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</figure>
+					<!-- end tabs-modal -->
+				</div>
+			</div>
+		</div>
+		<!-- end modal-auth #####################################################################################################-->
+
+		<!-- main-nav -->
+		<figure class="main-nav">
+			<div class="container clearfix">
+
+				<menu class="pull-left clearfix">
+					<li><a id="mainNav1"
+						href="https://epay.railways.kz/ktz4/proc#" class="active"
+						onclick="sbmHead();"><span>Купить билет</span></a></li>
+					<li><a id="mainNav2"
+						href="https://epay.railways.kz/ktz4/clients/pravila.jsp"><span>Правила
+								пользования</span></a></li>
+					<li><a id="mainNav3"
+						href="https://epay.railways.kz/ktz4/clients/info.jsp"><span>Информация
+								для пассажиров</span></a></li>
+					<li><a id="mainNav4"
+						href="https://epay.railways.kz/ktz4/clients/news.jsp"><span>Новости</span></a></li>
+					<li><a id="mainNav5"
+						href="https://epay.railways.kz/ktz4/clients/spravka.jsp"><span>Справочная
+								служба</span></a></li>
+				</menu>
+				<script type="text/javascript">
+    var mn1 = document.getElementById("mainNav1");
+    var mn2 = document.getElementById("mainNav2");
+    var mn3 = document.getElementById("mainNav3");
+    var mn4 = document.getElementById("mainNav4");
+    var mn5 = document.getElementById("mainNav5");
+    if(window.location.pathname.indexOf("pravila")>0){mn1.className="";mn2.className="active";}
+    if(window.location.pathname.indexOf("info")>0){mn1.className="";mn3.className="active";}
+    if(window.location.pathname.indexOf("news")>0){mn1.className="";mn4.className="active";}
+    if(window.location.pathname.indexOf("spravka")>0){mn1.className="";mn5.className="active";}
+</script>
+
+
+			</div>
+		</figure>
+		<!-- end main-nav -->
+
+		<script language="JavaScript">
+    var is = {
+        char : function(key) {
+            return ( key > 96 && key < 133 ) 
+                    || (key > 64 && key < 91) 
+                    || (key > 1071 && key < 1104) 
+                    || (key > 1039 && key < 1072) 
+                    || (key > 1039 && key < 1072)
+//                    || (key == 1200 || key == 1201)
+//                    || (key == 1210 || key == 1211)
+//                    || (key == 1030 || key == 1110)
+//                    || (key == 1186 || key == 1187)
+//                    || (key == 1170 || key == 1171)
+//                    || (key == 1198 || key == 1199)
+//                    || (key == 1178 || key == 1179)
+//                    || (key == 1256 || key == 1257)
+//                    || (key == 1240 || key == 1241);
+        },
+        ctrlKey : function(key) {
+            return "8 9 13 16 17 18 20 35 36 37 38 39 40 46 ".indexOf(key + " ") != -1;
+        },
+        number : function(key) {
+            return ( key > 47 && key < 58 );
+        },
+        space : function(key) {
+            return key == 32;
+        },
+        minus : function(key) {
+            return key == 45;
+        },
+        other : function(key) {
+            return ((key == 45) || (key == 46));
+        }
+    };
+    function checkCharsAndNumbers(e) {
+        var e = e || window.event;
+        var code = e.which ? e.which : e.keyCode;
+        var res=is.char(code)  || is.ctrlKey(code) || is.other(code) || is.number(code);
+//        console.log("code="+code);
+        if(!res){
+            alert("Разрешены только кириллица, латинские буквы и цифры. Без пробелов.");
+        }
+        return res;
+/*a-97, z122, A65 Z90, a1072, я1103 А1040 Я1071 0-48 9-57 space=32 */
+    }
+    function checkChars(e) {
+        var e = e || window.event;
+        var code = e.which ? e.which : e.keyCode;
+        var res=is.char(code) || is.ctrlKey(code) || is.other(code) || is.minus(code);
+        if(!res){
+            alert("Разрешены только кириллица и латинские буквы. Без пробелов.");
+        }
+        return res;
+/*a-97, z122, A65 Z90, a1072, я1103 А1040 Я1071 0-48 9-57 space=32 */
+    }
+    function checkCharsAtString(s){
+        var n = s.length;
+        for(i=0;i<n;i++){
+            if(!(is.char(s.charCodeAt(i)) || is.minus(s.charCodeAt(i)))){
+                return false;
+            }
+        }
+        return true;
+    }
+    function checkCharsBeforeSubmit(){
+        for(i1=0;i1<4;i1++){
+            var fEl = document.getElementById("fEl_"+i1);
+            var iEl = document.getElementById("iEl_"+i1);
+            var oEl = document.getElementById("oEl_"+i1);
+            var res1 = checkCharsAtString(fEl.value);
+            var res2 = checkCharsAtString(iEl.value);
+            var res3 = checkCharsAtString(oEl.value);
+            if(!(res1&&res2&&res3)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function checkOneChamberWithChild(paxNum, childNum, category, isTalgo, isKetay, place_from, place_to, nUpDown){
+        var nUD = "absent";
+        if(nUpDown!="undefined" && nUpDown!="null" && nUpDown!=null){
+            nUD = nUpDown.value;
+        }
+
+        var iPlaceFrom = parseInt(place_from, 10);
+        var iPlaceTo = parseInt(place_to, 10);
+        if(isNaN(iPlaceFrom) && isNaN(iPlaceTo)){
+            return true;
+        }
+        if(isNaN(iPlaceFrom) || isNaN(iPlaceTo)){
+            alert("Неверно указан диапазон мест!");
+            return false;
+        }
+        if(iPlaceTo<iPlaceFrom){
+            alert("Неверно указан диапазон мест!");
+            return false;
+        }
+//        alert("1==>paxNum="+paxNum+" childNum="+childNum+" cat="+category+" isTalgo="+isTalgo+" isKetay="+isKetay+" place_from="+place_from+" place_to="+place_to+" nUD='"+nUD+"'");
+        if(isTalgo == "true" && (category == "Люкс" || category == "Купе")) {
+            if(paxNum == "2" && childNum == "1") {
+                if((1<=iPlaceFrom && iPlaceTo<=2)
+                    || (3<=iPlaceFrom && iPlaceTo<=4)
+                    || (5<=iPlaceFrom && iPlaceTo<=6)
+                    || (7<=iPlaceFrom && iPlaceTo<=8)
+                    || (9<=iPlaceFrom && iPlaceTo<=10)
+                    || (11<=iPlaceFrom && iPlaceTo<=12)
+                  ){
+                    return true;
+                }else{
+                    alert("Запрещен проезд детей в купе отдельном от родителей. Исправьте границы мест.");
+                    return false;
+                }
+            }else if(paxNum == "3" && childNum == "1" && nUD == "0-3") {
+                alert("Запрещен проезд детей в купе отдельном от родителей.");
+                return false;
+            }else if(paxNum == "4" && childNum != "0" && nUD == "0-4") {
+                alert("Запрещен проезд детей в купе отдельном от родителей.");
+                return false;
+            }
+        } else if(isTalgo == "true" && category == "Плацкартный") {
+            if(paxNum == "2" && childNum == "1") {
+                if((1<=iPlaceFrom && iPlaceTo<=4)
+                    || (5<=iPlaceFrom && iPlaceTo<=8)
+                    || (9<=iPlaceFrom && iPlaceTo<=12)
+                    || (13<=iPlaceFrom && iPlaceTo<=16)
+                    || (17<=iPlaceFrom && iPlaceTo<=20)
+                  ){
+                    return true;
+                }else{
+                    alert("Запрещен проезд детей в купе отдельном от родителей. Исправьте границы мест.");
+                    return false;
+                }
+            }
+        } else if(isTalgo == "false" && category == "Купе") {
+            if(paxNum == "2" && childNum == "1") {
+                if((1<=iPlaceFrom && iPlaceTo<=4)
+                    || (5<=iPlaceFrom && iPlaceTo<=8)
+                    || (9<=iPlaceFrom && iPlaceTo<=12)
+                    || (13<=iPlaceFrom && iPlaceTo<=16)
+                    || (17<=iPlaceFrom && iPlaceTo<=20)
+                    || (21<=iPlaceFrom && iPlaceTo<=24)
+                    || (25<=iPlaceFrom && iPlaceTo<=28)
+                    || (29<=iPlaceFrom && iPlaceTo<=32)
+                    || (33<=iPlaceFrom && iPlaceTo<=36)
+                  ){
+                    return true;
+                }else{
+                    alert("Запрещен проезд детей в купе отдельном от родителей. Исправьте границы мест.");
+                    return false;
+                }
+            }
+        } else if(isTalgo == "false" && isKetay == "false" && category == "Плацкартный") {
+            if(paxNum == "2" && childNum == "1") {
+                if((1<=iPlaceFrom && iPlaceTo<=4)
+                    || (5<=iPlaceFrom && iPlaceTo<=8)
+                    || (9<=iPlaceFrom && iPlaceTo<=12)
+                    || (13<=iPlaceFrom && iPlaceTo<=16)
+                    || (17<=iPlaceFrom && iPlaceTo<=20)
+                    || (21<=iPlaceFrom && iPlaceTo<=24)
+                    || (25<=iPlaceFrom && iPlaceTo<=28)
+                    || (29<=iPlaceFrom && iPlaceTo<=32)
+                    || (33<=iPlaceFrom && iPlaceTo<=36)
+                    || (37<=iPlaceFrom && iPlaceTo<=38)
+                    || (39<=iPlaceFrom && iPlaceTo<=40)
+                    || (41<=iPlaceFrom && iPlaceTo<=42)
+                    || (43<=iPlaceFrom && iPlaceTo<=44)
+                    || (45<=iPlaceFrom && iPlaceTo<=46)
+                    || (47<=iPlaceFrom && iPlaceTo<=48)
+                    || (49<=iPlaceFrom && iPlaceTo<=50)
+                    || (51<=iPlaceFrom && iPlaceTo<=52)
+                    || (53<=iPlaceFrom && iPlaceTo<=54)
+                  ){
+                    return true;
+                }else{
+                    alert("Запрещен проезд детей в отсеке отдельном от родителей. Исправьте границы мест.");
+                    return false;
+                }
+            }
+        } else if(isTalgo == "false" && isKetay == "true" && category == "Плацкартный") {
+            if(paxNum == "2" && childNum == "1") {
+                if((1<=iPlaceFrom && iPlaceTo<=6)
+                    || (7<=iPlaceFrom && iPlaceTo<=12)
+                    || (13<=iPlaceFrom && iPlaceTo<=18)
+                    || (19<=iPlaceFrom && iPlaceTo<=24)
+                    || (25<=iPlaceFrom && iPlaceTo<=30)
+                    || (31<=iPlaceFrom && iPlaceTo<=36)
+                    || (37<=iPlaceFrom && iPlaceTo<=42)
+                    || (43<=iPlaceFrom && iPlaceTo<=48)
+                    || (49<=iPlaceFrom && iPlaceTo<=54)
+                    || (55<=iPlaceFrom && iPlaceTo<=60)
+                  ){
+                    return true;
+                }else{
+                    alert("Запрещен проезд детей в отсеке отдельном от родителей. Исправьте границы мест.");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    function formSubmitKKB(){
+        document.forms.form1.KKB_PURCHASE.value="1";
+        formSubmit();
+        
+        return false;
+    }
+    function formSubmit() {
+        var logged = document.getElementById("CLIENT_ID");
+        if(logged==undefined){
+            alert("Для покупки билета нужно повторно войти! Извините за предоставленные неудобства");
+            return false;
+        }
+        if(isBetween){
+            alert("C 23:45 до 00:05 в последний день месяца продажа останавливается. Попробуйте позже.");
+            return false;
+        }
+        var res = checkCharsBeforeSubmit();
+        if(!res){
+            alert("Разрешены только кириллица и латинские буквы в полях Ф.И.О.");
+            return false;
+        }    
+    
+    
+        if (document.forms.form1.kak_sidim.checked) {
+            document.forms.form1.kak_sidim.value = "odno_kupe";
+        }
+    
+    
+        var childNum = 0;
+        for(i=0;i<4;i++){
+            var ageElement = document.getElementById("age_"+i);
+            if(ageElement.disabled){
+                enablePax(i);
+                document.getElementById("droppedChild_"+i).value="1";
+            }
+            var ageInpElement = document.getElementById("ageInp_"+i);
+            var hidAgeElement = document.getElementById("hidInpAge_"+i);
+            var docElement = document.getElementById("docId_"+i);
+            hidAgeElement.value="null";
+            if(ageElement!=null){
+                if(ageElement.selectedIndex==2){
+                    childNum = childNum + 1;
+                }    
+                if(ageElement.selectedIndex>=1 || docElement.value.indexOf("СР")>0){
+                    if(!ageInpElement){
+                        var ipax = i + 1;
+                        alert("Для пассажира №"+ipax+" не указана дата рождения. Для выбранной комбинации тарифа и документа пассажира требуется заполнения даты рождения.");
+                        var ageDivElement = document.getElementById("ageDiv_"+i);
+                        var ageDivElementContent='Дата рождения <br><input id="ageInp_'+i+'"  class="text" type="text" size="8" maxlength="8" value="ДД.ММ.ГГ" onkeydown="return checkKeys(event);" onchange="updateHiddenAge(\''+i+'\');" ><br>пример:19.05.98';
+                        ageDivElement.innerHTML=ageDivElementContent;
+                        return;
+                    }
+                    hidAgeElement.value=ageInpElement.value;
+                }
+            }
+        }
+        if(!checkOneChamberWithChild("4", childNum, "Купе", "false", "false", document.getElementById("place_from_id").value, document.getElementById("place_to_id").value, document.getElementById("nUpDown"))){
+            return;
+        }
+//age check for choise of 2 lower place BEGIN
+        if(document.getElementById("nUpDown") != null
+           && document.getElementById("nUpDown").value=="2-0"){
+            var indexOfChild = -1;
+            for(i=0;i<2;i++){
+                if(document.getElementById("ageInp_"+i) != null){
+                    var ageInpValue = parseDate(document.getElementById("ageInp_"+i).value);
+//                    console.log("dropedChild #"+i+" = "+document.getElementById("droppedChild_"+i).value+" ageInpValue="+ageInpValue);
+                    if(ageInpValue instanceof Date){
+                        indexOfChild = i;
+                    }
+                    if(document.getElementById("droppedChild_"+i).value=="1"){
+                        document.getElementById("nUpDown").selectedIndex="0";
+                    }
+                }
+            }
+            if(indexOfChild == -1){
+                alert("Оформление двух нижних мест производится только для граждан с детьми");
+                return;
+            }
+            var ageInpValue = parseDate(document.getElementById("ageInp_"+indexOfChild).value);
+            var depDate = parseDate('12.01.2016');
+            var age = calculateAge(depDate, ageInpValue);
+            
+                if(age>15){
+                    alert("На данный поезд запрещен выбор 2 нижних мест с ребенком старше 15 лет.");
+                    return;
+                }
+            
+        }
+//age check for choise of 2 lower place END
+
+        if(document.getElementById("soglasen").checked){
+            document.forms.form1.submit();
+        }else{
+            alert("Надо согласится с условиями покупки. (Галочка над кнопкой оплаты)");
+        }    
+    }
+    function showMes(mes, id, wagenId){
+        document.getElementById("plh_"+wagenId+"_"+id).innerHTML=mes;
+        return false;
+    }
+    function addPlace(place, wagenId, isVacant, pox, isKetay){
+        alert("По правилам работы с АСУ Экспресс-3 при покупке билета можно указать только диапазон мест в поле Границы мест. Свободные места указаны белым цветом на схеме вагона.");
+    }
+    function activatePurchaseButtons(){
+        document.forms.form1.Subm.disabled=false;
+        
+    }
+</script>
+		<form action="https://epay.railways.kz/ktz4/proc" method="POST"
+			name="form1">
+			<input type="hidden" name="pa" value="express3"> <input
+				type="hidden" name="sa" value="GET_P10_EVENT"> <input
+				type="hidden" name="NEED_BC" value="1"> <input type="hidden"
+				name="WAGEN_OWNER" value="КЗХ/КЗХ"> <input type="hidden"
+				name="NO_SIDE" value=""> <input type="hidden"
+				name="ONE_CHAMBER" value=""> <input type="hidden"
+				name="STEP" value="1"> <input type="hidden" name="DATE"
+				value="12.01.2016"> <input type="hidden"
+				name="DEPARTURE_TIME" value="17:37"> <input type="hidden"
+				name="ARRIVING_TIME" value="16:15"> <input type="hidden"
+				name="ARRIVAL_DATE" value="13.01.2016"> <input type="hidden"
+				name="WAY_TIME" value="22:38"> <input type="hidden"
+				name="FROM_STATION" value="АЛМА АТА 2(2700001)"> <input
+				type="hidden" name="TO_STATION" value="Туркестан(2700860)">
+			<input type="hidden" name="TIME" value=""> <input
+				type="hidden" name="TRAIN_ID" value="379Т"> <input
+				type="hidden" name="CATEGORY" value="Купе"> <input
+				type="hidden" name="CATEGORY_FEATURE" value="2К"> <input
+				type="hidden" name="WAGEN_ID" value="8"> <input
+				type="hidden" name="WAGEN_ID_PAS" value="8"> <input
+				type="hidden" name="N_PLACES" value="4"> <input
+				type="hidden" name="PRICE" value="4075.0"> <input
+				type="hidden" name="KKB_PURCHASE" value="0"> <input
+				type="hidden" name="EL_REG" value="1"> <input type="hidden"
+				name="IS_DM" value="0"> <input type="hidden"
+				name="PLACE_RANGE" value="21, 22, 23, 24"> <input
+				type="hidden" name="FREE_PLACES"
+				value="005,006,007,008,017,018,019,020,021,022,023,024,025,026,027,028,029,030,031,032,033,034">
+			<input type="hidden" name="dvaMesta" value="0">
+			<!-- #content -->
+			<main id="content" class="content">
+			<div class="container">
+
+				<!-- content-main -->
+				<section class="content-main">
+
+					<!-- steps-nav -->
+					<figure class="steps-nav">
+						<table>
+							<tbody>
+								<tr>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="done"><span>1. Выбор направления</span></a></th>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="done"
+										onclick="sendZakladki(&#39;express3&#39;, &#39;GET_P62G60_EVENT&#39;, &#39;АЛМА АТА 2(2700001)&#39;,&#39;Туркестан(2700860)&#39;,&#39;12.01.2016&#39;,&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, 1);"><span>2.
+												Расписание</span></a></th>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="done"
+										onclick="sendZakladki(&#39;express3&#39;, &#39;GET_P62G60_EVENT&#39;, &#39;АЛМА АТА 2(2700001)&#39;, &#39;Туркестан(2700860)&#39;, &#39;12.01.2016&#39;, &#39;&#39;, &#39;379Т&#39;, &#39;17:37&#39;, &#39;22:38&#39;, &#39;16:15&#39;,&#39;Купе&#39;,3);">
+											<span>3. Наличие мест</span>
+									</a></th>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="active"><span>4. Информация о пассажирах</span></a></th>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="disabled"><span>5. Оплата</span></a></th>
+									<th><a href="https://epay.railways.kz/ktz4/proc#"
+										class="disabled"><span>6. Билет</span></a></th>
+								</tr>
+							</tbody>
+						</table>
+					</figure>
+					<!-- end steps-nav -->
+
+					<!-- cabinet-title -->
+					<div class="cabinet-title">
+
+						<div class="meta-links">
+							<a href="https://epay.railways.kz/ktz4/proc#"
+								class="link link-back"
+								onclick="sendZakladki(&#39;express3&#39;, &#39;GET_P62G60_EVENT&#39;, &#39;АЛМА АТА 2(2700001)&#39;, &#39;Туркестан(2700860)&#39;, &#39;12.01.2016&#39;, &#39;&#39;, &#39;379Т&#39;, &#39;17:37&#39;, &#39;22:38&#39;, &#39;16:15&#39;,&#39;Купе&#39;,3);">
+								← <span>Вернуться к выбору мест</span>
+							</a>
+							<p class="help-line help-block text-right">
+								Информация предоставлена<br> <b>АСУ Экспресс-3</b>
+							</p>
+						</div>
+
+						<div class="clearfix">
+
+
+							<dl class="dl-horizontal ticket-info-list pull-left"
+								style="width: 540px;">
+								<dt>Маршрут:</dt>
+								<dd>
+									<big><b>АЛМА АТА 2</b></big> → <big><b>Туркестан</b></big>
+								</dd>
+								<dt>Дата и&nbsp;время отправления:</dt>
+								<dd>
+									<b class="text-blue-dark">12.01.2016 в <b
+										class="text-blue-dark">17:37</b></b>
+								</dd>
+								<b class="text-blue-dark">
+									<dt>Дата и&nbsp;время прибытия:</dt>
+									<dd>
+										<b class="text-blue-dark">13.01.2016 в <b
+											class="text-blue-dark">16:15</b></b>
+									</dd>
+									<b class="text-blue-dark">
+										<dt>Время в&nbsp;пути:</dt>
+										<dd>
+											<b class="text-blue-dark">22:38</b>
+										</dd>
+										<dt>№ поезда:</dt>
+										<dd>
+											<b class="text-blue-dark">379Т</b>
+										</dd>
+										<dt>№ вагона:</dt>
+										<dd>
+											<b class="text-blue-dark">8</b>
+										</dd>
+										<dt>Тип вагона:</dt>
+										<dd>
+											<b class="text-blue-dark">Купе</b> <span
+												class="narrow text-gray-dark"> 2К</span>
+										</dd>
+								</b>
+								</b>
+							</dl>
+							<b class="text-blue-dark"><b class="text-blue-dark"> </b></b>
+						</div>
+						<b class="text-blue-dark"><b class="text-blue-dark"> <!-- form-order -->
+								<figure class="form-order">
+
+									<p>
+										Стоимость одного места по полному тарифу: <b
+											class="text-brown">4075.0 <i class="icon-kzt">₸</i>
+										</b>
+									</p>
+
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label class="control-label">Число пассажиров:</label>
+											<div class="controls">
+												<b class="text-blue-dark">4</b>
+											</div>
+
+											<div class="text">
+												<b class="text-blue-dark">Вы предварительно выбрали
+													места: № 21, 22, 23, 24</b>
+											</div>
+
+										</div>
+
+										<div class="form-group group-places">
+											<label class="control-label">Границы мест:</label>
+											<div class="controls">
+												<input id="place_from_id" name="PLACE1" type="text"
+													class="form-control jsOnlyDig" maxlength="3" value="21">
+												- <input id="place_to_id" name="PLACE2" type="text"
+													class="form-control jsOnlyDig" maxlength="3" value="24">
+
+												<div class="wagon-schema jsToggleContainer">
+													<a href="https://epay.railways.kz/ktz4/proc#"
+														class="link link-dashed link-toggle jsLinkToggle"><span
+														class="text-toggle">Схема вагона</span><span
+														class="text-toggled">Закрыть схему</span></a>
+													<div class="toggle jsToggle">
+
+														<div class="wagon">
+
+															<table border="0">
+																<tbody>
+																	<tr>
+																		<td width="850px">
+																			<div id="kupe2k"
+																				style="position: relative; height: 133px;">
+																				<div
+																					style="position: absolute; top: 0px; left: 0px;">
+
+
+
+
+
+
+
+
+
+																					<div id="kupe2k"
+																						style="position: relative; height: 133px;">
+																						<div
+																							style="position: absolute; top: 0px; left: 0px;">
+																							<img src="./book_form_files/kupe132-853.png">
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 147px;">
+																							<a id="place_1_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;1&#39;,&#39;8&#39;,false,0);">
+																								1</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 147px;">
+																							<a id="place_2_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;2&#39;,&#39;8&#39;,false,0);">
+																								2</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 193px;">
+																							<a id="place_3_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;3&#39;,&#39;8&#39;,false,0);">
+																								3</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 193px;">
+																							<a id="place_4_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;0&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;4&#39;,&#39;8&#39;,false,0);">
+																								4</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 215px;">
+																							<a id="place_5_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;5&#39;,&#39;8&#39;,true,0);">
+																								5</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 215px;">
+																							<a id="place_6_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;6&#39;,&#39;8&#39;,true,0);">
+																								6</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 263px;">
+																							<a id="place_7_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;7&#39;,&#39;8&#39;,true,0);">
+																								7</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 263px;">
+																							<a id="place_8_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;1&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;8&#39;,&#39;8&#39;,true,0);">
+																								8</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 285px;">
+																							<a id="place_9_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;9&#39;,&#39;8&#39;,false,0);">
+																								9</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 281px;">
+																							<a id="place_10_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;10&#39;,&#39;8&#39;,false,0);">
+																								10</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 327px;">
+																							<a id="place_11_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;11&#39;,&#39;8&#39;,false,0);">
+																								11</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 327px;">
+																							<a id="place_12_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;2&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;12&#39;,&#39;8&#39;,false,0);">
+																								12</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 350px;">
+																							<a id="place_13_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;13&#39;,&#39;8&#39;,false,0);">
+																								13</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 350px;">
+																							<a id="place_14_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;14&#39;,&#39;8&#39;,false,0);">
+																								14</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 395px;">
+																							<a id="place_15_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;15&#39;,&#39;8&#39;,false,0);">
+																								15</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 395px;">
+																							<a id="place_16_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;3&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;16&#39;,&#39;8&#39;,false,0);">
+																								16</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 418px;">
+																							<a id="place_17_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;17&#39;,&#39;8&#39;,true,0);">
+																								17</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 418px;">
+																							<a id="place_18_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;18&#39;,&#39;8&#39;,true,0);">
+																								18</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 466px;">
+																							<a id="place_19_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;19&#39;,&#39;8&#39;,true,0);">
+																								19</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 466px;">
+																							<a id="place_20_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;4&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;20&#39;,&#39;8&#39;,true,0);">
+																								20</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 489px;">
+																							<a id="place_21_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;21&#39;,&#39;8&#39;,true,0);">
+																								21</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 489px;">
+																							<a id="place_22_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;22&#39;,&#39;8&#39;,true,0);">
+																								22</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 534px;">
+																							<a id="place_23_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;23&#39;,&#39;8&#39;,true,0);">
+																								23</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 534px;">
+																							<a id="place_24_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;5&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;24&#39;,&#39;8&#39;,true,0);">
+																								24</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 556px;">
+																							<a id="place_25_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;25&#39;,&#39;8&#39;,true,0);">
+																								25</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 556px;">
+																							<a id="place_26_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;26&#39;,&#39;8&#39;,true,0);">
+																								26</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 603px;">
+																							<a id="place_27_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;27&#39;,&#39;8&#39;,true,0);">
+																								27</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 603px;">
+																							<a id="place_28_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;6&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;28&#39;,&#39;8&#39;,true,0);">
+																								28</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 626px;">
+																							<a id="place_29_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;29&#39;,&#39;8&#39;,true,0);">
+																								29</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 626px;">
+																							<a id="place_30_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;30&#39;,&#39;8&#39;,true,0);">
+																								30</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 671px;">
+																							<a id="place_31_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;31&#39;,&#39;8&#39;,true,0);">
+																								31</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 671px;">
+																							<a id="place_32_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;7&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;32&#39;,&#39;8&#39;,true,0);">
+																								32</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 695px;">
+																							<a id="place_33_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;33&#39;,&#39;8&#39;,true,0);">
+																								33</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 695px;">
+																							<a id="place_34_8" style="color: white"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;34&#39;,&#39;8&#39;,true,0);">
+																								34</a>
+																						</div>
+
+																						<div
+																							style="position: absolute; top: 64px; left: 740px;">
+																							<a id="place_35_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;нижнее&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;35&#39;,&#39;8&#39;,false,0);">
+																								35</a>
+																						</div>
+																						<div
+																							style="position: absolute; top: 22px; left: 740px;">
+																							<a id="place_36_8" style="color: #BA2360"
+																								href="https://epay.railways.kz/ktz4/proc#"
+																								onmouseover="showMes(&#39;верхнее&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onmouseout="showMes(&#39;&#39;,&#39;8&#39;, &#39;8&#39;);"
+																								onclick="addPlace(&#39;36&#39;,&#39;8&#39;,false,0);">
+																								36</a>
+																						</div>
+
+
+																						<div id="plh_8_0"
+																							style="position: absolute; top: 95px; left: 147px;"></div>
+
+																						<div id="plh_8_1"
+																							style="position: absolute; top: 95px; left: 215px;"></div>
+
+																						<div id="plh_8_2"
+																							style="position: absolute; top: 95px; left: 285px;"></div>
+
+																						<div id="plh_8_3"
+																							style="position: absolute; top: 95px; left: 350px;"></div>
+
+																						<div id="plh_8_4"
+																							style="position: absolute; top: 95px; left: 418px;"></div>
+
+																						<div id="plh_8_5"
+																							style="position: absolute; top: 95px; left: 489px;"></div>
+
+																						<div id="plh_8_6"
+																							style="position: absolute; top: 95px; left: 556px;"></div>
+
+																						<div id="plh_8_7"
+																							style="position: absolute; top: 95px; left: 626px;"></div>
+
+																						<div id="plh_8_8"
+																							style="position: absolute; top: 95px; left: 695px;"></div>
+
+																					</div>
+
+
+
+
+																				</div>
+																			</div>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+
+														</div>
+
+													</div>
+												</div>
+
+											</div>
+											<div class="text narrow">
+												<p>
+													По&nbsp;правилам работы с&nbsp;АСУ Экспресс-3 при покупке
+													билета <b>можно указать только диапазон мест</b>.
+												</p>
+												<p>
+													<b class="text-red">Выбор мест не&nbsp;гарантируется
+														до&nbsp;момента оплаты.</b>
+												</p>
+												<p>Номера мест вам сообщат при вводе карты.</p>
+											</div>
+										</div>
+
+										<table>
+											<tbody>
+												<tr>
+													<!--выбор МЖ начало-->
+
+													<!--выбор МЖ конец-->
+													<td>&nbsp;&nbsp;&nbsp;</td>
+													<td>
+														<!--выбор верха-низа НАЧАЛО--> число нижних и верхних мест
+														<div id="bottomPlaceSelector">
+															<select name="N_DOWN" id="nUpDown">
+																<option value="-">не важно</option>
+																<option value="0-4">0 нижних, 4 верхних</option>
+																<option value="1-3">1 нижнее, 3 верхних</option>
+																<option value="2-2">2 нижних, 2 верхних</option>
+															</select>
+														</div> <font color="red">
+															<div id="show2LowerChoiceContent"></div>
+													</font>
+													</td>
+													<!--выбор верха-низа КОНЕЦ-->
+
+
+													<td>&nbsp;&nbsp;&nbsp;</td>
+													<td><input type="Radio" name="kak_sidim"
+														value="odno_kupe"> в одном купе <br> <input
+														type="Radio" name="kak_sidim" value="pofig"> не
+														важно</td>
+
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</figure>
+								<!-- end form-order -->
+
+						</b></b>
+					</div>
+					<!-- end cabinet-title -->
+					<b class="text-blue-dark"><b class="text-blue-dark"> <!-- cabinet-content -->
+							<div class="cabinet-content">
+
+								<!-- form-passport -->
+								<figure class="form-passport jsRequiredContainer">
+									<h2>Введите паспортные данные пассажиров</h2>
+									<p>Все поля являются обязательными для заполнения</p>
+
+									<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+									<!-- form-passport-item -->
+									<div class="form-passport-item">
+										<div class="line1 clearfix">
+											<span class="num">1</span>
+											<div class="form-group group1">
+												<label class="control-label">Тариф</label> <select
+													name="DOC_AGE0" id="age_0"
+													onchange="processFromTarif(&#39;0&#39;);"
+													class="form-control">
+													<option value="19" selected="">полный</option>
+													<option value="2">детский без места
+														<!--                <OPTION value="3">детский до 7 лет-->
+													</option>
+													<option value="4">детский с местом до 15 лет</option>
+												</select> <span class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+											<div class="form-group group2">
+												<label class="control-label">&nbsp;</label>
+											</div>
+											<div class="form-group group3">
+												<label class="control-label">Тип документа</label> <select
+													id="docId_0" name="DOC_NAME0"
+													onchange="processDoc(&#39;0&#39;);" class="form-control">
+
+													<option value="0#УЛ" selected="">Удостоверение
+														личности РК</option>
+													<option value="1#ПК">Паспорт гражданина РК</option>
+													<option value="2#СР">Свидетельство о рождении
+														ребенка</option>
+													<option value="3#ПН">Общегражданский паспорт</option>
+													<option value="4#ЗП">Загранпаспорт</option>
+													<option value="5#ЗЗ">Паспорт иностранного
+														гражданина</option>
+													<option value="6#ВЖ">Вид на жительство</option>
+													<option value="7#ЗЗ">иной документ</option>
+												</select>
+												<div id="docDiv_0"></div>
+											</div>
+											<div class="form-group group4">
+												<label class="control-label">Номер документа</label> <input
+													type="text" class="form-control" name="DOC_NUMBER0"
+													id="docNumber_0" value=""
+													onkeypress="return checkCharsAndNumbers(event);"> <span
+													class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+
+											<div class="form-group group5">
+												<input type="hidden" id="hidInpAge_0" name="BIRTH_DAY0"
+													value="null">
+												<div id="ageDiv_0"></div>
+												<input type="hidden" name="droppedChild_0"
+													id="droppedChild_0" value="0">
+												<div id="noPlaceAttention_0"></div>
+												<div id="childQuestionDiv_0"></div>
+											</div>
+										</div>
+										<div class="line2 clearfix">
+											<div class="form-group clearfix">
+												<label class="control-label">Полное имя пассажира</label>
+												<div class="controls">
+													<input type="text" class="form-control"
+														placeholder="Фамилия" name="DOC_F0" id="fEl_0" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control" placeholder="Имя"
+														name="DOC_I0" id="iEl_0" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control"
+														placeholder="Отчество" name="DOC_O0" id="oEl_0" value=""
+														onkeypress="return checkChars(event);" required="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end form-passport-item -->
+
+									<!-- order-amount -->
+									<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+									<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+									<!-- form-passport-item -->
+									<div class="form-passport-item">
+										<div class="line1 clearfix">
+											<span class="num">2</span>
+											<div class="form-group group1">
+												<label class="control-label">Тариф</label> <select
+													name="DOC_AGE1" id="age_1"
+													onchange="processFromTarif(&#39;1&#39;);"
+													class="form-control">
+													<option value="19" selected="">полный</option>
+													<option value="2">детский без места
+														<!--                <OPTION value="3">детский до 7 лет-->
+													</option>
+													<option value="4">детский с местом до 15 лет</option>
+												</select> <span class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+											<div class="form-group group2">
+												<label class="control-label">&nbsp;</label>
+											</div>
+											<div class="form-group group3">
+												<label class="control-label">Тип документа</label> <select
+													id="docId_1" name="DOC_NAME1"
+													onchange="processDoc(&#39;1&#39;);" class="form-control">
+
+													<option value="0#УЛ" selected="">Удостоверение
+														личности РК</option>
+													<option value="1#ПК">Паспорт гражданина РК</option>
+													<option value="2#СР">Свидетельство о рождении
+														ребенка</option>
+													<option value="3#ПН">Общегражданский паспорт</option>
+													<option value="4#ЗП">Загранпаспорт</option>
+													<option value="5#ЗЗ">Паспорт иностранного
+														гражданина</option>
+													<option value="6#ВЖ">Вид на жительство</option>
+													<option value="7#ЗЗ">иной документ</option>
+												</select>
+												<div id="docDiv_1"></div>
+											</div>
+											<div class="form-group group4">
+												<label class="control-label">Номер документа</label> <input
+													type="text" class="form-control" name="DOC_NUMBER1"
+													id="docNumber_1" value=""
+													onkeypress="return checkCharsAndNumbers(event);"> <span
+													class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+
+											<div class="form-group group5">
+												<input type="hidden" id="hidInpAge_1" name="BIRTH_DAY1"
+													value="null">
+												<div id="ageDiv_1"></div>
+												<input type="hidden" name="droppedChild_1"
+													id="droppedChild_1" value="0">
+												<div id="noPlaceAttention_1"></div>
+												<div id="childQuestionDiv_1"></div>
+											</div>
+										</div>
+										<div class="line2 clearfix">
+											<div class="form-group clearfix">
+												<label class="control-label">Полное имя пассажира</label>
+												<div class="controls">
+													<input type="text" class="form-control"
+														placeholder="Фамилия" name="DOC_F1" id="fEl_1" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control" placeholder="Имя"
+														name="DOC_I1" id="iEl_1" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control"
+														placeholder="Отчество" name="DOC_O1" id="oEl_1" value=""
+														onkeypress="return checkChars(event);" required="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end form-passport-item -->
+
+									<!-- order-amount -->
+									<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+									<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+									<!-- form-passport-item -->
+									<div class="form-passport-item">
+										<div class="line1 clearfix">
+											<span class="num">3</span>
+											<div class="form-group group1">
+												<label class="control-label">Тариф</label> <select
+													name="DOC_AGE2" id="age_2"
+													onchange="processFromTarif(&#39;2&#39;);"
+													class="form-control">
+													<option value="19" selected="">полный</option>
+													<option value="2">детский без места
+														<!--                <OPTION value="3">детский до 7 лет-->
+													</option>
+													<option value="4">детский с местом до 15 лет</option>
+												</select> <span class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+											<div class="form-group group2">
+												<label class="control-label">&nbsp;</label>
+											</div>
+											<div class="form-group group3">
+												<label class="control-label">Тип документа</label> <select
+													id="docId_2" name="DOC_NAME2"
+													onchange="processDoc(&#39;2&#39;);" class="form-control">
+
+													<option value="0#УЛ" selected="">Удостоверение
+														личности РК</option>
+													<option value="1#ПК">Паспорт гражданина РК</option>
+													<option value="2#СР">Свидетельство о рождении
+														ребенка</option>
+													<option value="3#ПН">Общегражданский паспорт</option>
+													<option value="4#ЗП">Загранпаспорт</option>
+													<option value="5#ЗЗ">Паспорт иностранного
+														гражданина</option>
+													<option value="6#ВЖ">Вид на жительство</option>
+													<option value="7#ЗЗ">иной документ</option>
+												</select>
+												<div id="docDiv_2"></div>
+											</div>
+											<div class="form-group group4">
+												<label class="control-label">Номер документа</label> <input
+													type="text" class="form-control" name="DOC_NUMBER2"
+													id="docNumber_2" value=""
+													onkeypress="return checkCharsAndNumbers(event);"> <span
+													class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+
+											<div class="form-group group5">
+												<input type="hidden" id="hidInpAge_2" name="BIRTH_DAY2"
+													value="null">
+												<div id="ageDiv_2"></div>
+												<input type="hidden" name="droppedChild_2"
+													id="droppedChild_2" value="0">
+												<div id="noPlaceAttention_2"></div>
+												<div id="childQuestionDiv_2"></div>
+											</div>
+										</div>
+										<div class="line2 clearfix">
+											<div class="form-group clearfix">
+												<label class="control-label">Полное имя пассажира</label>
+												<div class="controls">
+													<input type="text" class="form-control"
+														placeholder="Фамилия" name="DOC_F2" id="fEl_2" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control" placeholder="Имя"
+														name="DOC_I2" id="iEl_2" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control"
+														placeholder="Отчество" name="DOC_O2" id="oEl_2" value=""
+														onkeypress="return checkChars(event);" required="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end form-passport-item -->
+
+									<!-- order-amount -->
+									<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+									<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+									<!-- form-passport-item -->
+									<div class="form-passport-item">
+										<div class="line1 clearfix">
+											<span class="num">4</span>
+											<div class="form-group group1">
+												<label class="control-label">Тариф</label> <select
+													name="DOC_AGE3" id="age_3"
+													onchange="processFromTarif(&#39;3&#39;);"
+													class="form-control">
+													<option value="19" selected="">полный</option>
+													<option value="2">детский без места
+														<!--                <OPTION value="3">детский до 7 лет-->
+													</option>
+													<option value="4">детский с местом до 15 лет</option>
+												</select> <span class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+											<div class="form-group group2">
+												<label class="control-label">&nbsp;</label>
+											</div>
+											<div class="form-group group3">
+												<label class="control-label">Тип документа</label> <select
+													id="docId_3" name="DOC_NAME3"
+													onchange="processDoc(&#39;3&#39;);" class="form-control">
+
+													<option value="0#УЛ" selected="">Удостоверение
+														личности РК</option>
+													<option value="1#ПК">Паспорт гражданина РК</option>
+													<option value="2#СР">Свидетельство о рождении
+														ребенка</option>
+													<option value="3#ПН">Общегражданский паспорт</option>
+													<option value="4#ЗП">Загранпаспорт</option>
+													<option value="5#ЗЗ">Паспорт иностранного
+														гражданина</option>
+													<option value="6#ВЖ">Вид на жительство</option>
+													<option value="7#ЗЗ">иной документ</option>
+												</select>
+												<div id="docDiv_3"></div>
+											</div>
+											<div class="form-group group4">
+												<label class="control-label">Номер документа</label> <input
+													type="text" class="form-control" name="DOC_NUMBER3"
+													id="docNumber_3" value=""
+													onkeypress="return checkCharsAndNumbers(event);"> <span
+													class="link-help jsPopoverHover text-brown"
+													data-html="true" data-trigger="manual"
+													data-toggle="popover" data-placement="top"
+													data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+													data-original-title="" title=""><i
+													class="fa fa-question-circle"></i></span>
+											</div>
+
+											<div class="form-group group5">
+												<input type="hidden" id="hidInpAge_3" name="BIRTH_DAY3"
+													value="null">
+												<div id="ageDiv_3"></div>
+												<input type="hidden" name="droppedChild_3"
+													id="droppedChild_3" value="0">
+												<div id="noPlaceAttention_3"></div>
+												<div id="childQuestionDiv_3"></div>
+											</div>
+										</div>
+										<div class="line2 clearfix">
+											<div class="form-group clearfix">
+												<label class="control-label">Полное имя пассажира</label>
+												<div class="controls">
+													<input type="text" class="form-control"
+														placeholder="Фамилия" name="DOC_F3" id="fEl_3" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control" placeholder="Имя"
+														name="DOC_I3" id="iEl_3" value=""
+														onkeypress="return checkChars(event);" required="">
+													<input type="text" class="form-control"
+														placeholder="Отчество" name="DOC_O3" id="oEl_3" value=""
+														onkeypress="return checkChars(event);" required="">
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end form-passport-item -->
+
+									<!-- order-amount -->
+									<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+
+
+									<figure class="order-amount">
+										<p>Внимательно проверьте введенные данные, прежде чем
+											продолжить покупку билета.</p>
+									</figure>
+									<!-- end order-amount -->
+
+									<!-- order-form-controls -->
+									<figure class="order-form-controls">
+										<p class="help-line jsRequiredTip">
+											<font color="#0B2161">Заполните все поля
+												в&nbsp;паспортных данных пассажиров.</font>
+										</p>
+										<p class="help-line">
+											<font color="#084B8A">Подтверждаю, что с правилами и
+												особенностями оформления заказа, его оплаты, оформления и
+												переоформления электронного проездного документа (билета),
+												возврата неиспользованного проездного документа (билета),
+												заказанного через Интернет, ознакомлен. Я согласен(а) на
+												обработку моих персональных данных и подтверждаю, что
+												реквизиты поездки и персональные данные верны.</font>
+										</p>
+										<p class="help-line">
+											<a
+												onclick="document.getElementById(&#39;soglasen&#39;).checked=(!document.getElementById(&#39;soglasen&#39;).checked);"><font
+												color="#B40404">Для подтверждения согласия установите</font></a>&nbsp;&nbsp;<input
+												type="checkbox" id="soglasen" value="1">
+										</p>
+
+										<table>
+											<tbody>
+												<tr>
+													<td align="center"><input name="Subm" type="Button"
+														class="btn btn-blue"
+														value="Оплатить билет банковской картой"
+														onclick="formSubmit();">
+													<p>
+															<img src="./book_form_files/halyk.jpg" alt="" border="0">
+
+														</p></td>
+												</tr>
+											</tbody>
+										</table>
+										<div id="saleBlocking"></div>
+										<p></p>
+										Будет выполнена электронная регистрация
+
+									</figure>
+									<!-- end order-form-controls -->
+
+
+								</figure>
+								<!-- end form-passport -->
+
+							</div>
+							<!-- end cabinet-content -->
+
+					</b></b>
+				</section>
+				<!-- end content-main -->
+				<b class="text-blue-dark"><b class="text-blue-dark"> </b></b>
+			</div>
+			<b class="text-blue-dark"><b class="text-blue-dark"> </b></b></main>
+			<!-- end #content -->
+			<b class="text-blue-dark"><b class="text-blue-dark"> </b></b>
+		</form>
+	</section>
+	<!-- end #wrapper -->
+	<b class="text-blue-dark"><b class="text-blue-dark"> <script
+				language="JavaScript">
+                        function checkKeys(event) {
+                            event = event || window.event;
+                            code = event.keyCode;
+                            return(((code>=48 && code<=57) || code==189 || code==190 || code==191 || code==8 || code==46 || code==45 || code==37 || code==39 || (code>=96 && code<=105) || code==9) && !event.shiftKey);
+                        }   
+                        function parseDate(strDate){
+                            var dd = strDate.substring(0,2);
+                            var mm = strDate.substring(3,5);
+                            var yy = strDate.substring(6);
+//                            console.log(isNaN(dd)+" "+isNaN(mm)+" "+isNaN(yy));
+                            if(isNaN(dd) || isNaN(mm) || isNaN(yy)){
+                                alert("Формат даты рождения неверный");
+                                return false;
+                            }
+                            var idd = parseInt(dd,10);
+                            var imm = parseInt(mm,10);
+                            var iyy = parseInt(yy,10);
+//                            console.log("before shift iyy:|"+iyy+"|");
+                            if(iyy<100){
+                                if(iyy>70){
+                                    iyy=iyy+1900;
+                                }else{
+                                    iyy=iyy+2000;
+                                }
+                            }
+//                            console.log("strDate1="+strDate+" iyy:"+iyy+" imm:"+imm+" idd:"+idd+" narezka:y:"+yy+"|m:"+mm+"|d:"+dd+"|");
+                            if(imm>12 || imm<1 || idd>31 || idd<1){
+                                alert("Формат даты рождения неверный");
+                                return false;
+                            }
+                            return new Date(iyy,imm-1,idd,0,0,0,0);
+                        }
+                        function calculateAge(dep, bd){
+                            var yyyyDep=dep.getFullYear();
+                            var mmDep=dep.getMonth()+1;
+                            var ddDep=dep.getDate();
+
+                            var yyyyBd=bd.getFullYear();
+                            var mmBd=bd.getMonth()+1;
+                            var ddBd=bd.getDate();
+
+//                            console.log("calculateAge1: "+yyyyDep+"-"+mmDep+"-"+ddDep);
+//                            console.log("calculateAge2: "+yyyyBd+"-"+mmBd+"-"+ddBd);
+
+                            var age = yyyyDep-yyyyBd;
+                            if((100*mmDep+ddDep)<(100*mmBd+ddBd)){
+                                age=age-1;
+                            }
+                            return age;
+                        }
+                        function restorePlace(i){
+                            document.getElementById("childQuestionDiv_"+i).innerHTML="";
+                            document.getElementById("noPlaceAttention_"+i).innerHTML="";
+                            enablePax(i);
+                            document.getElementById("age_"+i).selectedIndex="2";
+
+                        }
+                        function updateRassadka(age, isKZX){
+                            if(2==4) {
+                                if((age<=15 && isKZX=='true')
+                                   || (age<=10 && isKZX=='false')) {
+                                    var selector = document.getElementById('nUpDown');
+                                    for(i=0;i<selector.length;i++) {
+                                        if(selector.options[i].value=='2-0') {
+                                            return;
+                                        }
+                                    }
+                                    var opt = document.createElement("option");
+                                    opt.value = "2-0";
+                                    opt.innerHTML = "2 нижних, 0 верхних";
+                                    
+                                    selector.appendChild(opt);
+                                    document.getElementById("show2LowerChoiceContent").innerHTML="Оформление двух нижних мест производится только для граждан с детьми до 15 лет в поездах формирования Казахстана и до 10 лет в остальных поездах";
+                                } else {
+                                    var selector = document.getElementById('nUpDown');
+                                    for(i=0;i<selector.length;i++) {
+                                        if(selector.options[i].value=='2-0') {
+                                            selector.remove(i);
+                                            alert("Оформление двух нижних мест производится только для граждан с детьми");
+//                                            document.getElementById("show2LowerChoiceContent").innerHTML="";
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        function childQuestion(i){
+//                            console.log("ageInp_"+i+"="+document.getElementById("ageInp_"+i));
+                            if(!document.getElementById("ageInp_"+i)){
+                                return true;
+                            }
+                            var ageInpValue = parseDate(document.getElementById("ageInp_"+i).value);
+                            var depDate = parseDate('12.01.2016');
+                            if(!ageInpValue){
+                                 return true;
+                            }
+//                            console.log("childQuestion ageInpValue="+ageInpValue+" vs. depDate="+depDate);
+                            var age = calculateAge(depDate, ageInpValue);
+                            updateRassadka(age, 'true');
+//                            console.log("calculatedAge = "+age);
+                            if(age>=15 && document.getElementById("age_"+i).selectedIndex!="0"){
+                                alert("Для пассажира достигшего 15 лет требуется оформление билета по полному тарифу");
+                                return true;
+                            }
+                            
+                                if(age<7 && (hasChildCapacity(0) || document.getElementById("age_"+i).selectedIndex=="1")){
+                                    var childTxt = "Ребенка до 7 лет при проезде в поездах перевозчиков Казахстана можно провозить бесплатно без предоставления отдельного места. Вы хотите оформить билет с местом по детскому тарифу? "
+                                                 + "<br><input type='Button' class='btn btn-blue' value='Оформить билет с местом' onclick='restorePlace("+i+");'>"
+                                                 + "&nbsp;&nbsp;<input type='Button' class='btn btn-blue' value='Не офомлять билет для ребенка до 7 лет' onclick='showChildNoPlace("+i+");'>";
+                                    document.getElementById("childQuestionDiv_"+i).innerHTML=childTxt;
+                                }else if(age>=7 && document.getElementById("age_"+i).selectedIndex=="1"){
+                                    alert("Требуется оформления детского билета с местом для ребенка достигшего 7 лет");
+                                    document.getElementById("age_"+i).selectedIndex="2";
+                                }
+                                return true;
+                            
+                        }
+                        function showChildNoPlace(i){
+                            document.getElementById("noPlaceAttention_"+i).innerHTML="<font color='red'>Ребенок младше 7 лет поедет без оформления места</font>&nbsp;&nbsp;<input type='Button'   class='btn btn-blue' value='Оформить место для ребенка' onclick='restorePlace("+i+")'>";
+                            document.getElementById("age_"+i).selectedIndex="1";
+                            disablePax(i);
+                            document.getElementById("childQuestionDiv_"+i).innerHTML="";
+                        }
+                        function disablePax(i){
+                            document.getElementById("age_"+i).disabled=true;
+                            document.getElementById("docId_"+i).disabled=true;
+                            document.getElementById("docNumber_"+i).disabled=true;
+                            document.getElementById("ageInp_"+i).disabled=true;
+                            document.getElementById("fEl_"+i).disabled=true;
+                            document.getElementById("iEl_"+i).disabled=true;
+                            document.getElementById("oEl_"+i).disabled=true;
+                            document.getElementById("droppedChild_"+i).value="1";
+                        }
+                        function enablePax(i){
+                            document.getElementById("age_"+i).disabled=false;
+                            document.getElementById("docId_"+i).disabled=false;
+                            document.getElementById("docNumber_"+i).disabled=false;
+                            document.getElementById("ageInp_"+i).disabled=false;
+                            document.getElementById("fEl_"+i).disabled=false;
+                            document.getElementById("iEl_"+i).disabled=false;
+                            document.getElementById("oEl_"+i).disabled=false;
+                            document.getElementById("droppedChild_"+i).value="0";
+                        }
+                        function updateHiddenAge(i){
+                            if(childQuestion(i)){
+//                                console.log("updateHiddenAge for i="+i+" started");
+                                var hidAgeElement = document.getElementById("hidInpAge_"+i);
+                                var ageInpElement = document.getElementById("ageInp_"+i);
+                                hidAgeElement.value=ageInpElement.value;
+                            }
+                        }
+                        function restoreAgeFromHidden(i){
+                            var hidAgeElement = document.getElementById("hidInpAge_"+i);
+                            var ageInpElement = document.getElementById("ageInp_"+i);
+                            if(hidAgeElement.value!="null"){
+                                ageInpElement.value=hidAgeElement.value;
+                            }
+                        }
+                        function hasOneAdult(i, ageElementI, docElementI){
+                            var res = false;
+                            for(j=0;j<4;j++){
+                                var ageElement = document.getElementById("age_"+j);
+                                var docElement = document.getElementById("docId_"+j);
+                                if(ageElement.selectedIndex==0 
+                                   && docElement.value.indexOf("СР")<0){
+                                    res=true;
+                                }
+                            }
+                            if(!res){   //нет ни одного взрослого
+                                var k=parseInt(i)+1;
+                                alert("Должен быть хотя бы один взрослый. Тариф пассажира №"+k+" и его документ будут установлены как для взрослого.");
+                                ageElementI.selectedIndex=0;
+                                docElementI.selectedIndex=0;
+                            }
+                            return res;
+                        }
+                        function processDoc(i){
+                     //       console.log("processDoc started");
+                            var docId = new String("docId_"+i);
+                            var ageId = new String("age_"+i);
+                            var docElementI = document.getElementById(docId);
+                            var ageElementI = document.getElementById(ageId);
+                            if(docElementI.value.indexOf("СР")>0 && ageElementI.value=="19"){
+                              //  console.log("processDoc setting age=4");
+                                ageElementI.value="4";//выбрано свидетельство о рождении
+                            }
+                            process(i);
+                        }
+                        function hasChildCapacity(addChld){
+                            var infantNumber = addChld;
+                            var paxNumber = 4;
+                            for(var i=0;i<paxNumber;i++){
+//                                console.log("age_"+i+" selectedIndex="+document.getElementById("age_"+i).selectedIndex);
+                                if(document.getElementById("age_"+i).selectedIndex=="1"){
+                                    infantNumber=infantNumber+1;
+//                                    console.log("added");
+                                }
+                            }
+//                            console.log("hasChildCapacity paxNumber="+paxNumber+" infantNumber="+infantNumber);
+                            if(paxNumber==2 && infantNumber==1){
+                                return false;
+                            }else if(paxNumber==3 && infantNumber==1){
+                                return false;
+                            }else if(paxNumber==4 && infantNumber==2){
+                                return false;
+                            }else{
+                                return true;
+                            }
+                        }
+                        function processFromTarif(i){
+                            childQuestion(i);
+                            process(i);
+                        }
+                        function process(i){
+                            if(!hasChildCapacity(-1)){
+                                alert("Не более 1 ребенка без места на каждого взрослого!");
+                                document.getElementById("age_"+i).selectedIndex="2";
+                            }
+                            var docId = new String("docId_"+i);
+                            var ageId = new String("age_"+i);
+                            var docElementI = document.getElementById(docId);
+                            var ageElementI = document.getElementById(ageId);
+                            var sor=false;
+                            if(docElementI.value.indexOf("СР")>0){
+                                sor=true;//выбрано свидетельство о рождении
+                            }
+                            var adult=true;
+                            if(ageElementI.value!="19"){
+                                adult=false;
+                            }
+                            var docDivElement = document.getElementById("docDiv_"+i);
+                            var ageDivElement = document.getElementById("ageDiv_"+i);
+                            var ageDivElementContent='Дата рождения <br><input id="ageInp_'+i+'"  class="text" type="text" size="8" maxlength="8" value="ДД.ММ.ГГ" onkeydown="return checkKeys(event);" onchange="updateHiddenAge(\''+i+'\');" ><br>пример:19.05.98';
+                            if(!sor && adult){
+                                docDivElement.innerHTML="";
+                                ageDivElement.innerHTML="";
+                            }else if(sor && adult && hasOneAdult(i, ageElementI, docElementI)){
+                                docDivElement.innerHTML="Если на день начала поездки пассажиру не больше 15 лет.";
+                                ageDivElement.innerHTML=ageDivElementContent;
+                                restoreAgeFromHidden(i);
+                            }else if(!sor && !adult && hasOneAdult(i, ageElementI, docElementI)){
+                                docDivElement.innerHTML="";
+                                ageDivElement.innerHTML=ageDivElementContent;
+                                restoreAgeFromHidden(i);
+                            }else if(sor && !adult && hasOneAdult(i, ageElementI, docElementI)){
+                                docDivElement.innerHTML="Если на день начала поездки пассажиру не больше 15 лет.";
+                                ageDivElement.innerHTML=ageDivElementContent;
+                                restoreAgeFromHidden(i);
+                            }
+                        }
+                        function ns(i){
+                            if(i==0){
+                                return "нижних";
+                            }else if(i==1){
+                                return "нижнее";
+                            }else if(i>=2){
+                                return "нижних";
+                            }
+                        }
+                        function vs(i){
+                            if(i==0){
+                                return "верхних";
+                            }else if(i==1){
+                                return "верхнее";
+                            }else if(i>=2){
+                                return "верхних";
+                            }
+                        }
+    function sendZakladki(pa, sa, fromStation, toStation, date, time, xTrainId, depTime, wayTime, arrTime,
+                            category,step) {
+        document.forms.formZakladki.pa.value = pa;
+        document.forms.formZakladki.sa.value = sa;
+        document.forms.formZakladki.FROM_STATION.value = fromStation;
+        document.forms.formZakladki.TO_STATION.value = toStation;
+        document.forms.formZakladki.DATE.value = date;
+        document.forms.formZakladki.TIME.value = time;
+        document.forms.formZakladki.TRAIN_ID.value = xTrainId;
+        document.forms.formZakladki.DEPARTURE_TIME.value = depTime;
+        document.forms.formZakladki.WAY_TIME.value = wayTime;
+        document.forms.formZakladki.ARRIVING_TIME.value = arrTime;
+        document.forms.formZakladki.CATEGORY.value = category;
+        document.forms.formZakladki.STEP.value = step;
+        document.forms.formZakladki.submit();
+    }
+</script> <script language="JavaScript">
+
+    var ld = 1451627100;
+    var fd = 1451628300;
+    var cur = 1449360341;
+    var myVar=setInterval(function(){myTimer()},1000);
+    var isBetween = false;
+
+    function myTimer() {
+        cur = cur + 1;
+        if ( ld<cur && cur <fd ) {
+            isBetween = true;
+            document.getElementById("saleBlocking").innerHTML="<font color='red'>C 23:45 до 00:05 в последний день месяца продажа останавливается. Осталось "+getNormalTime(fd-cur);
+        } else {
+            isBetween = false;
+            document.getElementById("saleBlocking").innerHTML="";
+        }
+
+    }
+    function getNormalTime(sec){
+        var min = Math.floor(sec/60.);
+        var secRest = sec - min*60;
+        return min+" мин "+secRest+" сек"; 
+    }
+</script>
+			<form action="https://epay.railways.kz/ktz4/proc" method="POST"
+				name="formZakladki">
+				<input type="hidden" name="pa" value="express3"> <input
+					type="hidden" name="sa" value="GET_P62G60_EVENT"> <input
+					type="hidden" name="TRAIN_ID" value=""> <input
+					type="hidden" name="FROM_STATION" value=""> <input
+					type="hidden" name="TO_STATION" value=""> <input
+					type="hidden" name="DATE" value=""> <input type="hidden"
+					name="TIME" value=""> <input type="hidden"
+					name="DEPARTURE_TIME" value=""> <input type="hidden"
+					name="WAY_TIME" value=""> <input type="hidden"
+					name="ARRIVING_TIME" value=""> <input type="hidden"
+					name="CATEGORY" value=""> <input type="hidden" name="STEP"
+					value="0">
+			</form> <!-- #footer --> <footer id="footer">
+				<div class="container">
+
+					<div class="row">
+						<div class="col-xs-3">
+							<h5>
+								<a href="https://epay.railways.kz/ktz4/proc#" class="link"
+									onclick="sbmHead();"><span>Купить билет</span></a>
+							</h5>
+							<ul class="list-inline list-auth-links">
+								<li><a href="https://epay.railways.kz/ktz4/proc#"
+									class="link link-dashed jsLinkAuth" data-action="login"><i
+										class="fa fa-lock"></i> <span>Вход</span></a></li>
+								<li><a href="https://epay.railways.kz/ktz4/proc#"
+									onclick="registrBegin();" class="link jsLinkAuth"
+									data-action="reg"><span>Регистрация</span></a></li>
+							</ul>
+							<a href="https://epay.railways.kz/SVPayments/index.jsf"
+								class="btn btn-blue-invert btn-sm"><b>Грузовые перевозки</b></a>
+						</div>
+						<div class="col-xs-3">
+							<div class="title">
+								<h5>Помощь</h5>
+								<h5>
+									<a href="https://epay.railways.kz/ktz4/clients/news.jsp"
+										class="link"><span>Новости</span></a>
+								</h5>
+							</div>
+							<ul class="list-unstyled">
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/pravila.jsp#4"
+									class="link"><span>Как оформить заказ</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/info.jsp#3"
+									class="link"><span>Как оплатить заказ</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/info.jsp#4"
+									class="link"><span>Процедура получения билетов</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/info.jsp#5"
+									class="link"><span>Возврат билетов</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/info.jsp#9"
+									class="link"><span>Информация для пассажиров</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/pravila.jsp"
+									class="link"><span>Правила пользования</span></a></li>
+							</ul>
+						</div>
+						<div class="col-xs-3">
+							<div class="title">
+								<h5>Справочная информация</h5>
+							</div>
+							<ul class="list-unstyled">
+								<li><a href="https://epay.railways.kz/ktz4/maps/map.jsp"
+									class="link"><span>Карта маршрутов</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/spravka.jsp#3"
+									class="link"><span>Перечень направлений</span></a></li>
+								<li><a
+									href="https://epay.railways.kz/ktz4/clients/spravka.jsp#4"
+									class="link"><span>Поезда СНГ</span></a></li>
+							</ul>
+						</div>
+						<div class="col-xs-3">
+							<div class="title">
+								<h5>Техническая поддержка сайта</h5>
+							</div>
+							<!-- contacts -->
+							<figure class="contacts">
+								<b>&nbsp;&nbsp;&nbsp;&nbsp;+7 7172 60-66-60</b>
+								<br>
+								<b>&nbsp;&nbsp;&nbsp;&nbsp;+7 7172 60-66-56</b>
+								<br>
+								<a href="mailto:vitrina@railways.kz" class="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>vitrina@railways.kz</span></a>
+								<!--						<div>
+							<a href="#" target="_blank" class="link link-block"><span><b>Контактная информация</b></span></a>
+						</div>-->
+							</figure>
+							<!-- end contacts -->
+							<!-- social-links -->
+							<!--					<figure class="social-links">
+						<ul class="list-unstyled clearfix">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-vk"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-youtube"></i></a></li>
+						</ul>-->
+							<!-- end social-links -->
+						</div>
+					</div>
+
+					<!-- copyright -->
+					<figure class="copyright">
+						©&nbsp;
+						<a href="http://railways.kz/" class="link"><span><b>АО&nbsp;«НК&nbsp;«Қазақстан
+									темір жолы»</b></span></a>, 2013.
+					</figure>
+					<!-- end copyright -->
+
+				</div>
+			</footer>
+			<!-- end #footer -->
+
+
+
+
+	</b></b>
+</body>
+</html>

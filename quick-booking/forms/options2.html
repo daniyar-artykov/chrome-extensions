@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<title></title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- base libs -->
+<script src="../libs/jquery-1.9.1.min.js"></script>
+<style type="text/css"></style>
+<script src="../libs/jquery.maskedinput.min.js"></script>
+
+<!-- jquery ui -->
+<script src="../libs/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="../libs/jquery.ui.datepicker-ru.js"></script>
+<link href="../libs/jquery-ui-1.10.3.custom.min.css" rel="stylesheet"
+	media="screen">
+
+<!-- bootstrap -->
+<link href="../libs/bootstrap.custom.min.css" rel="stylesheet"
+	media="screen">
+<script src="../libs/bootstrap.custom.min.js"></script>
+
+<!-- font-awesome -->
+<link href="../libs/font-awesome.min.css" rel="stylesheet">
+
+<!-- project files -->
+<link href="../libs/screen.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+	<form action="#" name="formHeader" method="POST">
+		<input type="hidden" name="pa" value="clients"> <input
+			type="hidden" name="sa" value=""> <input type="hidden"
+			name="STEP" value=""> <input type="hidden"
+			name="FROM_STATION" value=""> <input type="hidden"
+			name="TO_STATION" value=""> <input type="hidden" name="DATE"
+			value="30.11.2015"> <input type="hidden" name="TIME" value="">
+	</form>
+	<!-- #wrapper -->
+	<section id="wrapper">
+		<!-- #header -->
+		<header id="header">
+			<div class="container clearfix">
+				<!-- logo -->
+				<a href="#" class="logo pull-left"></a>
+				<!-- end logo -->
+				<font color="white">build #243277</font>
+				<!-- menu-language -->
+				<figure class="menu-language pull-left">
+					<ul class="list-unstyled">
+						<li><a href="#" class="link"><span>Қаз</span></a></li>
+						<li><a href="#" class="link active"><span>Рус</span></a></li>
+					</ul>
+				</figure>
+				<!-- end menu-language -->
+
+				<!-- contacts -->
+				<figure class="contacts pull-left">
+					<b>105</b>
+					<i>Справочная служба</i>
+					<br>
+				</figure>
+				<!-- end contacts -->
+
+				<!-- auth -->
+				<figure class="auth pull-right">
+
+				</figure>
+				<!-- end auth -->
+
+			</div>
+		</header>
+		<!-- end #header-->
+
+		<!-- main-nav -->
+		<figure class="main-nav">
+			<div class="container clearfix">
+
+				<menu class="pull-left clearfix">
+					<li><a id="mainNav1" href="#" class="active"><span>Форма
+								бронирования</span></a></li>
+					<li><a id="mainNav2" href="#"><span>Как
+								пользоваться</span></a></li>
+					<li><a id="mainNav3" href="#"><span>О QuickBooking</span></a></li>
+					<li><a id="mainNav5" href="#"><span>Обратная связь</span></a></li>
+				</menu>
+			</div>
+		</figure>
+		<!-- end main-nav -->
+
+		<!-- #content -->
+		<main id="content" class="content">
+		<div class="container">
+
+			<!-- content-main -->
+			<section class="content-main">
+
+				<!-- steps-nav -->
+				<figure class="steps-nav">
+					<table>
+						<tbody>
+							<tr>
+								<th><a href="#" class="active"><span>1. Выбор
+											направления</span></a></th>
+								<th><a href="#" class="disabled"><span>2.
+											Расписание</span></a></th>
+								<th><a href="#" class="disabled"><span>3.
+											Наличие мест</span></a></th>
+								<th><a href="#" class="disabled"><span>4.
+											Информация о пассажирах</span></a></th>
+								<th><a href="#" class="disabled"><span>5. Оплата</span></a></th>
+								<th><a href="#" class="disabled"><span>6. Билет</span></a></th>
+							</tr>
+						</tbody>
+					</table>
+				</figure>
+				<!-- end steps-nav -->
+
+				<!-- form-search-tickets -->
+				<figure class="form-search-tickets">
+					<div class="block-in">
+						<div class="form-group group-location">
+							<label class="control-label">Направление</label>
+							<div class="column clearfix">
+								<div class="col col-left">
+									<div class="clearfix">
+										<span role="status" aria-live="polite"
+											class="ui-helper-hidden-accessible">1 result is
+											available, use up and down arrow keys to navigate.</span><input
+											type="text"
+											class="form-control input-lg input-text ui-autocomplete-input"
+											placeholder="Откуда?" id="FROM_STATION" value=""
+											autocomplete="off">
+										<button type="button"
+											class="btn btn-default input-lg btn-toggle jsTooltip"
+											id="StupidChangeDirection" onclick="changeDir();"
+											data-toggle="tooltip" data-placement="top"
+											data-original-title="Поменять направления местами">
+											<i class="fa fa-exchange"></i>
+										</button>
+										<span role="status" aria-live="polite"
+											class="ui-helper-hidden-accessible">2 results are
+											available, use up and down arrow keys to navigate.</span><input
+											type="text"
+											class="form-control input-lg input-text ui-autocomplete-input"
+											placeholder="Куда?" id="TO_STATION" value=""
+											autocomplete="off">
+
+									</div>
+									<p class="help-line">Начните вводить название станции,
+										затем выберите станцию из&nbsp;предложенного списка</p>
+								</div>
+								<div class="col col-right">
+									<div class="clearfix">
+										<span class="datepicker-wrapper"> <input type="text"
+											class="form-control input-lg input-date only-ready"
+											id="jsCalendarInp" placeholder="Когда?" value="30.11.2015">
+											<input type="text"
+											class="form-control input-lg input-date invisible hasDatepicker"
+											id="jsCalendar" value="30.11.2015">
+											<button type="button" class="ui-datepicker-trigger">
+												<i class="fa fa-calendar"></i>
+											</button>
+										</span>
+									</div>
+									<p class="help-line">Выберите дату в&nbsp;календаре</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- schedules-filters -->
+					<figure class="cabinet-filters">
+						<form role="form" class="form-inline-1 clearfix">
+							<div class="form-group column-1 col1">
+								<label class="control-label">Тип вагона:</label>
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default btn-xs"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="js_general">Общий</label> <label
+										class="btn btn-default btn-xs"><input type="checkbox"
+										class="jsFilterCheckbox" data-filter="js_sedentary">Сидячий</label>
+									<label class="btn btn-default btn-xs"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="js_second-class">Плацкартный</label> <label
+										class="btn btn-default btn-xs"><input type="checkbox"
+										class="jsFilterCheckbox" data-filter="js_compartment">Купе</label>
+									<label class="btn btn-default btn-xs"><input
+										type="checkbox" class="jsFilterCheckbox" data-filter="js_soft">Мягкий</label>
+									<label class="btn btn-default btn-xs"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="js_luxury">Люкс</label>
+								</div>
+							</div>
+							<div class="form-group column-1 col2">
+								<label class="control-label">Отправление:</label>
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default btn-xs jsTooltip"
+										data-toggle="tooltip" data-container="body"
+										data-placement="bottom"
+										data-original-title="06:00 &mdash; 12:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsDeparture_morning">Утро</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="12:00 &mdash; 18:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsDeparture_day">День</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="18:00 &mdash; 24:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsDeparture_evening">Вечер</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="00:00 &mdash; 06:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsDeparture_night">Ночь</label>
+								</div>
+							</div>
+							<div class="form-group column-1 col3">
+								<label class="control-label">Прибытие:</label>
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default btn-xs jsTooltip"
+										data-toggle="tooltip" data-container="body"
+										data-placement="bottom"
+										data-original-title="06:00 &mdash; 12:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsArrival_morning">Утро</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="12:00 &mdash; 18:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsArrival_day">День</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="18:00 &mdash; 24:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsArrival_evening">Вечер</label> <label
+										class="btn btn-default btn-xs jsTooltip" data-toggle="tooltip"
+										data-container="body" data-placement="bottom"
+										data-original-title="00:00 &mdash; 06:00"><input
+										type="checkbox" class="jsFilterCheckbox"
+										data-filter="jsArrival_night">Ночь</label>
+								</div>
+							</div>
+						</form>
+					</figure>
+					<!-- end schedules-filters -->
+				</figure>
+				<!-- end form-search-tickets -->
+
+				<b class="text-blue-dark"> <!-- cabinet-content -->
+					<div class="cabinet-content">
+						<!-- form-passport -->
+						<figure class="form-passport jsRequiredContainer">
+							<h2>Введите паспортные данные пассажиров</h2>
+							<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+							<!-- form-passport-item -->
+							<div class="form-passport-item">
+								<div class="line1 clearfix">
+									<span class="num">1</span>
+									<div class="form-group group1">
+										<label class="control-label">Тариф</label> <select
+											name="DOC_AGE0" id="age_0"
+											onchange="processFromTarif(&#39;0&#39;);"
+											class="form-control">
+											<option value="19" selected>полный</option>
+											<option value="2">детский без места
+												<!--                <OPTION value="3">детский до 7 лет-->
+											</option>
+											<option value="4">детский с местом до 15 лет</option>
+										</select> <span class="link-help jsPopoverHover text-brown"
+											data-html="true" data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+									<div class="form-group group2">
+										<label class="control-label">&nbsp;</label>
+									</div>
+									<div class="form-group group3">
+										<label class="control-label">Тип документа</label> <select
+											id="docId_0" name="DOC_NAME0"
+											onchange="processDoc(&#39;0&#39;);" class="form-control">
+
+											<option value="0#УЛ" selected>Удостоверение
+												личности РК</option>
+											<option value="1#ПК">Паспорт гражданина РК</option>
+											<option value="2#СР">Свидетельство о рождении
+												ребенка</option>
+											<option value="3#ПН">Общегражданский паспорт</option>
+											<option value="4#ЗП">Загранпаспорт</option>
+											<option value="5#ЗЗ">Паспорт иностранного гражданина</option>
+											<option value="6#ВЖ">Вид на жительство</option>
+											<option value="7#ЗЗ">иной документ</option>
+										</select>
+										<div id="docDiv_0"></div>
+									</div>
+									<div class="form-group group4">
+										<label class="control-label">Номер документа</label> <input
+											type="text" class="form-control" name="DOC_NUMBER0"
+											id="docNumber_0" value=""
+											onkeypress="return checkCharsAndNumbers(event);"> <span
+											class="link-help jsPopoverHover text-brown" data-html="true"
+											data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+
+									<div class="form-group group5">
+										<input type="hidden" id="hidInpAge_0" name="BIRTH_DAY0"
+											value="null">
+										<div id="ageDiv_0"></div>
+										<input type="hidden" name="droppedChild_0" id="droppedChild_0"
+											value="0">
+										<div id="noPlaceAttention_0"></div>
+										<div id="childQuestionDiv_0"></div>
+									</div>
+								</div>
+								<div class="line2 clearfix">
+									<div class="form-group clearfix">
+										<label class="control-label">Полное имя пассажира</label>
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Фамилия"
+												name="DOC_F0" id="fEl_0" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Имя"
+												name="DOC_I0" id="iEl_0" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Отчество"
+												name="DOC_O0" id="oEl_0" value=""
+												onkeypress="return checkChars(event);">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end form-passport-item -->
+							<!-- order-amount -->
+							<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+							<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+							<!-- form-passport-item -->
+							<div class="form-passport-item">
+								<div class="line1 clearfix">
+									<span class="num">2</span>
+									<div class="form-group group1">
+										<label class="control-label">Тариф</label> <select
+											name="DOC_AGE1" id="age_1"
+											onchange="processFromTarif(&#39;1&#39;);"
+											class="form-control">
+											<option value="19" selected>полный</option>
+											<option value="2">детский без места
+												<!--                <OPTION value="3">детский до 7 лет-->
+											</option>
+											<option value="4">детский с местом до 15 лет</option>
+										</select> <span class="link-help jsPopoverHover text-brown"
+											data-html="true" data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+									<div class="form-group group2">
+										<label class="control-label">&nbsp;</label>
+									</div>
+									<div class="form-group group3">
+										<label class="control-label">Тип документа</label> <select
+											id="docId_1" name="DOC_NAME1"
+											onchange="processDoc(&#39;1&#39;);" class="form-control">
+
+											<option value="0#УЛ" selected>Удостоверение
+												личности РК</option>
+											<option value="1#ПК">Паспорт гражданина РК</option>
+											<option value="2#СР">Свидетельство о рождении
+												ребенка</option>
+											<option value="3#ПН">Общегражданский паспорт</option>
+											<option value="4#ЗП">Загранпаспорт</option>
+											<option value="5#ЗЗ">Паспорт иностранного гражданина</option>
+											<option value="6#ВЖ">Вид на жительство</option>
+											<option value="7#ЗЗ">иной документ</option>
+										</select>
+										<div id="docDiv_1"></div>
+									</div>
+									<div class="form-group group4">
+										<label class="control-label">Номер документа</label> <input
+											type="text" class="form-control" name="DOC_NUMBER1"
+											id="docNumber_1" value=""
+											onkeypress="return checkCharsAndNumbers(event);"> <span
+											class="link-help jsPopoverHover text-brown" data-html="true"
+											data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+
+									<div class="form-group group5">
+										<input type="hidden" id="hidInpAge_1" name="BIRTH_DAY1"
+											value="null">
+										<div id="ageDiv_1"></div>
+										<input type="hidden" name="droppedChild_1" id="droppedChild_1"
+											value="0">
+										<div id="noPlaceAttention_1"></div>
+										<div id="childQuestionDiv_1"></div>
+									</div>
+								</div>
+								<div class="line2 clearfix">
+									<div class="form-group clearfix">
+										<label class="control-label">Полное имя пассажира</label>
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Фамилия"
+												name="DOC_F1" id="fEl_1" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Имя"
+												name="DOC_I1" id="iEl_1" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Отчество"
+												name="DOC_O1" id="oEl_1" value=""
+												onkeypress="return checkChars(event);">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end form-passport-item -->
+
+							<!-- order-amount -->
+							<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+							<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+							<!-- form-passport-item -->
+							<div class="form-passport-item">
+								<div class="line1 clearfix">
+									<span class="num">3</span>
+									<div class="form-group group1">
+										<label class="control-label">Тариф</label> <select
+											name="DOC_AGE2" id="age_2"
+											onchange="processFromTarif(&#39;2&#39;);"
+											class="form-control">
+											<option value="19" selected>полный</option>
+											<option value="2">детский без места
+												<!--                <OPTION value="3">детский до 7 лет-->
+											</option>
+											<option value="4">детский с местом до 15 лет</option>
+										</select> <span class="link-help jsPopoverHover text-brown"
+											data-html="true" data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+									<div class="form-group group2">
+										<label class="control-label">&nbsp;</label>
+									</div>
+									<div class="form-group group3">
+										<label class="control-label">Тип документа</label> <select
+											id="docId_2" name="DOC_NAME2"
+											onchange="processDoc(&#39;2&#39;);" class="form-control">
+
+											<option value="0#УЛ" selected>Удостоверение
+												личности РК</option>
+											<option value="1#ПК">Паспорт гражданина РК</option>
+											<option value="2#СР">Свидетельство о рождении
+												ребенка</option>
+											<option value="3#ПН">Общегражданский паспорт</option>
+											<option value="4#ЗП">Загранпаспорт</option>
+											<option value="5#ЗЗ">Паспорт иностранного гражданина</option>
+											<option value="6#ВЖ">Вид на жительство</option>
+											<option value="7#ЗЗ">иной документ</option>
+										</select>
+										<div id="docDiv_2"></div>
+									</div>
+									<div class="form-group group4">
+										<label class="control-label">Номер документа</label> <input
+											type="text" class="form-control" name="DOC_NUMBER2"
+											id="docNumber_2" value=""
+											onkeypress="return checkCharsAndNumbers(event);"> <span
+											class="link-help jsPopoverHover text-brown" data-html="true"
+											data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+
+									<div class="form-group group5">
+										<input type="hidden" id="hidInpAge_2" name="BIRTH_DAY2"
+											value="null">
+										<div id="ageDiv_2"></div>
+										<input type="hidden" name="droppedChild_2" id="droppedChild_2"
+											value="0">
+										<div id="noPlaceAttention_2"></div>
+										<div id="childQuestionDiv_2"></div>
+									</div>
+								</div>
+								<div class="line2 clearfix">
+									<div class="form-group clearfix">
+										<label class="control-label">Полное имя пассажира</label>
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Фамилия"
+												name="DOC_F2" id="fEl_2" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Имя"
+												name="DOC_I2" id="iEl_2" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Отчество"
+												name="DOC_O2" id="oEl_2" value=""
+												onkeypress="return checkChars(event);">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end form-passport-item -->
+
+							<!-- order-amount -->
+							<!-- PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  END-->
+
+							<!-- BEGIN PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER PASSANGER  BEGIN-->
+
+							<!-- form-passport-item -->
+							<div class="form-passport-item">
+								<div class="line1 clearfix">
+									<span class="num">4</span>
+									<div class="form-group group1">
+										<label class="control-label">Тариф</label> <select
+											name="DOC_AGE3" id="age_3"
+											onchange="processFromTarif(&#39;3&#39;);"
+											class="form-control">
+											<option value="19" selected>полный</option>
+											<option value="2">детский без места
+												<!--                <OPTION value="3">детский до 7 лет-->
+											</option>
+											<option value="4">детский с местом до 15 лет</option>
+										</select> <span class="link-help jsPopoverHover text-brown"
+											data-html="true" data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;Не более 15 лет на момент отправленяи по детскому тарифу.&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+									<div class="form-group group2">
+										<label class="control-label">&nbsp;</label>
+									</div>
+									<div class="form-group group3">
+										<label class="control-label">Тип документа</label> <select
+											id="docId_3" name="DOC_NAME3"
+											onchange="processDoc(&#39;3&#39;);" class="form-control">
+
+											<option value="0#УЛ" selected>Удостоверение
+												личности РК</option>
+											<option value="1#ПК">Паспорт гражданина РК</option>
+											<option value="2#СР">Свидетельство о рождении
+												ребенка</option>
+											<option value="3#ПН">Общегражданский паспорт</option>
+											<option value="4#ЗП">Загранпаспорт</option>
+											<option value="5#ЗЗ">Паспорт иностранного гражданина</option>
+											<option value="6#ВЖ">Вид на жительство</option>
+											<option value="7#ЗЗ">иной документ</option>
+										</select>
+										<div id="docDiv_3"></div>
+									</div>
+									<div class="form-group group4">
+										<label class="control-label">Номер документа</label> <input
+											type="text" class="form-control" name="DOC_NUMBER3"
+											id="docNumber_3" value=""
+											onkeypress="return checkCharsAndNumbers(event);"> <span
+											class="link-help jsPopoverHover text-brown" data-html="true"
+											data-trigger="manual" data-toggle="popover"
+											data-placement="top"
+											data-content="&lt;p&gt;буквы, цифры, без пробелов&lt;/p&gt;"
+											data-original-title="" title=""><i
+											class="fa fa-question-circle"></i></span>
+									</div>
+
+									<div class="form-group group5">
+										<input type="hidden" id="hidInpAge_3" name="BIRTH_DAY3"
+											value="null">
+										<div id="ageDiv_3"></div>
+										<input type="hidden" name="droppedChild_3" id="droppedChild_3"
+											value="0">
+										<div id="noPlaceAttention_3"></div>
+										<div id="childQuestionDiv_3"></div>
+									</div>
+								</div>
+								<div class="line2 clearfix">
+									<div class="form-group clearfix">
+										<label class="control-label">Полное имя пассажира</label>
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Фамилия"
+												name="DOC_F3" id="fEl_3" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Имя"
+												name="DOC_I3" id="iEl_3" value=""
+												onkeypress="return checkChars(event);"> <input
+												type="text" class="form-control" placeholder="Отчество"
+												name="DOC_O3" id="oEl_3" value=""
+												onkeypress="return checkChars(event);">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end form-passport-item -->
+						</figure>
+						<!-- end form-passport -->
+					</div> <!-- end cabinet-content -->
+				</b>
+
+				<figure class="form-search-tickets btns-form">
+					<form action="#" method="POST" name="form1" id="formSubmit">
+						<input type="hidden" name="pa" value="express3" id="primaryAction">
+						<input type="hidden" name="sa" value="GET_P62G60_EVENT"
+							id="secondaryAction"> <input type="hidden" name="STEP"
+							value="1"> <input type="hidden" name="TIME" value="">
+						<input type="hidden" name="FROM_STATION"
+							value="Туркестан(2700860)"> <input type="hidden"
+							name="TO_STATION" value="АЛМА АТА 2(2700001)"> <input
+							type="hidden" name="DATE" value="30.11.2015">
+						<div class="form-controls clearfix">
+							<button type="button" class="btn btn-blue"
+								onclick="checkSbmEnabled(&#39;1&#39;);" id="Mesta">
+								<b>Сохранить</b>
+							</button>
+							<button type="button" class="btn btn-blue"
+								onclick="checkSbmEnabled(&#39;2&#39;);" id="Mesta">
+								<b>Очистить</b>
+							</button>
+						</div>
+					</form>
+				</figure>
+			</section>
+			<!-- end content-main -->
+		</div>
+
+		<div class="container" style="font-size: 3;">
+			<!-- divisions-list -->
+			<figure class="divisions-list text-center">
+				<h2>Полезные ссылки и&nbsp;подразделения</h2>
+				<ul class="list-unstyled clearfix">
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://railways.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic01.jpg">
+									</div>
+									<div class="title">
+										<b>АО «НК «Қазақстан темір жолы»</b>
+									</div>
+									<div class="links">railways.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://temirzholy.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic01.jpg">
+									</div>
+									<div class="title">
+										<b>АО «Пассажирcкие перевозки»</b>
+									</div>
+									<div class="links">temirzholy.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://vokzal-service.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic02.jpg">
+									</div>
+									<div class="title">
+										<b>АО «Вокзал-Сервис»</b>
+									</div>
+									<div class="links">vokzal-service.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://pp-service.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic03.jpg">
+									</div>
+									<div class="title">
+										<b>АО «Пригородные перевозки»</b>
+									</div>
+									<div class="links">pp-service.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://iservice.railways.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic04.jpg">
+									</div>
+									<div class="title">
+										<b>«Информ-Сервис»</b>
+									</div>
+									<div class="links">iservice.railways.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+					<li>
+						<!-- division-item -->
+						<article class="division-item">
+							<div class="division-item-in">
+								<a href="http://cargo.railways.kz/" target="_blank">
+									<div class="img">
+										<img src="../images/pic01.jpg">
+									</div>
+									<div class="title">
+										<b>Грузовые перевозки</b>
+									</div>
+									<div class="links">cargo.railways.kz</div>
+								</a>
+							</div>
+						</article> <!-- end division-item -->
+					</li>
+				</ul>
+			</figure>
+			<!-- end divisions-list -->
+		</div>
+		</main>
+		<!-- end #content -->
+		<font size="3"> </font>
+	</section>
+	<div id="ui-datepicker-div"
+		class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+	<!-- end #wrapper -->
+
+	<!-- #footer -->
+	<footer id="footer">
+		<div class="container" style="font-size: 3;">
+
+			<div class="row">
+				<div class="col-xs-3">
+					<h5>
+						<a href="#" class="link"><span>Купить билет</span></a>
+					</h5>
+				</div>
+				<div class="col-xs-3">
+					<div class="title">
+						<h5>Помощь</h5>
+						<h5>
+							<a href="#" class="link"><span>Новости</span></a>
+						</h5>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="title">
+						<h5>Справочная информация</h5>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="title">
+						<h5>Обратная связь</h5>
+					</div>
+					<!-- contacts -->
+					<figure class="contacts">
+						<a href="mailto:daniyar.artykov@gmail.com" class="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>daniyar.artykov@gmail.com</span></a>
+					</figure>
+					<!-- end contacts -->
+					<!-- social-links -->
+					<!--					<figure class="social-links">
+						<ul class="list-unstyled clearfix">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-vk"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-youtube"></i></a></li>
+						</ul>-->
+					<!-- end social-links -->
+				</div>
+			</div>
+
+			<!-- copyright -->
+			<figure class="copyright">©&nbsp;2015
+			</figure>
+			<!-- end copyright -->
+
+		</div>
+	</footer>
+	<!-- end #footer -->
+	<ul
+		class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
+		id="ui-id-1" tabindex="0"
+		style="display: none; top: 302px; left: 313.5px; width: 225px;">
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-21"
+			class="ui-corner-all" tabindex="-1">Туркестан</a></li>
+	</ul>
+	<ul
+		class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all"
+		id="ui-id-2" tabindex="0"
+		style="display: none; width: 225px; top: 302px; left: 598.5px;">
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-22"
+			class="ui-corner-all" tabindex="-1">АЛМА АТА 2</a></li>
+		<li class="ui-menu-item" role="presentation"><a id="ui-id-23"
+			class="ui-corner-all" tabindex="-1">АЛМА АТА 1</a></li>
+	</ul>
+</body>
+</html>
