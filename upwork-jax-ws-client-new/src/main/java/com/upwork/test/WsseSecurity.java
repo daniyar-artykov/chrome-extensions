@@ -1,5 +1,5 @@
 
-package com.accenture.nes.dto.webservicedto.ivr.header;
+package com.upwork.test;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,5 +1,5 @@
 
-package com.microsoft.schemas.ws._2008._06.identity.securitytokenservice;
+package com.upwork.test;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -7,15 +7,6 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
-
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ActionTypeHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.MessageIdHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ReplyToHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.RequestSecurityTokenResponseCollectionType;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.RequestSecurityTokenType;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.SecurityHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ToHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.VsDebuggerCausalityData;
 
 
 /**
@@ -27,7 +18,7 @@ import org.oasis_open.docs.ws_sx.ws_trust._200512.VsDebuggerCausalityData;
 @WebService(name = "IWSTrust13Async", targetNamespace = "http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
-	org.oasis_open.docs.ws_sx.ws_trust._200512.ObjectFactory.class,
+	com.upwork.test.ObjectFactory.class,
 	org.xmlsoap.schemas.ws._2005._02.trust.ObjectFactory.class,
 	com.microsoft.schemas.message.ObjectFactory.class
 })
@@ -49,6 +40,12 @@ public interface IWSTrust13Async {
 			@WebParam(name = "VsDebuggerCausalityData", targetNamespace = "http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink", header = true, partName = "vsDebuggerCausalityData") VsDebuggerCausalityData vsHeader,
 			@WebParam(name = "To", targetNamespace = "http://www.w3.org/2005/08/addressing", header = true, partName = "toHeader") ToHeader toHeader,
 			@WebParam(name = "Security", targetNamespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", header = true, partName = "securityHeader") SecurityHeader securityHeader,
+			@WebParam(name = "RequestSecurityToken", targetNamespace = "http://docs.oasis-open.org/ws-sx/ws-trust/200512", partName = "request")
+			RequestSecurityTokenType request);
+	
+	@WebMethod(operationName = "Trust13IssueAsync", action = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/RST/Issue")
+	@WebResult(name = "RequestSecurityTokenResponseCollection", targetNamespace = "http://docs.oasis-open.org/ws-sx/ws-trust/200512", partName = "Trust13IssueAsyncResult")
+	public RequestSecurityTokenResponseCollectionType trust13IssueAsync(
 			@WebParam(name = "RequestSecurityToken", targetNamespace = "http://docs.oasis-open.org/ws-sx/ws-trust/200512", partName = "request")
 			RequestSecurityTokenType request);
 

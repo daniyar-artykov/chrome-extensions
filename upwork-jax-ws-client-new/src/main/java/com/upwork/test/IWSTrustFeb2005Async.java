@@ -1,5 +1,5 @@
 
-package com.microsoft.schemas.ws._2008._06.identity.securitytokenservice;
+package com.upwork.test;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -20,7 +20,7 @@ import org.xmlsoap.schemas.ws._2005._02.trust.RequestSecurityTokenType;
 @WebService(name = "IWSTrustFeb2005Async", targetNamespace = "http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
-    org.oasis_open.docs.ws_sx.ws_trust._200512.ObjectFactory.class,
+    com.upwork.test.ObjectFactory.class,
     org.xmlsoap.schemas.ws._2005._02.trust.ObjectFactory.class,
     com.microsoft.schemas.message.ObjectFactory.class
 })

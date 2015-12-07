@@ -1,5 +1,5 @@
 
-package com.accenture.nes.dto.webservicedto.ivr;
+package com.upwork.test;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

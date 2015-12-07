@@ -1,5 +1,5 @@
 
-package com.accenture.nes.webservices;
+package com.upwork.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;

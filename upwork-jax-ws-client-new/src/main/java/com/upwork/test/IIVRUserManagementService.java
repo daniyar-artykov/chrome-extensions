@@ -1,5 +1,5 @@
 
-package com.accenture.nes.webservices;
+package com.upwork.test;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -9,11 +9,9 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
-import com.accenture.nes.dto.webservicedto.ivr.AuthorizeUserRequestDTO;
 import com.accenture.nes.dto.webservicedto.ivr.ResetPinRequestDTO;
-import com.accenture.nes.dto.webservicedto.ivr.header.WsseSecurity;
-import com.accenture.nes.webservicedto.ivr.AuthorizeUserResponseDTO;
 import com.accenture.nes.webservicedto.ivr.ResetPinResponseDTO;
+import com.accenture.nes.webservices.ObjectFactory;
 
 
 /**

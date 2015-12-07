@@ -4,7 +4,8 @@ package com.accenture.nes.webservices;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import com.accenture.nes.dto.webservicedto.ivr.AuthorizeUserRequestDTO;
+
+import com.upwork.test.AuthorizeUserRequestDTO;
 
 
 /**

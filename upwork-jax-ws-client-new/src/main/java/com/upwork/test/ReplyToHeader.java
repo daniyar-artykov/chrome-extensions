@@ -1,5 +1,5 @@
 
-package org.oasis_open.docs.ws_sx.ws_trust._200512;
+package com.upwork.test;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

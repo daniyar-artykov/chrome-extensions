@@ -1,5 +1,5 @@
 
-package com.microsoft.schemas.ws._2008._06.identity.securitytokenservice;
+package com.upwork.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,13 +23,13 @@ public class SecurityTokenService
 {
 
     private final static URL SECURITYTOKENSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(com.microsoft.schemas.ws._2008._06.identity.securitytokenservice.SecurityTokenService.class.getName());
+    private final static Logger logger = Logger.getLogger(com.upwork.test.SecurityTokenService.class.getName());
 
     static {
         URL url = null;
         try {
             URL baseUrl;
-            baseUrl = com.microsoft.schemas.ws._2008._06.identity.securitytokenservice.SecurityTokenService.class.getResource(".");
+            baseUrl = com.upwork.test.SecurityTokenService.class.getResource(".");
             url = new URL(baseUrl, "file:/home/abhayk/workspaces/jar/testsdf/adfs.wsdl");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'file:/home/abhayk/workspaces/jar/testsdf/adfs.wsdl', retrying as a local file");

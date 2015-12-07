@@ -4,7 +4,7 @@
  * @author: abhayk
  * Date:  Jul 3, 2015
  */
-package com.solex.test;
+package com.upwork.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,33 +14,16 @@ import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ActionTypeHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.MessageIdHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ReplyToHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.RequestSecurityTokenResponseCollectionType;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.RequestSecurityTokenResponseType;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.RequestSecurityTokenType;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.SecurityHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.ToHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.UsernameTokenHeader;
-import org.oasis_open.docs.ws_sx.ws_trust._200512.VsDebuggerCausalityData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.accenture.nes.dto.webservicedto.ivr.AuthorizeUserRequestDTO;
-import com.accenture.nes.dto.webservicedto.ivr.header.WsseSecurity;
-import com.accenture.nes.dto.webservicedto.ivr.header.WsseSecurity.Assertion;
-import com.accenture.nes.webservicedto.ivr.AuthorizeUserResponseDTO;
-import com.accenture.nes.webservices.IIVRUserManagementService;
-import com.accenture.nes.webservices.IVRUserManagementService;
-import com.microsoft.schemas.ws._2008._06.identity.securitytokenservice.IWSTrust13Async;
-import com.microsoft.schemas.ws._2008._06.identity.securitytokenservice.SecurityTokenService;
+import com.upwork.test.WsseSecurity.Assertion;
 
 /**
  *
  */
-public class MainSolex {
-	private static final Logger logger = Logger.getLogger(MainSolex.class.getName());
+public class MainSolexEdited {
+	private static final Logger logger = Logger.getLogger(MainSolexEdited.class.getName());
 
 	public static void main(String[] args) {
 
@@ -64,7 +47,7 @@ public class MainSolex {
 		SecurityTokenService stService = new SecurityTokenService(url, qname);
 		IWSTrust13Async trust13Async = stService.getUserNameWSTrustBindingIWSTrust13Async();
 		RequestSecurityTokenType requestToken = new RequestSecurityTokenType(); 
-		
+
 		ActionTypeHeader actionHeader = new ActionTypeHeader();
 		actionHeader.setMustUnderstand("1");
 		actionHeader.setAction("http://docs.oasis-open.org/ws-sx/ws-trust/200512/RST/Issue");
@@ -89,46 +72,44 @@ public class MainSolex {
 					.newDocument();
 			Element appliesTo = document
 					.createElementNS("http://schemas.xmlsoap.org/ws/2004/09/policy", "AppliesTo");
-			
+
 			Element endpoint = document.createElementNS("http://www.w3.org/2005/08/addressing", "EndpointReference");
 			Element address = document.createElementNS("http://www.w3.org/2005/08/addressing", "Address");
 			address.setTextContent("https://ivr.taqat.sa");
-			
+
 			endpoint.appendChild(address);
 			appliesTo.appendChild(endpoint);
-			
+
 			requestToken.getAny().add(appliesTo);
-			
+
 			Element keyType = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder()
 					.newDocument()
 					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "KeyType");
 			keyType.setTextContent("http://docs.oasis-open.org/ws-sx/ws-trust/200512/Bearer");
 			requestToken.getAny().add(keyType);
-			
+
 			Element requestType = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder()
 					.newDocument()
 					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "RequestType");
 			requestType.setTextContent("http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue");
 			requestToken.getAny().add(requestType);
-			
+
 			Element tokenType = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder()
 					.newDocument()
 					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "TokenType");
 			tokenType.setTextContent("urn:oasis:names:tc:SAML:2.0:assertion");
 			requestToken.getAny().add(tokenType);
-			
+
 		} catch(Exception e) {
 			logger.severe(e.getMessage());
 		}
-		RequestSecurityTokenResponseCollectionType rsp = 
-				trust13Async.trust13IssueAsync(actionHeader, midHeader, replyTo, vsDebugger, toHeader, security, requestToken);
+//		RequestSecurityTokenResponseCollectionType rsp = 
+//				trust13Async.trust13IssueAsync(actionHeader, midHeader, replyTo, vsDebugger, toHeader, security, requestToken);
+		RequestSecurityTokenResponseCollectionType rsp = trust13Async.trust13IssueAsync(requestToken);
 		List<RequestSecurityTokenResponseType> listRsp = rsp.getRequestSecurityTokenResponse();
-
-
-
 	}
 
 	private static void callIVR() {

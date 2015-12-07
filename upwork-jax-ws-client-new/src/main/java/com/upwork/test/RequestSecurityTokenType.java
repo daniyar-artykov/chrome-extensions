@@ -1,5 +1,5 @@
 
-package org.oasis_open.docs.ws_sx.ws_trust._200512;
+package com.upwork.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,12 +17,12 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for RequestSecurityTokenResponseType complex type.
+ * <p>Java class for RequestSecurityTokenType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="RequestSecurityTokenResponseType">
+ * &lt;complexType name="RequestSecurityTokenType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice maxOccurs="unbounded" minOccurs="0">
@@ -38,10 +38,10 @@ import org.w3c.dom.Element;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RequestSecurityTokenResponseType", propOrder = {
+@XmlType(name = "RequestSecurityTokenType", propOrder = {
     "any"
 })
-public class RequestSecurityTokenResponseType {
+public class RequestSecurityTokenType {
 
     @XmlAnyElement(lax = true)
     protected List<Object> any;

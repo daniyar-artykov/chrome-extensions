@@ -3,6 +3,8 @@ package com.accenture.nes.webservicedto.ivr;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
+import com.upwork.test.AuthorizeUserResponseDTO;
+
 
 /**
  * This object contains factory methods for each 
