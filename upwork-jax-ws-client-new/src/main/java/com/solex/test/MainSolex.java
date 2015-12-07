@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.oasis_open.docs.ws_sx.ws_trust._200512.ActionTypeHeader;
 import org.oasis_open.docs.ws_sx.ws_trust._200512.MessageIdHeader;
@@ -23,6 +24,8 @@ import org.oasis_open.docs.ws_sx.ws_trust._200512.SecurityHeader;
 import org.oasis_open.docs.ws_sx.ws_trust._200512.ToHeader;
 import org.oasis_open.docs.ws_sx.ws_trust._200512.UsernameTokenHeader;
 import org.oasis_open.docs.ws_sx.ws_trust._200512.VsDebuggerCausalityData;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import com.accenture.nes.dto.webservicedto.ivr.AuthorizeUserRequestDTO;
 import com.accenture.nes.dto.webservicedto.ivr.header.WsseSecurity;
@@ -48,7 +51,8 @@ public class MainSolex {
 
 		URL url = null;
 		try {
-			url = new URL("http://localhost:8080/localhost?WSDL");
+			url = new URL("file:///D:/Projects/Repositories/chrome-extensions/upwork-jax-ws-client-new/src/main/resources/mex/mex.xml");
+			//url = new URL("http://localhost:8080/localhost?WSDL");
 			//			url = new URL("http://localhost:8081/IVR?WSDL");
 			//sample location path can be file:///home/abc/IVRUserManagementServiceImplPort.wsdl
 		} catch (MalformedURLException e) {
@@ -58,18 +62,9 @@ public class MainSolex {
 
 		QName qname = new QName("http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice", "SecurityTokenService");
 		SecurityTokenService stService = new SecurityTokenService(url, qname);
-		IWSTrust13Async trust13Async = stService.getCertificateWSTrustBindingIWSTrust13Async();
+		IWSTrust13Async trust13Async = stService.getUserNameWSTrustBindingIWSTrust13Async();
 		RequestSecurityTokenType requestToken = new RequestSecurityTokenType(); 
-//		requestToken.setContext("test");
-
-		//		BindingProvider provider = (BindingProvider) trust13Async;
-		//		Binding binding = provider.getBinding();
-		//		String xmlString = "<a:Action s:mustUnderstand=\"1\">http://docs.oasis-open.org/ws-sx/ws-trust/200512/RST/Issue</a:Action><a:MessageID>urn:uuid:e01d8a0e-f169-4cb8-9587-c964de542a30</a:MessageID><a:ReplyTo><a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address></a:ReplyTo><VsDebuggerCausalityData xmlns=\"http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink\">uIDPox7qbcwXb+NFkG8FI4LiN7QAAAAApgNa0rNL+Eu9x08ZJr+6IxzYsy9hRWFEtxa4wjA7dqYACQAA</VsDebuggerCausalityData><a:To s:mustUnderstand=\"1\">https://adfs.preprod.nes/adfs/services/trust/13/UsernameMixed</a:To><o:Security s:mustUnderstand=\"1\" xmlns:o=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\"><o:UsernameToken u:Id=\"uuid-43e22322-edd1-44a9-9228-4d173daf5875-1\"><o:Username>preproduser1</o:Username><o:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">Password1</o:Password></o:UsernameToken></o:Security>";
-		//		List<Handler> handlerChain = new ArrayList<Handler>();
-		//		handlerChain.add(new HeaderHandler(xmlString));
-		//		binding.setHandlerChain(handlerChain);
-		// sl$123123
-
+		
 		ActionTypeHeader actionHeader = new ActionTypeHeader();
 		actionHeader.setMustUnderstand("1");
 		actionHeader.setAction("http://docs.oasis-open.org/ws-sx/ws-trust/200512/RST/Issue");
@@ -88,11 +83,51 @@ public class MainSolex {
 		security.setMustUnderstand("1");
 		security.setUsernameToken(usernameToken);
 
+		try {
+			Document document = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder()
+					.newDocument();
+			Element appliesTo = document
+					.createElementNS("http://schemas.xmlsoap.org/ws/2004/09/policy", "AppliesTo");
+			
+			Element endpoint = document.createElementNS("http://www.w3.org/2005/08/addressing", "EndpointReference");
+			Element address = document.createElementNS("http://www.w3.org/2005/08/addressing", "Address");
+			address.setTextContent("https://ivr.taqat.sa");
+			
+			endpoint.appendChild(address);
+			appliesTo.appendChild(endpoint);
+			
+			requestToken.getAny().add(appliesTo);
+			
+			Element keyType = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder()
+					.newDocument()
+					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "KeyType");
+			keyType.setTextContent("http://docs.oasis-open.org/ws-sx/ws-trust/200512/Bearer");
+			requestToken.getAny().add(keyType);
+			
+			Element requestType = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder()
+					.newDocument()
+					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "RequestType");
+			requestType.setTextContent("http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue");
+			requestToken.getAny().add(requestType);
+			
+			Element tokenType = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder()
+					.newDocument()
+					.createElementNS("http://docs.oasis-open.org/ws-sx/ws-trust/200512", "TokenType");
+			tokenType.setTextContent("urn:oasis:names:tc:SAML:2.0:assertion");
+			requestToken.getAny().add(tokenType);
+			
+		} catch(Exception e) {
+			logger.severe(e.getMessage());
+		}
 		RequestSecurityTokenResponseCollectionType rsp = 
 				trust13Async.trust13IssueAsync(actionHeader, midHeader, replyTo, vsDebugger, toHeader, security, requestToken);
 		List<RequestSecurityTokenResponseType> listRsp = rsp.getRequestSecurityTokenResponse();
-		
-		
+
+
 
 	}
 
