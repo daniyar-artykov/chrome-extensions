@@ -34,7 +34,8 @@ public class MainSolexEdited {
 
 		URL url = null;
 		try {
-			url = new URL("file:///D:/Projects/Repositories/chrome-extensions/upwork-jax-ws-client-new/src/main/resources/mex/mex.xml");
+			url = new URL("file:///Users/daniyar/repos/chrome-extensions/upwork-jax-ws-client-new/src/main/resources/mex/mex.xml");
+//			url = new URL("file:///D:/Projects/Repositories/chrome-extensions/upwork-jax-ws-client-new/src/main/resources/mex/mex.xml");
 			//url = new URL("http://localhost:8080/localhost?WSDL");
 			//			url = new URL("http://localhost:8081/IVR?WSDL");
 			//sample location path can be file:///home/abc/IVRUserManagementServiceImplPort.wsdl
@@ -74,7 +75,7 @@ public class MainSolexEdited {
 					.createElementNS("http://schemas.xmlsoap.org/ws/2004/09/policy", "AppliesTo");
 
 			Element endpoint = document.createElementNS("http://www.w3.org/2005/08/addressing", "EndpointReference");
-			Element address = document.createElementNS("http://www.w3.org/2005/08/addressing", "Address");
+			Element address = document.createElementNS("http://www.w3.org/2005/08/addressing", "ns3:Address");
 			address.setTextContent("https://ivr.taqat.sa");
 
 			endpoint.appendChild(address);
@@ -106,9 +107,9 @@ public class MainSolexEdited {
 		} catch(Exception e) {
 			logger.severe(e.getMessage());
 		}
-//		RequestSecurityTokenResponseCollectionType rsp = 
-//				trust13Async.trust13IssueAsync(actionHeader, midHeader, replyTo, vsDebugger, toHeader, security, requestToken);
-		RequestSecurityTokenResponseCollectionType rsp = trust13Async.trust13IssueAsync(requestToken);
+		RequestSecurityTokenResponseCollectionType rsp = 
+				trust13Async.trust13IssueAsync(actionHeader, midHeader, replyTo, vsDebugger, toHeader, security, requestToken);
+//		RequestSecurityTokenResponseCollectionType rsp = trust13Async.trust13IssueAsync(requestToken);
 		List<RequestSecurityTokenResponseType> listRsp = rsp.getRequestSecurityTokenResponse();
 	}
 

@@ -15,7 +15,7 @@ public class SecurityHeader {
 	@XmlAttribute(name = "mustUnderstand", namespace = "http://www.w3.org/2003/05/soap-envelope")
 	protected String mustUnderstand;
 
-	@XmlElement(name = "UsernameToken")
+	@XmlElement(name = "UsernameToken", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd")
 	protected UsernameTokenHeader usernameToken;
 	
 	public String getMustUnderstand() {

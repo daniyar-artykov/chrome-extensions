@@ -1,0 +1,24 @@
+Version 1.3.1 (2013-12-03):
+* A few bug fixes for notify on update.
+* Make it more clear that creations are counted as updates.
+
+Version 1.3.0 (2013-12-03):
+* Show notifications on update (optional)
+
+Version 1.2.0 (2013-10-01):
+* Support HTTPS for Zendesk and Freshdesk.
+
+Verson 1.1.1 (2013-03-22):
+* Allow specifying which Freshdesk filter to use (Issue #6, steddy).
+* Make it possible to reset the extension if you have forgotten the master password.
+
+Version 1.1.0 (2013-03-11):
+* Add Freshdesk support (Issue #5, ntemple).
+
+Version 1.0.2 (2011-09-10):
+* Use "SupportNotifications" rule if available.
+
+Verson 1.0.1:
+* Obtain rule/view id to use from Zendesk (Issue #1, christianaj).
+* Do not schedule status update before logging in
+* Smaller popup

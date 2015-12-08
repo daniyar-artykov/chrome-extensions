@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "ReplyTo")
 public class ReplyToHeader {
 
-	@XmlElement(name = "Address", namespace = "http://www.w3.org/2003/05/soap-envelope")
+	@XmlElement(name = "Address", namespace = "http://www.w3.org/2005/08/addressing")
 	protected String address;
 
 	public String getAddress() {
