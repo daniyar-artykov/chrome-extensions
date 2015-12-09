@@ -1,0 +1,17 @@
+<form id="getsatisfaction">
+  <fieldset>
+    <legend>GetSatisfaction Authentication details</legend>
+    <p>
+      <input type="checkbox" name="enabled" value="1" {{{checked}}} id="getsatisfaction_enabled"/>
+      <label for="getsatisfaction_enabled">Enable</label>
+    </p>
+    <p>
+      <label for="getsatisfaction_company_id">Company ID: </label> <br/>
+      <input type="text" name="company_id" value="{{{companyId}}}" id="getsatisfaction_company_id"/>
+    </p>
+    <p>
+      <input type="submit" name="submit_button" value="Save" />
+      <input type="button" name="test_button" value="Test" />
+    </p>
+  </fieldset>
+</form>

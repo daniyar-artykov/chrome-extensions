@@ -7,6 +7,8 @@ package codebase;
  */
 public enum ChatRequest {
 LOGIN,
+LOGIN_STEP_1,
+LOGIN_STEP_2,
 LOGOUT,
 CHAT,
 RESPONSE,

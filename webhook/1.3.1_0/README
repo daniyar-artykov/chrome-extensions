@@ -1,0 +1,57 @@
+SupportNotifications is a Google Chrome extension that notifies you when new tickets
+are created (or existing ones are updated) in your preferred help desk service.
+
+Currently supported services:
+  Zendesk
+  getsatisfaction
+  Freshdesk
+  
+Feel free to suggest support for other help desk services.
+
+Maintenance
+-----------------------
+I no longer use SupportNotifications myself. I therefore look for someone else
+to volounteer to maintain the extension. Please contact me on Github if you're
+interested.
+  
+Security considerations
+------------------------
+SupportNotifications uses a master password to encrypt your data on disk.
+However, after you have logged in with the master password, all credentials
+are available in clear text in the extensions memory. Anyone accessing your
+computer after you have logged in with your master password can thus find your
+usernames, passwords. You are hereby warned.
+
+TODO
+--------------
+  * Present errors in a nice way
+  * Go async.
+  
+Getting Started
+---------------
+* Install the extension.
+* You should now see a headphone icon beside the wrench, with a yellow banner 
+  indicating that you have not "logged in". Click on it and enter a master password
+  that will be used to protect your credentials.
+* Click on the headphones again and select "Configure SupportNotifications". 
+  This will bring up the options page.
+* Fill in your authentication details, as well as your master password and save your
+  settings.
+* You can also test your authentication details bly clicking on the "Test" button.
+* A desktop notification will appear as new tickets are created, and you will be able
+  to see the number of tickets, as well as the most recent ticket, by clicking on the
+  headphones.
+
+Note for Zendesk users
+----------------------
+You can help SupportNotifications by creating a view with "SupportNotifications"
+in the title. Configure it like this:
+"Meet all of the following conditions": Status less than Pending
+"Order by": Request date  
+"Available for": All agents
+
+SupportNotifications will use this view when looking for new tickets.
+
+Contributors:
+Daniel Abrahamsson (development)
+Joel Abrahamsson (design, audio)

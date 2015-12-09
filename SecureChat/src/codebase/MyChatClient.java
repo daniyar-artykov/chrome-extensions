@@ -62,6 +62,7 @@ class MyChatClient extends ChatClient {
 		p.password = pwd;
 
 		SerializeNSend(p);
+		
 	}
 	
 	/**

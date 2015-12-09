@@ -1,5 +1,7 @@
 package codebase;
 
+import infrastructure.ChatServer;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -15,9 +17,6 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-
-import codebase.util.BCrypt;
-import infrastructure.ChatServer;
 
 /**
  * ChatServer implements the fundamental communication capabilities for your
@@ -76,13 +75,11 @@ class MyChatServer extends ChatServer {
 				for (int i = 0; i < database.size(); i++) {
 
 					JsonObject l = database.getJsonObject(i);
-
 					//					if (l.getString("uid").equals(p.uid)
-					//							&& l.getString("password").equals(p.password)) {
-
+					//							&& BCrypt.checkpw(p.password, l.getString("password"))) {	
 					// When both uid and pwd match
 					if (l.getString("uid").equals(p.uid)
-							&& BCrypt.checkpw(p.password, l.getString("password"))) {	
+							&& l.getString("password").equals(p.password)) {
 						// We do not allow one user to be logged in on multiple
 						// clients
 						if (p.uid.equals(IsA ? statB : statA))
