@@ -69,14 +69,36 @@ class MyChatServer extends ChatServer {
 			Object o = in.readObject();
 			ChatPacket p = (ChatPacket) o;
 
-			if (p.request == ChatRequest.LOGIN) {
-
+			if (p.request == ChatRequest.LOGIN_STEP_1) { //if client request encrypted salt
+				
+				System.out.println("SERVER LOGIN_STEP_1");
 				// We want to go through all records
 				for (int i = 0; i < database.size(); i++) {
 
 					JsonObject l = database.getJsonObject(i);
-					//					if (l.getString("uid").equals(p.uid)
-					//							&& BCrypt.checkpw(p.password, l.getString("password"))) {	
+					// When uid match
+					if (l.getString("uid").equals(p.uid)) {
+						// We do not allow one user to be logged in on multiple
+						// clients
+						if (p.uid.equals(IsA ? statB : statA))
+							continue;
+
+						System.out.println("salt: " + l.getString("salt"));
+						
+						// Inform the client that salt found and send it
+						RespondtoClient(IsA, p.uid, "LOGIN_STEP_1", l.getString("salt"));
+
+						break;
+					}
+
+				}
+				
+			} else if (p.request == ChatRequest.LOGIN) {
+				System.out.println("SERVER LOGIN");
+				// We want to go through all records
+				for (int i = 0; i < database.size(); i++) {
+
+					JsonObject l = database.getJsonObject(i);	
 					// When both uid and pwd match
 					if (l.getString("uid").equals(p.uid)
 							&& l.getString("password").equals(p.password)) {
@@ -194,4 +216,13 @@ class MyChatServer extends ChatServer {
 		SerializeNSend(IsA, p);
 	}
 
+	void RespondtoClient(boolean IsA, String uid, String Success, String salt) {
+		ChatPacket p = new ChatPacket();
+		p.request = ChatRequest.RESPONSE;
+		p.uid = uid;
+		p.success = Success;
+		p.salt = salt;
+
+		SerializeNSend(IsA, p);
+	}
 }

@@ -15,6 +15,7 @@ public class ChatPacket implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	public ChatRequest request;
 	public String uid;
+	public String salt;
 	public String password;
 	public String success;
 	byte[] data;

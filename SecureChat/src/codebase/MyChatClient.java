@@ -21,6 +21,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
+import codebase.util.BCrypt;
 import infrastructure.ChatClient;
 
 /**
@@ -37,7 +38,7 @@ import infrastructure.ChatClient;
 class MyChatClient extends ChatClient {
 
 	MyChatClient(boolean IsA) { // This is the minimum constructor you must
-								// preserve
+		// preserve
 		super(IsA); // IsA indicates whether it's client A or B
 		startComm(); // starts the communication
 	}
@@ -48,6 +49,8 @@ class MyChatClient extends ChatClient {
 	/** The Json array storing the internal history state */
 	JsonArray chatlog;
 
+	private String curUserPwd = null;
+
 	/**
 	 * Actions received from UI
 	 */
@@ -56,15 +59,16 @@ class MyChatClient extends ChatClient {
 	 * Someone clicks on the "Login" button
 	 */
 	public void LoginRequestReceived(String uid, String pwd) {
+		// request to the server to check user and if user exist then get encrypted salt
 		ChatPacket p = new ChatPacket();
-		p.request = ChatRequest.LOGIN;
+		p.request = ChatRequest.LOGIN_STEP_1;
 		p.uid = uid;
-		p.password = pwd;
+		curUserPwd = pwd;
 
 		SerializeNSend(p);
-		
+
 	}
-	
+
 	/**
 	 * Callback invoked when the certificate file is selected
 	 * @param path Selected certificate file's path
@@ -72,7 +76,7 @@ class MyChatClient extends ChatClient {
 	public void FileLocationReceivedCert(File path) {
 		// TODO
 	}
-	
+
 	/**
 	 * Callback invoked when the private key file is selected
 	 * @param path Selected private key file's path
@@ -80,7 +84,7 @@ class MyChatClient extends ChatClient {
 	public void FileLocationReceivedPriv(File path) {
 		// TODO 
 	}
-	
+
 	/**
 	 * Callback invoked when an authentication mode is selected. 
 	 * @param IsPWD True if password-based (false if certificate-based).
@@ -147,7 +151,23 @@ class MyChatClient extends ChatClient {
 			Object o = in.readObject();
 			ChatPacket p = (ChatPacket) o;
 
-			if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN")) {
+			// if step is LOGIN_STEP_1 (requested encrypted salt)
+			if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN_STEP_1")) {
+				
+				System.out.println("CLIENT LOGIN_STEP_1");
+				System.out.println("salt: " + p.salt);
+				ChatPacket p2 = new ChatPacket();
+				p2.request = ChatRequest.LOGIN;
+				p2.uid = p.uid;
+				// create encrypted password using BCrypt and encrypted salt
+				if(curUserPwd != null) {
+					p2.password = BCrypt.hashpw(curUserPwd, p.salt);
+				}
+				curUserPwd = null;
+				System.out.println("password: " + p2.password);
+				
+				SerializeNSend(p2);
+			} else if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN")) {
 				// This indicates a successful login
 				curUser = p.uid;
 
@@ -173,7 +193,7 @@ class MyChatClient extends ChatClient {
 						System.err.println("Chatlog file could not be created or opened.");
 					}
 				}
-				
+
 				RefreshList();
 
 			} else if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGOUT")) {
@@ -196,7 +216,7 @@ class MyChatClient extends ChatClient {
 		}
 
 	}
-	
+
 	/**
 	 * Gives the path of the local chat history file (user-based)
 	 */

@@ -1,1 +1,1 @@
-[{"uid":"Alice","salt":"$2a$10$HBY7FWzV3/gVeWBNfRzgFu","password":"$2a$10$HBY7FWzV3/gVeWBNfRzgFuYpGWQaUZJAAtheeEBYnu6rDgJLypGoC"},{"uid":"Bob","password":"$2a$10$qh0zw6uZmuLxagtvAzjrlOdQNxNsxDxib3U7Nu8Xuvg8ckUyhXwIm"}]
+[{"uid":"Alice","salt":"$2a$10$HBY7FWzV3/gVeWBNfRzgFu","password":"$2a$10$HBY7FWzV3/gVeWBNfRzgFuYpGWQaUZJAAtheeEBYnu6rDgJLypGoC"},{"uid":"Bob","salt":"$2a$10$INyPOenxLvTGJEMbmn1rs.","password":"$2a$10$INyPOenxLvTGJEMbmn1rs.g0FdoTJQBE4/n1UKYTfHcerycs3jzHG"}]
