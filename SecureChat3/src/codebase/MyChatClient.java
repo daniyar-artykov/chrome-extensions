@@ -88,6 +88,7 @@ class MyChatClient extends ChatClient {
 	 */
 	public void FileLocationReceivedCert(File path) {
 		// TODO
+		System.out.println("cert is selected");
 	}
 
 	/**
@@ -96,6 +97,7 @@ class MyChatClient extends ChatClient {
 	 */
 	public void FileLocationReceivedPriv(File path) {
 		// TODO 
+		System.out.println("prv_key is selected");
 	}
 
 	/**
@@ -104,6 +106,7 @@ class MyChatClient extends ChatClient {
 	 */
 	public void ReceivedMode(boolean IsPWD) {
 		// TODO
+		System.out.println("receive mode " + IsPWD);
 	}
 
 
