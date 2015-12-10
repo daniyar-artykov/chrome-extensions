@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<S:Envelope xmlns:S="http://www.w3.org/2003/05/soap-envelope">
+	<S:Header>
+		<ns3:Action xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink"
+			S:mustUnderstand="1">http://docs.oasis-open.org/ws-sx/ws-trust/200512/RST/Issue
+		</ns3:Action>
+		<ns3:MessageID xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink">urn:uuid:e01d8a0e-f169-4cb8-9587-c964de542a30
+		</ns3:MessageID>
+		<ns3:ReplyTo xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink">
+			<ns3:Address>http://www.w3.org/2005/08/addressing/anonymous
+			</ns3:Address>
+		</ns3:ReplyTo>
+		<ns7:VsDebuggerCausalityData
+			xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink">uIDPox7qbcwXb+NFkG8FI4LiN7QAAAAApgNa0rNL+Eu9x08ZJr+6IxzYsy9hRWFEtxa4wjA7dqYACQAA
+		</ns7:VsDebuggerCausalityData>
+		<ns3:To xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink"
+			S:mustUnderstand="1">https://adfs.preprod.nes/adfs/services/trust/13/UsernameMixed
+		</ns3:To>
+		<ns5:Security xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink"
+			S:mustUnderstand="1">
+			<ns5:UsernameToken ns4:Id="uuid-43e22322-edd1-44a9-9228-4d173daf5875-1">
+				<ns5:Username>preproduser1</ns5:Username>
+				<ns5:Password>Password1</ns5:Password>
+			</ns5:UsernameToken>
+		</ns5:Security>
+	</S:Header>
+	<S:Body>
+		<ns2:RequestSecurityToken
+			xmlns:ns2="http://docs.oasis-open.org/ws-sx/ws-trust/200512"
+			xmlns:ns3="http://www.w3.org/2005/08/addressing"
+			xmlns:ns4="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			xmlns:ns5="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:ns6="http://schemas.xmlsoap.org/ws/2005/02/trust"
+			xmlns:ns7="http://schemas.microsoft.com/vstudio/diagnostics/servicemodelsink">
+			<AppliesTo:AppliesTo xmlns:AppliesTo="http://schemas.xmlsoap.org/ws/2004/09/policy"
+				xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy">
+				<ns3:EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+					<ns3:Address>https://ivr.taqat.sa</ns3:Address>
+				</ns3:EndpointReference>
+			</AppliesTo:AppliesTo>
+			<ns2:KeyType xmlns="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/Bearer
+			</ns2:KeyType>
+			<ns2:RequestType xmlns="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue
+			</ns2:RequestType>
+			<ns2:TokenType xmlns="http://docs.oasis-open.org/ws-sx/ws-trust/200512">urn:oasis:names:tc:SAML:2.0:assertion
+			</ns2:TokenType>
+		</ns2:RequestSecurityToken>
+	</S:Body>
+</S:Envelope>

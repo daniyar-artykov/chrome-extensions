@@ -1,0 +1,67 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices.nes.accenture.com/">
+   <soapenv:Header>
+         <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+          <Assertion ID="_53b1f678-f52f-4bc1-94e3-3c776baa7138" IssueInstant="2015-11-28T13:08:29.804Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                  <Issuer>http://adfs.preprod.nes/adfs/services/trust</Issuer>
+                  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                     <ds:SignedInfo>
+                        <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                        <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+                        <ds:Reference URI="#_53b1f678-f52f-4bc1-94e3-3c776baa7138">
+                           <ds:Transforms>
+                              <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                              <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                           </ds:Transforms>
+                           <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                           <ds:DigestValue>kefEZ3S1vl9I0lre16xbpRh7Dh3VUTfSiH32yEq4sO8=</ds:DigestValue>
+                        </ds:Reference>
+                     </ds:SignedInfo>
+<ds:SignatureValue>c82cSpLjznDpRFCnUWqVxBzytyPLYim/Hp9GYQS/P7ZMgScHBhJB03hSW9kxsNWg034UytQEPOvPuws5ktIyuxKiu8JdSjNrb9qZIS2ptsamI293itDjh7uQbb1sRK9o0flYRFH4MOdRC9bq1b+N3DbrzAia9pAlbhDZ4bV7fapEslE/LTBGXLrbqIo6lhJx8Wkj+VjjmjjF4ek+H3MXuqFVp/iWd8vSlQTJsU+QZRhlpwESHkVfW2U6yVsZ2iwwamh0ItTZzlT3EoE2tbaY4Qc5c3fQrNicajJ6tNB030sIDM93PGbx9plUY9b74lpHAH4nAW5XP8ITKU1ptR7ESw==</ds:SignatureValue>
+                     <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                        <ds:X509Data>
+<ds:X509Certificate>MIIC3DCCAcSgAwIBAgIQWa10jmQlc4RK0e+6ZCQexzANBgkqhkiG9w0BAQsFADAqMSgwJgYDVQQDEx9BREZTIFNpZ25pbmcgLSBhZGZzLnByZXByb2QubmVzMB4XDTE1MDIwMjEwNTQ1OFoXDTE2MDIwMjEwNTQ1OFowKjEoMCYGA1UEAxMfQURGUyBTaWduaW5nIC0gYWRmcy5wcmVwcm9kLm5lczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJACECPHIUJkSE3yqTi1i1dQms8zWguOO6gMXi+nMyScMfsi1TprKGhLfkZJNDbLzSP4ENEox6sVTKJ8xJ2c/Rob6ZTv+iq4jDtBL9/MSY7mJ7SOQuhQ7/+MzjfOw3ck8PdbHNivPpl/AiB8sU6kt8MuGOgYxD032Kw/bFIZXTU5SN36dGx8MQZGpybNqI/zuGVY+9o0ymRNRN3IXCnZ24xE6n4yna9y5cbJORqlu/XWrQBXH8b4VlCB4Z2jXhRCcNDmuDaeAthmDG9SiRkscihihRpP46N4WYXI9x+44F1hNItqrT80TUPoNwrA4CAhHi52+A0Nv0Z2om4Y3O0emgUCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEACGFenvEp9X259xzi2j2NAAq+uI9u+azoYgAqDpS1o+N3uU5t07CMbmx/BW3D1j3zESaTbSTQNtIwxRfBPliZdjzn1lACkOaUuELp5jrpiedFNK5ckt030CCwZ7TlKb+2AF/ZphkwQeS5YLNRY/nZ98FeZkh1jsYjdMItwYDZv4asq0M5MT3B+V2tUMWZEf83zjj58rEpgGrW4jD0Oyl9X4/k5VLTTXdIQe6nJKdhvuIXdD5US3twfuvmivJVBQxOho9aZxYMwXwXN47SyD+6fNUgagzsLrARDGYwX7mpcJzug4P2t5+jYYxrwOVk0kRJzfQifhE9ZomDfFfy8Xwrfg==</ds:X509Certificate>
+                        </ds:X509Data>
+                     </KeyInfo>
+                  </ds:Signature>
+                  <Subject>
+                     <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+                        <SubjectConfirmationData NotOnOrAfter="2015-11-28T13:13:29.804Z"/>
+                     </SubjectConfirmation>
+                  </Subject>
+                  <Conditions NotBefore="2015-11-28T13:08:29.804Z" NotOnOrAfter="2015-11-28T14:08:29.804Z">
+                     <AudienceRestriction>
+                        <Audience>https://ivr.taqat.sa</Audience>
+                     </AudienceRestriction>
+                  </Conditions>
+                  <AttributeStatement>
+                     <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name">
+                        <AttributeValue>NESLAB\preproduser1</AttributeValue>
+                     </Attribute>
+                     <Attribute Name="https://adfs.nes/custom/userType">
+                        <AttributeValue>Individual</AttributeValue>
+                     </Attribute>
+                  </AttributeStatement>
+                  <AuthnStatement AuthnInstant="2015-11-28T13:08:29.773Z">
+                     <AuthnContext>
+                        <AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</AuthnContextClassRef>
+                     </AuthnContext>
+                  </AuthnStatement>
+               </Assertion>
+         </wsse:Security>
+   </soapenv:Header>
+   <soapenv:Body>
+      <web:authorizeUser>
+         <!--Optional:-->
+         <authorizeUserRequestDTO>
+            <!--Optional:-->
+            <establishmentID>0</establishmentID>
+            <!--Optional:-->
+            <languageKey>1</languageKey>
+            <!--Optional:-->
+            <telephone>1234</telephone>
+            <!--Optional:-->
+            <uniqueID>1027054515</uniqueID>
+         </authorizeUserRequestDTO>
+      </web:authorizeUser>
+   </soapenv:Body>
+</soapenv:Envelope>
