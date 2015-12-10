@@ -37,8 +37,6 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonReader;
-import javax.json.JsonStructure;
-import javax.json.JsonValue;
 import javax.json.JsonWriter;
 
 import org.apache.commons.codec.binary.Base64;
@@ -133,14 +131,19 @@ class MyChatClient extends ChatClient {
 	 * @param path Selected private key file's path
 	 */
 	public void FileLocationReceivedPriv(File path) {
-		System.out.println("prv_key is selected");
+//		System.out.println("prv_key is selected");
 		try {
 			// try to get client PrivateKey from file
 			privateKey = CertificateManager.getPrivateKey(path);
 			if(privateKey == null) { // could not find privateKey or it isn't privateKey!!
-				System.err.println("could not find privateKey or it isn't valid! " + path.getAbsolutePath());
+//				System.err.println("could not find privateKey or it isn't valid! " + path.getAbsolutePath());
 			} else { // if ok 
-				System.out.println("privateKey loaded! now you can chatting!");
+//				System.out.println("privateKey loaded! now you can chatting!");
+				if(clientCert != null) {
+					// Time to load the chatlog
+					loadChatLog();
+					RefreshList();
+				}
 			}
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -152,7 +155,7 @@ class MyChatClient extends ChatClient {
 	 * @param IsPWD True if password-based (false if certificate-based).
 	 */
 	public void ReceivedMode(boolean IsPWD) {
-		System.out.println("receive mode " + IsPWD);
+//		System.out.println("receive mode " + IsPWD);
 		this.isPwd = IsPWD;
 	}
 
@@ -176,13 +179,14 @@ class MyChatClient extends ChatClient {
 			System.err.println("please, select private key and certificate for chatting!");
 			return;
 		}
-		System.out.println("curUser=" + curUser + " " + message);
+		System.out.println("msg length: " + message.length + " original msg: " + new String(message) );
 		ChatPacket p = new ChatPacket();
 		p.request = ChatRequest.CHAT;
 		p.uid = curUser;
 		if(message != null && message.length > 0) {
-			p.data = CertificateManager.encrypt(clientCert, message);
+			p.data = CertificateManager.encrypt(serverPublicKey, message);
 		}
+		
 		SerializeNSend(p);
 	}
 
@@ -224,8 +228,8 @@ class MyChatClient extends ChatClient {
 			// if step is LOGIN_STEP_1 (requested encrypted salt)
 			if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN_STEP_1")) {
 
-				System.out.println("CLIENT LOGIN_STEP_1");
-				System.out.println("salt: " + p.salt);
+//				System.out.println("CLIENT LOGIN_STEP_1");
+//				System.out.println("salt: " + p.salt);
 				ChatPacket p2 = new ChatPacket();
 				p2.request = ChatRequest.LOGIN;
 				p2.uid = p.uid;
@@ -234,7 +238,7 @@ class MyChatClient extends ChatClient {
 					p2.password = BCrypt.hashpw(curUserPwd, p.salt);
 				}
 				curUserPwd = null;
-				System.out.println("password: " + p2.password);
+//				System.out.println("password: " + p2.password);
 
 				SerializeNSend(p2);
 			} else if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN")) {
@@ -299,7 +303,7 @@ class MyChatClient extends ChatClient {
 
 		if(!file.exists()) {
 			boolean mkdir = file.mkdir();
-			System.out.println("mkdir create 0 " + mkdir);
+//			System.out.println("mkdir create 0 " + mkdir);
 		} 
 
 		String[] names = file.list();
@@ -310,7 +314,7 @@ class MyChatClient extends ChatClient {
 			}
 		}
 
-		System.out.println(subdirectories);
+//		System.out.println(subdirectories);
 
 		try {
 			boolean found = false;
@@ -335,7 +339,7 @@ class MyChatClient extends ChatClient {
 					addr = InetAddress.getLocalHost();
 					hostname = addr.getHostName();
 				} catch (UnknownHostException ex) {
-					System.out.println("Hostname can not be resolved");
+//					System.out.println("Hostname can not be resolved");
 				}
 				historyPath += makeSHA1Hash(hostname);
 				if(subdirectories.isEmpty() || !subdirectories.contains(makeSHA1Hash(hostname))) {
@@ -347,7 +351,7 @@ class MyChatClient extends ChatClient {
 
 			if(!file.exists()) {
 				boolean mkdir = file.mkdir();
-				System.out.println("mkdir create 1 " + mkdir);
+//				System.out.println("mkdir create 1 " + mkdir);
 			} 
 
 		} catch(Exception e) {
@@ -355,7 +359,7 @@ class MyChatClient extends ChatClient {
 		}
 
 		historyPath = historyPath + "/chatlog-" + curUser + ".json";
-		System.out.println("historyPath: " + historyPath);
+//		System.out.println("historyPath: " + historyPath);
 
 		return historyPath;
 	}
@@ -381,7 +385,6 @@ class MyChatClient extends ChatClient {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**

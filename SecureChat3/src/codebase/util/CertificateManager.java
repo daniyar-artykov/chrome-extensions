@@ -87,7 +87,7 @@ public class CertificateManager {
 		return valid;
 	}
 
-	private static PublicKey getPublicKey(String path) {
+	public static PublicKey getPublicKey(String path) {
 		PublicKey publicKey = null;
 		try {
 			InputStream is = new FileInputStream(path);
@@ -168,6 +168,20 @@ public class CertificateManager {
 			Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
 			cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			encrypted = cipher.doFinal(origin);
+			System.out.println("e: " + encrypted.length);
+			
+			if(encrypted != null && encrypted.length > 0) {
+				encrypted = Base64.encodeBase64(encrypted);
+			}
+			
+//			RSAPrivateKey pk = getPrivateKey(new File("resources/keys/server_prv.pk8"));
+//			
+//			byte []decrypted = decrypt(pk, encrypted);
+//
+//			System.out.println("d: " + decrypted.length);
+//
+//			System.out.println("decrypted: " + new String(decrypted));
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -186,7 +200,12 @@ public class CertificateManager {
 			Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
 			cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			encrypted = cipher.doFinal(origin);
-			System.out.println(encrypted);
+			System.out.println("encrypted msg: " + new String(encrypted));
+
+			if(encrypted != null && encrypted.length > 0) {
+				encrypted = Base64.encodeBase64(encrypted);
+			}
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -199,7 +218,7 @@ public class CertificateManager {
 		try {
 			Cipher cipher = Cipher.getInstance("RSA/ECB/NoPadding");
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
-			decrypted = cipher.doFinal(encrypted);
+			decrypted = cipher.doFinal(Base64.decodeBase64(encrypted));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -9,6 +9,8 @@ import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -16,15 +18,31 @@ import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.JsonValue;
+
+import codebase.util.CertificateManager;
 
 public class Test {
 
+	public static void main(String args[]) {
+		try {
+			String message = "test";
+			PublicKey serverPublicKey = CertificateManager.getPublicKey("resources/keys/server_pub.pem");
+			byte[] encrypted = CertificateManager.encrypt(serverPublicKey, message.getBytes());
+			System.out.println(encrypted.length);
+			RSAPrivateKey privateKey = CertificateManager.getPrivateKey(new File("resources/keys/server_prv.pk8"));
+			byte[] decrypted = CertificateManager.decrypt(privateKey, encrypted);
+			System.out.println("\n \n \n \n \n d: " + decrypted.length);
+			System.out.println("\n \n \n \n \n \n" + new String(decrypted));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	private static String historyPath = null;
 
-	public static void main(String args[]) {
+	public static void main3(String args[]) {
 		try {
 			InputStream ins = new FileInputStream("history/b2311a3d1fd97864e418292c09eb8435b7bac224/chatlog-Alice.json");
 			JsonReader jsonReader = Json.createReader(ins);

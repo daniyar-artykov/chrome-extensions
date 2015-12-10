@@ -4,6 +4,7 @@ import infrastructure.ChatServer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.security.KeyFactory;
 import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.X509EncodedKeySpec;
 
 import javax.json.Json;
@@ -47,6 +49,8 @@ class MyChatServer extends ChatServer {
 	String statB = "";
 	private PublicKey publicKeyA = null;
 	private PublicKey publicKeyB = null;
+	
+	private RSAPrivateKey privateKey = null;
 
 	// In Constructor, the user database is loaded.
 	MyChatServer() {
@@ -54,7 +58,7 @@ class MyChatServer extends ChatServer {
 			InputStream in = new FileInputStream("database.json");
 			JsonReader jsonReader = Json.createReader(in);
 			database = jsonReader.readArray();
-
+			privateKey = CertificateManager.getPrivateKey(new File("resources/keys/server_prv.pk8"));
 		} catch (FileNotFoundException e) {
 			System.err.println("Database file not found!");
 			System.exit(-1);
@@ -80,7 +84,7 @@ class MyChatServer extends ChatServer {
 
 			if (p.request == ChatRequest.LOGIN_STEP_1) { //if client request encrypted salt
 
-				System.out.println("SERVER LOGIN_STEP_1");
+//				System.out.println("SERVER LOGIN_STEP_1");
 				// We want to go through all records
 				for (int i = 0; i < database.size(); i++) {
 
@@ -92,7 +96,7 @@ class MyChatServer extends ChatServer {
 						if (p.uid.equals(IsA ? statB : statA))
 							continue;
 
-						System.out.println("salt: " + l.getString("salt"));
+//						System.out.println("salt: " + l.getString("salt"));
 
 						// Inform the client that salt found and send it
 						RespondtoClient(IsA, p.uid, "LOGIN_STEP_1", l.getString("salt"), ChatRequest.RESPONSE);
@@ -103,7 +107,7 @@ class MyChatServer extends ChatServer {
 				}
 
 			} else if (p.request == ChatRequest.LOGIN) {
-				System.out.println("SERVER LOGIN");
+//				System.out.println("SERVER LOGIN");
 				// We want to go through all records
 				for (int i = 0; i < database.size(); i++) {
 
@@ -128,10 +132,9 @@ class MyChatServer extends ChatServer {
 
 						// Inform the client that it was successful
 						RespondtoClient(IsA, "LOGIN");
-
+						
 						break;
 					}
-
 				}
 
 				if ((IsA ? statA : statB).equals("")) {
@@ -149,21 +152,26 @@ class MyChatServer extends ChatServer {
 
 			} else if (p.request == ChatRequest.CHAT) {
 				// This is a chat message
-
+				System.out.println(p.data.length);
 				// Whoever is sending it must be already logged in
 				if ((IsA && statA != "") || (!IsA && statB != "")) {
-					// Forward the original packet to the recipient
-					SendtoClient(!IsA, buf);
+					byte []decrypted = CertificateManager.decrypt(privateKey, p.data);
+					System.out.println("decrypted msg: " + new String(decrypted));
+					byte []encrypted = CertificateManager.encrypt(!IsA ? publicKeyA : publicKeyB, decrypted);
+					// Forward the encrypted packet to the recipient
+					SendtoClient(!IsA, encrypted);
 					p.request = ChatRequest.CHAT_ACK;
 					p.uid = (IsA ? statB : statA);
 
+					// encrypt decrypted msg using sender public key, to send back to sender
+					encrypted = CertificateManager.encrypt(IsA ? publicKeyA : publicKeyB, decrypted);
+					p.data = encrypted;
 					// Flip the uid and send it back to the sender for updating
 					// chat history
 					SerializeNSend(IsA, p);
 				}
 			} else if (p.request == ChatRequest.REQUEST_PUBLIC_KEY) { // client requested server public key
 				try {
-					
 					// Update the corresponding login status
 					if (IsA) {
 						statA = p.uid;
