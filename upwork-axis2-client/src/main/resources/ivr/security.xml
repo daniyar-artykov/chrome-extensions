@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="SecurityTokenService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<xsd:schema attributeFormDefault="unqualified"
+		elementFormDefault="qualified" version="1.0"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:element name="wsse:Security">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="Assertion">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="Issuer" type="xsd:string" />
+								<xsd:element name="ds:Signature">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="ds:SignedInfo">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="ds:CanonicalizationMethod">
+															<xsd:complexType>
+																<xsd:attribute name="Algorithm" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+														<xsd:element name="ds:SignatureMethod">
+															<xsd:complexType>
+																<xsd:attribute name="Algorithm" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+														<xsd:element name="ds:Reference">
+															<xsd:complexType>
+																<xsd:sequence>
+																	<xsd:element name="ds:Transforms">
+																		<xsd:complexType>
+																			<xsd:sequence>
+																				<xsd:element name="ds:Transform">
+																					<xsd:complexType>
+																						<xsd:attribute name="Algorithm"
+																							type="xsd:string" />
+																					</xsd:complexType>
+																				</xsd:element>
+																			</xsd:sequence>
+																		</xsd:complexType>
+																	</xsd:element>
+																	<xsd:element name="ds:DigestMethod">
+																		<xsd:complexType>
+																			<xsd:attribute name="Algorithm" type="xsd:string" />
+																		</xsd:complexType>
+																	</xsd:element>
+																	<xsd:element name="ds:DigestValue" type="xsd:string" />
+																</xsd:sequence>
+																<xsd:attribute name="URI" type="xsd:string" />
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+											<xsd:element name="ds:SignatureValue" type="xsd:string" />
+											<xsd:element name="KeyInfo">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="ds:X509Data">
+															<xsd:complexType>
+																<xsd:sequence>
+																	<xsd:element name="ds:X509Certificate"
+																		type="xsd:string" />
+																</xsd:sequence>
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="Subject">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="SubjectConfirmation">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="SubjectConfirmationData">
+															<xsd:complexType>
+																<xsd:attribute name="NotOnOrAfter" type="xsd:dateTime" />
+															</xsd:complexType>
+														</xsd:element>
+													</xsd:sequence>
+													<xsd:attribute name="Method" type="xsd:string" />
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="Conditions">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="AudienceRestriction">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="Audience" type="xsd:string" />
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="NotBefore" type="xsd:dateTime" />
+										<xsd:attribute name="NotOnOrAfter" type="xsd:dateTime" />
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="AttributeStatement">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="Attribute">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="AttributeValue" type="xsd:string" />
+													</xsd:sequence>
+													<xsd:attribute name="Name" type="xsd:string" />
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="AuthnStatement">
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="AuthnContext">
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element name="AuthnContextClassRef" type="xsd:string" />
+													</xsd:sequence>
+												</xsd:complexType>
+											</xsd:element>
+										</xsd:sequence>
+										<xsd:attribute name="AuthnInstant" type="xsd:dateTime" />
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+							<xsd:attribute name="ID" type="xsd:string" />
+							<xsd:attribute name="IssueInstant" type="xsd:dateTime" />
+							<xsd:attribute name="Version" type="xsd:decimal" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+</wsdl:definitions>

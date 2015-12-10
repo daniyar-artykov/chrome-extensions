@@ -1,5 +1,8 @@
 package codebase;
 
+import infrastructure.ChatClient;
+
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -12,17 +15,27 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
+import javax.crypto.Cipher;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonReader;
-import javax.json.JsonWriter;
 
 import codebase.util.BCrypt;
-import infrastructure.ChatClient;
+import codebase.util.CipherUtil;
+import codebase.util.CipherUtilOld;
 
 /**
  * ChatClient implements the fundamental communication capabilities for your
@@ -50,6 +63,8 @@ class MyChatClient extends ChatClient {
 	JsonArray chatlog;
 
 	private String curUserPwd = null;
+	private String historyPath = null;
+	private String key = null;
 
 	/**
 	 * Actions received from UI
@@ -153,7 +168,7 @@ class MyChatClient extends ChatClient {
 
 			// if step is LOGIN_STEP_1 (requested encrypted salt)
 			if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN_STEP_1")) {
-				
+
 				System.out.println("CLIENT LOGIN_STEP_1");
 				System.out.println("salt: " + p.salt);
 				ChatPacket p2 = new ChatPacket();
@@ -163,34 +178,77 @@ class MyChatClient extends ChatClient {
 				if(curUserPwd != null) {
 					p2.password = BCrypt.hashpw(curUserPwd, p.salt);
 				}
-				curUserPwd = null;
+				//				curUserPwd = null;
 				System.out.println("password: " + p2.password);
-				
+
 				SerializeNSend(p2);
 			} else if (p.request == ChatRequest.RESPONSE && p.success.equals("LOGIN")) {
 				// This indicates a successful login
 				curUser = p.uid;
-
+				try {
+					key = makeSHA1Hash(p.salt + "|" + p.uid + "|" + curUserPwd);
+					System.out.println("key: " + key);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				// Time to load the chatlog
 				InputStream ins = null;
+				FileInputStream fis = null;
+				FileOutputStream fos = null;
 				JsonReader jsonReader;
 				File f = new File(this.getChatLogPath());
 				if (f.exists() && !f.isDirectory()) {
 					try {
 						ins = new FileInputStream(this.getChatLogPath());
-						jsonReader = Json.createReader(ins);
-						chatlog = jsonReader.readArray();
-						System.out.println(chatlog);
+						if(ins.available() == 0) {
+							Writer writer = null;
+							try {
+								f.createNewFile();
+								writer = new BufferedWriter(new OutputStreamWriter(
+										new FileOutputStream(f), "utf-8"));
+								writer.write(new String(CipherUtilOld.encryptOrDecrypt(key, Cipher.DECRYPT_MODE, "[]".getBytes("UTF-8"))));
+							} catch (Throwable ex) {
+								ex.printStackTrace();
+							} finally {
+								try {writer.close(); ins.close();} catch (Exception ex) {/*ignore*/}
+							}
+						}
+						fis = new FileInputStream(this.getChatLogPath());
+						fos = new FileOutputStream(this.getChatLogPath() + ".decrypted");
+						System.out.println(ins);
+						try {
+							CipherUtil.decrypt(key, fis, fos);
+							ins = new FileInputStream(this.getChatLogPath() + ".decrypted");
+							File file = new File(this.getChatLogPath() + ".decrypted");
+							boolean deleted = file.delete();
+							System.out.println("deleted: " + deleted);
+							jsonReader = Json.createReader(ins);
+							chatlog = jsonReader.readArray();
+							System.out.println(chatlog);
+						} catch(Throwable e) {
+							e.printStackTrace();
+						}
 					} catch (FileNotFoundException e) {
 						System.err.println("Chatlog file could not be opened.");
 					}
 				} else {
 					try {
-						f.createNewFile();
+						//							f.createNewFile();
+						fos = new FileOutputStream(this.getChatLogPath() + ".blank");
+						byte[] contentInBytes = "[]".getBytes();
+						fos.write(contentInBytes);
+						fos.flush();
+						fos.close();
+
+						fis = new FileInputStream(this.getChatLogPath() + ".blank");
+						fos = new FileOutputStream(this.getChatLogPath());
+
+						CipherUtil.encrypt(key, fis, fos);
 						ins = new FileInputStream(this.getChatLogPath());
 						chatlog = Json.createArrayBuilder().build();
-					} catch (IOException e) {
+					} catch (Throwable e) {
 						System.err.println("Chatlog file could not be created or opened.");
+						e.printStackTrace();
 					}
 				}
 
@@ -221,7 +279,74 @@ class MyChatClient extends ChatClient {
 	 * Gives the path of the local chat history file (user-based)
 	 */
 	private String getChatLogPath() {
-		return System.getProperty("java.io.tmpdir") + "SecureChat/log/chatlog-" + curUser + ".json";
+		if(historyPath != null) {
+			return historyPath;
+		}
+		List<String> subdirectories = new ArrayList<String>();
+		historyPath = "history/";
+		File file = new File(historyPath);
+
+		if(!file.exists()) {
+			boolean mkdir = file.mkdir();
+			System.out.println("mkdir create 0 " + mkdir);
+		} 
+
+		String[] names = file.list();
+
+		for(String name : names) {
+			if (new File(historyPath + name).isDirectory()) {
+				subdirectories.add(name);
+			}
+		}
+
+		System.out.println(subdirectories);
+
+		try {
+			boolean found = false;
+			String lastNi = null;
+			Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+			while (nis.hasMoreElements()) {
+				NetworkInterface ni = nis.nextElement();
+				if(found = (subdirectories.isEmpty() || subdirectories.contains(makeSHA1Hash(ni.getName())))) {
+					historyPath += makeSHA1Hash(ni.getName());
+					lastNi = null;
+					break;
+				}
+				lastNi = makeSHA1Hash(ni.getName());
+			}
+
+			if(!found && lastNi != null) {
+				historyPath += lastNi;
+			} else if(!found) {
+				String hostname = "unknown";
+				try {
+					InetAddress addr;
+					addr = InetAddress.getLocalHost();
+					hostname = addr.getHostName();
+				} catch (UnknownHostException ex) {
+					System.out.println("Hostname can not be resolved");
+				}
+				historyPath += makeSHA1Hash(hostname);
+				if(subdirectories.isEmpty() || !subdirectories.contains(makeSHA1Hash(hostname))) {
+					historyPath += makeSHA1Hash(hostname);
+				}
+			}
+
+			file = new File(historyPath);
+
+			if(!file.exists()) {
+				boolean mkdir = file.mkdir();
+				System.out.println("mkdir create 1 " + mkdir);
+			} 
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		historyPath = historyPath + "/chatlog-" + curUser + ".json";
+		System.out.println("historyPath: " + historyPath);
+
+		return historyPath;
 	}
 
 	/**
@@ -238,11 +363,24 @@ class MyChatClient extends ChatClient {
 			// The chatlog file is named after both the client and the user
 			// logged in
 
-			OutputStream out = new FileOutputStream(this.getChatLogPath());
-			JsonWriter writer = Json.createWriter(out);
-			writer.writeArray(chatlog);
-			writer.close();
-		} catch (FileNotFoundException e) {
+
+			//			JsonWriter writer = Json.createWriter(out);
+			//			writer.writeArray(chatlog);
+			System.out.println("chatlog: " + chatlog.toString());
+			//			byte[] encrypted = CipherUtilOld.encryptOrDecrypt(key, Cipher.ENCRYPT_MODE, chatlog.toString().getBytes("UTF-8"));
+
+			InputStream fis = new ByteArrayInputStream(chatlog.toString().getBytes("UTF-8"));
+			FileOutputStream fos = new FileOutputStream(this.getChatLogPath());
+
+			CipherUtil.encrypt(key, fis, fos);
+
+			//			OutputStream out = new FileOutputStream(this.getChatLogPath());
+			//			
+			//			out.write(encrypted);
+			//			out.flush();
+			//			out.close();
+			//			writer.close();
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 
@@ -298,5 +436,20 @@ class MyChatClient extends ChatClient {
 		chatlog = newl;
 		RefreshList();
 
+	}
+
+	private String makeSHA1Hash(String input)
+			throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		MessageDigest md = MessageDigest.getInstance("SHA1");
+		md.reset();
+		byte[] buffer = input.getBytes("UTF-8");
+		md.update(buffer);
+		byte[] digest = md.digest();
+
+		String hexStr = "";
+		for (int i = 0; i < digest.length; i++) {
+			hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
+		}
+		return hexStr;
 	}
 }
