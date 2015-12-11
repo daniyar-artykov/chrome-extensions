@@ -1,0 +1,65 @@
+{
+   "conn_error": {
+      "message": "Sorry, an error occurred while connecting to the server."
+   },
+   "context1": {
+      "message": "Recognize this image as CAPTHCA"
+   },
+   "context2": {
+      "message": "Use this field to enter CAPTCHA"
+   },
+   "desc": {
+      "message": "Solves those tricky authorization text filled images in web pages (CAPTCHAs) instead of you."
+   },
+   "hint1": {
+      "message": "Automatic search is switched on"
+   },
+   "hint2": {
+      "message": "Automatic search is switched off"
+   },
+   "menu1": {
+      "message": "Switch the automatic search off"
+   },
+   "menu10": {
+      "message": "Activate the Rumola voice notifications"
+   },
+   "menu11": {
+      "message": "Switch the Rumola voice notifications off"
+   },
+   "menu12": {
+      "message": "Like / Recommend the Rumola"
+   },
+   "menu2": {
+      "message": "Activate the automatic search of CAPTCHAs"
+   },
+   "menu3": {
+      "message": "Search for CAPTCHAs on this page"
+   },
+   "menu4": {
+      "message": "Cancel Rumola on this page"
+   },
+   "menu5": {
+      "message": "This page is not processing correctly"
+   },
+   "menu6": {
+      "message": "Report a failure to input the right symbols to the last CAPTCHA test"
+   },
+   "menu7": {
+      "message": "Visit the Rumola website"
+   },
+   "menu8": {
+      "message": "Login"
+   },
+   "menu9": {
+      "message": "Purchase more credits (? remaining)"
+   },
+   "solve_now": {
+      "message": "Click to solve it now"
+   },
+   "voice_off": {
+      "message": "voice notifications have just been switched OFF"
+   },
+   "voice_on": {
+      "message": "voice notifications have just been switched ON"
+   }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Rumola</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style type="text/css">
+body {
+  color:#000000;
+  font-family:Helvetica,Arial,sans-serif;
+  font-size:small;
+  margin: auto;
+  padding: auto;
+}
+
+a {
+  text-decoration:none;
+  color:#1B2B2B;
+}
+
+table {
+  align: left;
+  font-family:Helvetica,Arial,sans-serif;
+  font-size:small;
+  text-align:left;
+  color:#000000;
+}
+.actiontable  {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border-collapse:collapse;
+  background-color:#ffffff;
+  white-space:nowrap;
+}
+.actiontr {
+}
+
+.actionitem:hover {
+  border-top: 1px solid #662fa3;
+  border-left: 1px solid #662fa3;
+  border-bottom: 1px solid #662fa3;
+  border-radius: 3px 0px 0px 3px;
+}
+
+.actionitem {
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 3px 0px 3px 3px;
+  margin: 0px;
+}
+
+.actionimagetd {
+  padding: 5px 4px 3px 4px !important;
+  width: 16px !important;
+}
+
+.actiontd {
+  max-width: 900px;
+}
+
+.actiondivider {
+  border-top: 2px groove white;
+  margin: 3px 0px 3px 29px;
+}
+.filler {
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+.actiondivider {
+  border-top: 2px groove white;
+  margin: 3px 0px 3px 29px;
+}
+	</style>
+</head>
+
+<script src="popup.js"></script>
+
+<body>
+<table class="actiontable" id="actiontable">
+
+<tr id="switch_off_td" class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/popup_off.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="switch_off_a"></a></div></td>
+</tr>
+
+<tr id="switch_on_td" class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/popup_on.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="switch_on_a"></a></div></td>
+</tr>
+
+<tr class="filler"><td class="filler" colspan="3"><div class="actiondivider"></div></td></tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/popup_on.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="captcha_search_a"></a></div></td>
+</tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/popup_cancel.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="rumola_cancel_a"></a></div></td>
+</tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="incorrect_a" onclick=""></a></div></td>
+</tr>
+
+<tr class="actiontr" id="bad_answer_td">
+	<td class="imagetd actionimagetd"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="bad_answer_a"></a></div></td>
+</tr>
+
+<tr class="filler"><td class="filler" colspan="3"><div class="actiondivider"></div></td></tr>
+
+<tr class="actiontr" id="switch_voice_on_td">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/accessibility.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="switch_voice_on_a"></a></div></td>
+</tr>
+
+<tr class="actiontr" id="switch_voice_off_td">
+	<td class="imagetd actionimagetd"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="switch_voice_off_a"></a></div></td>
+</tr>
+
+<tr class="filler"><td class="filler" colspan="3"><div class="actiondivider"></div></td></tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/money.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="purchase_a"></a></div></td>
+</tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/login.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="tie_a"></a></div></td>
+</tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="visit_website_a"></a></div></td>
+</tr>
+
+<tr class="filler"><td class="filler" colspan="3"><div class="actiondivider"></div></td></tr>
+
+<tr class="actiontr">
+	<td class="imagetd actionimagetd"><img width="16px" height="16px" src="images/up16.png" style="cursor: pointer;"></td>
+	<td class="actiontd" colspan="2"><div class="actionitem"><a href="#" id="like_a"></a></div></td>
+</tr>
+
+</table>
+</body>
+</html>
