@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Rumola Preferences</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style type="text/css">
+body {
+    padding: 10px;
+    /* border: thin solid black; */
+    font-family: Verdana, Geneva, Arial, sans-serif;
+    font-size: 12px;
+}
+
+#title {
+    display: -webkit-box;
+    font-size: 14px;
+    margin: 20px;
+    height: 48px !important;
+    padding-left: 60px;
+    -webkit-box-align: center;
+    font-weight: bold;
+    background-image: url("images/rumola48.png");
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.settings-container {
+    border: thin solid black;
+    -webkit-border-radius: 5px;
+    margin: 25px;
+    padding: 7px;
+    width: 45%;
+    min-width: 300px;
+}
+
+.settings-container > span {
+    display: -webkit-box;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: -22px;
+}
+.a-link {
+    color: blue;
+}
+.a-link:hover {
+    text-decoration: underline;
+    cursor: hand;
+	cursor: pointer;
+}
+.radio-description {
+    margin-left: 3px;
+    font-size: 11px;
+    margin-top: 5px;
+}
+.fs {
+	width: 250px;
+	background:red;
+}
+	</style>
+</head>
+
+<script src="popup.js"></script>
+
+<body>
+
+	<span id="title">Rumola Preferences</span>
+	<div class="settings-container">
+		<span>Main settings</span>
+		<div><input id="switch_on_checkbox" type="checkbox"></input> <span id="switch_on_a"></span></div>
+		<div><input id="switch_voice_on_checkbox" type="checkbox"></input> <span id="switch_voice_on_a"></span></div>
+	</div>
+
+	<div class="settings-container">
+		<div><img width="32px" height="32px" src="images/up.png" style="cursor: pointer;"> <span class="a-link" style="font-size: 32px;" id="like_a"></span></div>
+	</div>
+
+	<div class="settings-container" id="bad_answer_td">
+		<span>Last captcha</span>
+		<div><span class="a-link" id="bad_answer_a"></span></div>
+	</div>
+
+	<div class="settings-container">
+		<span>Credits</span>
+		<div><img width="16px" height="16px" src="images/money.png" style="cursor: pointer;"> <span class="a-link" id="purchase_a"></span></div>
+	</div>
+
+	<form id="tie_form" method="post">
+	<input type="hidden" name="action" value="login">
+	<div class="settings-container">
+		<span id="tie_a"></span>
+		<div class="radio-description"><input type="text" name="email"></input> (Enter email address here)</div>
+		<div class="radio-description"><input type="password" name="password"></input> (Enter your password here)</div>
+		<div class="radio-description"><input type="submit"></input></div>
+	</div>
+	</form>
+
+	<div class="settings-container">
+		<span id="visit_website_a"></span>
+		<div><span class="a-link" id="visit_website_aa">http://skipinput.com/</span></div>
+	</div>
+
+</body>
+</html>
