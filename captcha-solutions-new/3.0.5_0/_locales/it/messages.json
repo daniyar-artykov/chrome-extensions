@@ -1,0 +1,65 @@
+{
+   "conn_error": {
+      "message": "Siamo spiacenti, si è verificato un errore durante la connessione al server."
+   },
+   "context1": {
+      "message": "Riconoscere questa immagine come CAPTCHA"
+   },
+   "context2": {
+      "message": "Utilizzare questo campo per inserire CAPTCHA"
+   },
+   "desc": {
+      "message": "Risolve autorizzazione complicate di testo pieno delle immagini nelle pagine web (CAPTCHA) invece di voi."
+   },
+   "hint1": {
+      "message": "Ricerca automatica è accessa"
+   },
+   "hint2": {
+      "message": "Ricerca automatica è disattiva"
+   },
+   "menu1": {
+      "message": "Spegnere la ricerca automatica"
+   },
+   "menu10": {
+      "message": "Attivare le notifiche vocali Rumola"
+   },
+   "menu11": {
+      "message": "Spegnere le notifiche vocali Rumola"
+   },
+   "menu12": {
+      "message": "Mi piace / Consiglia il Rumola"
+   },
+   "menu2": {
+      "message": "Attivare la ricerca automatica di CAPTCHA"
+   },
+   "menu3": {
+      "message": "Cerca CAPTCHA in questa pagina"
+   },
+   "menu4": {
+      "message": "Cancella Rumola in questa pagina"
+   },
+   "menu5": {
+      "message": "Questa pagina non elabora correttamente"
+   },
+   "menu6": {
+      "message": "Segnala un fallimento per inserire i simboli giusti per l’ultimo test CAPTCHA"
+   },
+   "menu7": {
+      "message": "Visita il sito Rumola"
+   },
+   "menu8": {
+      "message": "Entra"
+   },
+   "menu9": {
+      "message": "Acquista altri crediti (? rimasto)"
+   },
+   "solve_now": {
+      "message": "Clicca per risolverlo adesso"
+   },
+   "voice_off": {
+      "message": "notifiche vocali sono state appenta spente"
+   },
+   "voice_on": {
+      "message": "notifiche vocali sono state appena accese"
+   }
+}
