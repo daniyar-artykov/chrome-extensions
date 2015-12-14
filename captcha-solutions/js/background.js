@@ -192,6 +192,9 @@ set_rumola_enabled(get_rumola_enabled());
 	}
 
 	function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
+		
+		console.log('tab_id: %s, frame_id: %s, step_id: %s', tab_id, frame_id, step_id);
+		
 		if (get_rumola_key1() == 'db7669d04f6430b5') {
 			send_activation_request("fields=" + escape(toGate), tab_id, frame_id);
 		} else {
