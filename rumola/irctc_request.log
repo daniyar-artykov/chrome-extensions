@@ -1,0 +1,17 @@
+action: PleaseSendPrefs, tabId=227, frame_id=undefined
+action: RequestToFirstGate, tabId=227, frame_id=::1450071912011::0.842851662542671
+tab_id: 227, frame_id: ::1450071912011::0.842851662542671, step_id: 1
+1||0||I:https://www.irctc.co.in/eticketing/javax.faces.resource/irctc_logo_en_IN.gi…s://www.irctc.co.in/eticketing/resources/images/download_ios_app_en_IN.gif
+2||1
+15||2||T:j_username||T:j_captcha||R:labeltxt captchacls||I:https://www.irctc.co.in/eticketing/captchaImage||I:https://www.irctc.co.in/eticketing/resources/images/refresh.gif
+
+status 200
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||15||2||1||3||CeEIcS, tabId=227, frame_id=::1450071912011::0.842851662542671, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 6
+ttt: Object
+action: PlaySound, tabId=227, frame_id=undefined
+action: StartResolve, tabId=227, frame_id=::1450071912011::0.842851662542671
+action: PlaySound, tabId=227, frame_id=undefined
+action: StartResolve, tabId=227, frame_id=::1450071912011::0.842851662542671
+action: PlaySound, tabId=227, frame_id=undefined

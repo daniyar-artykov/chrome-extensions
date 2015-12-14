@@ -1,0 +1,19 @@
+action: SetContextMenuFrameId, tabId=2, frame_id=::1450070612483::0.9928503595292568
+action: PleaseSendPrefs, tabId=2, frame_id=undefined
+action: RequestToFirstGate, tabId=2, frame_id=::1450070667885::0.8558912652079016
+tab_id: 2, frame_id: ::1450070667885::0.8558912652079016, step_id: 1
+1||0||D:url("http://captchacreator.com/images/logo_bg.gif")||I:http://www.captchacreator.com/images/logo.gif||I:http://www.captchacreator.…files/images/c11.gif||I:http://www.captchacreator.com/files/images/c12.gif
+2||1||T:name||T:email||T:subject||T:spamcheck||I:http://www.captchacreator.com/captcha/captchac_code.php||T:Turing
+
+status 200
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||2||1||3||4||vQVMBh, tabId=2, frame_id=::1450070667885::0.8558912652079016, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 6
+ttt: Object
+action: PlaySound, tabId=2, frame_id=undefined
+action: StartResolve, tabId=2, frame_id=::1450070667885::0.8558912652079016
+action: PlaySound, tabId=2, frame_id=undefined
+action: StartResolve, tabId=2, frame_id=::1450070667885::0.8558912652079016
+action: PlaySound, tabId=2, frame_id=undefined
+action: PleaseSendPrefs, tabId=223, frame_id=undefined
+action: SetContextMenuFrameId, tabId=2, frame_id=::1450070667885::0.8558912652079016

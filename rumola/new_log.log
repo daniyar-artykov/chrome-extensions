@@ -1,0 +1,172 @@
+action: PleaseSendPrefs, tabId=128, frame_id=undefined
+action: RequestToFirstGate, tabId=128, frame_id=::1450088234967::0.8438598015345633
+tab_id: 128, frame_id: ::1450088234967::0.8438598015345633, step_id: 1 
+ toGate: 1||0||D:url("http://captchacreator.com/images/logo_bg.gif")||I:http://www.captchacreator.com/images/logo.gif||I:http://www.captchacreator.…files/images/c11.gif||I:http://www.captchacreator.com/files/images/c12.gif
+2||1||T:name||T:email||T:subject||T:spamcheck||I:http://www.captchacreator.com/captcha/captchac_code.php||T:Turing
+
+1||0||D:url("http://captchacreator.com/images/logo_bg.gif")||I:http://www.captchacreator.com/images/logo.gif||I:http://www.captchacreator.…files/images/c11.gif||I:http://www.captchacreator.com/files/images/c12.gif
+2||1||T:name||T:email||T:subject||T:spamcheck||I:http://www.captchacreator.com/captcha/captchac_code.php||T:Turing
+
+status 200
+objHTTP.responseText: |CAPTCHA(s) found on this page.||2||1||3||4||vFb43K
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||2||1||3||4||vFb43K, tabId=128, frame_id=::1450088234967::0.8438598015345633, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 6
+ttt: Object
+action: PlaySound, tabId=128, frame_id=undefined
+action: PleaseSendPrefs, tabId=227, frame_id=undefined
+action: RequestToFirstGate, tabId=227, frame_id=::1450089129489::0.13488865923136473
+tab_id: 227, frame_id: ::1450089129489::0.13488865923136473, step_id: 1 
+ toGate: 1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+status 200
+objHTTP.responseText: 
+process_good_response_from_first_gate
+data=, tabId=227, frame_id=::1450089129489::0.13488865923136473, b_gate_url=null
+tags.length: 1
+ttt: Object
+action: PleaseSendPrefs, tabId=227, frame_id=undefined
+action: PleaseSendPrefs, tabId=231, frame_id=undefined
+action: SetContextMenuFrameId, tabId=231, frame_id=::1450089573388::0.26697160117328167
+action: PleaseSendPrefs, tabId=231, frame_id=undefined
+action: PleaseSendPrefs, tabId=235, frame_id=undefined
+action: PleaseSendPrefs, tabId=237, frame_id=undefined
+action: PleaseSendPrefs, tabId=239, frame_id=undefined
+action: PleaseSendPrefs, tabId=235, frame_id=undefined
+action: PleaseSendPrefs, tabId=243, frame_id=undefined
+action: PleaseSendPrefs, tabId=245, frame_id=undefined
+action: PleaseSendPrefs, tabId=235, frame_id=undefined
+action: SetContextMenuFrameId, tabId=235, frame_id=::1450090212460::0.5788970128633082
+action: PleaseSendPrefs, tabId=235, frame_id=undefined
+action: PleaseSendPrefs, tabId=249, frame_id=undefined
+action: PleaseSendPrefs, tabId=251, frame_id=undefined
+action: PleaseSendPrefs, tabId=249, frame_id=undefined
+action: RequestToFirstGate, tabId=249, frame_id=::1450090454840::0.6877016627695411
+tab_id: 249, frame_id: ::1450090454840::0.6877016627695411, step_id: 1 
+ toGate: 1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+status 200
+objHTTP.responseText: 
+process_good_response_from_first_gate
+data=, tabId=249, frame_id=::1450090454840::0.6877016627695411, b_gate_url=null
+tags.length: 1
+ttt: Object
+action: PleaseSendPrefs, tabId=249, frame_id=undefined
+action: PleaseSendPrefs, tabId=256, frame_id=undefined
+action: PleaseSendPrefs, tabId=261, frame_id=undefined
+action: PleaseSendPrefs, tabId=263, frame_id=undefined
+action: RequestToFirstGate, tabId=263, frame_id=::1450090595039::0.507007886422798
+tab_id: 263, frame_id: ::1450090595039::0.507007886422798, step_id: 1 
+ toGate: 1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+status 200
+objHTTP.responseText: 
+process_good_response_from_first_gate
+data=, tabId=263, frame_id=::1450090595039::0.507007886422798, b_gate_url=null
+tags.length: 1
+ttt: Object
+action: PleaseSendPrefs, tabId=263, frame_id=undefined
+action: RequestToFirstGate, tabId=263, frame_id=::1450090796584::0.8988046739250422
+tab_id: 263, frame_id: ::1450090796584::0.8988046739250422, step_id: 1 
+ toGate: 1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+status 200
+objHTTP.responseText: 
+process_good_response_from_first_gate
+data=, tabId=263, frame_id=::1450090796584::0.8988046739250422, b_gate_url=null
+tags.length: 1
+ttt: Object
+action: PleaseSendPrefs, tabId=263, frame_id=undefined
+action: RequestToFirstGate, tabId=263, frame_id=::1450090859090::0.3162212506867945
+tab_id: 263, frame_id: ::1450090859090::0.3162212506867945, step_id: 1 
+ toGate: 1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+1||0||I:https://mybank.fortebank.com/retail/images/gears2.gif
+0||1||I:https://mybank.fortebank.com/retail/images/forte_logo1.gif||I:https://myban…images/shad_1.jpg||I:https://mybank.fortebank.com/retail/images/shad_2.jpg
+
+status 200
+objHTTP.responseText: |CAPTCHA(s) found on this page.||0||1||68||67||LwQqP7
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||0||1||68||67||LwQqP7, tabId=263, frame_id=::1450090859090::0.3162212506867945, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 6
+ttt: Object
+action: PlaySound, tabId=263, frame_id=undefined
+action: PleaseSendPrefs, tabId=263, frame_id=undefined
+action: PleaseSendPrefs, tabId=267, frame_id=undefined
+action: RequestToFirstGate, tabId=267, frame_id=::1450091296683::0.6012594916392118
+tab_id: 267, frame_id: ::1450091296683::0.6012594916392118, step_id: 1 
+ toGate: 1||0||I:http://www.fortebank.com/images/logo_forte.png||I:http://www.fortebank.com/…ebank.com/up_files/bk.png||I:http://www.fortebank.com/images/ico_close.gif
+7||1||T:name||T:email||T:phone_code||T:phone
+26||2||T:name||T:rnn||T:address||T:phone||T:email||T:postal||T:regName||T:idno
+
+1||0||I:http://www.fortebank.com/images/logo_forte.png||I:http://www.fortebank.com/…ebank.com/up_files/bk.png||I:http://www.fortebank.com/images/ico_close.gif
+7||1||T:name||T:email||T:phone_code||T:phone
+26||2||T:name||T:rnn||T:address||T:phone||T:email||T:postal||T:regName||T:idno
+
+status 200
+objHTTP.responseText: 
+process_good_response_from_first_gate
+data=, tabId=267, frame_id=::1450091296683::0.6012594916392118, b_gate_url=null
+tags.length: 1
+ttt: Object
+action: PleaseSendPrefs, tabId=267, frame_id=undefined
+action: PleaseSendPrefs, tabId=271, frame_id=undefined
+action: PleaseSendPrefs, tabId=276, frame_id=undefined
+action: RequestToFirstGate, tabId=276, frame_id=::1450091648352::0.3814745780546218
+tab_id: 276, frame_id: ::1450091648352::0.3814745780546218, step_id: 1 
+ toGate: 1||0||I:http://halykbank.kz/content/logo/17-halyk-mainpage_zayavka_03.jpg||I:http:/…ages/yellow-green-arrow.png||I:http://halykbank.kz/images/window-close.png
+4||1||T:q
+8||2||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea470ece20||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+9||3||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea470efd8c||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+
+1||0||I:http://halykbank.kz/content/logo/17-halyk-mainpage_zayavka_03.jpg||I:http:/…ages/yellow-green-arrow.png||I:http://halykbank.kz/images/window-close.png
+4||1||T:q
+8||2||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea470ece20||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+9||3||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea470efd8c||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+
+status 200
+objHTTP.responseText: |CAPTCHA(s) found on this page.||8||2||6||4||rdbXDs||9||3||6||4||uV6ja2
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||8||2||6||4||rdbXDs||9||3||6||4||uV6ja2, tabId=276, frame_id=::1450091648352::0.3814745780546218, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 11
+ttt: Object
+action: PlaySound, tabId=276, frame_id=undefined
+action: PleaseSendPrefs, tabId=281, frame_id=undefined
+action: PleaseSendPrefs, tabId=276, frame_id=undefined
+action: RequestToFirstGate, tabId=276, frame_id=::1450091789848::0.19498658133670688
+tab_id: 276, frame_id: ::1450091789848::0.19498658133670688, step_id: 1 
+ toGate: 1||0||I:http://halykbank.kz/content/logo/17-halyk-mainpage_zayavka_03.jpg||I:http:/…ages/yellow-green-arrow.png||I:http://halykbank.kz/images/window-close.png
+4||1||T:q
+8||2||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea500e6ae3||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+9||3||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea500e7569||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+
+1||0||I:http://halykbank.kz/content/logo/17-halyk-mainpage_zayavka_03.jpg||I:http:/…ages/yellow-green-arrow.png||I:http://halykbank.kz/images/window-close.png
+4||1||T:q
+8||2||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea500e6ae3||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+9||3||T:ExpressCreditForm[iin]||T:ExpressCreditForm[phone]||T:ExpressCreditForm[card]||R:captcha||I:http://halykbank.kz/ru/site/captcha?v=566ea500e7569||R:ExpressCreditForm_captcha_em_||T:ExpressCreditForm[captcha]
+
+status 200
+objHTTP.responseText: |CAPTCHA(s) found on this page.||8||2||6||4||eTJf5b||9||3||6||4||1Pdn6P
+process_good_response_from_first_gate
+data=|CAPTCHA(s) found on this page.||8||2||6||4||eTJf5b||9||3||6||4||1Pdn6P, tabId=276, frame_id=::1450091789848::0.19498658133670688, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
+tags.length: 11
+ttt: Object
+action: PlaySound, tabId=276, frame_id=undefined
+action: PleaseSendPrefs, tabId=290, frame_id=undefined
