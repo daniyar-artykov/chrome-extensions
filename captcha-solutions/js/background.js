@@ -288,7 +288,9 @@ set_rumola_enabled(get_rumola_enabled());
 
 
 	function process_good_response_from_first_gate(data, tab_id, frame_id, b_gate_url) {
+		// data=|CAPTCHA(s) found on this page.||2||1||3||4||mmGLD2, tabId=2, frame_id=::1450066669826::0.00466102990321815, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
 		console.log("process_good_response_from_first_gate");
+		console.log("data=%s, tabId=%s, frame_id=%s, b_gate_url=%s", data, tab_id, frame_id, b_gate_url);
 		n_bad_responses_from_first_gate = 0;
 		var tags = data.split("||");
 
@@ -298,6 +300,7 @@ set_rumola_enabled(get_rumola_enabled());
 				notify(tags[0], false);
 		} else {
 			chrome.tabs.get(tab_id, function(ttt) {
+				console.log('ttt: %s', ttt);
 				if (!ttt)
 					return;
 				
@@ -526,6 +529,7 @@ function popup_clicked(t) {
 // region messages processing
 	wait_box_unique_message_id = "rumola_show_wait_box::"+(new Date()).getTime()+"::"+Math.random();
 	function receiveMessage(request, sender, sendResponse) {
+		console.log('action: %s, tabId=%s, frame_id=%s', request.action, sender.tab.id, request.frame_id);
 		switch (request.action) {
 			case "PleaseSendPrefs":
 				sendResponse({enabled:get_rumola_enabled(), switcher_position:get_switcher_position(), filter_string: get_regexes_string(),
