@@ -203,6 +203,8 @@ function rumola_form_ready(my_form, t_field, i_field, captcha_id, b_gate_url) {
 			return;
 		}
 
+//		call_captcha_solutions2();
+		
 		img = img.replace(/^data:image\/png;base64,/, "");
 		chrome.extension.sendRequest({action: "StartResolve", frame_id: rumola.frame_id, method:"POST", url:this.b_gate_url+this.captcha_id+"&f=0", data:img});
 		rumola_notifications.playSound("notifications/start.wav");

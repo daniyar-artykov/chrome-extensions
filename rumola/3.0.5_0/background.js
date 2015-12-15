@@ -211,96 +211,96 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 	console.log('tab_id: %s, frame_id: %s, step_id: %s \n toGate: %s', 
 			tab_id, frame_id, step_id, toGate);
 
-	if(toGate) {
-		var lines = toGate.split('\n');
-		var zero = null;
-		var first = null;
-		var inputIndex = -1;
-		var captchaIndex = -1;
-		// iterate each line
-		for(var i = 0; i < lines.length; i++) {
-			console.log('lines[%s]: %s', i, lines[i]);
-			if(!lines[i]) {
-				continue;
-			}
-			var tags = lines[i].split('||');
-			if(tags && tags.length > 2) {
-				for(var j = 2; j < tags.length; j++) {
-					console.log('tags[%s]: %s', j, tags[j]);
-					switch(tags[j].substring(0, 2)) {
-					case 'T:': // if tag is input
-						console.log('regext input %s', regex[5].test(tags[j - 2]));
-						if(regex[5].test(tags[j - 2])) {
-							inputIndex = j - 2;
-						}
-						break;
-					case 'I:': // if tag is image
-						console.log('regext image %s', regex[0].test(tags[j - 2]));
-						if(regex[0].test(tags[j - 2])) {
-							captchaIndex = j - 2;
-						}
-						break;
-					case 'R:': // if tag is label ?
-						// TODO
-						break;
-					case 'D:': // if tag is div ?
-						// TODO
-						break;
-					default: 
-						console.log('default');
-					zero = null;
-					first = null;
-					inputIndex = -1;
-					captchaIndex = -1;
-					}
-				}
-			}
-			if(inputIndex != -1 && captchaIndex != -1) {
-				zero = tags[0];
-				first = tags[1];
-			} else {
-				zero = null;
-				first = null;
-				inputIndex = -1;
-				captchaIndex = -1;
-			}
-
-			if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-				console.log('found!! s% s% s% s%', zero, first, inputIndex, captchaIndex);
-				break;
-			}
-		}
-		if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-			var data = '|CAPTCHA(s) found on this page.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
-			console.log('data: %s', data);
-			process_good_response_from_first_gate(data, tab_id, frame_id, 'https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=');
-		}
-	}
-
-//	if (get_rumola_key1() == 'db7669d04f6430b5') {
-//	send_activation_request("fields=" + escape(toGate), tab_id, frame_id);
+//	if(toGate) {
+//	var lines = toGate.split('\n');
+//	var zero = null;
+//	var first = null;
+//	var inputIndex = -1;
+//	var captchaIndex = -1;
+//	// iterate each line
+//	for(var i = 0; i < lines.length; i++) {
+//	console.log('lines[%s]: %s', i, lines[i]);
+//	if(!lines[i]) {
+//	continue;
+//	}
+//	var tags = lines[i].split('||');
+//	if(tags && tags.length > 2) {
+//	for(var j = 2; j < tags.length; j++) {
+//	console.log('tags[%s]: %s', j, tags[j]);
+//	switch(tags[j].substring(0, 2)) {
+//	case 'T:': // if tag is input
+//	console.log('regext input %s', regex[5].test(tags[j - 2]));
+//	if(regex[5].test(tags[j - 2])) {
+//	inputIndex = j - 2;
+//	}
+//	break;
+//	case 'I:': // if tag is image
+//	console.log('regext image %s', regex[0].test(tags[j - 2]));
+//	if(regex[0].test(tags[j - 2])) {
+//	captchaIndex = j - 2;
+//	}
+//	break;
+//	case 'R:': // if tag is label ?
+//	// TODO
+//	break;
+//	case 'D:': // if tag is div ?
+//	// TODO
+//	break;
+//	default: 
+//	console.log('default');
+//	zero = null;
+//	first = null;
+//	inputIndex = -1;
+//	captchaIndex = -1;
+//	}
+//	}
+//	}
+//	if(inputIndex != -1 && captchaIndex != -1) {
+//	zero = tags[0];
+//	first = tags[1];
 //	} else {
-//	var objHTTP = new XMLHttpRequest();
-
-//	objHTTP.sender_tab_id = tab_id;
-//	objHTTP.frame_id = frame_id;
-//	objHTTP.gate_url = gate_url;
-//	objHTTP.toGate = toGate;
-//	objHTTP.step_id = step_id;
-
-//	objHTTP.open('POST', gate_url+get_rumola_key1(), true);
-//	objHTTP.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//	objHTTP.setRequestHeader('DraftFilterVersion', get_regexes_version());
-//	objHTTP.setRequestHeader('SuggectedGate', ""+gate_suggested_index);
-//	objHTTP.addEventListener("readystatechange", response_from_first_gate, true);
-//	console.log(toGate);
-//	objHTTP.send("key="+get_rumola_key2()+"&fields=" + escape(toGate));
-//	setTimeout(function() {
-//	if (objHTTP.readyState != 4) {
-//	objHTTP.abort();
+//	zero = null;
+//	first = null;
+//	inputIndex = -1;
+//	captchaIndex = -1;
 //	}
-//	},7500);
+
+//	if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
+//	console.log('found!! s% s% s% s%', zero, first, inputIndex, captchaIndex);
+//	break;
 //	}
+//	}
+//	if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
+//	var data = '|CAPTCHA(s) found on this page.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
+//	console.log('data: %s', data);
+//	process_good_response_from_first_gate(data, tab_id, frame_id, 'https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=');
+//	}
+//	}
+
+	if (get_rumola_key1() == 'db7669d04f6430b5') {
+		send_activation_request("fields=" + escape(toGate), tab_id, frame_id);
+	} else {
+		var objHTTP = new XMLHttpRequest();
+
+		objHTTP.sender_tab_id = tab_id;
+		objHTTP.frame_id = frame_id;
+		objHTTP.gate_url = gate_url;
+		objHTTP.toGate = toGate;
+		objHTTP.step_id = step_id;
+
+		objHTTP.open('POST', gate_url+get_rumola_key1(), true);
+		objHTTP.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		objHTTP.setRequestHeader('DraftFilterVersion', get_regexes_version());
+		objHTTP.setRequestHeader('SuggectedGate', ""+gate_suggested_index);
+		objHTTP.addEventListener("readystatechange", response_from_first_gate, true);
+		console.log(toGate);
+		objHTTP.send("key="+get_rumola_key2()+"&fields=" + escape(toGate));
+		setTimeout(function() {
+			if (objHTTP.readyState != 4) {
+				objHTTP.abort();
+			}
+		},7500);
+	}
 }
 
 function response_from_first_gate(aEvent) {
