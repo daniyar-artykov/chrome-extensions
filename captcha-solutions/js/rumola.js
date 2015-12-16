@@ -205,6 +205,11 @@ function rumola_form_ready(my_form, t_field, i_field, captcha_id, b_gate_url) {
 
 //		call_captcha_solutions2();
 		
+//		var image = new Image();
+//		image.id = 'rumola';
+//		image.src = img;
+//		document.getElementById('content').appendChild(image);
+		
 		img = img.replace(/^data:image\/png;base64,/, "");
 		chrome.extension.sendRequest({action: "StartResolve", frame_id: rumola.frame_id, method:"POST", url:this.b_gate_url+this.captcha_id+"&f=0", data:img});
 		rumola_notifications.playSound("notifications/start.wav");
@@ -676,6 +681,7 @@ var rumola_prefs = {
 				console.log('filter_string: %s', response.filter_string);
 				for (var i=0; i<filter_strings.length; i++)
 					rumola_prefs.filters.push(new RegExp(filter_strings[i], "i"));
+				console.log('enabled %s', rumola_prefs.enabled);
 				rumola.document_load(rumola_prefs.enabled);
 
 //				console.log('0: %s; \n 1: %s; \n 2: %s; \n 3: %s; \n 4: %s; \n 5: %s; ', rumola_prefs.filters[0], rumola_prefs.filters[1], rumola_prefs.filters[2], rumola_prefs.filters[3], rumola_prefs.filters[4], rumola_prefs.filters[5]);

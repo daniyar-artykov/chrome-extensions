@@ -25,6 +25,19 @@ function set_rumola_key(key) {
 }
 //endregion key functions
 
+var enabled = false;
+
+function getCaptchaSolutionsEnabled() {
+	chrome.storage.local.get('captchaSolutionsEnable', getCaptchaEnabled);
+	return enabled;
+}
+
+function getCaptchaEnabled(a) {
+	console.log('captchaSolutionsEnable %s', a && a.captchaSolutionsEnable);
+	enabled = a && a.captchaSolutionsEnable;
+}
+
+
 //region auto search functions
 function get_rumola_enabled() {
 	var enabled = true;
@@ -241,12 +254,13 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 							continue;
 						}
 					}
-					zero = null;
-					first = null;
-					inputIndex = -1;
-					captchaIndex = -1;
+//					zero = null;
+//					first = null;
+//					inputIndex = -1;
+//					captchaIndex = -1;
 				}
 			}
+			console.log('1. %s %s %s %s', zero, first, inputIndex, captchaIndex);
 			if(inputIndex != -1 && captchaIndex != -1) {
 				zero = tags[0];
 				first = tags[1];
@@ -256,9 +270,9 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 				inputIndex = -1;
 				captchaIndex = -1;
 			}
-
+			
 			if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-				console.log('found!! %s %s %s %s', zero, first, inputIndex, captchaIndex);
+				console.log('2. found!! %s %s %s %s', zero, first, inputIndex, captchaIndex);
 				break;
 			}
 		}
@@ -297,16 +311,16 @@ function response_from_second_gate(aEvent) {
 		if (objHTTP.redo) {
 			setTimeout(function() {
 //				var objHTTP1 = new XMLHttpRequest();
-//
+
 //				objHTTP1.sender_tab_id = objHTTP.sender_tab_id;
 //				objHTTP1.frame_id = objHTTP.frame_id;
 //				objHTTP1.redo = 0;
-//
+
 //				objHTTP1.open(objHTTP.method, objHTTP.url, true);
 //				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
 //				objHTTP1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 //				objHTTP1.send(objHTTP.data);
-//				
+
 				var formData = new FormData();
 
 				var objHTTP1 = new XMLHttpRequest();
@@ -314,14 +328,14 @@ function response_from_second_gate(aEvent) {
 				objHTTP1.setRequestHeader('Content-Type', 'multipart/form-data');
 
 				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
-				
+
 				formData.append("p", "upload");
 				formData.append("key", key);
 				formData.append("secret", secret);
 				formData.append("captcha", base64toBlob(objHTTP.data, 'image/png'));
 
 				objHTTP.send(formData);
-				
+
 			}, 1500);
 			return;
 		}
@@ -331,36 +345,49 @@ function response_from_second_gate(aEvent) {
 	}
 
 	console.log('rsp: %s', objHTTP.responseText);
-	
+
 	var parseXml;
-	if (window.DOMParser) {
-	    parseXml = function(xmlStr) {
-	        return ( new window.DOMParser() ).parseFromString(xmlStr, "text/xml");
-	    };
-	} else if (typeof window.ActiveXObject != "undefined" && new window.ActiveXObject("Microsoft.XMLDOM")) {
-	    parseXml = function(xmlStr) {
-	        var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
-	        xmlDoc.async = "false";
-	        xmlDoc.loadXML(xmlStr);
-	        return xmlDoc;
-	    };
+
+	if (typeof window.DOMParser != "undefined") {
+		parseXml = function(xmlStr) {
+			return ( new window.DOMParser() ).parseFromString(xmlStr, "text/xml");
+		};
+	} else if (typeof window.ActiveXObject != "undefined" &&
+			new window.ActiveXObject("Microsoft.XMLDOM")) {
+		parseXml = function(xmlStr) {
+			var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async = "false";
+			xmlDoc.loadXML(xmlStr);
+			return xmlDoc;
+		};
 	} else {
-	    parseXml = function() { return null; }
+		throw new Error("No XML parser found");
 	}
-	
+
 	var solved = null;
-	var xml = parseXml(objHTTP.responseText);
-	solved = xml.documentElement.nodeName;
+	var xml = parseXml(replaceAll(objHTTP.responseText, '&', ''));
+//	alert(objHTTP.responseText.tr);
+	solved = xml.documentElement.getElementsByTagName("decaptcha")[0].firstChild.nodeValue;
+
+//	xmlDoc = $.parseXML( objHTTP.responseText ),
+//	$xml = $( xmlDoc );
+//	var solved = $xml.find( "decaptcha" );
+
 	console.log('solved: %s', solved);
-	
+
+	if(!solved || solved.split(' ').length > 1) {
+		solved = null;
+	} else {
+		solved = solved.trim();
+	}
 	var tagsStr = '';
-	
+
 	if(solved) {
 		tagsStr ='Captcha Solution|entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved;
 	} else {
-		tagsStr = 'Captcha Solution|could solve CAPTCHA||' + objHTTP.frame_id + '||0||ERR||||' + solved;
+		tagsStr = 'Captcha Solution|could not solve CAPTCHA||' + objHTTP.frame_id + '||0||ERR||||' + solved;
 	}
-	
+
 	//Rumola|entered the CAPTCHA characters for you.||2||0||OK||||Wn9g
 	// 0 - notice
 	// 1 - 
@@ -368,7 +395,7 @@ function response_from_second_gate(aEvent) {
 	// 3 - ERR, OK, WAIT, TMP
 	// 4 - timeout
 	// 5 - solved captcha text
-		
+
 	var tags = (tagsStr).split("||");
 
 	chrome.tabs.get(objHTTP.sender_tab_id, function(ttt) {
@@ -389,25 +416,28 @@ function response_from_second_gate(aEvent) {
 	});
 }
 
-function base64toBlob(base64Data, contentType) {
-    contentType = contentType || '';
-    var sliceSize = 1024;
-    var byteCharacters = atob(base64Data);
-    var bytesLength = byteCharacters.length;
-    var slicesCount = Math.ceil(bytesLength / sliceSize);
-    var byteArrays = new Array(slicesCount);
+function base64toBlob(b64Data, contentType, sliceSize) {
+	contentType = contentType || '';
+	sliceSize = sliceSize || 512;
 
-    for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
-        var begin = sliceIndex * sliceSize;
-        var end = Math.min(begin + sliceSize, bytesLength);
+	var byteCharacters = atob(b64Data);
+	var byteArrays = [];
 
-        var bytes = new Array(end - begin);
-        for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
-            bytes[i] = byteCharacters[offset].charCodeAt(0);
-        }
-        byteArrays[sliceIndex] = new Uint8Array(bytes);
-    }
-    return new Blob(byteArrays, { type: contentType });
+	for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+		var byteNumbers = new Array(slice.length);
+		for (var i = 0; i < slice.length; i++) {
+			byteNumbers[i] = slice.charCodeAt(i);
+		}
+
+		var byteArray = new Uint8Array(byteNumbers);
+
+		byteArrays.push(byteArray);
+	}
+
+	var blob = new Blob(byteArrays, {type: contentType});
+	return blob;
 }
 
 function process_good_response_from_first_gate(data, tab_id, frame_id, b_gate_url) {
@@ -498,7 +528,7 @@ function notify(s, need_solve_button) {
 		}
 	}
 	if (need_solve_button) {
-		opt.buttons.push({title:chrome.i18n.getMessage("solve_now")});
+		opt.buttons.push({title:'Click to solve it now'});
 	} else {
 		last_founded_captcha_tab_id = -1;
 	}
@@ -654,7 +684,8 @@ function receiveMessage(request, sender, sendResponse) {
 	console.log('action: %s, tabId=%s, frame_id=%s', request.action, sender.tab.id, request.frame_id);
 	switch (request.action) {
 	case "PleaseSendPrefs":
-		sendResponse({enabled:get_rumola_enabled(), switcher_position:get_switcher_position(), filter_string: get_regexes_string(),
+		console.log('enabled: %s', getCaptchaSolutionsEnabled());
+		sendResponse({enabled:getCaptchaSolutionsEnabled(), switcher_position:get_switcher_position(), filter_string: get_regexes_string(),
 			wait_box_unique_message_id:wait_box_unique_message_id,
 			b_active_tab:(active_tab_err ? false : (active_tab_ids[sender.tab.windowId] == sender.tab.id)),
 			client_area_link:((get_rumola_key1() == 'db7669d04f6430b5') ? "" : "https://client.skipinput.com/?k="+get_rumola_key1()+"&v="+get_rumola_key2_sum())});
@@ -681,28 +712,26 @@ function receiveMessage(request, sender, sendResponse) {
 		objHTTP.open('POST', endpoint, false);    // plug-in desired URL
 		objHTTP.setRequestHeader('Content-Type', 'multipart/form-data');
 
+//		console.log('1. data:image/png;base64,' + request.data);
+
+//		var blob = base64toBlob(request.data, 'image/png');
+//
+//		var reader = new window.FileReader();
+//		reader.readAsDataURL(blob); 
+//		reader.onloadend = function() {
+//			base64data = reader.result;                
+//			console.log('2. ' + base64data);
+//		}
+
 		objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
-		
+
 		formData.append("p", "upload");
 		formData.append("key", key);
 		formData.append("secret", secret);
 		formData.append("captcha", base64toBlob(request.data, 'image/png'));
 
 		objHTTP.send(formData);
-		
-//		var objHTTP = new XMLHttpRequest();
-//
-//		objHTTP.sender_tab_id = sender.tab.id;
-//		objHTTP.frame_id = request.frame_id;
-//		objHTTP.method = request.method;
-//		objHTTP.url = request.url;
-//		objHTTP.data = request.data;
-//		objHTTP.redo = 1;
-//
-//		objHTTP.open(request.method, request.url, true);
-//		objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
-//		objHTTP.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//		objHTTP.send(request.data);
+
 		break;
 	case "SaveCaptchaResult":
 		localStorage["rumola:last_recognised_captcha_id"] = request.captcha_id;
@@ -743,18 +772,18 @@ function t_selected(info, tab) {
 }
 
 //TODO: it will be good to make custom function for context
-context_menu_i_id = chrome.contextMenus.create({
-	"title" : chrome.i18n.getMessage("context1"),
-	"type" : "normal",
-	"contexts" : ["image"],
-	"onclick" : i_selected
-});
-context_menu_t_id = chrome.contextMenus.create({
-	"title" : chrome.i18n.getMessage("context2"),
-	"type" : "normal",
-	"contexts" : ["editable"],
-	"onclick" : t_selected
-});
+//context_menu_i_id = chrome.contextMenus.create({
+//"title" : chrome.i18n.getMessage("context1"),
+//"type" : "normal",
+//"contexts" : ["image"],
+//"onclick" : i_selected
+//});
+//context_menu_t_id = chrome.contextMenus.create({
+//"title" : chrome.i18n.getMessage("context2"),
+//"type" : "normal",
+//"contexts" : ["editable"],
+//"onclick" : t_selected
+//});
 //endregion context menu
 
 var endpoint = "http://api.captchasolutions.com/solve";
@@ -772,4 +801,8 @@ function initializeUserDataControls(a) {
 		key = a.apiKey;
 		secret = a.secretKey;
 	}
+}
+
+function replaceAll(str, find, replace) {
+	return str.replace(new RegExp(find, 'g'), replace);
 }

@@ -1,3 +1,39 @@
+document.addEventListener("DOMContentLoaded", function() {
+	var a = document.getElementById("captcha-solutions");
+	a && a.addEventListener("change", enableDisable);
+    chrome.storage.local.get("captchaSolutionsEnable",
+        initializeCaptchaSolutions);
+});
+
+var enabled = false;
+
+function getCaptchaSolutionsEnabled() {
+	chrome.storage.local.get('captchaSolutionsEnable', getCaptchaEnabled);
+	return enabled;
+}
+
+function getCaptchaEnabled(a) {
+	console.log('captchaSolutionsEnable %s', a && (n = a.captchaSolutionsEnable));
+	enabled = (a && (n = a.captchaSolutionsEnable));
+}
+
+function enableDisable() {
+	getCaptchaSolutionsEnabled();
+	var a = document.getElementById("captcha-solutions");
+	a && chrome.storage.local.set({
+		captchaSolutionsEnable: a.checked
+	})
+}
+
+function initializeCaptchaSolutions(a) {
+    var b = !1;
+    a && (b = a.captchaSolutionsEnable);
+    if (a = document.getElementById("captcha-solutions"))
+        void 0 == b ? (chrome.storage.local.set({
+        	captchaSolutionsEnable: !0
+        }), a.checked = !0) : a.checked = b ? !0 : !1
+}
+
 document.getElementById('options-btn').onclick = function() {
 	var options_url;
 	options_url = chrome.extension.getURL('/forms/options.html');
