@@ -1,3 +1,20 @@
+//Check whether new version is installed
+chrome.runtime.onInstalled.addListener(function(details) {
+	if(details.reason == "install") {
+		console.log("This is a first install!");
+		chrome.storage.local.set({
+			captchaSolutionsEnable: true
+		});
+		getCaptchaSolutionsEnabled();
+		chrome.tabs.create({url: "forms/options.html"});
+	} 
+//	else if(details.reason == "update"){
+//	var thisVersion = chrome.runtime.getManifest().version;
+//	console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+//	}
+});
+
+
 //region key functions
 function get_rumola_key1() {
 	var key = "db7669d04f6430b5";
@@ -28,8 +45,20 @@ function set_rumola_key(key) {
 var enabled = false;
 
 function getCaptchaSolutionsEnabled() {
-	chrome.storage.local.get('captchaSolutionsEnable', getCaptchaEnabled);
-	return enabled;
+	return true;
+//	if(flag) {
+//	return enabled;
+//	}
+////	chrome.storage.local.get('captchaSolutionsEnable', getCaptchaEnabled);
+////	return enabled;
+//	chrome.storage.local.get('captchaSolutionsEnable', function (result) {
+//	console.log('1. captchaSolutionsEnable %s', result && result.captchaSolutionsEnable);
+//	enabled = result && result.captchaSolutionsEnable;
+////	getCaptchaSolutionsEnabled(true);
+//	});
+////	console.log('2. enabled %s', enabled);
+
+////	return enabled;
 }
 
 function getCaptchaEnabled(a) {
@@ -270,12 +299,65 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 				inputIndex = -1;
 				captchaIndex = -1;
 			}
-			
+
 			if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
 				console.log('2. found!! %s %s %s %s', zero, first, inputIndex, captchaIndex);
 				break;
 			}
 		}
+
+		// if t_field and i_field not found in one form, try to find in different forms
+		if(inputIndex == -1 && captchaIndex == -1 && !zero && !first) {
+			console.log('try again!!');
+			for(var i = 0; i < lines.length; i++) {
+				console.log('lines[%s]: %s', i, lines[i]);
+				if(!lines[i]) {
+					continue;
+				}
+				var tags = lines[i].split('||');
+				if(tags && tags.length > 2) {
+					for(var j = 2; j < tags.length; j++) {
+						console.log('tags[%s]: %s', j, tags[j]);
+
+						if(tags[j].substring(0, 2) == 'T:') {
+							console.log('regext input %s', regex[5].test(tags[j]));
+							if(regex[5].test(tags[j])) {
+								//inputIndex = j - 2;
+								if(captchaIndex > -1) {
+									inputIndex = captchaIndex + 1;
+								} else {
+									inputIndex = j - 2;
+								}
+								console.log('inputIndex=%s', inputIndex);
+								if((!zero && !first) || first > tags[1]) {
+									zero = tags[0];
+									first = tags[1];
+								}
+								continue;
+							}
+						} else if(tags[j].substring(0, 2) == 'I:') {
+							console.log('regext image %s; and anti regex %s', regex[0].test(tags[j]), !regex[6].test(tags[j]));
+							if(regex[0].test(tags[j]) && !regex[6].test(tags[j])) {
+								if(inputIndex > -1) {
+									captchaIndex = inputIndex + 1;
+								} else {
+									captchaIndex = j - 2;
+								}
+								console.log('captchaIndex=%s', captchaIndex);
+								if((!zero && !first) || first > tags[1]) {
+									zero = tags[0];
+									first = tags[1];
+								} 
+								continue;
+							}
+						}
+					}
+				}
+			}
+
+			console.log('3. %s %s %s %s', zero, first, inputIndex, captchaIndex);
+		}
+
 		var data = '|CAPTCHA(s) NOT found on this page.';
 		if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
 			data = '|CAPTCHA(s) found on this page.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
@@ -303,14 +385,16 @@ function response_from_first_gate(aEvent) {
 	process_good_response_from_first_gate(""+objHTTP.responseText, objHTTP.sender_tab_id, objHTTP.frame_id, objHTTP.getResponseHeader("BGate"));
 }
 function response_from_second_gate(aEvent) {
+	console.log('>>>>>> response_from_second_gate');
 	var objHTTP = aEvent.target;
 	if (objHTTP.readyState != 4)
 		return;
 
-	if (objHTTP.status != 200) {
+	console.log('rspText: %s', objHTTP.responseText);
+	
+	if (objHTTP.status != 200 || (objHTTP.responseText != null && objHTTP.responseText.length > 10)) {
 		if (objHTTP.redo) {
 			setTimeout(function() {
-//				var objHTTP1 = new XMLHttpRequest();
 
 //				objHTTP1.sender_tab_id = objHTTP.sender_tab_id;
 //				objHTTP1.frame_id = objHTTP.frame_id;
@@ -324,17 +408,31 @@ function response_from_second_gate(aEvent) {
 				var formData = new FormData();
 
 				var objHTTP1 = new XMLHttpRequest();
-				objHTTP1.open('POST', endpoint, false);    // plug-in desired URL
-				objHTTP1.setRequestHeader('Content-Type', 'multipart/form-data');
+				
+				objHTTP1.sender_tab_id = objHTTP.sender_tab_id;
+				objHTTP1.frame_id = objHTTP.frame_id;
+				
+				objHTTP1.open(objHTTP.method, endpoint, true);    // plug-in desired URL
+//				objHTTP1.setRequestHeader('Content-Type', 'multipart/form-data');
+//				objHTTP.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
 
 				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
 
-				formData.append("p", "upload");
+				formData.append("p", "extension");
 				formData.append("key", key);
 				formData.append("secret", secret);
-				formData.append("captcha", base64toBlob(objHTTP.data, 'image/png'));
+//				formData.append("captcha", base64toBlob(objHTTP.data, 'image/png'), "captcha.png");
+				formData.append("captcha", ('data:image/png;base64,' + objHTTP.data));
 
-				objHTTP.send(formData);
+//				objHTTP1.send(formData);
+
+				var params = "p=extension&key=" + key + "&secret=" + secret + "&captcha=" + encodeURIComponent('data:image/png;base64,' + objHTTP.data);
+				console.log('params: %s', params);
+				objHTTP1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				objHTTP1.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+//				objHTTP1.setRequestHeader("Content-length", params.length);
+
+				objHTTP1.send(params);
 
 			}, 1500);
 			return;
@@ -375,17 +473,22 @@ function response_from_second_gate(aEvent) {
 
 	console.log('solved: %s', solved);
 
+	var tagsStr = 'Captcha Solutions|';
 	if(!solved || solved.split(' ').length > 1) {
+		if(solved.trim() === 'Error: You have 0 balance left in your account.') {
+			tagsStr = tagsStr + solved.trim() + ' You can recharge you account <a href="http://www.captchasolutions.com/pricing/">on this page</a>';	
+		} else {
+			tagsStr = tagsStr + solved.trim();	
+		}
 		solved = null;
 	} else {
 		solved = solved.trim();
 	}
-	var tagsStr = '';
 
 	if(solved) {
-		tagsStr ='Captcha Solution|entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved;
+		tagsStr = tagsStr + 'entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved;
 	} else {
-		tagsStr = 'Captcha Solution|could not solve CAPTCHA||' + objHTTP.frame_id + '||0||ERR||||' + solved;
+		tagsStr = tagsStr + '||' + objHTTP.frame_id + '||0||ERR||||';
 	}
 
 	//Rumola|entered the CAPTCHA characters for you.||2||0||OK||||Wn9g
@@ -699,39 +802,66 @@ function receiveMessage(request, sender, sendResponse) {
 		});
 		break;
 	case "StartResolve":
-		var formData = new FormData();
-		var objHTTP = new XMLHttpRequest();
-		objHTTP.sender_tab_id = sender.tab.id;
-		objHTTP.frame_id = request.frame_id;
-		objHTTP.method = request.method;
-		objHTTP.url = request.url;
-		objHTTP.data = request.data;
-		objHTTP.redo = 1;
-		// for sync call
-//		objHTTP.timeout = 4000;
-		objHTTP.open('POST', endpoint, false);    // plug-in desired URL
-		objHTTP.setRequestHeader('Content-Type', 'multipart/form-data');
+		if(key && secret) {
+			var formData = new FormData();
+			var objHTTP = new XMLHttpRequest();
 
-//		console.log('1. data:image/png;base64,' + request.data);
+			objHTTP.sender_tab_id = sender.tab.id;
+			objHTTP.frame_id = request.frame_id;
+			objHTTP.method = request.method;
+			objHTTP.url = request.url;
+			objHTTP.data = request.data;
+			objHTTP.redo = 1;
+			// for sync call
+			objHTTP.open('POST', endpoint, true);    // plug-in desired URL
+//			objHTTP.setRequestHeader('Content-Type', 'multipart/form-data');
+//			objHTTP.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
+//			objHTTP.setRequestHeader('Upgrade-Insecure-Requests', '1');
 
-//		var blob = base64toBlob(request.data, 'image/png');
-//
-//		var reader = new window.FileReader();
-//		reader.readAsDataURL(blob); 
-//		reader.onloadend = function() {
-//			base64data = reader.result;                
+			console.log('1. data:image/png;base64,' + request.data);
+
+			var blob = base64toBlob(request.data, 'image/png');
+
+//			var myReader = new FileReader();
+//			myReader.onload = function(event){
+//			console.log(JSON.stringify(myReader.result));
+//			};
+//			myReader.readAsText(blob);
+
+
+//			var csv = JSON.stringify(myReader.result);
+//			var csvData = 'data:image/png;charset=utf-8,' 
+//			+ encodeURIComponent(csv);
+//			this.href = csvData;
+//			this.target = '_blank';
+//			this.download = 'img2222.png';
+//			var reader = new window.FileReader();
+//			reader.readAsDataURL(blob); 
+//			reader.onloadend = function() {
+//			base64data = reader.result;
 //			console.log('2. ' + base64data);
-//		}
+//			}
 
-		objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
+			objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
 
-		formData.append("p", "upload");
-		formData.append("key", key);
-		formData.append("secret", secret);
-		formData.append("captcha", base64toBlob(request.data, 'image/png'));
+			formData.append("p", "extension");
+			formData.append("key", key);
+			formData.append("secret", secret);
+			console.log('blob: %s', blob);
+//			formData.append("captcha", request.data, "captcha.png");
+			formData.append("captcha", 'data:image/png;base64,' + request.data);
+//			objHTTP.send(formData);
 
-		objHTTP.send(formData);
+			var params = "p=extension&key=" + key + "&secret=" + secret + "&captcha=" + encodeURIComponent('data:image/png;base64,' + request.data);
+			console.log('params: %s', params);
+			objHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			objHTTP.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+//			objHTTP.setRequestHeader("Content-length", params.length);
 
+			objHTTP.send(params);
+		} else {
+			notify('Captcha Solutions|please enter API key and secret key on the options page of the extension', false);
+		}
 		break;
 	case "SaveCaptchaResult":
 		localStorage["rumola:last_recognised_captcha_id"] = request.captcha_id;

@@ -555,15 +555,17 @@ var rumola = {
 			if (!tags[0].match(/{{/)) {
 				rumola_notifications.playSound("notifications/found.wav");
 			}
-			// |CAPTCHA(s) found on this page.||2||1||3||4||vQVMBh
+			
+			//1||0||I:http://captchator.com/captcha/image/ck0p3p3uuth3l9m
+			//1||1||T:captcha_answer
+			// |CAPTCHA(s) found on this page.||1||0||1||0||z5zTXs
 			// my_form, t_field, i_field, captcha_id, b_gate_url
 			// 0 - notification text;
-			// 1 - hz :) 2
-			// 2 - my_form 1 
-			// 3 - t_field 3 
-			// 4 - i_field 4 
+			// 1 - hz :) 1
+			// 2 - my_form 0 
+			// 3 - t_field 1 
+			// 4 - i_field 0 
 			// 5 - captcha_id mmGLD2
-
 
 			for (var i=5; i<tags.length; i+=5)
 			{
