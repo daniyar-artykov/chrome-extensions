@@ -204,12 +204,12 @@ function rumola_form_ready(my_form, t_field, i_field, captcha_id, b_gate_url) {
 		}
 
 //		call_captcha_solutions2();
-		
+
 //		var image = new Image();
 //		image.id = 'rumola';
 //		image.src = img;
 //		document.getElementById('content').appendChild(image);
-		
+
 		img = img.replace(/^data:image\/png;base64,/, "");
 		chrome.extension.sendRequest({action: "StartResolve", frame_id: rumola.frame_id, method:"POST", url:this.b_gate_url+this.captcha_id+"&f=0", data:img});
 		rumola_notifications.playSound("notifications/start.wav");
@@ -555,7 +555,7 @@ var rumola = {
 			if (!tags[0].match(/{{/)) {
 				rumola_notifications.playSound("notifications/found.wav");
 			}
-			
+
 			//1||0||I:http://captchator.com/captcha/image/ck0p3p3uuth3l9m
 			//1||1||T:captcha_answer
 			// |CAPTCHA(s) found on this page.||1||0||1||0||z5zTXs
@@ -589,8 +589,9 @@ var rumola = {
 				var tmp = new rumola_form_ready(rumola.document.my_forms[tags[i-3]].my_form, rumola.document.my_forms[tags[i-3]].important_elements[tags[i-2]], rumola.document.my_forms[tags[i-3]].important_elements[tags[i-1]], tags[i], b_gate_url);
 				rumola.document.my_forms[tags[i-3]].suicide();
 				rumola.document.my_forms[tags[i-3]] = tmp;
-				if (rumola.document.selected_i_field)
-					rumola.document.start_solve(tags[i-3]);
+//				if (rumola.document.selected_i_field) {
+				rumola.document.start_solve(tags[i-3]);
+//				}
 			}
 		},
 

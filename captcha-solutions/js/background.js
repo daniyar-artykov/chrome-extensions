@@ -360,7 +360,7 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 
 		var data = '|CAPTCHA(s) NOT found on this page.';
 		if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-			data = '|CAPTCHA(s) found on this page.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
+			data = '|CAPTCHA(s) found on this page. \n We trying to solve it.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
 			process_good_response_from_first_gate(data, tab_id, frame_id, 'https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=');
 		}
 	}
@@ -390,59 +390,40 @@ function response_from_second_gate(aEvent) {
 	if (objHTTP.readyState != 4)
 		return;
 
-	console.log('rspText: %s', objHTTP.responseText);
-	
-	if (objHTTP.status != 200 || (objHTTP.responseText != null && objHTTP.responseText.length > 10)) {
-		if (objHTTP.redo) {
+	console.log('rspText: %s \n redo: %s', objHTTP.responseText, objHTTP.redo);
+
+	if (objHTTP.status != 200 || (objHTTP.responseText != null && objHTTP.responseText.indexOf('Error:') > -1)) {
+		if (objHTTP.redo && objHTTP.redo < 4) {
 			setTimeout(function() {
 
-//				objHTTP1.sender_tab_id = objHTTP.sender_tab_id;
-//				objHTTP1.frame_id = objHTTP.frame_id;
-//				objHTTP1.redo = 0;
-
-//				objHTTP1.open(objHTTP.method, objHTTP.url, true);
-//				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
-//				objHTTP1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//				objHTTP1.send(objHTTP.data);
-
-				var formData = new FormData();
-
 				var objHTTP1 = new XMLHttpRequest();
-				
+
 				objHTTP1.sender_tab_id = objHTTP.sender_tab_id;
 				objHTTP1.frame_id = objHTTP.frame_id;
-				
+				objHTTP1.method = objHTTP.method;
+				objHTTP1.url = objHTTP.url;
+				objHTTP1.data = objHTTP.data;
+
+				objHTTP1.redo = objHTTP.redo + 1;
+
 				objHTTP1.open(objHTTP.method, endpoint, true);    // plug-in desired URL
-//				objHTTP1.setRequestHeader('Content-Type', 'multipart/form-data');
-//				objHTTP.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
 
 				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
 
-				formData.append("p", "extension");
-				formData.append("key", key);
-				formData.append("secret", secret);
-//				formData.append("captcha", base64toBlob(objHTTP.data, 'image/png'), "captcha.png");
-				formData.append("captcha", ('data:image/png;base64,' + objHTTP.data));
-
-//				objHTTP1.send(formData);
-
-				var params = "p=extension&key=" + key + "&secret=" + secret + "&captcha=" + encodeURIComponent('data:image/png;base64,' + objHTTP.data);
-				console.log('params: %s', params);
+				var params = "captcha=" + encodeURIComponent('data:image/png;base64,' + objHTTP.data) + "&p=extension&key=" + key + "&secret=" + secret;
+//				console.log('params: %s', params);
 				objHTTP1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				objHTTP1.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-//				objHTTP1.setRequestHeader("Content-length", params.length);
 
 				objHTTP1.send(params);
 
-			}, 1500);
+			}, 3000);
 			return;
 		}
-		notify(chrome.i18n.getMessage("conn_error"), false);
-		chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"Cancel"});
-		return;
+//		notify(chrome.i18n.getMessage("conn_error"), false);
+//		chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"Cancel"});
+//		return;
 	}
-
-	console.log('rsp: %s', objHTTP.responseText);
 
 	var parseXml;
 
@@ -464,31 +445,29 @@ function response_from_second_gate(aEvent) {
 
 	var solved = null;
 	var xml = parseXml(replaceAll(objHTTP.responseText, '&', ''));
-//	alert(objHTTP.responseText.tr);
 	solved = xml.documentElement.getElementsByTagName("decaptcha")[0].firstChild.nodeValue;
-
-//	xmlDoc = $.parseXML( objHTTP.responseText ),
-//	$xml = $( xmlDoc );
-//	var solved = $xml.find( "decaptcha" );
 
 	console.log('solved: %s', solved);
 
 	var tagsStr = 'Captcha Solutions|';
-	if(!solved || solved.split(' ').length > 1) {
+	if(solved && solved.indexOf('Error:') > -1) {
 		if(solved.trim() === 'Error: You have 0 balance left in your account.') {
 			tagsStr = tagsStr + solved.trim() + ' You can recharge you account <a href="http://www.captchasolutions.com/pricing/">on this page</a>';	
 		} else {
 			tagsStr = tagsStr + solved.trim();	
 		}
 		solved = null;
-	} else {
+	} else if(solved && solved.indexOf('Error:') === -1) {
+		console.log('index: %s', -1);
 		solved = solved.trim();
+	} else {
+		solved = null;
 	}
 
 	if(solved) {
 		tagsStr = tagsStr + 'entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved;
 	} else {
-		tagsStr = tagsStr + '||' + objHTTP.frame_id + '||0||ERR||||';
+		tagsStr = tagsStr;
 	}
 
 	//Rumola|entered the CAPTCHA characters for you.||2||0||OK||||Wn9g
@@ -499,24 +478,30 @@ function response_from_second_gate(aEvent) {
 	// 4 - timeout
 	// 5 - solved captcha text
 
-	var tags = (tagsStr).split("||");
+	console.log('tagsStr: %s', tagsStr);
+	
+	if(tagsStr.indexOf('Error:') > -1) {
+		notify(tagsStr, false);
+		chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"Cancel"});
+	} else {
+		var tags = (tagsStr).split("||");
+		chrome.tabs.get(objHTTP.sender_tab_id, function(ttt) {
+			if (!ttt)
+				return;
 
-	chrome.tabs.get(objHTTP.sender_tab_id, function(ttt) {
-		if (!ttt)
-			return;
+			if ((tags.length == 1)&&(tags[0])) {
+				notify(tags[0]);
+			}
 
-		if ((tags.length == 1)&&(tags[0])) {
-			notify(tags[0]);
-		}
-
-		if (tags.length > 1) {
-			chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"ResponseFromSecondGate", tags:tags, frame_id:objHTTP.frame_id}, 
-					function() {
-				if (tags[0])
-					notify(tags[0]);
-			});
-		}
-	});
+			if (tags.length > 1) {
+				chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"ResponseFromSecondGate", tags:tags, frame_id:objHTTP.frame_id}, 
+						function() {
+					if (tags[0])
+						notify(tags[0]);
+				});
+			}
+		});
+	}
 }
 
 function base64toBlob(b64Data, contentType, sliceSize) {
@@ -631,7 +616,7 @@ function notify(s, need_solve_button) {
 		}
 	}
 	if (need_solve_button) {
-		opt.buttons.push({title:'Click to solve it now'});
+		//opt.buttons.push({title:'Click to solve it now'});
 	} else {
 		last_founded_captcha_tab_id = -1;
 	}
@@ -803,62 +788,28 @@ function receiveMessage(request, sender, sendResponse) {
 		break;
 	case "StartResolve":
 		if(key && secret) {
-			var formData = new FormData();
-			var objHTTP = new XMLHttpRequest();
+			setTimeout(function() {
+				var formData = new FormData();
+				var objHTTP = new XMLHttpRequest();
 
-			objHTTP.sender_tab_id = sender.tab.id;
-			objHTTP.frame_id = request.frame_id;
-			objHTTP.method = request.method;
-			objHTTP.url = request.url;
-			objHTTP.data = request.data;
-			objHTTP.redo = 1;
-			// for sync call
-			objHTTP.open('POST', endpoint, true);    // plug-in desired URL
-//			objHTTP.setRequestHeader('Content-Type', 'multipart/form-data');
-//			objHTTP.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
-//			objHTTP.setRequestHeader('Upgrade-Insecure-Requests', '1');
+				objHTTP.sender_tab_id = sender.tab.id;
+				objHTTP.frame_id = request.frame_id;
+				objHTTP.method = request.method;
+				objHTTP.url = request.url;
+				objHTTP.data = request.data;
+				objHTTP.redo = 1;
+				// for sync call
+				objHTTP.open(request.method, endpoint, true);    // plug-in desired URL
 
-			console.log('1. data:image/png;base64,' + request.data);
+				objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
 
-			var blob = base64toBlob(request.data, 'image/png');
+				var params = "captcha=" + encodeURIComponent('data:image/png;base64,' + request.data) + "&p=extension&key=" + key + "&secret=" + secret;
+//				console.log('params: %s', params);
+				objHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				objHTTP.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 
-//			var myReader = new FileReader();
-//			myReader.onload = function(event){
-//			console.log(JSON.stringify(myReader.result));
-//			};
-//			myReader.readAsText(blob);
-
-
-//			var csv = JSON.stringify(myReader.result);
-//			var csvData = 'data:image/png;charset=utf-8,' 
-//			+ encodeURIComponent(csv);
-//			this.href = csvData;
-//			this.target = '_blank';
-//			this.download = 'img2222.png';
-//			var reader = new window.FileReader();
-//			reader.readAsDataURL(blob); 
-//			reader.onloadend = function() {
-//			base64data = reader.result;
-//			console.log('2. ' + base64data);
-//			}
-
-			objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
-
-			formData.append("p", "extension");
-			formData.append("key", key);
-			formData.append("secret", secret);
-			console.log('blob: %s', blob);
-//			formData.append("captcha", request.data, "captcha.png");
-			formData.append("captcha", 'data:image/png;base64,' + request.data);
-//			objHTTP.send(formData);
-
-			var params = "p=extension&key=" + key + "&secret=" + secret + "&captcha=" + encodeURIComponent('data:image/png;base64,' + request.data);
-			console.log('params: %s', params);
-			objHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			objHTTP.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-//			objHTTP.setRequestHeader("Content-length", params.length);
-
-			objHTTP.send(params);
+				objHTTP.send(params);
+			}, 3000);
 		} else {
 			notify('Captcha Solutions|please enter API key and secret key on the options page of the extension', false);
 		}

@@ -177,7 +177,7 @@
 	function rumola_handleContextMenu(event) {
 		var element = event.target;
 		rumola_prefs.last_context_element = element;
-		chrome.extension.sendRequest({action: "SetContextMenuFrameId", frame_id: rumola.frame_id});	
+//		chrome.extension.sendRequest({action: "SetContextMenuFrameId", frame_id: rumola.frame_id});	
 	}
 
 	function dropevent(e) {

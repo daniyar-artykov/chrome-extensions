@@ -25,7 +25,7 @@
       "default_popup": "forms/popup.html",
       "default_title": "Captcha Solutions Extension click for details"
    },
-   "permissions": [ "contextMenus", "storage", "notifications", "tabs", "\u003Call_urls>" ],
+   "permissions": [ "contextMenus", "storage", "notifications", "tabs", "http://*/*", "https://*/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "0.0.3",
    "web_accessible_resources": [ "images/*" ]
