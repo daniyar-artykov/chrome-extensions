@@ -13,7 +13,6 @@ function getCaptchaSolutionsEnabled() {
 }
 
 function getCaptchaEnabled(a) {
-	console.log('captchaSolutionsEnable %s', a && (n = a.captchaSolutionsEnable));
 	enabled = (a && (n = a.captchaSolutionsEnable));
 }
 

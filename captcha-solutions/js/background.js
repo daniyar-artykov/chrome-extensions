@@ -1,7 +1,6 @@
 //Check whether new version is installed
 chrome.runtime.onInstalled.addListener(function(details) {
 	if(details.reason == "install") {
-		console.log("This is a first install!");
 		chrome.storage.local.set({
 			captchaSolutionsEnable: true
 		});
@@ -52,17 +51,14 @@ function getCaptchaSolutionsEnabled() {
 ////	chrome.storage.local.get('captchaSolutionsEnable', getCaptchaEnabled);
 ////	return enabled;
 //	chrome.storage.local.get('captchaSolutionsEnable', function (result) {
-//	console.log('1. captchaSolutionsEnable %s', result && result.captchaSolutionsEnable);
 //	enabled = result && result.captchaSolutionsEnable;
 ////	getCaptchaSolutionsEnabled(true);
 //	});
-////	console.log('2. enabled %s', enabled);
 
 ////	return enabled;
 }
 
 function getCaptchaEnabled(a) {
-	console.log('captchaSolutionsEnable %s', a && a.captchaSolutionsEnable);
 	enabled = a && a.captchaSolutionsEnable;
 }
 
@@ -242,10 +238,6 @@ function send_activation_request(post_data, tab_id, frame_id) {
 }
 
 function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
-
-	console.log('tab_id: %s, frame_id: %s, step_id: %s \n toGate: %s', 
-			tab_id, frame_id, step_id, toGate);
-
 	var regex = new Array();
 
 	var regexArray = get_regexes_string().split('||');
@@ -261,35 +253,25 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 		var captchaIndex = -1;
 		// iterate each line
 		for(var i = 0; i < lines.length; i++) {
-			console.log('lines[%s]: %s', i, lines[i]);
 			if(!lines[i]) {
 				continue;
 			}
 			var tags = lines[i].split('||');
 			if(tags && tags.length > 2) {
 				for(var j = 2; j < tags.length; j++) {
-					console.log('tags[%s]: %s', j, tags[j]);
-
 					if(tags[j].substring(0, 2) == 'T:') {
-						console.log('regext input %s', regex[5].test(tags[j]));
 						if(regex[5].test(tags[j])) {
 							inputIndex = j - 2;
 							continue;
 						}
 					} else if(tags[j].substring(0, 2) == 'I:') {
-						console.log('regext image %s; and anti regex %s', regex[0].test(tags[j]), !regex[6].test(tags[j]));
 						if(regex[0].test(tags[j]) && !regex[6].test(tags[j])) {
 							captchaIndex = j - 2;
 							continue;
 						}
 					}
-//					zero = null;
-//					first = null;
-//					inputIndex = -1;
-//					captchaIndex = -1;
 				}
 			}
-			console.log('1. %s %s %s %s', zero, first, inputIndex, captchaIndex);
 			if(inputIndex != -1 && captchaIndex != -1) {
 				zero = tags[0];
 				first = tags[1];
@@ -301,26 +283,21 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 			}
 
 			if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-				console.log('2. found!! %s %s %s %s', zero, first, inputIndex, captchaIndex);
 				break;
 			}
 		}
 
 		// if t_field and i_field not found in one form, try to find in different forms
 		if(inputIndex == -1 && captchaIndex == -1 && !zero && !first) {
-			console.log('try again!!');
 			for(var i = 0; i < lines.length; i++) {
-				console.log('lines[%s]: %s', i, lines[i]);
 				if(!lines[i]) {
 					continue;
 				}
 				var tags = lines[i].split('||');
 				if(tags && tags.length > 2) {
 					for(var j = 2; j < tags.length; j++) {
-						console.log('tags[%s]: %s', j, tags[j]);
 
 						if(tags[j].substring(0, 2) == 'T:') {
-							console.log('regext input %s', regex[5].test(tags[j]));
 							if(regex[5].test(tags[j])) {
 								//inputIndex = j - 2;
 								if(captchaIndex > -1) {
@@ -328,7 +305,6 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 								} else {
 									inputIndex = j - 2;
 								}
-								console.log('inputIndex=%s', inputIndex);
 								if((!zero && !first) || first > tags[1]) {
 									zero = tags[0];
 									first = tags[1];
@@ -336,14 +312,12 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 								continue;
 							}
 						} else if(tags[j].substring(0, 2) == 'I:') {
-							console.log('regext image %s; and anti regex %s', regex[0].test(tags[j]), !regex[6].test(tags[j]));
 							if(regex[0].test(tags[j]) && !regex[6].test(tags[j])) {
 								if(inputIndex > -1) {
 									captchaIndex = inputIndex + 1;
 								} else {
 									captchaIndex = j - 2;
 								}
-								console.log('captchaIndex=%s', captchaIndex);
 								if((!zero && !first) || first > tags[1]) {
 									zero = tags[0];
 									first = tags[1];
@@ -355,12 +329,11 @@ function send_request_to_first_gate(toGate, tab_id, frame_id, step_id) {
 				}
 			}
 
-			console.log('3. %s %s %s %s', zero, first, inputIndex, captchaIndex);
 		}
 
 		var data = '|CAPTCHA(s) NOT found on this page.';
 		if(inputIndex > -1 && captchaIndex > -1 && zero && first) {
-			data = '|CAPTCHA(s) found on this page. \n We trying to solve it.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
+			data = '|CAPTCHA(s) found on this page. \n Trying to solve it.||' + zero + '||' + first + '||' + inputIndex + '||' + captchaIndex + '||vQVMBh';
 			process_good_response_from_first_gate(data, tab_id, frame_id, 'https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=');
 		}
 	}
@@ -385,12 +358,9 @@ function response_from_first_gate(aEvent) {
 	process_good_response_from_first_gate(""+objHTTP.responseText, objHTTP.sender_tab_id, objHTTP.frame_id, objHTTP.getResponseHeader("BGate"));
 }
 function response_from_second_gate(aEvent) {
-	console.log('>>>>>> response_from_second_gate');
 	var objHTTP = aEvent.target;
 	if (objHTTP.readyState != 4)
 		return;
-
-	console.log('rspText: %s \n redo: %s', objHTTP.responseText, objHTTP.redo);
 
 	if (objHTTP.status != 200 || (objHTTP.responseText != null && objHTTP.responseText.indexOf('Error:') > -1)) {
 		if (objHTTP.redo && objHTTP.redo < 4) {
@@ -411,7 +381,7 @@ function response_from_second_gate(aEvent) {
 				objHTTP1.addEventListener("readystatechange", response_from_second_gate, true);
 
 				var params = "captcha=" + encodeURIComponent('data:image/png;base64,' + objHTTP.data) + "&p=extension&key=" + key + "&secret=" + secret;
-//				console.log('params: %s', params);
+
 				objHTTP1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				objHTTP1.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 
@@ -420,9 +390,6 @@ function response_from_second_gate(aEvent) {
 			}, 3000);
 			return;
 		}
-//		notify(chrome.i18n.getMessage("conn_error"), false);
-//		chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"Cancel"});
-//		return;
 	}
 
 	var parseXml;
@@ -447,8 +414,6 @@ function response_from_second_gate(aEvent) {
 	var xml = parseXml(replaceAll(objHTTP.responseText, '&', ''));
 	solved = xml.documentElement.getElementsByTagName("decaptcha")[0].firstChild.nodeValue;
 
-	console.log('solved: %s', solved);
-
 	var tagsStr = 'Captcha Solutions|';
 	if(solved && solved.indexOf('Error:') > -1) {
 		if(solved.trim() === 'Error: You have 0 balance left in your account.') {
@@ -458,28 +423,17 @@ function response_from_second_gate(aEvent) {
 		}
 		solved = null;
 	} else if(solved && solved.indexOf('Error:') === -1) {
-		console.log('index: %s', -1);
 		solved = solved.trim();
 	} else {
 		solved = null;
 	}
 
 	if(solved) {
-		tagsStr = tagsStr + 'entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved;
+		tagsStr = tagsStr + 'entered the CAPTCHA characters for you.||' + objHTTP.frame_id + '||0||OK||||' + solved.toUpperCase();
 	} else {
 		tagsStr = tagsStr;
 	}
 
-	//Rumola|entered the CAPTCHA characters for you.||2||0||OK||||Wn9g
-	// 0 - notice
-	// 1 - 
-	// 2 - 
-	// 3 - ERR, OK, WAIT, TMP
-	// 4 - timeout
-	// 5 - solved captcha text
-
-	console.log('tagsStr: %s', tagsStr);
-	
 	if(tagsStr.indexOf('Error:') > -1) {
 		notify(tagsStr, false);
 		chrome.tabs.sendRequest(objHTTP.sender_tab_id, {action:"Cancel"});
@@ -529,13 +483,9 @@ function base64toBlob(b64Data, contentType, sliceSize) {
 }
 
 function process_good_response_from_first_gate(data, tab_id, frame_id, b_gate_url) {
-	// data=|CAPTCHA(s) found on this page.||2||1||3||4||mmGLD2, tabId=2, frame_id=::1450066669826::0.00466102990321815, b_gate_url=https://gate1a.skipinput.com/b_gate.php?b=chrome&v=3005&key=
-	console.log("process_good_response_from_first_gate");
-	console.log("data=%s, tabId=%s, frame_id=%s, b_gate_url=%s", data, tab_id, frame_id, b_gate_url);
 	n_bad_responses_from_first_gate = 0;
 	var tags = data.split("||");
 
-	console.log("tags.length: " + tags.length);
 	if (tab_id == -1) {
 		if (tags[0])
 			notify(tags[0], false);
@@ -769,10 +719,8 @@ catch (exc) {
 //region messages processing
 wait_box_unique_message_id = "rumola_show_wait_box::"+(new Date()).getTime()+"::"+Math.random();
 function receiveMessage(request, sender, sendResponse) {
-	console.log('action: %s, tabId=%s, frame_id=%s', request.action, sender.tab.id, request.frame_id);
 	switch (request.action) {
 	case "PleaseSendPrefs":
-		console.log('enabled: %s', getCaptchaSolutionsEnabled());
 		sendResponse({enabled:getCaptchaSolutionsEnabled(), switcher_position:get_switcher_position(), filter_string: get_regexes_string(),
 			wait_box_unique_message_id:wait_box_unique_message_id,
 			b_active_tab:(active_tab_err ? false : (active_tab_ids[sender.tab.windowId] == sender.tab.id)),
@@ -787,6 +735,7 @@ function receiveMessage(request, sender, sendResponse) {
 		});
 		break;
 	case "StartResolve":
+		initializeSavedDetails();
 		if(key && secret) {
 			setTimeout(function() {
 				var formData = new FormData();
@@ -804,7 +753,6 @@ function receiveMessage(request, sender, sendResponse) {
 				objHTTP.addEventListener("readystatechange", response_from_second_gate, true);
 
 				var params = "captcha=" + encodeURIComponent('data:image/png;base64,' + request.data) + "&p=extension&key=" + key + "&secret=" + secret;
-//				console.log('params: %s', params);
 				objHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				objHTTP.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 

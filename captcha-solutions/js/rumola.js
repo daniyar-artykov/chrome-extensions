@@ -13,8 +13,7 @@ function rumola_document(default_search_enabled) {
 	this.init(default_search_enabled);
 
 	// add this event listeners recurently for all the frames
-	try
-	{
+	try	{
 		initDocumentEventListener(window, "load", rumola.document_load_fires, true); // to catch loading images or frames
 		initDocumentEventListener(window, "contextmenu", rumola_handleContextMenu, true);
 
@@ -25,8 +24,9 @@ function rumola_document(default_search_enabled) {
 
 		initDocumentEventListener(window, "dragstart", dragevent, true);
 		initDocumentEventListener(window, "dragenter", dropevent, true);
+	} catch (exc) {
+		rumola_notifications.send_exception(1309, exc);
 	}
-	catch (exc) {rumola_notifications.send_exception(1309, exc);}
 
 	this.apply_idle_mode = function() { // idle is -1
 		this._suicide_forms();
@@ -468,10 +468,6 @@ var rumola = {
 					}
 					rumola.document.load_fires = false;
 
-					for (var k = 1; k <= local_max_form_id; k++) {
-						console.log('k: %s, my_form: %s, i_field: %s, t_field: %s', k, rumola.document.my_forms[k].my_form, rumola.document.my_forms[k].i_field, rumola.document.my_forms[k].t_field);
-					}
-
 					if (toGate) {
 						chrome.extension.sendRequest({action: "RequestToFirstGate", frame_id: rumola.frame_id, toGate: toGate});
 					}
@@ -549,43 +545,23 @@ var rumola = {
 
 		response_from_first_gate: function(tags, b_gate_url) {
 
-			console.log('tags: %s, b_gate_url: %s', tags, b_gate_url);
-
 			rumola.last_changed_element = null;
 			if (!tags[0].match(/{{/)) {
 				rumola_notifications.playSound("notifications/found.wav");
 			}
 
-			//1||0||I:http://captchator.com/captcha/image/ck0p3p3uuth3l9m
-			//1||1||T:captcha_answer
-			// |CAPTCHA(s) found on this page.||1||0||1||0||z5zTXs
-			// my_form, t_field, i_field, captcha_id, b_gate_url
-			// 0 - notification text;
-			// 1 - hz :) 1
-			// 2 - my_form 0 
-			// 3 - t_field 1 
-			// 4 - i_field 0 
-			// 5 - captcha_id mmGLD2
-
-			for (var i=5; i<tags.length; i+=5)
-			{
-				console.log('i=%s, %s %s', i, rumola.document.my_forms.length, rumola.document.my_forms[tags[i-3]] instanceof rumola_form_wait);
+			for (var i=5; i<tags.length; i+=5) {
 				if (!(rumola.document.my_forms[tags[i-3]] instanceof rumola_form_wait)) {//tag[2]
-					console.log('continue');
 					continue;
 				}
-				console.log('tags[i-3] ' + tags[i-3]);
 				if (tags[i-3] == 0) {//tag[2]
 					if ((rumola.document.my_forms_array_type == 0)&&(rumola.document.zero_form_tag != tags[i-4])) {//tag[1]
 						return;
 					}
 					rumola.document.leave_only_zero_form();
-				} else {
-					console.log('heeeee');
 				}
 
 				rumola_prefs.last_found_captcha_id = tags[i-3];//tag[2]
-				console.log('last_found_captcha_id %s', rumola_prefs.last_found_captcha_id);
 				var tmp = new rumola_form_ready(rumola.document.my_forms[tags[i-3]].my_form, rumola.document.my_forms[tags[i-3]].important_elements[tags[i-2]], rumola.document.my_forms[tags[i-3]].important_elements[tags[i-1]], tags[i], b_gate_url);
 				rumola.document.my_forms[tags[i-3]].suicide();
 				rumola.document.my_forms[tags[i-3]] = tmp;
@@ -596,8 +572,7 @@ var rumola = {
 		},
 
 		response_from_second_gate: function(tags, _resp) {
-			try
-			{
+			try	{
 				if (tags.length < 5)
 					return;
 				if (!rumola.document.my_forms[0] instanceof rumola_form_ready)
@@ -681,21 +656,16 @@ var rumola_prefs = {
 				rumola_prefs.wait_box_unique_message_id = response.wait_box_unique_message_id;
 				rumola_prefs.client_area_link = response.client_area_link;
 				var filter_strings = response.filter_string.split("||");
-				console.log('filter_string: %s', response.filter_string);
 				for (var i=0; i<filter_strings.length; i++)
 					rumola_prefs.filters.push(new RegExp(filter_strings[i], "i"));
-				console.log('enabled %s', rumola_prefs.enabled);
 				rumola.document_load(rumola_prefs.enabled);
 
-//				console.log('0: %s; \n 1: %s; \n 2: %s; \n 3: %s; \n 4: %s; \n 5: %s; ', rumola_prefs.filters[0], rumola_prefs.filters[1], rumola_prefs.filters[2], rumola_prefs.filters[3], rumola_prefs.filters[4], rumola_prefs.filters[5]);
 			}
 			);
 		},
 
 		on_request: function(req, sender, sendResponse) {
-			try
-			{
-				console.log("req.action " + req.action);
+			try {
 				if (req.frame_id && req.frame_id != rumola.frame_id) {
 					return;
 				}
@@ -722,7 +692,6 @@ var rumola_prefs = {
 					rumola_prefs.b_active_tab = true;
 					break;
 				case "StartLastCaptchaRecognition":
-					console.log(rumola_prefs.last_found_captcha_id + ' | ');
 					if ((rumola.document.my_forms[rumola_prefs.last_found_captcha_id] instanceof rumola_form_ready)&&(rumola.document.my_forms[rumola_prefs.last_found_captcha_id].solving_type == 0)) {
 						rumola.document.start_solve(rumola_prefs.last_found_captcha_id);
 					}
@@ -785,10 +754,8 @@ var rumola_notifications = { // send_exception, playSound, notify_manual_selecti
 
 if ((parent == window)||(!isAccessibleParentFrame(parent))) {
 	try {
-		console.log('init_prefs');
 		rumola_prefs.init_prefs();
-	}
-	catch (exc) {
+	} catch (exc) {
 		rumola_notifications.send_exception(1210, exc);
 	}
 }

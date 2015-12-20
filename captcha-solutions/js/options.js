@@ -10,7 +10,6 @@ $('#save-btn').click(function() {
 	}
 
 	b['userData'] = userData;
-	console.debug('set apiKey: %s; secretKey: %s', userData.apiKey, userData.secretKey);
 	chrome.storage.local.set(b);
 });
 
