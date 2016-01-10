@@ -1,0 +1,26 @@
+{
+   "description": "Intercom Gmail Extension Description",
+   "icons": {
+      "128": "images/icons/128.png",
+      "48": "images/icons/48.png",
+      "16": "images/icons/16.png"
+   },
+   "content_scripts": [ {
+      "css": [ "css/intercom-gmail.css" ],
+      "js": [ "js/intercom-gmail.js" ],
+      "matches": [ "https://mail.google.com/*" ]
+   } ],  
+   "manifest_version": 2,
+   "minimum_chrome_version": "42.0.2311.135",
+   "name": "Intercom Gmail Extension",
+   "options_page": "forms/options.html",
+   "browser_action": {
+      "default_icon": "images/icons/32.png",
+      "default_popup": "forms/popup.html",
+      "default_title": "Intercom Gmail Extension click for details"
+   },
+   "permissions": [ "storage", "tabs", "http://*/*", "https://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.1",
+   "web_accessible_resources": [ "images/*" ]
+}
