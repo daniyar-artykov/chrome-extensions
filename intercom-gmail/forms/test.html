@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>test</title>
 </head>
 <body>
 	<script src="../libs/jquery-2.1.4.js"></script>
@@ -12,22 +13,25 @@
 						function() {
 							$
 									.ajax({
-										url : "https://api.intercom.io/users",
-										type : "POST",
+										url : 'https://api.intercom.io/users',
+										type : 'POST',
 										data : {
-											email : "kamiarcustomer@gmail.com"
+											email : 'kamiarcustomer@gmail.com'
 										},
-										dataType : "jsonp",
-										beforeSend : function(xhr) {
+										contentType: 'application/json',
+										dataType : 'jsonp',
+										/* beforeSend : function(xhr) {
 											xhr
 													.setRequestHeader(
-															"Authorization",
-															"Basic "
-																	+ btoa("gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac"));
-										},
-										/* headers : {
-											"Authorization" : "Basic " + btoa("gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac")
+															'Authorization',
+															'Basic '
+																	+ btoa('gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac'));
 										}, */
+										headers : {
+											'Authorization' : 'Basic ' + btoa('gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac')
+										},
+										/* username : 'gf0asjc7',
+										password : 'ro-6290c171fc362c12f55f86121b715f9ba7a215ac', */
 										success : function(result) {
 											alert(result);
 										},

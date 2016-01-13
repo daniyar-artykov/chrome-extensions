@@ -7,7 +7,7 @@
    },
    "content_scripts": [ {
       "css": [ "css/intercom-gmail.css" ],
-      "js": [ "js/intercom-gmail.js" ],
+      "js": [ "js/content.js" ],
       "matches": [ "https://mail.google.com/*" ]
    } ],  
    "manifest_version": 2,

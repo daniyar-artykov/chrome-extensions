@@ -33,8 +33,7 @@ function initializeIntercomGmail(a) {
 }
 
 document.getElementById('options-btn').onclick = function() {
-	var options_url;
-	options_url = chrome.extension.getURL('/forms/options.html');
+	var options_url = chrome.extension.getURL('/forms/options.html');
 	chrome.tabs.query({
 		url: options_url
 	}, function(tabs) {
