@@ -91,6 +91,14 @@ var rightTasks = (function() {
 
 			$tasksContainer.parentNode.className += ' gmail-righttasks-container';
 
+			// for firefox
+			var cssURL = './intercom-gmail.css';
+
+			// for chrome
+			if(window.chrome && window.chrome.extension) {
+				cssURL = chrome.extension.getURL('css/intercom-gmail.css');
+			}
+
 			// get the dom of the tasks iframe
 			var getIframeDom = function() {
 

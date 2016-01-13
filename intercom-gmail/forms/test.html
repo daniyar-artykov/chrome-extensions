@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<script src="../libs/jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+	// https://gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac@api.intercom.io/users?email=kamiarcustomer@gmail.com
+		$(document)
+				.ready(
+						function() {
+							$
+									.ajax({
+										url : "https://api.intercom.io/users",
+										type : "POST",
+										data : {
+											email : "kamiarcustomer@gmail.com"
+										},
+										dataType : "jsonp",
+										beforeSend : function(xhr) {
+											xhr
+													.setRequestHeader(
+															"Authorization",
+															"Basic "
+																	+ btoa("gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac"));
+										},
+										/* headers : {
+											"Authorization" : "Basic " + btoa("gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac")
+										}, */
+										success : function(result) {
+											alert(result);
+										},
+										error : function(xhr, ajaxOptions,
+												thrownError) {
+											console.log(xhr.status);
+											console.log(thrownError);
+										}
+									});
+						});
+	</script>
+</body>
+</html>
