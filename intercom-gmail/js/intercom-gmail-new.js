@@ -68,10 +68,11 @@ var rightTasks = (function() {
 
 		// find the tasks iframe, and get it's main parent with the .dw class
 		var tasksIframe = document.getElementById('tasksiframe');
-		
+
 		if(tasksIframe) {
-//			tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html');
-			
+
+			tasksIframe.parentNode.removeChild(tasksIframe);
+
 			var topParent = document.getElementById('tasksiframe');
 			while(topParent.className.indexOf('dw') === -1) {
 				topParent = topParent.parentNode;
@@ -91,112 +92,48 @@ var rightTasks = (function() {
 
 			$tasksContainer.parentNode.className += ' gmail-righttasks-container';
 
-			// for firefox
-			var cssURL = './intercom-gmail.css';
+			// TODO
+			$tasksContainer.querySelector('div.aYF').innerHTML = 'John Smith';
 
-			// for chrome
-			if(window.chrome && window.chrome.extension) {
-				cssURL = chrome.extension.getURL('css/intercom-gmail.css');
-			}
+			// add minimize button
+			var $tasksHeader = $tasksContainer.querySelector('td.Hm');
 
-			// get the dom of the tasks iframe
-			var getIframeDom = function() {
+			var $minimizeBtn = document.createElement('a');
+			$minimizeBtn.className = 'righttasks-minimize-btn';
+			$minimizeBtn.setAttribute('title', 'Minimize');
+			$minimizeBtn.setAttribute('aria-label', 'Minimize');
 
-				// check if the frame is fully loaded
-				if(tasksIframe.contentDocument.readyState === 'complete') {
-					var html = tasksIframe.contentDocument.getElementsByTagName('html')[0],
-					body = html.getElementsByTagName('body')[0];
+			$minimizeBtn.addEventListener('click', function(e) {
+				if(document.body.className.indexOf('righttasks-minimized') === -1) {
+					// add class
+					document.body.className += ' righttasks-minimized';
 
-					html.className += ' tasks-frame';
-					
-					// when the tasks widget is opened, it steals focus
-					// and gmail shortcuts stop working.
-					// to prevent this, we cancel the first focus event
-					var preventFocusStealing = function() {
-						// focus on the main window
-						window.focus();
+					// save in localstorage
+					localStorage.setItem('minimizedTasks', 'true');
 
-						// remove focus prevention after first focus
-						tasksIframe.contentDocument.removeEventListener('focus', preventFocusStealing, true);
-					};
+					// change title attribute tooltip
+					$minimizeBtn.setAttribute('title', 'Restore');
+				} else {
+					// remove class
+					document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
 
-					tasksIframe.contentDocument.addEventListener('focus', preventFocusStealing, true);
+					// save in localstorage
+					localStorage.setItem('minimizedTasks', 'false');
 
-					// capture the ESC keydown
-					tasksIframe.contentDocument.body.addEventListener('keydown', function (e) {
-
-						if(e.which === 27) {
-							// if ESC key pressed, the tasks widget will hide
-							// so we reopen it
-							rightTasks.init();
-
-							// TODO find a way to actually prevent closing the widget
-							// with the ESC key
-
-							return false;
-						}
-
-					}, true);
-
-					// TODO
-					$tasksContainer.querySelector('div.aYF').innerHTML = 'John Smith';
-					
-					// add minimize button
-					var $tasksHeader = $tasksContainer.querySelector('td.Hm');
-
-					var $minimizeBtn = document.createElement('a');
-					$minimizeBtn.className = 'righttasks-minimize-btn';
+					// change title attribute tooltip
 					$minimizeBtn.setAttribute('title', 'Minimize');
-					$minimizeBtn.setAttribute('aria-label', 'Minimize');
-
-					$minimizeBtn.addEventListener('click', function(e) {
-						if(document.body.className.indexOf('righttasks-minimized') === -1) {
-							// add class
-							document.body.className += ' righttasks-minimized';
-
-							// save in localstorage
-							localStorage.setItem('minimizedTasks', 'true');
-
-							// change title attribute tooltip
-							$minimizeBtn.setAttribute('title', 'Restore');
-						} else {
-							// remove class
-							document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
-
-							// save in localstorage
-							localStorage.setItem('minimizedTasks', 'false');
-
-							// change title attribute tooltip
-							$minimizeBtn.setAttribute('title', 'Minimize');
-						}
-					});
-
-					$tasksHeader.appendChild($minimizeBtn);
-
-					// if previously minimized, add minimized class
-					if(minimizedTasks) {
-						document.body.className += ' righttasks-minimized';
-					}
-
 				}
-				
-				// if something is not right with the tasks iframe
-				if(tasksIframe.contentDocument.readyState !== 'complete' || !html || html.className.indexOf('tasks-frame') === -1) {
+			});
 
-					setTimeout(getIframeDom, 500);
+			$tasksHeader.appendChild($minimizeBtn);
 
-				}
-
-			};
-
-			getIframeDom();
-
+			// if previously minimized, add minimized class
+			if(minimizedTasks) {
+				document.body.className += ' righttasks-minimized';
+			}
 		} else {
-
 			setTimeout(findTasksContainer, 500);
-
 		}
-
 	};
 
 	var init = function() {
@@ -239,7 +176,6 @@ var rightTasks = (function() {
 				return false;
 			}
 		}, false);
-
 
 		// get the main gmail container
 		$mailContainer = document.querySelector('.AO');
