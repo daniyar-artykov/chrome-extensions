@@ -7,7 +7,10 @@
 <body>
 	<script src="../libs/jquery-2.1.4.js"></script>
 	<script type="text/javascript">
-	// https://gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac@api.intercom.io/users?email=kamiarcustomer@gmail.com
+		// https://gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac@api.intercom.io/users?email=kamiarcustomer@gmail.com
+		// https://gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac@api.intercom.io/events?type=user&email=kamiarcustomer@gmail.com
+		// https://gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac@api.intercom.io/conversations
+		// text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 		$(document)
 				.ready(
 						function() {
@@ -18,7 +21,7 @@
 										data : {
 											email : 'kamiarcustomer@gmail.com'
 										},
-										contentType: 'application/json',
+										contentType : 'application/json',
 										dataType : 'jsonp',
 										/* beforeSend : function(xhr) {
 											xhr
@@ -28,7 +31,8 @@
 																	+ btoa('gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac'));
 										}, */
 										headers : {
-											'Authorization' : 'Basic ' + btoa('gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac')
+											'Authorization' : 'Basic '
+													+ btoa('gf0asjc7:ro-6290c171fc362c12f55f86121b715f9ba7a215ac')
 										},
 										/* username : 'gf0asjc7',
 										password : 'ro-6290c171fc362c12f55f86121b715f9ba7a215ac', */
