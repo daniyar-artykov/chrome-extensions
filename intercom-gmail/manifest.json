@@ -19,8 +19,8 @@
       "default_popup": "forms/popup.html",
       "default_title": "Intercom Gmail Extension click for details"
    },
-   "permissions": [ "storage", "tabs", "http://*/*", "https://*/*" ],
+   "permissions": [ "storage", "tabs", "http://*/*", "https://*/*", "*://*/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "0.0.1",
-   "web_accessible_resources": [ "images/*", "forms/intercom-gmail.html" ]
+   "web_accessible_resources": [ "images/*", "forms/intercom-gmail.html", "forms/options.html" ]
 }

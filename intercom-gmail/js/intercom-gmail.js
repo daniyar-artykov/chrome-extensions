@@ -23,6 +23,13 @@ function initializeUserDataControls(a) {
 			},
 			success : function(result) {
 				$('#name').html(result.name);
+
+				// avatar start
+				if(result.avatar && result.avatar.image_url) {
+					$('#avatar').prop('src', result.avatar.image_url);
+				}
+				// avatar end
+
 				$('#email').prop('href','mailito:'+result.email).text(result.email);
 				$('#city').html(result.location_data.city_name);
 				$('#country').html(result.location_data.country_name);
@@ -30,10 +37,9 @@ function initializeUserDataControls(a) {
 
 				// tags start
 				var flag = true;
-				if(result.tags != null && result.tags.tags != null
-						&& result.tags.tags.length > 0) {
+				if(result.tags && result.tags.tags && result.tags.tags.length > 0) {
 					$.each(result.tags.tags, function(index, element) {
-						if(element != null && element.name) {
+						if(element && element.name) {
 							$('<tr><td>' + element.name + '</td><td></td></tr>').insertAfter($('#tags'));
 							flag = false;
 						}
@@ -47,10 +53,9 @@ function initializeUserDataControls(a) {
 
 				// segments start
 				flag = true;
-				if(result.segments != null && result.segments.segments != null
-						&& result.segments.segments.length > 0) {
+				if(result.segments && result.segments.segments && result.segments.segments.length > 0) {
 					$.each(result.segments.segments, function(index, element) {
-						if(element != null && element.id) {
+						if(element && element.id) {
 							$('<tr><td>' + element.id + '</td><td></td></tr>').insertAfter($('#segments'));
 							flag = false;
 						}
@@ -65,9 +70,8 @@ function initializeUserDataControls(a) {
 				var d = new Date(result.signed_up_at * 1000);
 				$('#signed-up').html(d.getDate() + ' ' + getMonthString(d.getMonth()) + ' ' + d.getFullYear());
 
-				if(result.companies != null && result.companies.companies != null 
-						&& result.companies.companies[0] != null 
-						&& result.companies.companies[0].company_id != null) {
+				if(result.companies && result.companies.companies && result.companies.companies[0]
+				&& result.companies.companies[0].company_id) {
 					$('#company').html(result.companies.companies[0].name);
 
 					// getting info about company
@@ -87,6 +91,8 @@ function initializeUserDataControls(a) {
 							$.each(result1.companies, function(index, element) {
 								if(element.company_id == result.companies.companies[0].company_id) {
 									$('#teammates').html(element.user_count);
+									$('#price-plan').html(element.plan);
+									$('#monthly-spend').html(element.monthly_spend);
 								}
 							});
 						},
@@ -100,17 +106,18 @@ function initializeUserDataControls(a) {
 
 				// social profiles
 				flag = true;
-				if(result.social_profiles != null && result.social_profiles.social_profiles != null
+				if(result.social_profiles && result.social_profiles.social_profiles
 						&& result.social_profiles.social_profiles.length > 0) {
 					$.each(result.social_profiles.social_profiles, function(index, element) {
-						if(element != null && element.name) {
+						if(element && element.name) {
 							$('<tr><td>' + element.name + ':</td><td>' + element.username + '</td></tr>').insertAfter($('#social-profiles'));
+							flag = false;
 						}
 					});
 				}
 
 				if(flag) {
-					$('<tr><td></td><td></td></tr>').insertAfter($('#social-profiles'));
+					$('#social-profile').html('');
 				}
 			},
 			error : function(xhr, ajaxOptions,

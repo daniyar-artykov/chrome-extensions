@@ -68,10 +68,10 @@ var rightTasks = (function() {
 
 		// find the tasks iframe, and get it's main parent with the .dw class
 		var tasksIframe = document.getElementById('tasksiframe');
-		
+
 		if(tasksIframe) {
 			tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html');
-			
+
 			var topParent = document.getElementById('tasksiframe');
 			while(topParent.className.indexOf('dw') === -1) {
 				topParent = topParent.parentNode;
@@ -100,7 +100,7 @@ var rightTasks = (function() {
 					body = html.getElementsByTagName('body')[0];
 
 					html.className += ' tasks-frame';
-					
+
 					// when the tasks widget is opened, it steals focus
 					// and gmail shortcuts stop working.
 					// to prevent this, we cancel the first focus event
@@ -171,7 +171,7 @@ var rightTasks = (function() {
 					}
 
 				}
-				
+
 				// if something is not right with the tasks iframe
 				if(tasksIframe.contentDocument.readyState !== 'complete' || !html || html.className.indexOf('tasks-frame') === -1) {
 
