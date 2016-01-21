@@ -65,6 +65,9 @@
 		}).state('general', {
 			url: '/general',
 			templateUrl: 'partials/general.html'
+		}).state('bypass', {
+			url: '/bypass',
+			templateUrl: 'partials/bypass.html'
 		}).state('first', {
 			url: '/first',
 			templateUrl: 'partials/first.html',

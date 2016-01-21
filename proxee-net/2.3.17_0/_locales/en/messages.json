@@ -874,6 +874,9 @@
    "options_tab_general": {
       "message": "General"
    },
+   "options_tab_bypass": {
+      "message": "Bypass List"
+   },
    "options_tab_importExport": {
       "message": "Import/Export"
    },
