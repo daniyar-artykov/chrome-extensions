@@ -1,6 +1,6 @@
 (function() {
 	var attachedPrefix, charCodeUnderscore, colors, profileColorPalette, profileColors;
-
+	__hasProp = {}.hasOwnProperty;
 	angular.module('omega').constant('builtinProfiles', OmegaPac.Profiles.builtinProfiles);
 
 	profileColors = ['#9ce', '#9d9', '#fa8', '#fe9', '#d497ee', '#47b', '#5b5', '#d63', '#ca0'];
@@ -660,6 +660,7 @@
 									toAttachedKey = OmegaPac.Profiles.nameAsKey(toAttachedName);
 									profile = $rootScope.profileByName(toName);
 									profile.defaultProfileName = 'direct';
+									// TODO
 									OmegaPac.Profiles.updateRevision(profile);
 									delete $rootScope.options[toAttachedKey];
 									return $rootScope.applyOptions();
@@ -744,34 +745,52 @@
 				return;
 			}
 
+			if(options['-bypassList'] !== oldOptions['-bypassList']) {
+				omegaTarget.state(['availableProfiles']).then(function(_arg) {
+					var availableProfiles = _arg[0];
+					// TODO
+					for (key in availableProfiles) {
+						if (!__hasProp.call(availableProfiles, key)) continue;
+						var profile = availableProfiles[key];
+						if(profile.name != 'direct' && profile.name != 'system') {
+							console.log(profile.name);
+							profile.name = profile.name + ' 3';
+							OmegaPac.Profiles.updateRevision(profile);
+						}
+					}
+				});
+			}
+
 			if(options['-routeSelection'] !== oldOptions['-routeSelection']) {
 				var multiRoutes;
 				var nonProxiedUdp;
 				var radios = document.getElementsByName('routeselection');
-				for (var i = 0, length = radios.length; i < length; i++) {
-					if (radios[i].checked) {
-						// option 0: multiple routes enabled, non proxied udp enabled.
-						// option 1: multiple routes disabled, non proxied udp enabled.
-						// option 2: both are disabled.
-						multiRoutes = i < 1;
-						nonProxiedUdp = i < 2;
-						break;
+				if(radios) {
+					for (var i = 0, length = radios.length; i < length; i++) {
+						if (radios[i].checked) {
+							// option 0: multiple routes enabled, non proxied udp enabled.
+							// option 1: multiple routes disabled, non proxied udp enabled.
+							// option 2: both are disabled.
+							multiRoutes = i < 1;
+							nonProxiedUdp = i < 2;
+							break;
+						}
 					}
-				}
-//				alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
+//					alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
 
-				localStorage["multiple_routes_enabled"] = multiRoutes;
-				localStorage["non_proxied_udp_enabled"] = nonProxiedUdp;
+					localStorage["multiple_routes_enabled"] = multiRoutes;
+					localStorage["non_proxied_udp_enabled"] = nonProxiedUdp;
 
-				chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
-					'value': multiRoutes
-				});
-				try {
-					chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
-						'value': nonProxiedUdp
+					chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+						'value': multiRoutes
 					});
-				} catch (err) {
-					console.log('setting webRTCNonProxiedUdpEnabled is not supported.');
+					try {
+						chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
+							'value': nonProxiedUdp
+						});
+					} catch (err) {
+						console.log('setting webRTCNonProxiedUdpEnabled is not supported.');
+					}
 				}
 			}
 
