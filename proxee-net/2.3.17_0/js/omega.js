@@ -230,6 +230,7 @@
 						});
 					}
 				}
+				
 				return _results;
 			})();
 		});
@@ -660,7 +661,6 @@
 									toAttachedKey = OmegaPac.Profiles.nameAsKey(toAttachedName);
 									profile = $rootScope.profileByName(toName);
 									profile.defaultProfileName = 'direct';
-									// TODO
 									OmegaPac.Profiles.updateRevision(profile);
 									delete $rootScope.options[toAttachedKey];
 									return $rootScope.applyOptions();
@@ -746,6 +746,23 @@
 			}
 
 			if(options['-bypassList'] !== oldOptions['-bypassList']) {
+				console.log('new ' + options['-bypassList']);
+				console.log('old ' + oldOptions['-bypassList']);
+				var _j, _len1, _ref1, _results;
+				_ref1 = options['-bypassList'].split(/\r?\n/);
+				_results = [];
+				for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+					entry = _ref1[_j];
+					if (entry) {
+						_results.push({
+							conditionType: "BypassCondition",
+							pattern: entry
+						});
+					}
+				}
+				console.log('result: ' + _results);
+				options['-bypassArray'] = _results;
+				
 				omegaTarget.state(['availableProfiles']).then(function(_arg) {
 					var availableProfiles = _arg[0];
 					// TODO
@@ -753,9 +770,16 @@
 						if (!__hasProp.call(availableProfiles, key)) continue;
 						var profile = availableProfiles[key];
 						if(profile.name != 'direct' && profile.name != 'system') {
-							console.log(profile.name);
-							profile.name = profile.name + ' 3';
-							OmegaPac.Profiles.updateRevision(profile);
+							var profile1 = $rootScope.profileByName(profile.name);
+							console.log(profile1.name);
+							console.log('rev: ' + profile1.revision);
+							console.log('bypass: ' + profile1.bypassList);
+							profile1.bypassList = _results;
+							OmegaPac.Profiles.updateRevision(profile1);
+							console.log('rev: ' + profile1.revision);
+							console.log('bypass: ' + profile1.bypassList);
+							$rootScope.options[OmegaPac.Profiles.nameAsKey(profile1)] = profile1;
+//							omegaTarget.applyProfile(profile.name);
 						}
 					}
 				});
@@ -776,7 +800,6 @@
 							break;
 						}
 					}
-//					alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
 
 					localStorage["multiple_routes_enabled"] = multiRoutes;
 					localStorage["non_proxied_udp_enabled"] = nonProxiedUdp;
@@ -798,12 +821,12 @@
 		};
 
 		$rootScope.restoreRadios = function(multiRoutes, nonProxiedUdp) {
-//			alert('multiRoutes: ' + multiRoutes + '; nonProxiedUdp: ' + nonProxiedUdp);
 			var radios = document.getElementsByName('routeselection');
+
 			if (multiRoutes) {
-				if (nonProxiedUdp) {
+				if (nonProxiedUdp && radios[0]) {
 					radios[0].checked = true;
-				} else {
+				} else if(!nonProxiedUdp && radios[0]) {
 					radios[0].checked = false;
 					alert(
 							'The extension does not support the configuration where multiple ' +
@@ -811,9 +834,9 @@
 					);
 				}
 			} else {
-				if (nonProxiedUdp) {
+				if (nonProxiedUdp && radios[1]) {
 					radios[1].checked = true;
-				} else {
+				} else if(!nonProxiedUdp && radios[2]) {
 					radios[2].checked = true;
 				}
 			}
@@ -823,15 +846,6 @@
 		//Restores checkbox states.
 		$rootScope.restoreMultiRoutesOption = function() {
 
-//			var multiRoutesEnabled = localStorage["multiple_routes_enabled"];
-
-//			alert('multiRoutesEnabled: ' + multiRoutesEnabled);
-//			if(multiRoutesEnabled === 'true') {
-//			alert('ttt');
-//			chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
-//			'value': true
-//			});
-//			}
 			if($rootScope.firstRunT === 'new') {
 				chrome.privacy.network.webRTCMultipleRoutesEnabled.set({'value': false});
 			}
@@ -858,15 +872,17 @@
 						console.log('setting webRTCNonProxiedUdpEnabled is not supported.');
 					}
 				}
-				var nonProxiedUdp = true;
-				chrome.privacy.network.webRTCNonProxiedUdpEnabled.get({},
-						function(details) {
-					nonProxiedUdp = details.value;
-					$rootScope.restoreRadios(multiRoutes, nonProxiedUdp);
-					document.getElementById('for_multirouteOffUdpOff_notSupported').
-					innerHTML = '';
-				});
+				var notSupported = document.getElementById('for_multirouteOffUdpOff_notSupported');
 
+				if(notSupported) {
+					var nonProxiedUdp = true;
+					chrome.privacy.network.webRTCNonProxiedUdpEnabled.get({},
+							function(details) {
+						nonProxiedUdp = details.value;
+						$rootScope.restoreRadios(multiRoutes, nonProxiedUdp);
+						document.getElementById('for_multirouteOffUdpOff_notSupported').innerHTML = '';
+					});
+				}
 			} catch (err) {
 				console.log(err);
 				document.getElementById('multirouteOffUdpOff').disabled = true;
