@@ -91,6 +91,14 @@ var rightTasks = (function() {
 
 			$tasksContainer.parentNode.className += ' gmail-righttasks-container';
 
+			// TODO
+			$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
+			
+			var elem = document.querySelector('span.gD');
+			console.log('email: ' + elem.innerHTML);
+			
+//			document.domain = 'google.com';
+			
 			// get the dom of the tasks iframe
 			var getIframeDom = function() {
 
@@ -129,9 +137,6 @@ var rightTasks = (function() {
 						}
 
 					}, true);
-
-					// TODO
-					$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
 					
 					// add minimize button
 					var $tasksHeader = $tasksContainer.querySelector('td.Hm');

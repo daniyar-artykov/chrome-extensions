@@ -2,18 +2,21 @@ var appId = '';
 var apiKey = '';
 
 $(document).ready(function() {
+	$('#customer-info').hide();
 	var options_url = chrome.extension.getURL('/forms/options.html');
 	$('#settings-link').prop('href', options_url);
 	chrome.storage.local.get('userData', initializeUserDataControls);
+	console.log();
 });
 
 function initializeUserDataControls(a) {
-	if (a && (a = a['userData'])) {
+	var userEmail = getParameterByName('email');
+	if (a && (a = a['userData']) && userEmail) {
 		$.ajax({
 			url : 'https://api.intercom.io/users',
 			type : 'GET',
 			data : {
-				email : 'kamiarcustomer@gmail.com'
+				email : userEmail
 			},
 			dataType : 'json',
 			headers : {
@@ -22,6 +25,9 @@ function initializeUserDataControls(a) {
 					+ btoa(a.appId + ':' + a.apiKey)
 			},
 			success : function(result) {
+				$('#no-customer-info').hide();
+				$('#customer-info').show();
+				
 				$('#name').html(result.name);
 
 				// avatar start
@@ -127,6 +133,13 @@ function initializeUserDataControls(a) {
 			}
 		});
 	}
+}
+
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	results = regex.exec(location.search);
+	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function getMonthString(n) {
