@@ -63,6 +63,10 @@ var rightTasks = (function() {
 
 	};
 
+	var userDetailsShowed = false;
+	var intervalId = null;
+	var currentUrl = null;
+
 	// find the tasks container added dynamically by Gmail
 	var findTasksContainer = function() {
 
@@ -70,7 +74,6 @@ var rightTasks = (function() {
 		var tasksIframe = document.getElementById('tasksiframe');
 
 		if(tasksIframe) {
-			tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html');
 
 			var topParent = document.getElementById('tasksiframe');
 			while(topParent.className.indexOf('dw') === -1) {
@@ -90,160 +93,182 @@ var rightTasks = (function() {
 			position();
 
 			$tasksContainer.parentNode.className += ' gmail-righttasks-container';
-
-			// TODO
 			$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
-			
+
 			var elem = document.querySelector('span.gD');
-			console.log('email: ' + elem.innerHTML);
-			
-//			document.domain = 'google.com';
-			
+			var lastEmail = localStorage.getItem('lastEmail');
+//			console.log('lastEmail: ' + lastEmail);
+			if(elem && (elem.getAttribute('email') !== lastEmail || !userDetailsShowed)) {
+				userDetailsShowed = true;
+//				console.log('currentEmail: ' + elem.getAttribute('email'));
+				localStorage.setItem('lastEmail', elem.getAttribute('email'));
+				tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html?email=' + elem.getAttribute('email'));
+			}
+
 			// get the dom of the tasks iframe
 			var getIframeDom = function() {
 
-				// check if the frame is fully loaded
-				if(tasksIframe.contentDocument.readyState === 'complete') {
-					var html = tasksIframe.contentDocument.getElementsByTagName('html')[0],
-					body = html.getElementsByTagName('body')[0];
+				// add minimize button
+				var $tasksHeader = $tasksContainer.querySelector('td.Hm');
 
-					html.className += ' tasks-frame';
+				var $minimizeBtn = document.createElement('a');
+				$minimizeBtn.className = 'righttasks-minimize-btn';
+				$minimizeBtn.setAttribute('title', 'Minimize');
+				$minimizeBtn.setAttribute('aria-label', 'Minimize');
 
-					// when the tasks widget is opened, it steals focus
-					// and gmail shortcuts stop working.
-					// to prevent this, we cancel the first focus event
-					var preventFocusStealing = function() {
-						// focus on the main window
-						window.focus();
-
-						// remove focus prevention after first focus
-						tasksIframe.contentDocument.removeEventListener('focus', preventFocusStealing, true);
-					};
-
-					tasksIframe.contentDocument.addEventListener('focus', preventFocusStealing, true);
-
-					// capture the ESC keydown
-					tasksIframe.contentDocument.body.addEventListener('keydown', function (e) {
-
-						if(e.which === 27) {
-							// if ESC key pressed, the tasks widget will hide
-							// so we reopen it
-							rightTasks.init();
-
-							// TODO find a way to actually prevent closing the widget
-							// with the ESC key
-
-							return false;
-						}
-
-					}, true);
-					
-					// add minimize button
-					var $tasksHeader = $tasksContainer.querySelector('td.Hm');
-
-					var $minimizeBtn = document.createElement('a');
-					$minimizeBtn.className = 'righttasks-minimize-btn';
-					$minimizeBtn.setAttribute('title', 'Minimize');
-					$minimizeBtn.setAttribute('aria-label', 'Minimize');
-
-					$minimizeBtn.addEventListener('click', function(e) {
-						if(document.body.className.indexOf('righttasks-minimized') === -1) {
-							// add class
-							document.body.className += ' righttasks-minimized';
-
-							// save in localstorage
-							localStorage.setItem('minimizedTasks', 'true');
-
-							// change title attribute tooltip
-							$minimizeBtn.setAttribute('title', 'Restore');
-						} else {
-							// remove class
-							document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
-
-							// save in localstorage
-							localStorage.setItem('minimizedTasks', 'false');
-
-							// change title attribute tooltip
-							$minimizeBtn.setAttribute('title', 'Minimize');
-						}
-					});
-
-					$tasksHeader.appendChild($minimizeBtn);
-
-					// if previously minimized, add minimized class
-					if(minimizedTasks) {
+				$minimizeBtn.addEventListener('click', function(e) {
+					if(document.body.className.indexOf('righttasks-minimized') === -1) {
+						// add class
 						document.body.className += ' righttasks-minimized';
+
+						// save in localstorage
+						localStorage.setItem('minimizedTasks', 'true');
+
+						// remove interval
+						removeIntervalEmailFinder(intervalId);
+
+						// change title attribute tooltip
+						$minimizeBtn.setAttribute('title', 'Restore');
+					} else {
+						// remove class
+						document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
+
+						// save in localstorage
+						localStorage.setItem('minimizedTasks', 'false');
+
+						intervalId = setInterval(function() {
+							$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
+
+							currentUrl = window.location.href;
+//							console.log('currentUrl: ' + currentUrl);
+
+							if(currentUrl.search("/#inbox/") === -1) {
+								document.body.className += ' righttasks-minimized';
+							} else if(currentUrl.search("/#inbox/") > 0) {
+								document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
+							}
+
+							var elem = document.querySelector('span.gD');
+							var lastEmail = localStorage.getItem('lastEmail');
+//							console.log('lastEmail: ' + lastEmail);
+
+							if(elem && (elem.getAttribute('email') !== lastEmail || !userDetailsShowed)) {
+								userDetailsShowed = true;
+//								console.log('currentEmail: ' + elem.getAttribute('email'));
+								localStorage.setItem('lastEmail', elem.getAttribute('email'));
+								tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html?email=' + elem.getAttribute('email'));
+							}
+						}, 2000);
+
+						elem = document.querySelector('span.gD');
+						lastEmail = localStorage.getItem('lastEmail');
+//						console.log('lastEmail: ' + lastEmail);
+						$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
+						if(elem && (elem.getAttribute('email') !== lastEmail || !userDetailsShowed)) {
+							userDetailsShowed = true;
+//							console.log('currentEmail: ' + elem.getAttribute('email'));
+//							localStorage.setItem('lastEmail', elem.getAttribute('email'));
+							tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html?email=' + elem.getAttribute('email'));
+						}
+
+						// change title attribute tooltip
+						$minimizeBtn.setAttribute('title', 'Minimize');
 					}
+				});
 
+				$tasksHeader.appendChild($minimizeBtn);
+
+				currentUrl = window.location.href;
+				console.log('currentUrl: ' + currentUrl);
+
+				// if previously minimized, add minimized class
+				if(minimizedTasks || !elem || currentUrl.search("/#inbox/") === -1) {
+					document.body.className += ' righttasks-minimized';
 				}
-
-				// if something is not right with the tasks iframe
-				if(tasksIframe.contentDocument.readyState !== 'complete' || !html || html.className.indexOf('tasks-frame') === -1) {
-
-					setTimeout(getIframeDom, 500);
-
-				}
-
 			};
 
 			getIframeDom();
 
+			intervalId = setInterval(function() {
+				$tasksContainer.querySelector('div.aYF').innerHTML = 'Intercom';
+
+				currentUrl = window.location.href;
+//				console.log('currentUrl: ' + currentUrl);
+
+				if(currentUrl.search("/#inbox/") === -1) {
+					document.body.className += ' righttasks-minimized';
+				} else if(currentUrl.search("/#inbox/") > 0) {
+					document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
+				}
+
+				var elem = document.querySelector('span.gD');
+				var lastEmail = localStorage.getItem('lastEmail');
+//				console.log('lastEmail: ' + lastEmail);
+
+				if(elem && (elem.getAttribute('email') !== lastEmail || !userDetailsShowed)) {
+					userDetailsShowed = true;
+//					console.log('currentEmail: ' + elem.getAttribute('email'));
+					localStorage.setItem('lastEmail', elem.getAttribute('email'));
+					tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html?email=' + elem.getAttribute('email'));
+				}
+			}, 2000);
+
 		} else {
-
 			setTimeout(findTasksContainer, 500);
-
 		}
-
 	};
 
-	var init = function() {
+	function removeIntervalEmailFinder(intervalId) {
+		clearInterval(intervalId);
+	}
 
-		// if we're in a gmail pop-up
-		// don't trigger the extension
-		if(document.body.className.indexOf('xE') !== -1) {
-			return false;
-		}
-
-		// cleanup vars
-		currentTopPosition = 0;
-		lastTopPosition = 1;
-
-		var $mailButton = document.querySelector('.aki.pp > div');
-
-		// open mail menu
-		triggerClick($mailButton);
-
-		// close mail menu
-		triggerClick($mailButton);
-
-		// give it some time to render the markup
-		setTimeout(function() {
-
-			// get the tasks button from the mail dropdown
-			var $tasksButton = document.querySelector('.aki.pp .jQjAxd [role=menuitem]:nth-child(3)');
-
-			// click the tasks button
-			triggerClick($tasksButton);
-
-			// get the
-			findTasksContainer();
-
-		}, 10);
-
-		// disable the ESC shortcut key, to prevent the tasks widget from being closed
-		document.addEventListener('keydown', function (e) {
-			if(e.which === 27){
+	var init = function(a) {
+		if (a && (a = a['userData'])) {
+			// if we're in a gmail pop-up
+			// don't trigger the extension
+			if(document.body.className.indexOf('xE') !== -1) {
 				return false;
 			}
-		}, false);
 
+			// cleanup vars
+			currentTopPosition = 0;
+			lastTopPosition = 1;
 
-		// get the main gmail container
-		$mailContainer = document.querySelector('.AO');
+			var $mailButton = document.querySelector('.aki.pp > div');
 
-		// reposition the widget when the page resizes
-		window.addEventListener('resize', position);
+			// open mail menu
+			triggerClick($mailButton);
 
+			// close mail menu
+			triggerClick($mailButton);
+
+			// give it some time to render the markup
+			setTimeout(function() {
+
+				// get the tasks button from the mail dropdown
+				var $tasksButton = document.querySelector('.aki.pp .jQjAxd [role=menuitem]:nth-child(3)');
+
+				// click the tasks button
+				triggerClick($tasksButton);
+
+				// get the
+				findTasksContainer();
+
+			}, 10);
+
+			// disable the ESC shortcut key, to prevent the tasks widget from being closed
+			document.addEventListener('keydown', function (e) {
+				if(e.which === 27){
+					return false;
+				}
+			}, false);
+
+			// get the main gmail container
+			$mailContainer = document.querySelector('.AO');
+
+			// reposition the widget when the page resizes
+			window.addEventListener('resize', position);
+		}
 	};
 
 	// reveal methods
@@ -279,16 +304,16 @@ var rightTasks = (function() {
 		} catch (e) {}
 		top_frame = window.document;
 
-		if(top_frame && isGmailUIFrame(top_frame))
-		{
+		if(top_frame && isGmailUIFrame(top_frame)) {
 			head = top_frame;
 
 			// Gmail UI is loaded
-			rightTasks.init();
+//			rightTasks.init();
+
+			chrome.storage.local.get('userData', rightTasks.init);
 
 			return head;
-		}
-		else{
+		} else {
 			max_retry = max_retry -1;
 			if(max_retry > 0)
 				window.setTimeout(waitForGmailToLoad, 500);

@@ -6,7 +6,6 @@ $(document).ready(function() {
 	var options_url = chrome.extension.getURL('/forms/options.html');
 	$('#settings-link').prop('href', options_url);
 	chrome.storage.local.get('userData', initializeUserDataControls);
-	console.log();
 });
 
 function initializeUserDataControls(a) {
