@@ -10,7 +10,9 @@ $('#save-btn').click(function() {
 	}
 
 	b['userData'] = userData;
-	chrome.storage.local.set(b);
+	chrome.storage.local.set(b, function() {
+		$('#success-alert').show();    
+	});
 });
 
 function initializeSavedDetails() {

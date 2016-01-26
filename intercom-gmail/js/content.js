@@ -117,6 +117,7 @@ var rightTasks = (function() {
 				$minimizeBtn.setAttribute('aria-label', 'Minimize');
 
 				$minimizeBtn.addEventListener('click', function(e) {
+					currentUrl = window.location.href;
 					if(document.body.className.indexOf('righttasks-minimized') === -1) {
 						// add class
 						document.body.className += ' righttasks-minimized';
@@ -129,7 +130,7 @@ var rightTasks = (function() {
 
 						// change title attribute tooltip
 						$minimizeBtn.setAttribute('title', 'Restore');
-					} else {
+					} else if(currentUrl.search("/#inbox/") > 0) {
 						// remove class
 						document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
 

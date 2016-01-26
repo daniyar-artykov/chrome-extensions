@@ -35,7 +35,7 @@ function initializeUserDataControls(a) {
 				}
 				// avatar end
 
-				$('#email').prop('href','mailito:'+result.email).text(result.email);
+				$('#email').prop('href', 'mailto:' + result.email).text(result.email);
 				$('#city').html(result.location_data.city_name);
 				$('#country').html(result.location_data.country_name);
 				$('#session-count').html(result.session_count);
@@ -45,14 +45,14 @@ function initializeUserDataControls(a) {
 				if(result.tags && result.tags.tags && result.tags.tags.length > 0) {
 					$.each(result.tags.tags, function(index, element) {
 						if(element && element.name) {
-							$('<tr><td>' + element.name + '</td><td></td></tr>').insertAfter($('#tags'));
+							$('<tr><td colspan="2">' + element.name + '</td></tr>').insertAfter($('#tags'));
 							flag = false;
 						}
 					});
 				}
 
 				if(flag) {
-					$('<tr><td></td><td></td></tr>').insertAfter($('#tags'));
+					$('<tr><td colspan="2"></td></tr>').insertAfter($('#tags'));
 				}
 				// tags end
 
@@ -60,15 +60,15 @@ function initializeUserDataControls(a) {
 				flag = true;
 				if(result.segments && result.segments.segments && result.segments.segments.length > 0) {
 					$.each(result.segments.segments, function(index, element) {
-						if(element && element.name) {
-							$('<tr><td>' + element.name + '</td><td></td></tr>').insertAfter($('#segments'));
+						if(element && element.id) {
+							$('<tr><td colspan="2">' + element.id + '</td></tr>').insertAfter($('#segments'));
 							flag = false;
 						}
 					});
 				}
 
 				if(flag) {
-					$('<tr><td></td><td></td></tr>').insertAfter($('#segments'));
+					$('<tr><td colspan="2"></td></tr>').insertAfter($('#segments'));
 				}
 				// segment end
 

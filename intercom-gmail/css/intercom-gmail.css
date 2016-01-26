@@ -6,6 +6,16 @@
  *
  */
 
+.container {
+	margin: 5px 0 0 5px;
+	font-size: 12.5px;
+}
+
+.name {
+	font-size: 13.5px;
+	font-weight: bold;
+}
+
 /* Don't add the margin in gmail popups
  */
 body:not(.xE) .AO {
