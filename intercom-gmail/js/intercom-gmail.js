@@ -60,8 +60,8 @@ function initializeUserDataControls(a) {
 				flag = true;
 				if(result.segments && result.segments.segments && result.segments.segments.length > 0) {
 					$.each(result.segments.segments, function(index, element) {
-						if(element && element.id) {
-							$('<tr><td>' + element.id + '</td><td></td></tr>').insertAfter($('#segments'));
+						if(element && element.name) {
+							$('<tr><td>' + element.name + '</td><td></td></tr>').insertAfter($('#segments'));
 							flag = false;
 						}
 					});

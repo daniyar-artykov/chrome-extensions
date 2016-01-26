@@ -167,7 +167,7 @@ var rightTasks = (function() {
 						if(elem && (elem.getAttribute('email') !== lastEmail || !userDetailsShowed)) {
 							userDetailsShowed = true;
 //							console.log('currentEmail: ' + elem.getAttribute('email'));
-//							localStorage.setItem('lastEmail', elem.getAttribute('email'));
+							localStorage.setItem('lastEmail', elem.getAttribute('email'));
 							tasksIframe.src = chrome.runtime.getURL('forms/intercom-gmail.html?email=' + elem.getAttribute('email'));
 						}
 
