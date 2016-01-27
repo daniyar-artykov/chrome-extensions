@@ -57,21 +57,41 @@ function initializeUserDataControls(a) {
 				// tags end
 
 				// segments start
-				flag = true;
-				if(result.segments && result.segments.segments && result.segments.segments.length > 0) {
-					$.each(result.segments.segments, function(index, element) {
-						if(element && element.id) {
-							$('<tr><td colspan="2">' + element.id + '</td></tr>').insertAfter($('#segments'));
-							flag = false;
+				
+				$.ajax({
+					url : 'https://api.intercom.io/segments',
+					type : 'GET',
+					data : {},
+					dataType : 'json',
+					headers : {
+						Accept: 'application/json',
+						'Authorization' : 'Basic '
+							+ btoa(a.appId + ':' + a.apiKey)
+					},
+					success : function(result2) {
+						flag = true;
+						
+						if(result2.segments && result2.segments && result2.segments.length > 0) {
+							$.each(result2.segments, function(index, element) {
+								if(element && element.name) {
+									$('<tr><td colspan="2">' + element.name + '</td></tr>').insertAfter($('#segments'));
+									flag = false;
+								}
+							});
 						}
-					});
-				}
 
-				if(flag) {
-					$('<tr><td colspan="2"></td></tr>').insertAfter($('#segments'));
-				}
+						if(flag) {
+							$('<tr><td colspan="2"></td></tr>').insertAfter($('#segments'));
+						}
+					},
+					error : function(xhr, ajaxOptions,
+							thrownError) {
+						console.log(xhr.status);
+						console.log(thrownError);
+					}
+				});
+				
 				// segment end
-
 				var d = new Date(result.signed_up_at * 1000);
 				$('#signed-up').html(d.getDate() + ' ' + getMonthString(d.getMonth()) + ' ' + d.getFullYear());
 
