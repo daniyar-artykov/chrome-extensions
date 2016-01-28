@@ -24,6 +24,6 @@
    },
    "permissions": [ "storage", "tabs", "http://*/*", "https://*/*", "*://*/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.0.3",
+   "version": "0.0.5",
    "web_accessible_resources": [ "images/*", "forms/intercom-gmail.html", "forms/options.html" ]
 }
