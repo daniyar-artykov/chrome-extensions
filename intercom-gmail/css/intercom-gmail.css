@@ -16,6 +16,10 @@
 	font-weight: bold;
 }
 
+.user-note p {
+	margin: 0 0 1px 0;
+}
+
 table.scroll tbody {
 	height: 450px;
 	width: 214px;

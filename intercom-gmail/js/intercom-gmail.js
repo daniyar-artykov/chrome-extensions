@@ -26,7 +26,7 @@ function initializeUserDataControls(a) {
 			success : function(result) {
 				$('#no-customer-info').hide();
 				$('#customer-info').show();
-				
+
 				$('#name').html(result.name);
 
 				// avatar start
@@ -57,32 +57,62 @@ function initializeUserDataControls(a) {
 				// tags end
 
 				// segments start
-				
+				flag = true;
+				if(result.segments && result.segments.segments && result.segments.segments.length > 0) {
+					$.each(result.segments.segments, function(index, element) {
+						if(element && element.id) {
+							$.ajax({
+								url : 'https://api.intercom.io/segments/' + element.id,
+								type : 'GET',
+								data : {},
+								dataType : 'json',
+								headers : {
+									Accept: 'application/json',
+									'Authorization' : 'Basic '
+										+ btoa(a.appId + ':' + a.apiKey)
+								},
+								success : function(result2) {
+									if(result2.name) {
+										$('<tr><td colspan="2">' + result2.name + '</td></tr>').insertAfter($('#segments'));
+										flag = false;
+									}
+								},
+								error : function(xhr, ajaxOptions,
+										thrownError) {
+									console.log(xhr.status);
+									console.log(thrownError);
+								}
+							});	
+						}
+					});
+				}
+
+				if(flag) {
+					$('<tr><td colspan="2"></td></tr>').insertAfter($('#segments'));
+				}
+				// segment end
+
+				// notes start
+				flag = true;
 				$.ajax({
-					url : 'https://api.intercom.io/segments',
+					url : 'https://api.intercom.io/notes',
 					type : 'GET',
-					data : {},
+					data : {
+						id : result.id
+					},
 					dataType : 'json',
 					headers : {
 						Accept: 'application/json',
 						'Authorization' : 'Basic '
 							+ btoa(a.appId + ':' + a.apiKey)
 					},
-					success : function(result2) {
-						flag = true;
-						
-						if(result2.segments && result2.segments && result2.segments.length > 0) {
-							$.each(result2.segments, function(index, element) {
-								if(element && element.name) {
-									$('<tr><td colspan="2">' + element.name + '</td></tr>').insertAfter($('#segments'));
-									flag = false;
-								}
-							});
-						}
-
-						if(flag) {
-							$('<tr><td colspan="2"></td></tr>').insertAfter($('#segments'));
-						}
+					success : function(result1) {
+						$.each(result1.notes, function(index, element) {
+							if(element.body) {
+								$('<tr><td class="user-note" colspan="2">' + element.body + '</td></tr>').insertAfter($('#notes'));
+								flag = false;
+							}
+						});
 					},
 					error : function(xhr, ajaxOptions,
 							thrownError) {
@@ -90,8 +120,12 @@ function initializeUserDataControls(a) {
 						console.log(thrownError);
 					}
 				});
-				
-				// segment end
+
+				if(flag) {
+					$('<tr><td colspan="2"></td></tr>').insertAfter($('#notes'));
+				}
+				// notes end
+
 				var d = new Date(result.signed_up_at * 1000);
 				$('#signed-up').html(d.getDate() + ' ' + getMonthString(d.getMonth()) + ' ' + d.getFullYear());
 
