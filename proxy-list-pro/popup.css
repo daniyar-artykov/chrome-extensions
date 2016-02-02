@@ -1,0 +1,65 @@
+body {
+	overflow-y: scroll;
+}
+
+#base {
+    width: 400px;
+}
+
+.menu-item {
+    height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+	cursor: context-menu;
+	-webkit-user-select: none;
+}
+
+.highlight {
+	background: rgba(6, 4, 255, 0.2);
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.menu-item-text {
+	line-height: 30px;
+}
+
+.menu-flag {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	position: relative;
+	top: 5px;
+}
+
+.server-name {
+    padding-left: 10px;
+}
+
+.menu-item-block {
+    display: inline-block;
+	float: right;
+}
+
+.load {
+    padding-right: 12px;
+}
+
+.button {
+	width: 50px;
+	height: 19px;
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	cursor: pointer;
+}
+
+.on-button {
+	background-image: url(img/on.png);
+}
+
+.off-button {
+	background-image: url(img/off.png);
+}

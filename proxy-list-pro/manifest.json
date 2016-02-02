@@ -1,0 +1,21 @@
+{
+   "background": {
+      "scripts": [ "bg.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "19": "img/disabled.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "Proxy List Pro"
+   },
+   "description": "Proxy List Pro is a simple and completely free web proxy service. Perfect for those looking to bypass censorship restrictions.",
+   "icons": {
+      "48": "img/icon.png"
+   },
+   "manifest_version": 2,
+   "name": "Proxy List Pro",
+   "permissions": [ "tabs", "webRequest", "*://*.proxylistpro.com/" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "7.0"
+}
