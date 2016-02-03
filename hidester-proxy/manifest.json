@@ -8,15 +8,9 @@
       "128": "images/icons/128.png",
       "16": "images/icons/16.png"
    },
-   
-   "content_scripts": [ {
-      "js": [ "libs/jquery-2.1.4.js", "js/railways.js" ],
-      "matches": [ "https://epay.railways.kz/*" ]
-      } ], 
-      
+   "content_scripts": [], 
    "manifest_version": 2,
    "minimum_chrome_version": "42.0.2311.135",
-   "options_page": "forms/options.html",
    "browser_action": {
       "default_icon": "images/icons/32.png",
       "default_popup": "forms/popup.html",
