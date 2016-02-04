@@ -11,19 +11,19 @@
 			<div id="title-text">
 				<div class="title">Hidester Web Proxy</div>
 			</div>
-			<table class="proxies-table">
+			<table id="proxies-table" class="proxies-table">
 				<tr>
 					<td class="flag-td">
 						<div class="flags-icon us-icon"></div>
 					</td>
 					<td class="proxy-location-td">
-						<div class="label active">United States</div>
+						<div id="proxy-us-label" class="label">United States</div>
 					</td>
 					<td class="flip-switch-td">
 						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch"
-								class="onoffswitch-checkbox" id="myonoffswitch"> <label
-								class="onoffswitch-label" for="myonoffswitch"> <span
+							<input type="checkbox" name="proxy-us"
+								class="onoffswitch-checkbox" id="proxy-us"> <label
+								class="onoffswitch-label" for="proxy-us"> <span
 								class="onoffswitch-inner"></span> <span
 								class="onoffswitch-switch"></span>
 							</label>
@@ -35,13 +35,13 @@
 						<div class="flags-icon eu-icon"></div>
 					</td>
 					<td>
-						<div class="label">Europe</div>
+						<div id="proxy-eu-label" class="label">Europe</div>
 					</td>
 					<td>
 						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch"
-								class="onoffswitch-checkbox" id="myonoffswitch"> <label
-								class="onoffswitch-label" for="myonoffswitch"> <span
+							<input type="checkbox" name="proxy-eu"
+								class="onoffswitch-checkbox" id="proxy-eu"> <label
+								class="onoffswitch-label" for="proxy-eu"> <span
 								class="onoffswitch-inner"></span> <span
 								class="onoffswitch-switch"></span>
 							</label>
@@ -50,7 +50,6 @@
 				</tr>
 			</table>
 			<div id="separator1" class="separator"></div>
-
 		</div>
 		<!-- menu-items-->
 		<div id="div_slideout" style="cursor: pointer;">
