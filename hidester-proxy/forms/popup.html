@@ -3,29 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/popup.css" />
+<link rel="stylesheet" type="text/css" href="../css/flip-switch.css" />
 </head>
 <body style="overflow: hidden;">
 	<div id="wrapper">
 		<div id="menu-items">
 			<div id="title-text">
-				<h1 class="hidester-header-h1">
-					<a href="https://hidester.com" class="hidester-header-a">HIDESTER</a>
-				</h1>
+				<div class="title">Hidester Web Proxy</div>
 			</div>
-
-			<div id="div-united-states" class="menu-entry">United States</div>
-
-			<div id="div-europe" class="menu-entry">Europe</div>
-
+			<table class="proxies-table">
+				<tr>
+					<td class="flag-td">
+						<div class="flags-icon us-icon"></div>
+					</td>
+					<td class="proxy-location-td">
+						<div class="label active">United States</div>
+					</td>
+					<td class="flip-switch-td">
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch"
+								class="onoffswitch-checkbox" id="myonoffswitch"> <label
+								class="onoffswitch-label" for="myonoffswitch"> <span
+								class="onoffswitch-inner"></span> <span
+								class="onoffswitch-switch"></span>
+							</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="flags-icon eu-icon"></div>
+					</td>
+					<td>
+						<div class="label">Europe</div>
+					</td>
+					<td>
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch"
+								class="onoffswitch-checkbox" id="myonoffswitch"> <label
+								class="onoffswitch-label" for="myonoffswitch"> <span
+								class="onoffswitch-inner"></span> <span
+								class="onoffswitch-switch"></span>
+							</label>
+						</div>
+					</td>
+				</tr>
+			</table>
 			<div id="separator1" class="separator"></div>
-
-			<!-- **************** Extras ************** -->
 
 		</div>
 		<!-- menu-items-->
 		<div id="div_slideout" style="cursor: pointer;">
 			<div style="margin: 5px 0px;">
-				<a id="link_open" href="https://hidester.com/" target="_blank">Help</a>
+				<a id="link_open" href="https://hidester.com/" target="_blank">Visit
+					Hidester</a>
 			</div>
 		</div>
 	</div>
