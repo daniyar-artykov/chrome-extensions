@@ -130,7 +130,7 @@ var rightTasks = (function() {
 
 						// change title attribute tooltip
 						$minimizeBtn.setAttribute('title', 'Restore');
-					} else if(currentUrl.search("/#inbox/") > 0) {
+					} else if(currentUrl.search('/#inbox/') > 0) {
 						// remove class
 						document.body.className = document.body.className.replace(/ righttasks-minimized/g, '');
 

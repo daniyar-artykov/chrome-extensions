@@ -18,5 +18,5 @@
    },
    "permissions": [ "tabs", "storage", "webRequest", "http://*/*", "https://*/*", "\u003Call_urls>" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.0.1"
+   "version": "0.0.2"
 }

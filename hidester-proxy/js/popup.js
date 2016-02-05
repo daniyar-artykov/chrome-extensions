@@ -1,6 +1,21 @@
 var proxies = ['us', 'eu'];
 
 document.addEventListener("DOMContentLoaded", function() {
+
+	// check current proxy
+	chrome.tabs.getSelected(null, function(tab) {
+		for (var i = 0; i < proxies.length; i++) {
+			var tabUrl = String(tab.url);
+			if(tabUrl.search(proxies[i] + '.hidester.com/proxy/') > 0) {
+				// change state of proxy flip-switch to checked
+				document.getElementById('proxy-' + proxies[i]).checked = true;
+				// change label color to active
+				document.getElementById('proxy-' + proxies[i] + '-label').className += " active";
+				break;
+			}
+		}
+	});
+
 	// add event listener to all checkboxes
 	for (var i = 0; i < proxies.length; ++i) {
 		document.getElementById('proxy-' + proxies[i]).addEventListener('click', function(e) {
