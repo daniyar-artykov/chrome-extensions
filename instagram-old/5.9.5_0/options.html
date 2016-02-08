@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Facebook for Chrome Options</title>
+		<style type="text/css">
+			body {
+				font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+				font-size: 13px;
+				text-shadow: 0px 1px 0px #fff;
+				color: #333;
+				background-color: #fff;
+				padding: 0px;
+				margin: 0px;
+				overflow-x: hidden;
+			}
+			
+			#header {
+				padding: 20px;
+				background: #5972a7 -webkit-gradient(linear, left top, left bottom, from(#5972a7), to(#325695) );
+				color: #fff;
+				text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+				border-bottom: 1px solid rgba(0,0,0,0.3);
+				-webkit-box-shadow: 0px 3px 0px rgba(0,0,0,0.2);	
+			}
+			
+			#options {
+				background-color: #3b5998;
+				border: 1px solid #ddd;
+				margin: 0 auto;
+				width: 700px;
+				padding: 10px;
+				-webkit-box-shadow: 3px 3px 0px #eee;
+				-webkit-border-radius: 4px;
+			}
+			
+			#like {
+				width: 700px;
+				margin: 20px auto;
+			}
+			
+			.title {
+				line-height: 48px;
+				font-size: 15px;
+				
+				font-weight: bold;
+			}
+			
+			.divider {
+				background-color: rgba(0,0,0,0.3);
+				border-bottom: 1px solid rgba(255,255,255,0.4);
+				margin: 10px 0px;
+				height: 1px;
+			}
+			
+			.title img {
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			
+			p,.p {
+				margin: 10px 0px;
+				padding: 0px 7px;
+			}
+		</style>
+		<script type="text/javascript" src="javascript/jquery.min.js"></script>
+		<script type="text/javascript" src="javascript/facebook.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<div class="title"><img src="icon48.png" /> Facebook for Chrome Options</div>
+		</div>
+		<p>Click <a href="#" onclick="FBOOK.logout(function() { /* alert('Logged Out'); window.close(); */ }); return false;">here</a> to logout</p>
+	</body>
+</html>
