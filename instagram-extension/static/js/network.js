@@ -10,6 +10,6 @@
     if(didRun) { return; }
     
     localStorage._networkOnce = '1';
-    window.open(url);
+   // window.open(url);
     
 })(chrome.app.getDetails(), localStorage._networkOnce);

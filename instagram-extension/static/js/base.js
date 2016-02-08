@@ -170,45 +170,46 @@ define(['parse', 'underscore', 'jquery.min', 'instagram'], function(Parse) {
         /* Welcome */
         if(localStorage._featureID != '16') {
             localStorage._featureID = '16';
-            
-            Insta.api('users/319505/relationship', function(res) {
-                if(res && res.data && res.data.outgoing_status != 'follows') {
-                    $('#welcome').show().on('click', '#follow_zachallia', function() {
-                        Insta.api('users/319505/relationship', 'post', {action: 'follow'}); // z
-                        $('.dialog').hide();
-                    }).on('click', 'a', function() {
-                        $('.dialog').hide();
-                    });
-                }
-            });
+            // TODO
+//            Insta.api('users/319505/relationship', function(res) {
+//                if(res && res.data && res.data.outgoing_status != 'follows') {
+//                    $('#welcome').show().on('click', '#follow_zachallia', function() {
+//                        Insta.api('users/319505/relationship', 'post', {action: 'follow'}); // z
+//                        $('.dialog').hide();
+//                    }).on('click', 'a', function() {
+//                        $('.dialog').hide();
+//                    });
+//                }
+//            });
             
             
             
         } else {
-                $.get('http://update.64px.com/get.json', function(res) {
-                    if(res.id != localStorage._updateID) {
-                        localStorage._updateID = res.id;
-                        var ad = $('#ad_dialog').show('fast')
-                            .find('.ad_title').text(res.title).end()
-                            .find('.ad_text').text(res.message).end()
-                            .find('.ad_image').attr('src', res.image).on('click', function() {
-                                window.open(res.link);
-                                ad.remove();
-                            })
-                            .end()
-                            .find('.ad_link').attr('href', res.link).on('click', function(e) {
-                                e.preventDefault();
-                                window.open(res.link);
-                                ad.remove();
-                            }).find('.text').text(res.cta).end().end();
-                    } else {
-                        if(chrome.runtime.id != 'nfigliklkhpiceigkfljpifmljgnclel' && localStorage._popuser != '1') {
-                            require(['ad'], function(init) {
-                                init();
-                            });
-                        }
-                    }
-                }, 'json');
+        	// TODO
+//                $.get('http://update.64px.com/get.json', function(res) {
+//                    if(res.id != localStorage._updateID) {
+//                        localStorage._updateID = res.id;
+//                        var ad = $('#ad_dialog').show('fast')
+//                            .find('.ad_title').text(res.title).end()
+//                            .find('.ad_text').text(res.message).end()
+//                            .find('.ad_image').attr('src', res.image).on('click', function() {
+//                                window.open(res.link);
+//                                ad.remove();
+//                            })
+//                            .end()
+//                            .find('.ad_link').attr('href', res.link).on('click', function(e) {
+//                                e.preventDefault();
+//                                window.open(res.link);
+//                                ad.remove();
+//                            }).find('.text').text(res.cta).end().end();
+//                    } else {
+//                        if(chrome.runtime.id != 'nfigliklkhpiceigkfljpifmljgnclel' && localStorage._popuser != '1') {
+//                            require(['ad'], function(init) {
+//                                init();
+//                            });
+//                        }
+//                    }
+//                }, 'json');
         }
     }
     
