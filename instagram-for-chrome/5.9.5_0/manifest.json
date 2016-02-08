@@ -1,0 +1,29 @@
+{
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html",
+      "default_title": "Instagram"
+   },
+   "content_scripts": [ {
+      "js": [ "static/js/session.js" ],
+      "matches": [ "http://instagram.64px.com/*" ]
+   } ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://s3.amazonaws.com https://cdn.taboola.com; object-src 'self'",
+   "description": "Hands down, the best Instagram extension for Chrome. Browse your feed and friends, like and comment and so much more!",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "48": "icon48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9ARjCuAVoF6/uJumJGKy3zkhEvhs7f90aGbClKF+yV2KegHmqIaPQLUIKkLuJRysrcCC/MxT9FdFA3PBuOvTaUZ42eV17lM3JaNXv7hhzrX0RJjQtxgqCNuygRuj3qQWFg5/V5K543w7JviL5gplBVgJ1t4/O1qZ1eCfZxcuLYwIDAQAB",
+   "manifest_version": 2,
+   "name": "Instagram for Chrome",
+   "optional_permissions": [ "*://*.instagram.com/*", "cookies" ],
+   "permissions": [ "idle", "contextMenus", "notifications", "https://api.instagram.com/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "5.9.5",
+   "web_accessible_resources": [ "icon16.png" ]
+}

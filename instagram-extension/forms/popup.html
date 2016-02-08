@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../static/css/base.css" />
+<style>
+body {
+	min-width: 400px;
+	margin: 0px;
+	padding: 0px;
+	padding-top: 44px;
+}
+</style>
+<meta charset="utf-8" />
+<title>Instagram for Chrome</title>
+</head>
+<body>
+	<div id="header" class="clearfix">
+		<div class="fr pictos nav"></div>
+		<div class="fl pictos hidden" id="back_button"></div>
+		<div class="fr pictos refresh_button"></div>
+		<a href="#featured"><div class="fr pictos search_button">🔍</div></a>
+		<div class="fr pictos home_button"></div>
+		<div class="line"></div>
+	</div>
+	<div id="content"></div>
+	<ul id="menu">
+		<li><a href="#" id="popout">Popout View</a></li>
+		<li><a href="#featured">Search</a></li>
+		<li><a href="#media/popular">Popular</a></li>
+		<li><a href="#users/self/media/recent">Profile</a></li>
+		<li><a href="#news">Notifications</a></li>
+		<li><a href="#following">News Feed</a></li>
+		<li><a href="#users/self/media/liked">My Likes</a></li>
+		<li><a href="#users/self/requested-by">Friend Requests</a></li>
+		<!-- <li><a href="http://64px.com" target="_blank">More Extensions</a></li> -->
+		<li><a id="logout">Log Out</a></li>
+	</ul>
+	<div id="welcome_share" class="dialog hidden">
+		<div class="blackout"></div>
+		<div class="popout">
+			<div class="pm">
+				<b>Support Instagram for Chrome</b><br /> <br /> This is a totally
+				free app and we grow by all the awesome users that share it with
+				their friends. Help us by sharing on Twitter or Facebook!
+			</div>
+			<div class="divider"></div>
+			<div class="pm">
+				<button class="share_link button mtm welcome_close" data-id="{{id}}">
+					<span class="text">Share it on Twitter</span>
+				</button>
+				<button class="share_link_facebook button mtm welcome_close"
+					data-id="{{id}}">
+					<span class="text">Share it on Facebook</span>
+				</button>
+				<button class="button mtm welcome_close skip_button"
+					data-id="{{id}}">
+					<span class="text">Maybe Later</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="welcome" class="dialog hidden">
+		<div class="blackout"></div>
+		<div class="popout">
+			<div class="pm"
+				style="font-size: 18px; line-height: 30px; height: 30px;">
+				<img class="ad_image"
+					style="width: 30px; height: 30px; vertical-align: middle; border-radius: 50%"
+					src="https://scontent.cdninstagram.com/t51.2885-15/sh0.08/e35/p640x640/12534079_1508893092739317_1124360878_n.jpg" />
+				Hey there!
+			</div>
+			<div class="pm">
+
+				Thank you for using this app. Show your support and follow the
+				creator (@zachallia) to check out his photography! <br />
+
+			</div>
+			<div class="divider"></div>
+			<div class="pm">
+				<button class="button following" id="follow_zachallia"
+					data-id="{{id}}">
+					<span class="text">Follow @zachallia</span>
+				</button>
+				<button class="button mtm welcome_close skip_button"
+					data-id="{{id}}">
+					<span class="text">Skip</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="login_dialog" class="dialog hidden">
+		<div class="blackout"></div>
+		<div class="popout">
+			<div class="pm">
+				<b>Welcome</b><br /> <br /> To use Instagram for Chrome you must
+				log into Instagram and approve Instagram for Chrome. Click the Login
+				button below to get started.
+			</div>
+			<div class="divider"></div>
+			<div class="pm">
+				<button class="button mtm">
+					<span class="text">Login</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="ad_dialog" class="dialog hidden">
+		<div class="blackout"></div>
+		<div class="popout">
+			<div class="pm">
+				<b class="ad_title"></b><br /> <br /> <span class="ad_text"></span><br />
+				<br /> <img class="ad_image" style="width: 100%" />
+			</div>
+			<div class="divider"></div>
+			<div class="pm">
+				<a class="ad_link" target="_blank"><button
+						class="button following mtm">
+						<span class="text"></span>
+					</button></a>
+				<button class="button mtm welcome_close skip_button">
+					<span class="text">Skip</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="grant" class="dialog hidden">
+		<div class="blackout"></div>
+		<div class="popout">
+			<div class="pm">
+				<b>News Features</b><br /> <br /> To use the news feed and
+				following features, you must grant additional permissions (and be
+				logged into instagram.com). Hit okay, then hit accept on the
+				permissions dialog. If you are having trouble, try hitting Popout
+				View from the navigation menu first.
+			</div>
+			<div class="divider"></div>
+			<div class="pm">
+				<a href="#"><button class="button skip_button welcome_close"
+						id="yes_grant">
+						<span class="text">Okay</span>
+					</button></a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../static/js/require.js"
+		data-main="../static/js/base.js"></script>
+</body>
+</html>

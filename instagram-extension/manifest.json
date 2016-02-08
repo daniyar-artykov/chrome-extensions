@@ -1,0 +1,28 @@
+{
+   "background": {
+      "page": "forms/background.html"
+   },
+   "browser_action": {
+      "default_icon": "static/img/icons/icon.png",
+      "default_popup": "forms/popup.html",
+      "default_title": "Instagram"
+   },
+   "content_scripts": [ {
+      "js": [ "static/js/session.js" ],
+      "matches": [ "http://instagram.64px.com/*" ]
+   } ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://s3.amazonaws.com https://cdn.taboola.com; object-src 'self'",
+   "description": "Bla Bla Bla!",
+   "icons": {
+      "128": "static/img/icons/icon128.png",
+      "16": "static/img/icons/icon16.png",
+      "48": "static/img/icons/icon48.png"
+   },
+   "manifest_version": 2,
+   "name": "Instagram Extension",
+   "optional_permissions": [ "*://*.instagram.com/*", "cookies" ],
+   "permissions": [ "idle", "contextMenus", "notifications", "https://api.instagram.com/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.1",
+   "web_accessible_resources": [ "static/img/icons/icon16.png" ]
+}
