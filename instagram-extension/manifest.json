@@ -23,6 +23,6 @@
    "optional_permissions": [ "*://*.instagram.com/*", "cookies" ],
    "permissions": [ "idle", "contextMenus", "notifications", "https://api.instagram.com/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.0.1",
+   "version": "0.0.2",
    "web_accessible_resources": [ "static/img/icons/icon16.png" ]
 }
