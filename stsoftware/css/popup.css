@@ -1,0 +1,27 @@
+body {
+	min-width: 260px;
+	max-width: 260px;
+	overflow-x: hidden;
+	background-color: #fafafa;
+	height: 130px;
+}
+
+.container {
+	max-width: 207px;
+	min-width: 207px;
+	background-color: #fff;
+	position: absolute;
+	margin: 10px auto;
+	left: 0;
+	right: 0;
+	top: 5px;
+	padding: 10px;
+	height: 100px;
+	border: 1px solid #f3f3f3;
+	border-radius: 5px
+}
+
+.container button {
+	width: 80px;
+	margin: 5px;
+}

@@ -1,0 +1,21 @@
+{
+   "background": {
+   },
+   "description": "stSoftware Ltd. Extension Description",
+   "icons": {
+      "128": "images/icons/128.png",
+      "16": "images/icons/16.png"
+   },
+   "manifest_version": 2,
+   "minimum_chrome_version": "42.0.2311.135",
+   "name": "stSoftware Extension",
+   "options_page": "forms/options.html",
+   "browser_action": {
+      "default_icon": "images/icons/32.png",
+      "default_popup": "forms/popup.html",
+      "default_title": "stSoftware click for details"
+   },
+   "permissions": [ "tabs", "storage", "webRequest", "webRequestBlocking", "contextMenus", "http://*/*", "https://*/*", "ftp://*/*", "\u003Call_urls>" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.1"
+}
