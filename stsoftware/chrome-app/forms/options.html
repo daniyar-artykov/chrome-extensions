@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="../images/icons/favicon.ico"
+	type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="../css/options.css" />
+<link rel="stylesheet" type="text/css"
+	href="../libs/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../libs/jquery-ui-1.11.4.css" />
+<title>stSoftware Options</title>
+</head>
+<body>
+	<div class="container">
+		<form class="form-settings">
+			<div id="alert-div">
+				<span id="alert-msg"></span>
+			</div>
+			<h2 class="form-settings-heading">ReST API credentials</h2>
+			<input id="url-api" type="text" placeholder="remote host"
+				class="form-control" /> <input id="username" type="text"
+				placeholder="username" class="form-control" /> <input id="password"
+				type="password" placeholder="password" class="form-control" /> <input
+				id="sync-directory" type="text" readonly />
+			<button type="button" id="choose-dir" class="btn btn-primary btn-sm">
+				<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+				Choose
+			</button>
+			<button type="button" id="save-btn" class="btn btn-success btn-block">
+				<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+				Save
+			</button>
+		</form>
+	</div>
+	<script src="../libs/jquery-2.1.4.js"></script>
+	<script src="../libs/jquery-ui-1.11.4.js"></script>
+	<script src="../js/options.js"></script>
+</body>
+</html>
