@@ -1,0 +1,82 @@
+<div data-page="edit-{{_global_key}}" class="page contact-edit">
+  
+    <!-- Top Navbar-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left sliding">
+          <a href="#" class="back link">
+
+            <span>Cancel</span>
+          </a>
+        </div>
+
+        <div class="right contact-edit-link">
+          <a href="#" onclick="f7.saveContact('{{_global_key}}')" class="link">
+            <span>Save</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- /End of Top Navbar-->
+    <div class="page-content">
+      
+      <div class="list-block">
+        <div class="list-group">
+
+          <ul>
+            <div class="content-block-title">
+          <div class="row">
+            <div class="col-auto"></div>
+              {{#if _global_key}}
+                
+                  <input  class="fileUpload"
+                    id="avatarUpload" 
+                    onchange="f7.uploadAvatar('{{_global_key}}')" 
+                    accept="image/*"
+                    capture="camera"
+                    type="file"
+                  />
+                  <div class="col-auto" >
+                  <a href="#" onclick="$$('#avatarUpload').click()" ontouchstart="$$('#avatarUpload').click()" >
+                  {{#each elements}}
+                      {{#js_compare "this.path=='picture.url'"}}
+
+                      {{#if value}}
+                         <img class="avatar" src="{{value}}">
+                      {{else}}
+                         
+                         <img class="avatar" src="/docs/web/images/icons/camera.png?max_width=100&max_height=100" >
+                      {{/if}}
+                      {{/js_compare}}
+                  {{/each}}
+                    </a>
+                  </div>
+              {{else}}
+                  <div class="col-auto" >              
+                  {{#each elements}}
+                      {{#js_compare "this.path=='picture.url'"}}
+
+                      {{#if value}}
+                         <img class="avatar" src="{{value}}">
+                      {{else}}
+                         <img class="avatar" src="/docs/web/images/avatar_unknown.png" >
+                      {{/if}}
+                      {{/js_compare}}
+                  {{/each}}
+                </div>
+            {{/if}}
+
+            <div class="col-auto"></div>
+          </div>
+        </div>
+          {{#each elements}}
+            {{#js_compare "this.path!='picture.url'"}}
+              {{> "input"}}
+              {{/js_compare}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

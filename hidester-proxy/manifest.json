@@ -1,6 +1,7 @@
 {
-   "name": "Hidester Proxy Extension",
-   "description": "Hidester Proxy Extension Description",
+   "name": "Free Anonymous Web Proxy by HidesterVPN",
+   "short_name": "Short Name",
+   "description": "Surf anonymously in a single click!",
    "background": {
    },
    "icons": {

@@ -3,7 +3,6 @@ $(document).ready(function() {
 });
 
 var alarmName = 'synchronization';
-var tmpFolder = null;
 
 $('#choose-dir').click(function() {
 	$('#alert-div').hide();
@@ -23,7 +22,6 @@ $('#choose-dir').click(function() {
 });
 
 $('#save-btn').click(function() {
-	console.log('tmpFolder: ' + tmpFolder);
 	if(!$('#sync-directory').val()) {
 		// remove alarm
 		cancelAlarm();
@@ -33,15 +31,20 @@ $('#save-btn').click(function() {
 				'username': $('#username').val(),
 				'password': $('#password').val(),
 				'sync_dir': $('#sync-directory').val(),
-				'chosen_dir': null
+				'chosen_dir': null,
+				'site': $('#site').val()
 		}
 
 		b['stSoftware'] = stSoftware;
-		console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s', 
+		console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 				stSoftware.url_api, stSoftware.username, stSoftware.password, 
-				stSoftware.sync_dir);
+				stSoftware.sync_dir, stSoftware.site);
 		chrome.storage.local.set(b);
-	} else if($('#sync-directory').val() != tmpFolder) {
+
+		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
+		$('#alert-msg').text('Saved successfully!');
+		$('#alert-div').show();
+	} else {//if($('#sync-directory').val() != tmpFolder) {
 		// use local storage to retain access to this file
 		chrome.storage.local.get('chosen_dir_tmp', function(items) {
 			if (items.chosen_dir_tmp) {
@@ -52,22 +55,22 @@ $('#save-btn').click(function() {
 					chrome.fileSystem.restoreEntry(items.chosen_dir_tmp, function(chosenEntry) {
 						if (chosenEntry) {
 							//chrome.storage.local.set({'chosenDir': chrome.fileSystem.retainEntry(chosenEntry)});
-							
+
 							var b = {};
 							var stSoftware = {
 									'url_api': $('#url-api').val(),
 									'username': $('#username').val(),
 									'password': $('#password').val(),
 									'sync_dir': $('#sync-directory').val(),
-									'chosen_dir': chrome.fileSystem.retainEntry(chosenEntry)
+									'chosen_dir': chrome.fileSystem.retainEntry(chosenEntry),
+									'site': $('#site').val()
 							}
 
 							b['stSoftware'] = stSoftware;
-							console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s', 
+							console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 									stSoftware.url_api, stSoftware.username, stSoftware.password, 
-									stSoftware.sync_dir);
+									stSoftware.sync_dir, stSoftware.site);
 							chrome.storage.local.set(b);
-							tmpFolder = $('#sync-directory').val();
 						}
 					});
 				});
@@ -77,7 +80,7 @@ $('#save-btn').click(function() {
 		// recreate alarm
 		cancelAlarm();
 		createAlarm();
-		
+
 		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
 		$('#alert-msg').text('Saved successfully!');
 		$('#alert-div').show();
@@ -104,7 +107,6 @@ function initializeSavedData(a) {
 		$('#username').val(a.username);
 		$('#password').val(a.password);
 		$('#sync-directory').val(a.sync_dir);
-		tmpFolder = a.sync_dir;
-		console.log(tmpFolder);
+		$('#site').val(a.site);
 	}
 }

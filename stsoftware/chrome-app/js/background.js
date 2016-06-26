@@ -19,12 +19,15 @@ function synchronize(a) {
 				console.info("Restoring " + a.chosen_dir);
 				chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 					if (chosenEntry) {
+
+						loadDirEntry(chosenEntry);
+
 						var siteKey = null;
 						$.ajax({
 							url : a.url_api + '/ReST/v5/class/Site',
 							type : 'GET',
 							data : {
-								q : 'name=\'app-contact-list2\''
+								q : 'name=\'' + a.site + '\''
 							},
 							dataType : 'json',
 							headers : {
@@ -58,14 +61,40 @@ function synchronize(a) {
 														// create folder
 														if(element.path.indexOf('/') > -1 || element.path.indexOf('\\') > -1) {
 															var lastIndex = element.path.lastIndexOf('/') == -1 ? element.path.lastIndexOf('//') : element.path.lastIndexOf('/');
-															chosenEntry.getDirectory(element.path.substring(0, lastIndex), { create: true }, function() { 
-																console.log(element.path); 
-															}, function(error) { 
-																console.log(error);
-															});
-														} else {
-															// create file
+															createDir(chosenEntry, element.path.substring(0, lastIndex).split('/'));
 														}
+														// write file
+														var data;
+														var type = element.type.code;
+														console.log(type);
+														switch (type) {
+														case 'JS':
+															data = element.script;
+															break;
+														case 'CSS':
+															data = element.css;
+															break;
+														case 'HTML':
+															data = element.html;
+															break;
+														default:
+														}
+//														console.log(data);
+														chrome.fileSystem.getWritableEntry(chosenEntry, function(entry) {
+															entry.getFile(element.path, { create: true }, function(entry) {
+																readAsText(entry, function(result) {
+//																	console.log(result);
+																	if(result != data) {
+																		console.log('rewrite to file');
+																		entry.createWriter(function(writer) {
+																			writer.write(new Blob([data], {type: 'text/plain'}));
+																		});
+																	} else {
+																		console.log('data is equal!');
+																	}
+																});
+															});
+														});
 													}
 												});
 											}
@@ -88,6 +117,70 @@ function synchronize(a) {
 				});
 			});
 		}
-
 	}
+}
+
+function readAsText(fileEntry, callback) {
+	fileEntry.file(function(file) {
+		var reader = new FileReader();
+
+		reader.onerror = errorHandler;
+		reader.onload = function(e) {
+			callback(e.target.result);
+		};
+
+		reader.readAsText(file);
+	});
+}
+
+function createDir(rootDirEntry, folders) {
+	// Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
+	if (folders[0] == '.' || folders[0] == '') {
+		folders = folders.slice(1);
+	}
+	rootDirEntry.getDirectory(folders[0], {create: true}, function(dirEntry) {
+		// Recursively add the new subfolder (if we still have another to create).
+		if (folders.length) {
+			createDir(dirEntry, folders.slice(1));
+		}
+	}, errorHandler);
+}
+
+function loadDirEntry(_chosenEntry) {
+	chosenEntry = _chosenEntry;
+	if (chosenEntry.isDirectory) {
+		var dirReader = chosenEntry.createReader();
+
+		// Call the reader.readEntries() until no more results are returned.
+		var readEntries = function() {
+			dirReader.readEntries (function(results) {
+				if (!results.length) {
+					// no files and directories 
+				} else {
+					results.forEach(function(item) { 
+						if(item.isDirectory) {
+							loadDirEntry(item);
+						} else {
+							// read file
+							item.getMetadata(function(data) {
+								console.log(data.modificationTime.getTime());
+							}); 
+						}
+					});
+					readEntries();
+				}
+			}, errorHandler);
+		};
+
+		readEntries(); // Start reading dirs.    
+	} else {
+		// read file
+		chosenEntry.getMetadata(function(data) {
+			console.log(data.modificationTime.getTime());
+		}); 
+	}
+}
+
+function errorHandler(e) {
+	console.error(e);
 }

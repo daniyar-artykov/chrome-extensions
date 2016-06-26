@@ -1,0 +1,22 @@
+{
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js", "jquery.js", "aes.js" ]
+   },
+   "browser_action": {
+      "default_icon": "img/48.png"
+   },
+   "content_security_policy": "script-src 'self'; object-src 'self'",
+   "description": "Download myRailinfo Web Ticket Autofill plugin extension and book your tatkal ticket in just 30 sec.",
+   "icons": {
+      "128": "img/128.png",
+      "16": "img/16.png",
+      "48": "img/48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjNbdbusCJOaDm8R6aTHeoCU3AgPASptP1F2R235t6Y7N+54FEkqhkM1MU2GI4IxXpPipm/dKyQ/aNhhlO1rHdPzNmJah1S8yxL/crRxYBATtaT1YbBNLYwWT1OQGCDckykt3v1L4cGnSa14dB0XwaQtze5Pw8PZVRrQcXqmFDtaQcBdpZwdWxGEV1TayODSwqsdCLTViLWVrpcLyMC6+wEQqMFRGnMOtlndB/7UhJkNJODfZoaLskI+yxpa/EOt3tvXT370UGcHeMG3qrykMAuX8tqK8YjrEzIwPuDEe4VWcKLh8XZvyH3hli7tQF+ZnexpbYMVy5VOt6uNmJrbfKwIDAQAB",
+   "manifest_version": 2,
+   "name": "myRailinfo Web Autofill",
+   "permissions": [ "http://*/*", "https://*/*", "tabs", "storage", "http://runningstatus.myrailinfo.in/" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "4.0"
+}

@@ -1,0 +1,53 @@
+<ul>
+  {{#each results}}
+  <li class="swipeout" data-gk="{{_global_key}}" data-name="{{escape name}}">
+    <a href="#" onclick="f7.showContact('{{_global_key}}')" class="swipeout-content item-link item-content" data-transition="slide-in">          
+      <div class="item-media">
+        {{#if picture}}
+        <img src="{{listPicture picture.url}}" alt="Photo: {{escape name}}" width="44">
+        {{else}}
+        <img src="/docs/web/images/avatar_unknown.png?max-height=80&amp;max-width=80" alt="Avatar: {{escape name}}" width="44">
+        {{/if}}
+      </div>
+      <div class="item-inner">
+        <div class="item-title-row">
+          <div class="item-title">{{escape name}}</div>
+        </div>
+        {{#if companyid}}
+        <div class="item-subtitle">{{escape companyid.name}}</div>
+        {{/if}}
+      </div>
+    </a>
+    <div class="swipeout-actions-right">
+      <a href="#" onclick="f7.deleteContact('{{_global_key}}')" style="background: #f44336">Delete</a>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
+{{#js_compare "this.prev || this.next"}}
+<div class="toolbar toolbar-bottom">
+  <div class="toolbar-inner row">
+    <div class="col-30 row">
+      {{#if first}}
+      {{#js_compare "this.first != this.prev"}}
+      <a class="link" href="#" onclick="f7.doList(this)" data-url="{{escape first}}" ><i class="fa fa-fast-backward" aria-hidden="true"></i></a>
+      {{/js_compare}}
+      {{/if}}
+      {{#if prev}}
+      <a  class="link" href="#" onclick="f7.doList(this)" data-url="{{escape prev}}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+      {{else}}
+      &nbsp;
+      {{/if}}
+    </div>
+    <div class="col-50">&nbsp;</div>
+    <div class="col-20">
+      {{#if next}}
+      <a  class="link" href="#" onclick="f7.doList(this)" data-url="{{escape next}}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+      {{else}}
+      &nbsp;            
+      {{/if}}
+    </div>
+  </div>
+</div>
+{{/js_compare}}
