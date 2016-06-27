@@ -1,5 +1,5 @@
 var f7 = new Framework7({
-    modalTitle: 'Contact List',
+    modalTitle: 'Contact List2',
     animateNavBackIcon: true,
     // If it is webapp, we can enable hash navigation:
     pushState: true,

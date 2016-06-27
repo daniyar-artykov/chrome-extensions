@@ -70,7 +70,12 @@ $('#save-btn').click(function() {
 							console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 									stSoftware.url_api, stSoftware.username, stSoftware.password, 
 									stSoftware.sync_dir, stSoftware.site);
-							chrome.storage.local.set(b);
+							chrome.storage.local.set(b, function() {
+								// send to background pullResources message
+								chrome.runtime.sendMessage( {msg: 'pullResources'}, function(response){
+									console.log(response.msg);
+								});
+							});
 						}
 					});
 				});
@@ -84,6 +89,7 @@ $('#save-btn').click(function() {
 		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
 		$('#alert-msg').text('Saved successfully!');
 		$('#alert-div').show();
+
 	}
 });
 
