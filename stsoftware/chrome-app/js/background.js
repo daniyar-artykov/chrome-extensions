@@ -232,7 +232,24 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 													b['lastModified'] = time;
 													chrome.storage.local.set(b, function() {
 														if (callback && typeof(callback) === "function") {
+															chrome.notifications.create('notice', {
+																type: 'basic',
+																iconUrl: 'images/icons/128.png',
+																title: 'Notification',
+																message: 'Folder has been synchronized!'
+															}, function(notificationId) {
+//																console.log('notificationId: ' + notificationId + ' shown! ');
+															});
 															callback();
+														} else {
+															chrome.notifications.create('notice', {
+																type: 'basic',
+																iconUrl: 'images/icons/128.png',
+																title: 'Notification',
+																message: 'File ' + element.path + ' has been updated!'
+															}, function(notificationId) {
+//																console.log('notificationId: ' + notificationId + ' shown! ');
+															});
 														}
 													});
 												}
@@ -245,6 +262,27 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 										});
 									} else {
 										console.log('file is the same, ignore it');
+										console.log('lastId: ' + lastId + '; index: ' + index);
+										if(lastId == index) { // finally set the last modified time in millis
+											var currentDate = new Date();
+											var lastModifiedTimeMillis = currentDate.getTime();
+											var b = {};
+											var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
+											b['lastModified'] = time;
+											chrome.storage.local.set(b, function() {
+												if (callback && typeof(callback) === "function") {
+													chrome.notifications.create('notice', {
+														type: 'basic',
+														iconUrl: 'images/icons/128.png',
+														title: 'Notification',
+														message: 'Folder has been synchronized!'
+													}, function(notificationId) {
+														console.log('notificationId: ' + notificationId + ' shown! ');
+													});
+													callback();
+												}
+											});
+										}
 									}
 								});
 							});
@@ -325,7 +363,7 @@ function monitorDir(a) {
 									chrome.storage.local.set(b);
 								}
 							});
-							
+
 						});
 					}
 				});
@@ -334,7 +372,8 @@ function monitorDir(a) {
 	}
 }
 
-function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username, password, callback) {
+function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username, 
+		password, callback) {
 	var nextModified = lastModified;
 	var chosenEntry = _chosenEntry;
 	var dirReader = chosenEntry.createReader();
@@ -347,7 +386,8 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 			} else {
 				results.forEach(function(item) { 
 					if(item.isDirectory) {
-						scanChanges(item, lastModified, syncDir, apiUrl, site, username, password, function(tmpModified) {
+						scanChanges(item, lastModified, syncDir, apiUrl, site, 
+								username, password, function(tmpModified) {
 							if( tmpModified > nextModified) {
 								nextModified = tmpModified;
 							}	
@@ -357,7 +397,7 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 						item.getMetadata(function(data) {
 							var tmpModified = data.modificationTime.getTime()
 							if( tmpModified > lastModified) {
-								console.log('Changed: ' + data);
+								console.log('Changed: ' + item);
 								sendFile(item, syncDir, apiUrl, site, username, password);
 								if( tmpModified > nextModified) {
 									nextModified = tmpModified;
@@ -378,7 +418,7 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 
 function sendFile(entry, syncDir, apiUrl, site, username, password) {
 	chrome.fileSystem.getDisplayPath(entry, function(path) {
-		console.log('path: ' + path.substring(syncDir.length));
+		console.log('path: ' + path.substring(syncDir.length + 1));
 		var siteKey = null;
 		$.ajax({
 			url : apiUrl + '/ReST/v5/class/Site',
@@ -400,7 +440,7 @@ function sendFile(entry, syncDir, apiUrl, site, username, password) {
 						url : apiUrl + '/ReST/v5/class/SiteResource',
 						type : 'GET',
 						data : {
-							q : 'site IS \'' + siteKey +  '\' and path=\'' + path.substring(syncDir.length) + '\''
+							q : 'site IS \'' + siteKey +  '\' and path=\'' + path.substring(syncDir.length + 1) + '\''
 						},
 						dataType : 'json',
 						headers : {

@@ -1,3 +1,4 @@
+var t = 'f';
 var f7 = new Framework7({
     modalTitle: 'Contact List2',
     animateNavBackIcon: true,

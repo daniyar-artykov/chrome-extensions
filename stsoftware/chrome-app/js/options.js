@@ -39,6 +39,12 @@ $('#save-btn').click(function() {
 		console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 				stSoftware.url_api, stSoftware.username, stSoftware.password, 
 				stSoftware.sync_dir, stSoftware.site);
+		
+		if(stSoftware.url_api.slice(-1) == '/') {
+			stSoftware.url_api = stSoftware.url_api.substring(0, stSoftware.url_api);
+			$('#url-api').val(stSoftware.url_api);
+		}
+		
 		chrome.storage.local.set(b);
 
 		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
@@ -70,6 +76,12 @@ $('#save-btn').click(function() {
 							console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 									stSoftware.url_api, stSoftware.username, stSoftware.password, 
 									stSoftware.sync_dir, stSoftware.site);
+							
+							if(stSoftware.url_api.slice(-1) == '/') {
+								stSoftware.url_api = stSoftware.url_api.substring(0, stSoftware.url_api.length - 1);
+								$('#url-api').val(stSoftware.url_api);
+							}
+							
 							chrome.storage.local.set(b, function() {
 								// send to background pullResources message
 								chrome.runtime.sendMessage( {msg: 'pullResources'}, function(response){
@@ -95,7 +107,7 @@ $('#save-btn').click(function() {
 
 function createAlarm() {
 	console.log('alarm created');
-	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1});
+	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1.5});
 }
 
 function cancelAlarm() {
