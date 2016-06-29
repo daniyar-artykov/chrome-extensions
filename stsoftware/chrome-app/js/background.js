@@ -1,7 +1,5 @@
-var currentDate = new Date();
-var startedTimeMillis = currentDate.getTime();
-var lastModifiedTimeMillis = 1; //9007199254740992; // set to max integer value
 var ALARM_NAME_MONITOR_DIR = 'monitorDirectory';
+var ALARM_NAME_SYNCHRONIZATION = 'synchronization';
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	chrome.app.window.create('forms/options.html', {id:"fileWin", innerBounds: {width: 800, height: 500}}, function(win) {
@@ -11,7 +9,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 
 chrome.alarms.onAlarm.addListener(function( alarm ) {
 	console.log('alarm: ' + alarm.name);
-	if(alarm.name == 'synchronization') {
+	if(alarm.name == ALARM_NAME_SYNCHRONIZATION) {
 		chrome.storage.local.get('stSoftware', synchronize);
 	} else if(alarm.name == ALARM_NAME_MONITOR_DIR) {
 		chrome.storage.local.get('stSoftware', monitorDir);
@@ -23,15 +21,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 	if(request.msg == 'pullResources') {
 		chrome.storage.local.get('stSoftware', pullResourcesFirstTime);
-		console.log(startedTimeMillis);
-		currentDate = new Date();
-		startedTimeMillis = currentDate.getTime();
-		console.log(startedTimeMillis);
-
-		var b = {};
-		var time = {'startedTimeMillis': startedTimeMillis};
-		b['startedTime'] = time;
-		chrome.storage.local.set(b);
 	} 
 
 	sendResponse({msg: 'ok'});
@@ -64,16 +53,15 @@ function synchronize(a) {
 								if(responseSite.results && responseSite.results.length > 0) {
 									siteKey = responseSite.results[0]._global_key;
 
-									chrome.storage.local.get('startedTime', function(result){
-										console.log('since: ' + result.startedTimeMillis);
-										
-										if(!result.startedTimeMillis) {
-											currentDate = new Date();
+									chrome.storage.local.get('startedTime', function(result) {
+										var startedTimeMillis = result['startedTime'].startedTimeMillis;
+										console.log('1. startedTimeMillis: ' + startedTimeMillis);
+										if(!startedTimeMillis) {
+											var currentDate = new Date();
 											startedTimeMillis = currentDate.getTime();
-										} else {
-											startedTimeMillis = result.startedTimeMillis;
 										}
-										
+										console.log('2. startedTimeMillis: ' + startedTimeMillis);
+										var ajaxTime= new Date().getTime();
 										$.ajax({
 											url : a.url_api + '/ReST/v3/sync/SiteResource',
 											type : 'GET',
@@ -107,6 +95,9 @@ function synchronize(a) {
 												console.log(xhr.status);
 												console.log(thrownError);
 											}
+										}).done(function () {
+											var totalTime = new Date().getTime() - ajaxTime;
+											console.log('totalTime: ' + totalTime);
 										});
 									});
 								}
@@ -122,10 +113,6 @@ function synchronize(a) {
 			});
 		}
 	}
-}
-
-function syncV3(a) {
-
 }
 
 function pullResourcesFirstTime(a) {
@@ -159,6 +146,16 @@ function pullResourcesFirstTime(a) {
 											siteKey, chosenEntry, function() {
 										cancelWatchService();
 										createWatchService();
+
+										var currentDate = new Date();
+										var startedTimeMillis = currentDate.getTime();
+										console.log('startedTimeMillis: ' + startedTimeMillis);
+
+										var b = {};
+										var time = {'startedTimeMillis': startedTimeMillis};
+										b['startedTime'] = time;
+										chrome.storage.local.set(b);
+
 									});
 								}
 							},
@@ -225,6 +222,25 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 									if(result != data) {
 										console.log('rewrite file (or create and write if it does not exist)');
 										entry.createWriter(function(writer) {
+											writer.onwriteend = function(e) {
+												console.log('lastId: ' + lastId + '; index: ' + index);
+												if(lastId == index) { // finally set the last modified time in millis
+													var currentDate = new Date();
+													var lastModifiedTimeMillis = currentDate.getTime();
+													var b = {};
+													var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
+													b['lastModified'] = time;
+													chrome.storage.local.set(b, function() {
+														if (callback && typeof(callback) === "function") {
+															callback();
+														}
+													});
+												}
+											};
+
+											writer.onerror = function(e) {
+												console.log('Write failed: ' + e.toString());
+											};
 											writer.write(new Blob([data], {type: 'text/plain'}));
 										});
 									} else {
@@ -233,14 +249,6 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 								});
 							});
 						});
-					}
-
-					if(lastId == index) { // finally set the last modified time in millis
-						currentDate = new Date();
-						lastModifiedTimeMillis = currentDate.getTime();
-						if (callback && typeof(callback) === "function") {
-							callback();
-						}
 					}
 				});
 			} else {
@@ -296,7 +304,29 @@ function monitorDir(a) {
 				console.info("Restoring " + a.chosen_dir);
 				chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 					if (chosenEntry) {
-						loadDirEntry(chosenEntry, a.sync_dir, a.url_api, a.site, a.username, a.password);
+						chrome.storage.local.get('lastModified', function(result) {
+							var tmpLastModified = result['lastModified'].lastModifiedTimeMillis;
+							console.log('1. tmpLastModified: ' + tmpLastModified);
+							if(!tmpLastModified) {
+								var currentDate = new Date();
+								tmpLastModified = currentDate.getTime();
+							}
+							console.log('2. tmpLastModified: ' + tmpLastModified);
+
+							var startLastModified = tmpLastModified;
+							scanChanges(chosenEntry, tmpLastModified, a.sync_dir, 
+									a.url_api, a.site, a.username, a.password, function(tmpLastModified) {
+								console.log('startLastModified: ' + startLastModified);
+								console.log('newTmpLastModified: ' + tmpLastModified);
+								if(tmpLastModified > startLastModified) {
+									var b = {};
+									var time = {'lastModifiedTimeMillis': tmpLastModified};
+									b['lastModified'] = time;
+									chrome.storage.local.set(b);
+								}
+							});
+							
+						});
 					}
 				});
 			});
@@ -304,43 +334,46 @@ function monitorDir(a) {
 	}
 }
 
-function loadDirEntry(_chosenEntry, syncDir, apiUrl, site, username, password) {
-	console.log('loadDirEntry');
-	chosenEntry = _chosenEntry;
-	if (chosenEntry.isDirectory) {
-		var dirReader = chosenEntry.createReader();
+function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username, password, callback) {
+	var nextModified = lastModified;
+	var chosenEntry = _chosenEntry;
+	var dirReader = chosenEntry.createReader();
 
-		// Call the reader.readEntries() until no more results are returned.
-		var readEntries = function() {
-			dirReader.readEntries (function(results) {
-				if (!results.length) {
-					// no files and directories 
-				} else {
-					results.forEach(function(item) { 
-						if(item.isDirectory) {
-							loadDirEntry(item, syncDir, apiUrl, site, username, password);
-						} else {
-							// read file
-							item.getMetadata(function(data) {
-								console.log('file: ' + data.modificationTime.getTime() + '>' + lastModifiedTimeMillis);
-								if(data.modificationTime.getTime() > lastModifiedTimeMillis) {
-									sendFile(item, syncDir, apiUrl, site, username, password);
-
-									lastModifiedTimeMillis = data.modificationTime.getTime();
+	// Call the reader.readEntries() until no more results are returned.
+	var readEntries = function() {
+		dirReader.readEntries (function(results) {
+			if (!results.length) {
+				// no files and directories 
+			} else {
+				results.forEach(function(item) { 
+					if(item.isDirectory) {
+						scanChanges(item, lastModified, syncDir, apiUrl, site, username, password, function(tmpModified) {
+							if( tmpModified > nextModified) {
+								nextModified = tmpModified;
+							}	
+						});
+					} else {
+						// read file
+						item.getMetadata(function(data) {
+							var tmpModified = data.modificationTime.getTime()
+							if( tmpModified > lastModified) {
+								console.log('Changed: ' + data);
+								sendFile(item, syncDir, apiUrl, site, username, password);
+								if( tmpModified > nextModified) {
+									nextModified = tmpModified;
+									callback(nextModified);
 								}
-							}); 
-						}
-					});
-					readEntries();
-				}
-			}, errorHandler);
-		};
+							}
+						}); 
+					}
+				});
+				readEntries();
+			}
+		}, errorHandler);
+	};
 
-		readEntries(); // Start reading dirs.    
-	} else {
-		console.log('unreachable reached :)');
-		//TODO unreachable, should be tested
-	}
+	readEntries(); // Start reading dirs.   
+//	return nextModified;
 }
 
 function sendFile(entry, syncDir, apiUrl, site, username, password) {

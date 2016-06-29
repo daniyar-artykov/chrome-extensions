@@ -2,7 +2,7 @@ $(document).ready(function() {
 	initializeSavedDetails();
 });
 
-var alarmName = 'synchronization';
+var ALARM_NAME_SYNCHRONIZATION = 'synchronization';
 
 $('#choose-dir').click(function() {
 	$('#alert-div').hide();
@@ -95,12 +95,12 @@ $('#save-btn').click(function() {
 
 function createAlarm() {
 	console.log('alarm created');
-	chrome.alarms.create(alarmName, {periodInMinutes: 1});
+	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1});
 }
 
 function cancelAlarm() {
 	console.log('alarm cancelled');
-	chrome.alarms.clear(alarmName);
+	chrome.alarms.clear(ALARM_NAME_SYNCHRONIZATION);
 }
 
 function initializeSavedDetails() {
