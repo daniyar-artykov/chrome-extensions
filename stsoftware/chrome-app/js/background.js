@@ -418,7 +418,7 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 
 function sendFile(entry, syncDir, apiUrl, site, username, password) {
 	chrome.fileSystem.getDisplayPath(entry, function(path) {
-		console.log('path: ' + path.substring(syncDir.length + 1));
+		console.log('path: ' + path.substring(syncDir.length + 1).replace(/\\/g, '/'));
 		var siteKey = null;
 		$.ajax({
 			url : apiUrl + '/ReST/v5/class/Site',
@@ -440,7 +440,7 @@ function sendFile(entry, syncDir, apiUrl, site, username, password) {
 						url : apiUrl + '/ReST/v5/class/SiteResource',
 						type : 'GET',
 						data : {
-							q : 'site IS \'' + siteKey +  '\' and path=\'' + path.substring(syncDir.length + 1) + '\''
+							q : 'site IS \'' + siteKey +  '\' and path=\'' + path.substring(syncDir.length + 1).replace(/\\/g, '/') + '\''
 						},
 						dataType : 'json',
 						headers : {
