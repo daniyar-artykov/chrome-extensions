@@ -1,5 +1,6 @@
 var ALARM_NAME_MONITOR_DIR = 'monitorDirectory';
 var ALARM_NAME_SYNCHRONIZATION = 'synchronization';
+globalWatch = '';
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	chrome.app.window.create('forms/options.html', {id:"fileWin", innerBounds: {width: 800, height: 500}}, function(win) {
@@ -9,9 +10,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 
 chrome.alarms.onAlarm.addListener(function( alarm ) {
 	console.log('alarm: ' + alarm.name);
-	if(alarm.name == ALARM_NAME_SYNCHRONIZATION) {
-		chrome.storage.local.get('stSoftware', synchronize);
-	} else if(alarm.name == ALARM_NAME_MONITOR_DIR) {
+	if(alarm.name == ALARM_NAME_MONITOR_DIR) {
 		chrome.storage.local.get('stSoftware', monitorDir);
 	}
 });
@@ -19,104 +18,24 @@ chrome.alarms.onAlarm.addListener(function( alarm ) {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log(request.msg);
 
-	if(request.msg == 'pullResources') {
-		chrome.storage.local.get('stSoftware', pullResourcesFirstTime);
-	} 
+	if(request.msg == 'process') {
+		if(globalWatch) {
+			console.log('globalWatch: ' + globalWatch);
+			globalWatch.destroy();
+			globalWatch = null;
+		} else {
+			console.log('globalWatch is undefined');
+		}
+		chrome.storage.local.get('stSoftware', process);
+	} else if(request.msg == 'cancelWatch') {
+		cancelWatchService();
+	}
 
 	sendResponse({msg: 'ok'});
 });
 
-function synchronize(a) {
-	if (a && (a = a['stSoftware'])) {
-		if(a.url_api && a.username && a.password && a.chosen_dir) {
-			// if an entry was retained earlier, see if it can be restored
-			chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
-				// the entry is still there, load the content
-				console.info("Restoring " + a.chosen_dir);
-				chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
-					if (chosenEntry) {
-						var siteKey = null;
-						$.ajax({
-							url : a.url_api + '/ReST/v5/class/Site',
-							type : 'GET',
-							data : {
-								q : 'name=\'' + a.site + '\''
-							},
-							dataType : 'json',
-							headers : {
-								Accept: 'application/json',
-								'Authorization' : 'Basic '
-									+ btoa(a.username + ':' + a.password)
-							},
-							success : function(responseSite) {
-//								console.log(responseSite);
-								if(responseSite.results && responseSite.results.length > 0) {
-									siteKey = responseSite.results[0]._global_key;
-
-									chrome.storage.local.get('startedTime', function(result) {
-										var startedTimeMillis = result['startedTime'].startedTimeMillis;
-										console.log('1. startedTimeMillis: ' + startedTimeMillis);
-										if(!startedTimeMillis) {
-											var currentDate = new Date();
-											startedTimeMillis = currentDate.getTime();
-										}
-										console.log('2. startedTimeMillis: ' + startedTimeMillis);
-										var ajaxTime= new Date().getTime();
-										$.ajax({
-											url : a.url_api + '/ReST/v3/sync/SiteResource',
-											type : 'GET',
-											data : {
-												block : '1 min',
-												since : startedTimeMillis
-											},
-											dataType : 'json',
-											headers : {
-												Accept: 'application/json',
-												'Authorization' : 'Basic '
-													+ btoa(a.username + ':' + a.password)
-											},
-											success : function(responseSiteResource) {
-												console.log(responseSiteResource);
-
-												if(responseSiteResource.since) {
-													startedTimeMillis = responseSiteResource.since;
-													var b = {};
-													var time = {'startedTimeMillis': startedTimeMillis};
-													b['startedTime'] = time;
-													chrome.storage.local.set(b);
-												}
-
-												if(responseSiteResource.results && responseSiteResource.results.length > 0) {
-													pullResources(a.url_api, a.username, a.password, siteKey, chosenEntry);
-												}
-											},
-											error : function(xhr, ajaxOptions,
-													thrownError) {
-												console.log(xhr.status);
-												console.log(thrownError);
-											}
-										}).done(function () {
-											var totalTime = new Date().getTime() - ajaxTime;
-											console.log('totalTime: ' + totalTime);
-										});
-									});
-								}
-							},
-							error : function(xhr, ajaxOptions,
-									thrownError) {
-								console.log(xhr.status);
-								console.log(thrownError);
-							}
-						});
-					}
-				});
-			});
-		}
-	}
-}
-
-function pullResourcesFirstTime(a) {
-	console.log('pullResourcesFirstTime');
+function process(a) {
+	console.log('process');
 	if (a && (a = a['stSoftware'])) {
 		if(a.url_api && a.username && a.password && a.chosen_dir) {
 			// if an entry was retained earlier, see if it can be restored
@@ -149,13 +68,66 @@ function pullResourcesFirstTime(a) {
 
 										var currentDate = new Date();
 										var startedTimeMillis = currentDate.getTime();
-										console.log('startedTimeMillis: ' + startedTimeMillis);
+										var i = 0;
+										var watchService = function() {
+											console.log('i: ' + i + '; watchService');
+											console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
+											var destroyed = false;
 
-										var b = {};
-										var time = {'startedTimeMillis': startedTimeMillis};
-										b['startedTime'] = time;
-										chrome.storage.local.set(b);
+											this.init = function() {
+												var ajaxTime= new Date().getTime();
+												$.ajax({
+													url : a.url_api + '/ReST/v3/sync/SiteResource',
+													type : 'GET',
+													data : {
+														block : '1 min',
+														since : startedTimeMillis
+													},
+													dataType : 'json',
+													headers : {
+														Accept : 'application/json',
+														'Authorization' : 'Basic '
+															+ btoa(a.username + ':' + a.password)
+													},
+													success : function(responseSiteResource) {
+														console.log(responseSiteResource);
 
+														if(responseSiteResource.since) {
+															startedTimeMillis = responseSiteResource.since;
+															console.log('i: ' + i + '; since: ' + startedTimeMillis);
+														}
+
+														if(responseSiteResource.results && responseSiteResource.results.length > 0) {
+															console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
+															if(!destroyed) {
+																pullResources(a.url_api, a.username, a.password, siteKey, chosenEntry);
+															}
+														}
+													},
+													error : function(xhr, ajaxOptions,
+															thrownError) {
+														console.log(xhr.status);
+														console.log(thrownError);
+													}
+												}).done(function () {
+													var totalTime = new Date().getTime() - ajaxTime;
+													console.log('i: ' + i + '; totalTime: ' + totalTime);
+													console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
+													if(!destroyed) {
+														console.log('i: ' + i + '; create new watchService');
+														i++;
+														globalWatch = new watchService();
+														globalWatch.init();
+													}
+												});
+											};											
+											this.destroy = function() {
+												console.log('i: ' + i + '; this.destroy = true');
+												destroyed = true;
+											};
+										}
+										globalWatch = new watchService();
+										globalWatch.init();
 									});
 								}
 							},

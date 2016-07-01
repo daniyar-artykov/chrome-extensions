@@ -24,7 +24,12 @@ $('#choose-dir').click(function() {
 $('#save-btn').click(function() {
 	if(!$('#sync-directory').val()) {
 		// remove alarm
-		cancelAlarm();
+//		cancelAlarm();
+
+		chrome.runtime.sendMessage( {msg: 'cancelWatch'}, function(response){
+			console.log(response.msg);
+		});
+
 		var b = {};
 		var stSoftware = {
 				'url_api': $('#url-api').val(),
@@ -39,12 +44,12 @@ $('#save-btn').click(function() {
 		console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 				stSoftware.url_api, stSoftware.username, stSoftware.password, 
 				stSoftware.sync_dir, stSoftware.site);
-		
+
 		if(stSoftware.url_api.slice(-1) == '/') {
 			stSoftware.url_api = stSoftware.url_api.substring(0, stSoftware.url_api);
 			$('#url-api').val(stSoftware.url_api);
 		}
-		
+
 		chrome.storage.local.set(b);
 
 		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
@@ -76,17 +81,26 @@ $('#save-btn').click(function() {
 							console.log('set url_api: %s; username: %s; password: %s; sync-dir: %s; site: %s', 
 									stSoftware.url_api, stSoftware.username, stSoftware.password, 
 									stSoftware.sync_dir, stSoftware.site);
-							
+
 							if(stSoftware.url_api.slice(-1) == '/') {
 								stSoftware.url_api = stSoftware.url_api.substring(0, stSoftware.url_api.length - 1);
 								$('#url-api').val(stSoftware.url_api);
 							}
-							
+
 							chrome.storage.local.set(b, function() {
-								// send to background pullResources message
-								chrome.runtime.sendMessage( {msg: 'pullResources'}, function(response){
+//								var bb = {};
+//								var t = {'destroy': 'true'};
+//								bb['destroy'] = t;
+//								chrome.storage.local.set(bb, function() {
+//								chrome.storage.local.get('destroy', function(result) {
+//								destroy = result['destroy'].destroy;
+//								console.log('1. destroy: ' + destroy);
+//								});
+								// send to background process message
+								chrome.runtime.sendMessage( {msg: 'process'}, function(response){
 									console.log(response.msg);
 								});
+//								});
 							});
 						}
 					});
@@ -106,8 +120,8 @@ $('#save-btn').click(function() {
 });
 
 function createAlarm() {
-	console.log('alarm created');
-	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1.5});
+//	console.log('alarm created');
+//	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1.5});
 }
 
 function cancelAlarm() {
