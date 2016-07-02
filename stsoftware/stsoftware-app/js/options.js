@@ -2,8 +2,6 @@ $(document).ready(function() {
 	initializeSavedDetails();
 });
 
-var ALARM_NAME_SYNCHRONIZATION = 'synchronization';
-
 $('#choose-dir').click(function() {
 	$('#alert-div').hide();
 	chrome.fileSystem.chooseEntry({type: 'openDirectory'}, function(theEntry) {
@@ -26,9 +24,9 @@ $('#save-btn').click(function() {
 		// remove alarm
 //		cancelAlarm();
 
-		chrome.runtime.sendMessage( {msg: 'cancelWatch'}, function(response){
-			console.log(response.msg);
-		});
+//		chrome.runtime.sendMessage( {msg: 'cancelWatch'}, function(response){
+//		console.log(response.msg);
+//		});
 
 		var b = {};
 		var stSoftware = {
@@ -108,26 +106,12 @@ $('#save-btn').click(function() {
 			}
 		});
 
-		// recreate alarm
-		cancelAlarm();
-		createAlarm();
-
 		$('#alert-div').removeClass().addClass('alert').addClass('alert-success');
 		$('#alert-msg').text('Saved successfully!');
 		$('#alert-div').show();
 
 	}
 });
-
-function createAlarm() {
-//	console.log('alarm created');
-//	chrome.alarms.create(ALARM_NAME_SYNCHRONIZATION, {periodInMinutes: 1.5});
-}
-
-function cancelAlarm() {
-	console.log('alarm cancelled');
-	chrome.alarms.clear(ALARM_NAME_SYNCHRONIZATION);
-}
 
 function initializeSavedDetails() {
 	chrome.storage.local.get('stSoftware', initializeSavedData);

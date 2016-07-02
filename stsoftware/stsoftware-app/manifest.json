@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "stSoftware App",
-  "description": "stSoftware Ltd. App Description",
-  "version": "0.0.1",
+  "name": "stSoftware Ltd. Chrome App",
+  "short_name": "stSoftware App",
+  "description": "stSoftware Ltd. Chrome App Description",
+  "version": "0.0.3",
   "minimum_chrome_version": "42.0.2311.135",
   "icons": {
       "128": "images/icons/128.png",
@@ -22,5 +23,6 @@
           "*/*"
       ]
     }
-  }
+  },
+  "update_url": "https://clients2.google.com/service/update2/crx"
 }

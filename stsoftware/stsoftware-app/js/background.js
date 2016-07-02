@@ -1,5 +1,4 @@
-var ALARM_NAME_MONITOR_DIR = 'monitorDirectory';
-var ALARM_NAME_SYNCHRONIZATION = 'synchronization';
+//var ALARM_NAME_MONITOR_DIR = 'monitorDirectory';
 globalWatch = '';
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
@@ -8,12 +7,12 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	});
 });
 
-chrome.alarms.onAlarm.addListener(function( alarm ) {
-	console.log('alarm: ' + alarm.name);
-	if(alarm.name == ALARM_NAME_MONITOR_DIR) {
-		chrome.storage.local.get('stSoftware', monitorDir);
-	}
-});
+//chrome.alarms.onAlarm.addListener(function( alarm ) {
+//console.log('alarm: ' + alarm.name);
+//if(alarm.name == ALARM_NAME_MONITOR_DIR) {
+//chrome.storage.local.get('stSoftware', monitorDir);
+//}
+//});
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log(request.msg);
@@ -27,8 +26,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			console.log('globalWatch is undefined');
 		}
 		chrome.storage.local.get('stSoftware', process);
-	} else if(request.msg == 'cancelWatch') {
-		cancelWatchService();
 	}
 
 	sendResponse({msg: 'ok'});
@@ -63,9 +60,9 @@ function process(a) {
 									siteKey = responseSite.results[0]._global_key;
 									pullResources(a.url_api, a.username, a.password, 
 											siteKey, chosenEntry, function() {
-										cancelWatchService();
+										
 										createWatchService();
-
+										
 										var currentDate = new Date();
 										var startedTimeMillis = currentDate.getTime();
 										var i = 0;
@@ -304,44 +301,46 @@ function createDir(rootDirEntry, folders) {
 	}, errorHandler);
 }
 
-function monitorDir(a) {
-	console.log('monitorDir(a)');
-	if (a && (a = a['stSoftware'])) {
-		if(a.url_api && a.username && a.password && a.chosen_dir) {
-			// if an entry was retained earlier, see if it can be restored
-			chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
-				// the entry is still there, load the content
-				console.info("Restoring " + a.chosen_dir);
-				chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
-					if (chosenEntry) {
-						chrome.storage.local.get('lastModified', function(result) {
-							var tmpLastModified = result['lastModified'].lastModifiedTimeMillis;
-							console.log('1. tmpLastModified: ' + tmpLastModified);
-							if(!tmpLastModified) {
-								var currentDate = new Date();
-								tmpLastModified = currentDate.getTime();
-							}
-							console.log('2. tmpLastModified: ' + tmpLastModified);
-
-							var startLastModified = tmpLastModified;
-							scanChanges(chosenEntry, tmpLastModified, a.sync_dir, 
-									a.url_api, a.site, a.username, a.password, function(tmpLastModified) {
-								console.log('startLastModified: ' + startLastModified);
-								console.log('newTmpLastModified: ' + tmpLastModified);
-								if(tmpLastModified > startLastModified) {
-									var b = {};
-									var time = {'lastModifiedTimeMillis': tmpLastModified};
-									b['lastModified'] = time;
-									chrome.storage.local.set(b);
+function monitorDir() {
+	console.log('monitorDir');
+	chrome.storage.local.get('stSoftware', function(a){
+		if (a && (a = a['stSoftware'])) {
+			if(a.url_api && a.username && a.password && a.chosen_dir) {
+				// if an entry was retained earlier, see if it can be restored
+				chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
+					// the entry is still there, load the content
+					console.info("Restoring " + a.chosen_dir);
+					chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
+						if (chosenEntry) {
+							chrome.storage.local.get('lastModified', function(result) {
+								var tmpLastModified = result['lastModified'].lastModifiedTimeMillis;
+								console.log('1. tmpLastModified: ' + tmpLastModified);
+								if(!tmpLastModified) {
+									var currentDate = new Date();
+									tmpLastModified = currentDate.getTime();
 								}
-							});
+								console.log('2. tmpLastModified: ' + tmpLastModified);
 
-						});
-					}
+								var startLastModified = tmpLastModified;
+								scanChanges(chosenEntry, tmpLastModified, a.sync_dir, 
+										a.url_api, a.site, a.username, a.password, function(tmpLastModified) {
+									console.log('startLastModified: ' + startLastModified);
+									console.log('newTmpLastModified: ' + tmpLastModified);
+									if(tmpLastModified > startLastModified) {
+										var b = {};
+										var time = {'lastModifiedTimeMillis': tmpLastModified};
+										b['lastModified'] = time;
+										chrome.storage.local.set(b);
+									}
+								});
+
+							});
+						}
+					});
 				});
-			});
+			}
 		}
-	}
+	});
 }
 
 function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username, 
@@ -487,12 +486,33 @@ function errorHandler(e) {
 	console.error(e);
 }
 
-function createWatchService() {
-	console.log('watchservice created');
-	chrome.alarms.create(ALARM_NAME_MONITOR_DIR, {periodInMinutes: 1});
-}
+//function createWatchService() {
+//console.log('watchservice created');
+////chrome.alarms.create(ALARM_NAME_MONITOR_DIR, {periodInMinutes: 0.02});
+//var watcherId = setInterval(callback, 1000);
+//var b = {};
+//var c = {'watcherId': watcherId};
+//b['watcher'] = c;
+//chrome.storage.local.set(b);
+//}
 
-function cancelWatchService() {
-	console.log('watchservice cancelled');
-	chrome.alarms.clear(ALARM_NAME_MONITOR_DIR);
+function createWatchService() {
+	console.log('watchservice create');
+//	chrome.alarms.clear(ALARM_NAME_MONITOR_DIR);
+	chrome.storage.local.get('watcher', function(result) {
+		var watcherId = '0'; 
+
+		if(result && result['watcher']) {
+			watcherId = result['watcher'].watcherId;
+			// stop watcher
+			clearInterval(watcherId);
+		}
+		
+		// create new watcher
+		watcherId = setInterval(monitorDir, 1000);
+		var b = {};
+		var c = {'watcherId': watcherId};
+		b['watcher'] = c;
+		chrome.storage.local.set(b);
+	});
 }
