@@ -514,7 +514,7 @@ function createWatchService() {
 		}
 		
 		// create new watcher
-		watcherId = setInterval(monitorDir, 60000);
+		watcherId = setInterval(monitorDir, 1000);
 		var b = {};
 		var c = {'watcherId': watcherId};
 		b['watcher'] = c;
