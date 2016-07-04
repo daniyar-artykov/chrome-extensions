@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	initializeSavedDetails();
+	validate();
 	loader();
 });
 
