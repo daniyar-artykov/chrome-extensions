@@ -4,12 +4,182 @@ body {
 	background-color: #eee;
 }
 
+#popup-loader-container {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: fixed;
+	z-index: 1000;
+}
+
+#popup-background {
+	width: 100%;
+	overflow: hidden;
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.8);
+	position: absolute;
+}
+
+.center-loader {
+	width: 260px;
+	height: 100px;
+	display: inline-block;
+	position: relative;
+	top: 40%;
+}
+
+.loader-content {
+	padding: 10px;
+}
+
+.loader-content p {
+	width: 100%;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.loader {
+	height: 20px;
+	text-align: center;
+	font-size: 0;
+	line-height: 0
+}
+
+.loader .dot {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	border-radius: 50% 50% 50% 50%;
+	-webkit-border-radius: 50% 50% 50% 50%
+}
+
+.loader .dot+.dot {
+	margin-left: 10px
+}
+
+.loader.state-1 .dot {
+	background-color: #e01c78
+}
+
+.loader.state-1 .dot+.dot {
+	background-color: #283e87
+}
+
+.loader.state-1 .dot+.dot+.dot {
+	background-color: #573583
+}
+
+.loader.state-1 .dot+.dot+.dot+.dot {
+	background-color: #822d80
+}
+
+.loader.state-1 .dot+.dot+.dot+.dot+.dot {
+	background-color: #b4247b
+}
+
+.loader.state-2 .dot {
+	background-color: #b4247b
+}
+
+.loader.state-2 .dot+.dot {
+	background-color: #e01c78
+}
+
+.loader.state-2 .dot+.dot+.dot {
+	background-color: #283e87
+}
+
+.loader.state-2 .dot+.dot+.dot+.dot {
+	background-color: #573583
+}
+
+.loader.state-2 .dot+.dot+.dot+.dot+.dot {
+	background-color: #822d80
+}
+
+.loader.state-3 .dot {
+	background-color: #822d80
+}
+
+.loader.state-3 .dot+.dot {
+	background-color: #b4247b
+}
+
+.loader.state-3 .dot+.dot+.dot {
+	background-color: #e01c78
+}
+
+.loader.state-3 .dot+.dot+.dot+.dot {
+	background-color: #283e87
+}
+
+.loader.state-3 .dot+.dot+.dot+.dot+.dot {
+	background-color: #573583
+}
+
+.loader.state-4 .dot {
+	background-color: #573583
+}
+
+.loader.state-4 .dot+.dot {
+	background-color: #822d80
+}
+
+.loader.state-4 .dot+.dot+.dot {
+	background-color: #b4247b
+}
+
+.loader.state-4 .dot+.dot+.dot+.dot {
+	background-color: #e01c78
+}
+
+.loader.state-4 .dot+.dot+.dot+.dot+.dot {
+	background-color: #283e87
+}
+
+.loader.state-5 .dot {
+	background-color: #283e87
+}
+
+.loader.state-5 .dot+.dot {
+	background-color: #573583
+}
+
+.loader.state-5 .dot+.dot+.dot {
+	background-color: #822d80
+}
+
+.loader.state-5 .dot+.dot+.dot+.dot {
+	background-color: #b4247b
+}
+
+.loader.state-5 .dot+.dot+.dot+.dot+.dot {
+	background-color: #e01c78
+}
+
+@media ( max-width :1023px) {
+	.loader {
+		height: 16px
+	}
+	.loader .dot {
+		width: 16px;
+		height: 16px
+	}
+	.loader .dot+.dot {
+		margin-left: 8px
+	}
+}
+
 .form-settings {
 	max-width: 330px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-.form-settings .form-settings-heading, .form-settings input, .form-settings button {
+.form-settings .form-settings-heading, .form-settings input,
+	.form-settings button, .form-settings select {
 	margin-bottom: 10px;
 }

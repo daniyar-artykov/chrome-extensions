@@ -1,4 +1,3 @@
-//var ALARM_NAME_MONITOR_DIR = 'monitorDirectory';
 globalWatch = '';
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
@@ -6,13 +5,6 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 		win.contentWindow.launchData = launchData;
 	});
 });
-
-//chrome.alarms.onAlarm.addListener(function( alarm ) {
-//console.log('alarm: ' + alarm.name);
-//if(alarm.name == ALARM_NAME_MONITOR_DIR) {
-//chrome.storage.local.get('stSoftware', monitorDir);
-//}
-//});
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log(request.msg);
@@ -25,120 +17,132 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		} else {
 			console.log('globalWatch is undefined');
 		}
-		chrome.storage.local.get('stSoftware', process);
-	}
+//		chrome.storage.local.get('stSoftware', process);
+		chrome.storage.local.get('stSoftware', function(a) {
+			console.log('process');
+			if (a && (a = a['stSoftware'])) {
+				if(a.url_api && a.username && a.password && a.chosen_dir) {
+					// if an entry was retained earlier, see if it can be restored
+					chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
+						// the entry is still there, load the content
+						console.info("Restoring " + a.chosen_dir);
+						chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
+							if (chosenEntry) {
+								var siteKey = null;
+								$.ajax({
+									url : a.url_api + '/ReST/v5/class/Site',
+									type : 'GET',
+									data : {
+										q : 'name=\'' + a.site + '\''
+									},
+									dataType : 'json',
+									headers : {
+										Accept: 'application/json',
+										'Authorization' : 'Basic '
+											+ btoa(a.username + ':' + a.password)
+									},
+									success : function(responseSite) {
+//										console.log(responseSite);
+										if(responseSite.results && responseSite.results.length > 0) {
+											siteKey = responseSite.results[0]._global_key;
+											pullResources(a.url_api, a.username, a.password, 
+													siteKey, chosenEntry, function(callbackMsg) {
+												
+												createWatchService();
+												
+												var currentDate = new Date();
+												var startedTimeMillis = currentDate.getTime();
+												var i = 0;
+												var watchService = function() {
+													console.log('i: ' + i + '; watchService');
+													console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
+													var destroyed = false;
 
-	sendResponse({msg: 'ok'});
-});
+													this.init = function() {
+														var ajaxTime= new Date().getTime();
+														$.ajax({
+															url : a.url_api + '/ReST/v3/sync/SiteResource',
+															type : 'GET',
+															data : {
+																block : '1 min',
+																since : startedTimeMillis
+															},
+															dataType : 'json',
+															headers : {
+																Accept : 'application/json',
+																'Authorization' : 'Basic '
+																	+ btoa(a.username + ':' + a.password)
+															},
+															success : function(responseSiteResource) {
+																console.log(responseSiteResource);
 
-function process(a) {
-	console.log('process');
-	if (a && (a = a['stSoftware'])) {
-		if(a.url_api && a.username && a.password && a.chosen_dir) {
-			// if an entry was retained earlier, see if it can be restored
-			chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
-				// the entry is still there, load the content
-				console.info("Restoring " + a.chosen_dir);
-				chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
-					if (chosenEntry) {
-						var siteKey = null;
-						$.ajax({
-							url : a.url_api + '/ReST/v5/class/Site',
-							type : 'GET',
-							data : {
-								q : 'name=\'' + a.site + '\''
-							},
-							dataType : 'json',
-							headers : {
-								Accept: 'application/json',
-								'Authorization' : 'Basic '
-									+ btoa(a.username + ':' + a.password)
-							},
-							success : function(responseSite) {
-//								console.log(responseSite);
-								if(responseSite.results && responseSite.results.length > 0) {
-									siteKey = responseSite.results[0]._global_key;
-									pullResources(a.url_api, a.username, a.password, 
-											siteKey, chosenEntry, function() {
-										
-										createWatchService();
-										
-										var currentDate = new Date();
-										var startedTimeMillis = currentDate.getTime();
-										var i = 0;
-										var watchService = function() {
-											console.log('i: ' + i + '; watchService');
-											console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
-											var destroyed = false;
+																if(responseSiteResource.since) {
+																	startedTimeMillis = responseSiteResource.since;
+																	console.log('i: ' + i + '; since: ' + startedTimeMillis);
+																}
 
-											this.init = function() {
-												var ajaxTime= new Date().getTime();
-												$.ajax({
-													url : a.url_api + '/ReST/v3/sync/SiteResource',
-													type : 'GET',
-													data : {
-														block : '1 min',
-														since : startedTimeMillis
-													},
-													dataType : 'json',
-													headers : {
-														Accept : 'application/json',
-														'Authorization' : 'Basic '
-															+ btoa(a.username + ':' + a.password)
-													},
-													success : function(responseSiteResource) {
-														console.log(responseSiteResource);
-
-														if(responseSiteResource.since) {
-															startedTimeMillis = responseSiteResource.since;
-															console.log('i: ' + i + '; since: ' + startedTimeMillis);
-														}
-
-														if(responseSiteResource.results && responseSiteResource.results.length > 0) {
-															console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
-															if(!destroyed) {
-																pullResources(a.url_api, a.username, a.password, siteKey, chosenEntry);
+																if(responseSiteResource.results && responseSiteResource.results.length > 0) {
+																	console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
+																	if(!destroyed) {
+																		pullResources(a.url_api, a.username, a.password, siteKey, chosenEntry);
+																	}
+																}
+															},
+															error : function(xhr, ajaxOptions,
+																	thrownError) {
+																console.log(xhr.status);
+																console.log(thrownError);
 															}
-														}
-													},
-													error : function(xhr, ajaxOptions,
-															thrownError) {
-														console.log(xhr.status);
-														console.log(thrownError);
-													}
-												}).done(function () {
-													var totalTime = new Date().getTime() - ajaxTime;
-													console.log('i: ' + i + '; totalTime: ' + totalTime);
-													console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
-													if(!destroyed) {
-														console.log('i: ' + i + '; create new watchService');
-														i++;
-														globalWatch = new watchService();
-														globalWatch.init();
-													}
-												});
-											};											
-											this.destroy = function() {
-												console.log('i: ' + i + '; this.destroy = true');
-												destroyed = true;
-											};
+														}).done(function () {
+															var totalTime = new Date().getTime() - ajaxTime;
+															console.log('i: ' + i + '; totalTime: ' + totalTime);
+															console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
+															if(!destroyed) {
+																console.log('i: ' + i + '; create new watchService');
+																i++;
+																globalWatch = new watchService();
+																globalWatch.init();
+															}
+														});
+													};											
+													this.destroy = function() {
+														console.log('i: ' + i + '; this.destroy = true');
+														destroyed = true;
+													};
+												}
+												globalWatch = new watchService();
+												globalWatch.init();
+												sendMessage(callbackMsg);
+											});
 										}
-										globalWatch = new watchService();
-										globalWatch.init();
-									});
-								}
-							},
-							error : function(xhr, ajaxOptions,
-									thrownError) {
-								console.log(xhr.status);
-								console.log(thrownError);
+									},
+									error : function(xhr, ajaxOptions,
+											thrownError) {
+										console.log(xhr.status);
+										console.log(thrownError);
+										sendMessage('Error: ' + xht.status + ' ' + thrownError);
+									}
+								});
+							} else {
+								sendMessage('Error: Broken directory.');
 							}
 						});
-					}
-				});
-			});
-		}
+					});
+				} else {
+					sendMessage('Error: API credentials couldn\'t be found');
+				}
+			} else {
+				sendMessage('Error: API credentials couldn\'t be found');
+			}
+		});
 	}
+});
+
+function sendMessage(message) {
+	console.log('rq msg: ' + message);
+	chrome.runtime.sendMessage( {msg: message}, function(response) {
+		console.log('rsp msg: ' + response.msg);
+	});
 }
 
 function pullResources(apiUrl, username, password, siteKey, chosenEntry, callback) {
@@ -209,7 +213,7 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 															}, function(notificationId) {
 //																console.log('notificationId: ' + notificationId + ' shown! ');
 															});
-															callback();
+															callback('Folder has been synchronized!');
 														} else {
 															chrome.notifications.create('notice', {
 																type: 'basic',
@@ -248,7 +252,7 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 													}, function(notificationId) {
 														console.log('notificationId: ' + notificationId + ' shown! ');
 													});
-													callback();
+													callback('Folder has been synchronized!');
 												}
 											});
 										}
@@ -260,7 +264,8 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 				});
 			} else {
 				if (callback && typeof(callback) === "function") {
-					callback();
+					console.log('no files on remote!!');
+					callback('Folder has been synchronized!');
 				}
 			}
 		},
@@ -269,7 +274,7 @@ function pullResources(apiUrl, username, password, siteKey, chosenEntry, callbac
 			console.log(xhr.status);
 			console.log(thrownError);
 			if (callback && typeof(callback) === "function") {
-				callback();
+				callback('Error: ' + xhr.status + ' ' + thrownError);
 			}
 		}
 	});
@@ -509,7 +514,7 @@ function createWatchService() {
 		}
 		
 		// create new watcher
-		watcherId = setInterval(monitorDir, 1000);
+		watcherId = setInterval(monitorDir, 60000);
 		var b = {};
 		var c = {'watcherId': watcherId};
 		b['watcher'] = c;
