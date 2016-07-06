@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		} else {
 			console.log('globalWatch is undefined');
 		}
+//		chrome.storage.local.get('stSoftware', process);
 		chrome.storage.local.get('stSoftware', function(a) {
 			console.log('process');
 			if (a && (a = a['stSoftware'])) {
@@ -31,7 +32,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 								$.ajax({
 									url : a.url_api + '/ReST/v5/class/Site',
 									type : 'GET',
-									data : {},
+									data : {
+										q : 'name=\'' + a.site + '\''
+									},
 									dataType : 'json',
 									headers : {
 										Accept: 'application/json',
@@ -56,7 +59,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 													var destroyed = false;
 
 													this.init = function() {
-														var ajaxTime = new Date().getTime();
+														var ajaxTime= new Date().getTime();
 														$.ajax({
 															url : a.url_api + '/ReST/v3/sync/SiteResource',
 															type : 'GET',
@@ -142,8 +145,8 @@ function sendMessage(message) {
 	});
 }
 
-function pullResources(apiUrl, username, password, siteKeys, chosenEntry, callback) {
-	console.log('pullResources method');
+function pullResources(apiUrl, username, password, siteKey, chosenEntry, callback) {
+	console.log('pullResources(apiUrl, username, password, siteKey, chosenEntry)');
 	$.ajax({
 		url : apiUrl + '/ReST/v5/class/SiteResource',
 		type : 'GET',

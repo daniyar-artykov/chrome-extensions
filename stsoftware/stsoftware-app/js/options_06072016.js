@@ -4,10 +4,127 @@ $(document).ready(function() {
 	loader();
 });
 
+function blurChange(e) {
+	validate();
+	clearTimeout(blurChange.timeout);
+	blurChange.timeout = setTimeout(function() {
+		var apiUrl = $('#url-api').val();
+		var username = $('#username').val();
+		var password = $('#password').val();
+		console.log('apiUrl: ' + apiUrl + '; username: ' + username + 
+				'; password: ' + password);
 
-$('#url_api').on('blur change', validate);
-$('#username').on('blur change', validate);
-$('#password').on('blur change', validate);
+		if(apiUrl.slice(-1) == '/') {
+			apiUrl = apiUrl.substring(0, apiUrl.length - 1);
+			console.log(apiUrl);
+			$('#url-api').val(apiUrl);
+		}
+
+		if(apiUrl && username && password) {
+			$("#popup-loader-container").fadeIn();
+			// request available sites
+			$.ajax({
+				url : apiUrl + '/ReST/v5/class/Site',
+				type : 'GET',
+				data : {},
+				dataType : 'json',
+				headers : {
+					Accept: 'application/json',
+					'Authorization' : 'Basic '
+						+ btoa(username + ':' + password)
+				},
+				success : function(response) {
+					console.log(response);
+					if(response.results && response.results.length > 0) {
+						var $el = $('#site');
+						$el.empty();
+						$el.append($('<option></option>').attr('value', '').text('site to sync'));
+						$.each(response.results, function(index, element) {
+							$el.append($('<option></option>').attr('value', element.name).text(element.name));
+						});
+						$('#alert-div').hide();
+						$el.prop('disabled', false);
+						$("#popup-loader-container").hide();
+					}
+				},
+				error : function(xhr, ajaxOptions,
+						thrownError) {
+					console.log(xhr.status);
+					console.log(thrownError);
+					$('#alert-div').removeClass().addClass('alert').addClass('alert-warning');
+					$('#alert-msg').text('Please enter valid API credentials. Error: ' 
+							+ xhr.status + ' ' + thrownError);
+					$('#alert-div').show();
+					$("#popup-loader-container").hide();
+					return;
+				}
+			});
+		}
+	}, 100);
+}
+
+$('#url_api').on('blur change', blurChange);
+$('#username').on('blur change', blurChange);
+$('#password').on('blur change', blurChange);
+$('#site').on('change', function() {
+	validate();
+});
+
+$('#site').click(function () {
+	var apiUrl = $('#url-api').val();
+	var username = $('#username').val();
+	var password = $('#password').val();
+
+	var optionsCount = $('#site option').length;
+
+	console.log('apiUrl: ' + apiUrl + '; username: ' + username + 
+			'; password: ' + password + '; optionsCount: ' + optionsCount);
+
+	if(apiUrl.slice(-1) == '/') {
+		apiUrl = apiUrl.substring(0, apiUrl.length - 1);
+		$('#url-api').val(apiUrl);
+	}
+
+	if(apiUrl && username && password && optionsCount < 2) {
+		$("#popup-loader-container").show();
+		// request available sites
+		$.ajax({
+			url : apiUrl + '/ReST/v5/class/Site',
+			type : 'GET',
+			data : {},
+			dataType : 'json',
+			headers : {
+				Accept: 'application/json',
+				'Authorization' : 'Basic '
+					+ btoa(username + ':' + password)
+			},
+			success : function(response) {
+				console.log(response);
+				if(response.results && response.results.length > 0) {
+					var $el = $('#site');
+					$el.empty();
+					$el.append($('<option></option>').attr('value', '').text('site to sync'));
+					$.each(response.results, function(index, element) {
+						$el.append($("<option></option>").attr("value", element.name).text(element.name));
+					});
+					$el.prop('disabled', false);
+					$("#popup-loader-container").hide();
+				}
+			},
+			error : function(xhr, ajaxOptions,
+					thrownError) {
+				console.log(xhr.status);
+				console.log(thrownError);
+				$('#alert-div').removeClass().addClass('alert').addClass('alert-warning');
+				$('#alert-msg').text('Please enter valid API credentials. Error: ' 
+						+ xhr.status + ' ' + thrownError);
+				$('#alert-div').show();
+				$("#popup-loader-container").hide();
+				return;
+			}
+		});
+	}
+})
 
 $('#choose-dir').click(chooseEntry);
 $('#sync-directory').click(chooseEntry);
@@ -18,8 +135,7 @@ function chooseEntry() {
 		if (!theEntry) {
 			$('#alert-div').removeClass().addClass('alert').addClass('alert-warning');
 			$('#alert-msg').text('No Directory selected.');
-			$('#alert-div').show(
-			validate(););
+			$('#alert-div').show();
 			return;
 		}
 		// use local storage to retain access to this file
@@ -93,6 +209,7 @@ function initializeSavedData(a) {
 		$('#url-api').val(a.url_api);
 		$('#username').val(a.username);
 		$('#password').val(a.password);
+		$('#sync-directory').val(a.sync_dir);
 		$("#popup-loader-container").fadeIn();
 		// request available sites
 		var $el = $('#site');
@@ -141,10 +258,11 @@ function validate() {
 	var apiUrl = $('#url-api').val();
 	var username = $('#username').val();
 	var password = $('#password').val();
+	var site = $('#site').val();
 	var directory = $('#sync-directory').val();
-	console.log('apiUrl: %s; username: %s; password: %s; directory: %s',
-			apiUrl, username, password, directory);
-	if(apiUrl && username && password && directory) {
+	console.log('apiUrl: %s; username: %s; password: %s; site: %s; directory: %s',
+			apiUrl, username, password, site, directory);
+	if(apiUrl && username && password && site && directory) {
 		$('#save-btn').prop('disabled', false);
 	} else {
 		$('#save-btn').prop('disabled', true);
