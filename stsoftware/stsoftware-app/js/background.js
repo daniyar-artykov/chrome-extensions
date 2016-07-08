@@ -7,7 +7,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	console.log('Got message: ' + request.msg);
+	console.log('Got message: \'' + request.msg + '\'');
 
 	if(request.msg == 'process') {
 		if(globalWatch) {
@@ -39,6 +39,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 										this.init = function() {
 											var ajaxTime = new Date().getTime();
+											console.debug('REQUEST: \'/ReST/v3/sync/SiteResource\', block=\'1 min\', since=\'' + startedTimeMillis + '\'');
 											$.ajax({
 												url : a.url_api + '/ReST/v3/sync/SiteResource',
 												type : 'GET',
@@ -53,7 +54,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 														+ btoa(a.username + ':' + a.password)
 												},
 												success : function(responseSiteResource) {
-													console.log(responseSiteResource);
+													console.debug('RESPONSE: ');
+													console.debug(responseSiteResource);
 
 													if(responseSiteResource.since) {
 														startedTimeMillis = responseSiteResource.since;
@@ -72,6 +74,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 												}
 											}).done(function () {
 												var totalTime = new Date().getTime() - ajaxTime;
+												console.debug('response time: ' + totalTime);
 												if(!destroyed) {
 													i++;
 													globalWatch = new watchService();
@@ -103,9 +106,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function sendMessage(message) {
-	console.debug('Sending message: ' + message);
+	console.debug('Sending message: \'' + message + '\'');
 	chrome.runtime.sendMessage( {msg: message}, function(response) {
-		console.debug('Got response message: ' + response.msg);
+		console.debug('Got response message: \'' + response.msg + '\'');
 	});
 }
 
@@ -123,11 +126,9 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 				+ btoa(username + ':' + password)
 		},
 		success : function(response) {
-//			console.debug(response);
 			if(response.results && response.results.length > 0) {
 				var lastSiteId = response.results.length - 1;
 				$.each(response.results, function(i, e) {
-					console.log('site: ' + e.name);
 					$.ajax({
 						url : apiUrl + '/ReST/v5/class/SiteResource',
 						type : 'GET',
@@ -141,13 +142,11 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 								+ btoa(username + ':' + password)
 						},
 						success : function(responseSiteResource) {
-//							console.debug(responseSiteResource);
 							if(responseSiteResource.results && responseSiteResource.results.length > 0) {
 								var lastId = responseSiteResource.results.length - 1;
 								$.each(responseSiteResource.results, function(index, element) {
 									if(element) {
 										var path = e.name + '/' + element.path;
-//										console.debug('file to write: ' + path);
 										// create folder(s)
 										if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
 											var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
@@ -156,7 +155,6 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 										// write file
 										var data;
 										var type = element.type.code;
-										console.log(type);
 										switch (type) {
 										case 'JS':
 											data = element.script;
@@ -169,16 +167,13 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 											break;
 										default:
 										}
-//										console.log(data);
 										chrome.fileSystem.getWritableEntry(chosenEntry, function(entry) {
 											entry.getFile(path, { create: true }, function(entry) {
 												readAsText(entry, function(result) {
-//													console.log(result);
 													if(result != data) {
 														console.log('write file: ' + path);
 														entry.createWriter(function(writer) {
 															writer.onwriteend = function(e) {
-//																console.debug('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
 																if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 																	var currentDate = new Date();
 																	var lastModifiedTimeMillis = currentDate.getTime();
@@ -193,7 +188,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																				title: 'Notification',
 																				message: 'Folder has been synchronized!'
 																			}, function(notificationId) {
-//																				console.log('notificationId: ' + notificationId + ' shown! ');
+//																				console.debug('notificationId: ' + notificationId + ' shown!');
 																			});
 																			callback('Folder has been synchronized!');
 																		} else {
@@ -203,7 +198,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																				title: 'Notification',
 																				message: 'File ' + path + ' has been updated!'
 																			}, function(notificationId) {
-//																				console.log('notificationId: ' + notificationId + ' shown! ');
+//																				console.debug('notificationId: ' + notificationId + ' shown! ');
 																			});
 																		}
 																	});
@@ -217,7 +212,6 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 														});
 													} else {
 														console.log('file already exists and content is the same: ' + path);
-//														console.debug('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
 														if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 															var currentDate = new Date();
 															var lastModifiedTimeMillis = currentDate.getTime();
@@ -247,9 +241,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 							} else {
 								if (callback && typeof(callback) === "function") {
 									console.debug('no files on remote site: ' + e.name); 
-//									console.debug('lastSiteId: ' + lastSiteId + '; i: ' + i);
 									var path = e.name + '/';
-//									console.log(path);
 									// create folder(s)
 									if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
 										var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
@@ -309,14 +301,13 @@ function createDir(rootDirEntry, folders) {
 }
 
 function monitorDir() {
-//	console.debug('monitorDir');
+	console.log('track dir to changes...');
 	chrome.storage.local.get('stSoftware', function(a){
 		if (a && (a = a['stSoftware'])) {
 			if(a.url_api && a.username && a.password && a.chosen_dir) {
 				// if an entry was retained earlier, see if it can be restored
 				chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
 					// the entry is still there, load the content
-//					console.debug("Restoring " + a.chosen_dir);
 					chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 						if (chosenEntry) {
 							chrome.storage.local.get('lastModified', function(result) {
@@ -326,13 +317,10 @@ function monitorDir() {
 									var currentDate = new Date();
 									tmpLastModified = currentDate.getTime();
 								}
-//								console.debug('2. tmpLastModified: ' + tmpLastModified);
 
 								var startLastModified = tmpLastModified;
 								scanChanges(chosenEntry, tmpLastModified, a.sync_dir, 
 										a.url_api, a.username, a.password, function(tmpLastModified) {
-//									console.debug('startLastModified: ' + startLastModified);
-//									console.debug('newTmpLastModified: ' + tmpLastModified);
 									if(tmpLastModified > startLastModified) {
 										var b = {};
 										var time = {'lastModifiedTimeMillis': tmpLastModified};
@@ -375,7 +363,6 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, username,
 						item.getMetadata(function(data) {
 							var tmpModified = data.modificationTime.getTime()
 							if( tmpModified > lastModified) {
-//								console.log('Changed: ' + item);
 								sendFile(item, syncDir, apiUrl, username, password);
 								if( tmpModified > nextModified) {
 									nextModified = tmpModified;
@@ -400,8 +387,7 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 		var index = path.indexOf('/');
 		var site = path.substring(0, index);
 		path = path.substring(index + 1);
-//		console.log('site: ' + site + '; path: ' + path);
-
+		
 		var siteKey = null;
 		$.ajax({
 			url : apiUrl + '/ReST/v5/class/Site',
@@ -416,7 +402,6 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 					+ btoa(username + ':' + password)
 			},
 			success : function(responseSite) {
-//				console.log(responseSite);
 				if(responseSite.results && responseSite.results.length > 0) {
 					siteKey = responseSite.results[0]._global_key;
 					$.ajax({
@@ -432,7 +417,6 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 								+ btoa(username + ':' + password)
 						},
 						success : function(response) {
-//							console.log(responseSiteResource);
 							if(response.results && response.results.length == 1) {
 								readAsText(entry, function(data) {
 
@@ -498,7 +482,6 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 function errorHandler(e) {
 	console.error(e);
 }
-
 
 function createWatchService() {
 	chrome.storage.local.get('watcher', function(result) {

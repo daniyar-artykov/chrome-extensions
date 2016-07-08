@@ -119,7 +119,7 @@ $('#save-btn').click(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	console.log('Got message ' + request.msg);
+	console.log('Got message: \'' + request.msg + '\'');
 	$('#alert-div').removeClass().addClass('alert').addClass(request.msg.indexOf('Error: ') > -1 ? 'alert-danger' : 'alert-success');
 	$('#alert-msg').text(request.msg);
 	$('#alert-div').show();
@@ -147,14 +147,15 @@ function initializeSavedDetails() {
 						+ btoa(a.username + ':' + a.password)
 				},
 				success : function(response) {
-					console.log(response);
+					console.debug('Test API credentials RESPONSE')
+					console.debug(response);
 					validate();
 					$("#popup-loader-container").hide();
 				},
 				error : function(xhr, ajaxOptions,
 						thrownError) {
-					console.log(xhr.status);
-					console.log(thrownError);
+					console.error(xhr.status);
+					console.error(thrownError);
 					$('#alert-div').removeClass().addClass('alert').addClass('alert-warning');
 					$('#alert-msg').text('Please enter valid API credentials. Error: ' 
 							+ xhr.status + ' ' + thrownError);
@@ -168,7 +169,6 @@ function initializeSavedDetails() {
 }
 
 function validate() {
-	console.log('');
 	$('#alert-div').hide();
 	var apiUrl = $('#url-api').val();
 	var username = $('#username').val();

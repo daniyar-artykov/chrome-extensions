@@ -15,7 +15,7 @@
     }
   },
   "permissions": [
-    {"fileSystem": ["write", "retainEntries", "directory"]}, "storage", "alarms", "notifications", "http://*/*", "https://*/*", "*://*/*" 
+    {"fileSystem": ["write", "retainEntries", "directory"]}, "storage", "notifications", "http://*/*", "https://*/*", "*://*/*" 
   ],
   "file_handlers": {
     "text": {
