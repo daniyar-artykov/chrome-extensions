@@ -27,98 +27,74 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 						console.info("Restoring " + a.chosen_dir);
 						chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 							if (chosenEntry) {
-								var siteKey = null;
-								$.ajax({
-									url : a.url_api + '/ReST/v5/class/Site',
-									type : 'GET',
-									data : {},
-									dataType : 'json',
-									headers : {
-										Accept: 'application/json',
-										'Authorization' : 'Basic '
-											+ btoa(a.username + ':' + a.password)
-									},
-									success : function(responseSite) {
-//										console.log(responseSite);
-										if(responseSite.results && responseSite.results.length > 0) {
-											siteKey = responseSite.results[0]._global_key;
-											pullResources(a.url_api, a.username, a.password, 
-													siteKey, chosenEntry, function(callbackMsg) {
-												
-												createWatchService();
-												
-												var currentDate = new Date();
-												var startedTimeMillis = currentDate.getTime();
-												var i = 0;
-												var watchService = function() {
-													console.log('i: ' + i + '; watchService');
-													console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
-													var destroyed = false;
+								pullResources(a.url_api, a.username, a.password, chosenEntry, 
+										function(callbackMsg) {
 
-													this.init = function() {
-														var ajaxTime = new Date().getTime();
-														$.ajax({
-															url : a.url_api + '/ReST/v3/sync/SiteResource',
-															type : 'GET',
-															data : {
-																block : '1 min',
-																since : startedTimeMillis
-															},
-															dataType : 'json',
-															headers : {
-																Accept : 'application/json',
-																'Authorization' : 'Basic '
-																	+ btoa(a.username + ':' + a.password)
-															},
-															success : function(responseSiteResource) {
-																console.log(responseSiteResource);
+									createWatchService();
 
-																if(responseSiteResource.since) {
-																	startedTimeMillis = responseSiteResource.since;
-																	console.log('i: ' + i + '; since: ' + startedTimeMillis);
-																}
+									var currentDate = new Date();
+									var startedTimeMillis = currentDate.getTime();
+									var i = 0;
+									var watchService = function() {
+										console.log('i: ' + i + '; watchService');
+										console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
+										var destroyed = false;
 
-																if(responseSiteResource.results && responseSiteResource.results.length > 0) {
-																	console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
-																	if(!destroyed) {
-																		pullResources(a.url_api, a.username, a.password, siteKey, chosenEntry);
-																	}
-																}
-															},
-															error : function(xhr, ajaxOptions,
-																	thrownError) {
-																console.log(xhr.status);
-																console.log(thrownError);
-															}
-														}).done(function () {
-															var totalTime = new Date().getTime() - ajaxTime;
-															console.log('i: ' + i + '; totalTime: ' + totalTime);
-															console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
-															if(!destroyed) {
-																console.log('i: ' + i + '; create new watchService');
-																i++;
-																globalWatch = new watchService();
-																globalWatch.init();
-															}
-														});
-													};											
-													this.destroy = function() {
-														console.log('i: ' + i + '; this.destroy = true');
-														destroyed = true;
-													};
+										this.init = function() {
+											var ajaxTime = new Date().getTime();
+											$.ajax({
+												url : a.url_api + '/ReST/v3/sync/SiteResource',
+												type : 'GET',
+												data : {
+													block : '1 min',
+													since : startedTimeMillis
+												},
+												dataType : 'json',
+												headers : {
+													Accept : 'application/json',
+													'Authorization' : 'Basic '
+														+ btoa(a.username + ':' + a.password)
+												},
+												success : function(responseSiteResource) {
+													console.log(responseSiteResource);
+
+													if(responseSiteResource.since) {
+														startedTimeMillis = responseSiteResource.since;
+														console.log('i: ' + i + '; since: ' + startedTimeMillis);
+													}
+
+													if(responseSiteResource.results && responseSiteResource.results.length > 0) {
+														console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
+														if(!destroyed) {
+															pullResources(a.url_api, a.username, a.password, chosenEntry);
+														}
+													}
+												},
+												error : function(xhr, ajaxOptions,
+														thrownError) {
+													console.log(xhr.status);
+													console.log(thrownError);
 												}
-												globalWatch = new watchService();
-												globalWatch.init();
-												sendMessage(callbackMsg);
+											}).done(function () {
+												var totalTime = new Date().getTime() - ajaxTime;
+												console.log('i: ' + i + '; totalTime: ' + totalTime);
+												console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
+												if(!destroyed) {
+													console.log('i: ' + i + '; create new watchService');
+													i++;
+													globalWatch = new watchService();
+													globalWatch.init();
+												}
 											});
-										}
-									},
-									error : function(xhr, ajaxOptions,
-											thrownError) {
-										console.log(xhr.status);
-										console.log(thrownError);
-										sendMessage('Error: ' + xht.status + ' ' + thrownError);
+										};											
+										this.destroy = function() {
+											console.log('i: ' + i + '; this.destroy = true');
+											destroyed = true;
+										};
 									}
+									globalWatch = new watchService();
+									globalWatch.init();
+									sendMessage(callbackMsg);
 								});
 							} else {
 								sendMessage('Error: Broken directory.');
@@ -142,139 +118,177 @@ function sendMessage(message) {
 	});
 }
 
-function pullResources(apiUrl, username, password, siteKeys, chosenEntry, callback) {
+function pullResources(apiUrl, username, password, chosenEntry, callback) {
 	console.log('pullResources method');
+	// get all sites
 	$.ajax({
-		url : apiUrl + '/ReST/v5/class/SiteResource',
+		url : apiUrl + '/ReST/v5/class/Site',
 		type : 'GET',
-		data : {
-			q : 'site IS \'' + siteKey +  '\''
-		},
+		data : {},
 		dataType : 'json',
 		headers : {
 			Accept: 'application/json',
 			'Authorization' : 'Basic '
 				+ btoa(username + ':' + password)
 		},
-		success : function(responseSiteResource) {
-//			console.log(responseSiteResource);
-			if(responseSiteResource.results && responseSiteResource.results.length > 0) {
-				var lastId = responseSiteResource.results.length - 1;
-				$.each(responseSiteResource.results, function(index, element) {
-					if(element) {
-						console.log(element.path);
-						// create folder
-						if(element.path.indexOf('/') > -1 || element.path.indexOf('\\') > -1) {
-							var lastIndex = element.path.lastIndexOf('/') == -1 ? element.path.lastIndexOf('//') : element.path.lastIndexOf('/');
-							createDir(chosenEntry, element.path.substring(0, lastIndex).split('/'));
-						}
-						// write file
-						var data;
-						var type = element.type.code;
-						console.log(type);
-						switch (type) {
-						case 'JS':
-							data = element.script;
-							break;
-						case 'CSS':
-							data = element.css;
-							break;
-						case 'HTML':
-							data = element.html;
-							break;
-						default:
-						}
-//						console.log(data);
-						chrome.fileSystem.getWritableEntry(chosenEntry, function(entry) {
-							entry.getFile(element.path, { create: true }, function(entry) {
-								readAsText(entry, function(result) {
-//									console.log(result);
-									if(result != data) {
-										console.log('rewrite file (or create and write if it does not exist)');
-										entry.createWriter(function(writer) {
-											writer.onwriteend = function(e) {
-												console.log('lastId: ' + lastId + '; index: ' + index);
-												if(lastId == index) { // finally set the last modified time in millis
-													var currentDate = new Date();
-													var lastModifiedTimeMillis = currentDate.getTime();
-													var b = {};
-													var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
-													b['lastModified'] = time;
-													chrome.storage.local.set(b, function() {
-														if (callback && typeof(callback) === "function") {
-															chrome.notifications.create('notice', {
-																type: 'basic',
-																iconUrl: 'images/icons/128.png',
-																title: 'Notification',
-																message: 'Folder has been synchronized!'
-															}, function(notificationId) {
-//																console.log('notificationId: ' + notificationId + ' shown! ');
-															});
-															callback('Folder has been synchronized!');
-														} else {
-															chrome.notifications.create('notice', {
-																type: 'basic',
-																iconUrl: 'images/icons/128.png',
-																title: 'Notification',
-																message: 'File ' + element.path + ' has been updated!'
-															}, function(notificationId) {
-//																console.log('notificationId: ' + notificationId + ' shown! ');
+		success : function(response) {
+			console.log(response);
+			if(response.results && response.results.length > 0) {
+				var lastSiteId = response.results.length - 1;
+				$.each(response.results, function(i, e) {
+					console.log('site: ' + e.name);
+					$.ajax({
+						url : apiUrl + '/ReST/v5/class/SiteResource',
+						type : 'GET',
+						data : {
+							q : 'site IS \'' + e._global_key +  '\''
+						},
+						dataType : 'json',
+						headers : {
+							Accept: 'application/json',
+							'Authorization' : 'Basic '
+								+ btoa(username + ':' + password)
+						},
+						success : function(responseSiteResource) {
+//							console.log(responseSiteResource);
+							if(responseSiteResource.results && responseSiteResource.results.length > 0) {
+								var lastId = responseSiteResource.results.length - 1;
+								$.each(responseSiteResource.results, function(index, element) {
+									if(element) {
+										var path = e.name + '/' + element.path;
+										console.log(path);
+										// create folder(s)
+										if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
+											var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
+											createDir(chosenEntry, path.substring(0, lastIndex).split('/'));
+										}
+										// write file
+										var data;
+										var type = element.type.code;
+										console.log(type);
+										switch (type) {
+										case 'JS':
+											data = element.script;
+											break;
+										case 'CSS':
+											data = element.css;
+											break;
+										case 'HTML':
+											data = element.html;
+											break;
+										default:
+										}
+//										console.log(data);
+										chrome.fileSystem.getWritableEntry(chosenEntry, function(entry) {
+											entry.getFile(path, { create: true }, function(entry) {
+												readAsText(entry, function(result) {
+//													console.log(result);
+													if(result != data) {
+														console.log('rewrite file (or create and write if it does not exist)');
+														entry.createWriter(function(writer) {
+															writer.onwriteend = function(e) {
+																console.log('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+																if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
+																	var currentDate = new Date();
+																	var lastModifiedTimeMillis = currentDate.getTime();
+																	var b = {};
+																	var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
+																	b['lastModified'] = time;
+																	chrome.storage.local.set(b, function() {
+																		if (callback && typeof(callback) === "function") {
+																			chrome.notifications.create('notice', {
+																				type: 'basic',
+																				iconUrl: 'images/icons/128.png',
+																				title: 'Notification',
+																				message: 'Folder has been synchronized!'
+																			}, function(notificationId) {
+//																				console.log('notificationId: ' + notificationId + ' shown! ');
+																			});
+																			callback('Folder has been synchronized!');
+																		} else {
+																			chrome.notifications.create('notice', {
+																				type: 'basic',
+																				iconUrl: 'images/icons/128.png',
+																				title: 'Notification',
+																				message: 'File ' + path + ' has been updated!'
+																			}, function(notificationId) {
+//																				console.log('notificationId: ' + notificationId + ' shown! ');
+																			});
+																		}
+																	});
+																}
+															};
+
+															writer.onerror = function(e) {
+																console.log('Write failed: ' + e.toString());
+															};
+															writer.write(new Blob([data], {type: 'text/plain'}));
+														});
+													} else {
+														console.log('file is the same, ignore it');
+														console.log('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+														if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
+															var currentDate = new Date();
+															var lastModifiedTimeMillis = currentDate.getTime();
+															var b = {};
+															var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
+															b['lastModified'] = time;
+															chrome.storage.local.set(b, function() {
+																if (callback && typeof(callback) === "function") {
+																	chrome.notifications.create('notice', {
+																		type: 'basic',
+																		iconUrl: 'images/icons/128.png',
+																		title: 'Notification',
+																		message: 'Folder has been synchronized!'
+																	}, function(notificationId) {
+																		console.log('notificationId: ' + notificationId + ' shown! ');
+																	});
+																	callback('Folder has been synchronized!');
+																}
 															});
 														}
-													});
-												}
-											};
-
-											writer.onerror = function(e) {
-												console.log('Write failed: ' + e.toString());
-											};
-											writer.write(new Blob([data], {type: 'text/plain'}));
-										});
-									} else {
-										console.log('file is the same, ignore it');
-										console.log('lastId: ' + lastId + '; index: ' + index);
-										if(lastId == index) { // finally set the last modified time in millis
-											var currentDate = new Date();
-											var lastModifiedTimeMillis = currentDate.getTime();
-											var b = {};
-											var time = {'lastModifiedTimeMillis': lastModifiedTimeMillis};
-											b['lastModified'] = time;
-											chrome.storage.local.set(b, function() {
-												if (callback && typeof(callback) === "function") {
-													chrome.notifications.create('notice', {
-														type: 'basic',
-														iconUrl: 'images/icons/128.png',
-														title: 'Notification',
-														message: 'Folder has been synchronized!'
-													}, function(notificationId) {
-														console.log('notificationId: ' + notificationId + ' shown! ');
-													});
-													callback('Folder has been synchronized!');
-												}
+													}
+												});
 											});
-										}
+										});
 									}
 								});
-							});
-						});
-					}
+							} else {
+								if (callback && typeof(callback) === "function") {
+									console.log('no files on remote! site: ' + e.name + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+									var path = e.name + '/';
+									console.log(path);
+									// create folder(s)
+									if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
+										var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
+										createDir(chosenEntry, path.substring(0, lastIndex).split('/'));
+									}
+									if(lastSiteId == i) {
+										callback('Folder has been synchronized!');
+									}
+								}
+							}
+						},
+						error : function(xhr, ajaxOptions,
+								thrownError) {
+							console.log(xhr.status);
+							console.log(thrownError);
+							if (callback && typeof(callback) === "function") {
+								callback('Error: ' + xhr.status + ' ' + thrownError);
+							}
+						}
+					});
 				});
-			} else {
-				if (callback && typeof(callback) === "function") {
-					console.log('no files on remote!!');
-					callback('Folder has been synchronized!');
-				}
 			}
 		},
 		error : function(xhr, ajaxOptions,
 				thrownError) {
 			console.log(xhr.status);
 			console.log(thrownError);
-			if (callback && typeof(callback) === "function") {
-				callback('Error: ' + xhr.status + ' ' + thrownError);
-			}
+			return;
 		}
 	});
+
 }
 
 function readAsText(fileEntry, callback) {
@@ -291,7 +305,6 @@ function readAsText(fileEntry, callback) {
 }
 
 function createDir(rootDirEntry, folders) {
-	// Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
 	if (folders[0] == '.' || folders[0] == '') {
 		folders = folders.slice(1);
 	}
@@ -385,8 +398,7 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 		}, errorHandler);
 	};
 
-	readEntries(); // Start reading dirs.   
-//	return nextModified;
+	readEntries(); // Start reading dirs. 
 }
 
 function sendFile(entry, syncDir, apiUrl, site, username, password) {
@@ -488,33 +500,23 @@ function errorHandler(e) {
 	console.error(e);
 }
 
-//function createWatchService() {
-//console.log('watchservice created');
-////chrome.alarms.create(ALARM_NAME_MONITOR_DIR, {periodInMinutes: 0.02});
-//var watcherId = setInterval(callback, 1000);
-//var b = {};
-//var c = {'watcherId': watcherId};
-//b['watcher'] = c;
-//chrome.storage.local.set(b);
-//}
 
 function createWatchService() {
 	console.log('watchservice create');
-//	chrome.alarms.clear(ALARM_NAME_MONITOR_DIR);
-	chrome.storage.local.get('watcher', function(result) {
-		var watcherId = '0'; 
+//	chrome.storage.local.get('watcher', function(result) {
+//	var watcherId = '0'; 
 
-		if(result && result['watcher']) {
-			watcherId = result['watcher'].watcherId;
-			// stop watcher
-			clearInterval(watcherId);
-		}
-		
-		// create new watcher
-		watcherId = setInterval(monitorDir, 1000);
-		var b = {};
-		var c = {'watcherId': watcherId};
-		b['watcher'] = c;
-		chrome.storage.local.set(b);
-	});
+//	if(result && result['watcher']) {
+//	watcherId = result['watcher'].watcherId;
+//	// stop watcher
+//	clearInterval(watcherId);
+//	}
+
+//	// create new watcher
+//	watcherId = setInterval(monitorDir, 1000);
+//	var b = {};
+//	var c = {'watcherId': watcherId};
+//	b['watcher'] = c;
+//	chrome.storage.local.set(b);
+//	});
 }

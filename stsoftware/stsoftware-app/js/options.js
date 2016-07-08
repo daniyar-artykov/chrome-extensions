@@ -1,9 +1,6 @@
 $(document).ready(function() {
 	initializeSavedDetails();
-	validate();
-	loader();
 });
-
 
 $('#url_api').on('blur change', validate);
 $('#username').on('blur change', validate);
@@ -18,8 +15,8 @@ function chooseEntry() {
 		if (!theEntry) {
 			$('#alert-div').removeClass().addClass('alert').addClass('alert-warning');
 			$('#alert-msg').text('No Directory selected.');
-			$('#alert-div').show(
-			validate(););
+			$('#alert-div').show();
+			validate();
 			return;
 		}
 		// use local storage to retain access to this file
@@ -48,8 +45,7 @@ $('#save-btn').click(function() {
 								'username': $('#username').val(),
 								'password': $('#password').val(),
 								'sync_dir': $('#sync-directory').val(),
-								'chosen_dir': chrome.fileSystem.retainEntry(chosenEntry),
-								'site': $('#site').val()
+								'chosen_dir': chrome.fileSystem.retainEntry(chosenEntry)
 						}
 
 						b['stSoftware'] = stSoftware;
@@ -77,10 +73,10 @@ $('#save-btn').click(function() {
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log(request.msg);
-	$("#popup-loader-container").hide();
 	$('#alert-div').removeClass().addClass('alert').addClass(request.msg.indexOf('Error: ') > -1 ? 'alert-danger' : 'alert-success');
 	$('#alert-msg').text(request.msg);
 	$('#alert-div').show();
+	$("#popup-loader-container").hide();
 	sendResponse({msg: 'ok'});
 });
 
@@ -93,11 +89,9 @@ function initializeSavedData(a) {
 		$('#url-api').val(a.url_api);
 		$('#username').val(a.username);
 		$('#password').val(a.password);
-		$("#popup-loader-container").fadeIn();
-		// request available sites
-		var $el = $('#site');
-		$el.empty();
-		$el.append($('<option></option>').attr('value', '').text('site to sync'));
+		$('#sync-directory').val(a.sync_dir);
+		$("#popup-loader-container").show();
+		// request available sites for test credentials
 		$.ajax({
 			url : a.url_api + '/ReST/v5/class/Site',
 			type : 'GET',
@@ -110,16 +104,8 @@ function initializeSavedData(a) {
 			},
 			success : function(response) {
 				console.log(response);
-				if(response.results && response.results.length > 0) {
-					$.each(response.results, function(index, element) {
-						$el.append($("<option></option>").attr("value", element.name).text(element.name));
-					});
-					console.log('a.site: ' + a.site);
-					$el.val(a.site);
-					$el.prop('disabled', false);
-					validate();
-					$("#popup-loader-container").hide();
-				}
+				validate();
+				$("#popup-loader-container").hide();
 			},
 			error : function(xhr, ajaxOptions,
 					thrownError) {
@@ -151,39 +137,3 @@ function validate() {
 	}
 }
 
-function loader() {
-	$('.loader').each(function() {
-		var c = $(this), t, change=1, start = 1, delay = 500, step = 50, state;
-		if(c.hasClass('backwards')||c.hasClass('backward')) {
-			start = 5;
-			change = -1;
-		}
-		state = start;
-
-		if(typeof(c.data('delay'))=='number') {
-			delay=c.data('delay');
-		}
-		if(typeof(c.data('step'))=='number') {
-			step=c.data('step');
-		}
-
-		c.on('tick',function() {
-			c.removeClass('state-1').removeClass('state-2').removeClass('state-3').removeClass('state-4').removeClass('state-5').addClass('state-'+state);
-			state += change;
-			if(state > 5 || state < 1) {
-				c.trigger('restart');
-			} else {
-				setTimeout(function() {
-					c.trigger('tick');
-				}, step);
-			}
-		});
-		c.on('restart',function() {
-			state = start;
-			setTimeout(function() {
-				c.trigger('tick');
-			}, delay)
-		});
-		c.trigger('tick');
-	});
-}
