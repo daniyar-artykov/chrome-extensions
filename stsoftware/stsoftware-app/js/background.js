@@ -7,24 +7,23 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	console.log(request.msg);
+	console.log('Got message: ' + request.msg);
 
 	if(request.msg == 'process') {
 		if(globalWatch) {
-			console.log('globalWatch: ' + globalWatch);
+//			console.debug('globalWatch: ' + globalWatch);
 			globalWatch.destroy();
 			globalWatch = null;
 		} else {
-			console.log('globalWatch is undefined');
+//			console.debug('globalWatch is undefined');
 		}
 		chrome.storage.local.get('stSoftware', function(a) {
-			console.log('process');
+//			console.debug('process');
 			if (a && (a = a['stSoftware'])) {
 				if(a.url_api && a.username && a.password && a.chosen_dir) {
 					// if an entry was retained earlier, see if it can be restored
 					chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
 						// the entry is still there, load the content
-						console.info("Restoring " + a.chosen_dir);
 						chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 							if (chosenEntry) {
 								pullResources(a.url_api, a.username, a.password, chosenEntry, 
@@ -36,8 +35,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 									var startedTimeMillis = currentDate.getTime();
 									var i = 0;
 									var watchService = function() {
-										console.log('i: ' + i + '; watchService');
-										console.log('i: ' + i + '; startedTimeMillis: ' + startedTimeMillis);
 										var destroyed = false;
 
 										this.init = function() {
@@ -60,11 +57,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 													if(responseSiteResource.since) {
 														startedTimeMillis = responseSiteResource.since;
-														console.log('i: ' + i + '; since: ' + startedTimeMillis);
 													}
 
 													if(responseSiteResource.results && responseSiteResource.results.length > 0) {
-														console.log('i: ' + i + '; 1. destroyed: ' + destroyed);
 														if(!destroyed) {
 															pullResources(a.url_api, a.username, a.password, chosenEntry);
 														}
@@ -77,10 +72,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 												}
 											}).done(function () {
 												var totalTime = new Date().getTime() - ajaxTime;
-												console.log('i: ' + i + '; totalTime: ' + totalTime);
-												console.log('i: ' + i + '; 2. destroyed: ' + destroyed);
 												if(!destroyed) {
-													console.log('i: ' + i + '; create new watchService');
 													i++;
 													globalWatch = new watchService();
 													globalWatch.init();
@@ -88,7 +80,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 											});
 										};											
 										this.destroy = function() {
-											console.log('i: ' + i + '; this.destroy = true');
 											destroyed = true;
 										};
 									}
@@ -112,14 +103,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function sendMessage(message) {
-	console.log('rq msg: ' + message);
+	console.debug('Sending message: ' + message);
 	chrome.runtime.sendMessage( {msg: message}, function(response) {
-		console.log('rsp msg: ' + response.msg);
+		console.debug('Got response message: ' + response.msg);
 	});
 }
 
 function pullResources(apiUrl, username, password, chosenEntry, callback) {
-	console.log('pullResources method');
+//	console.debug('pullResources method');
 	// get all sites
 	$.ajax({
 		url : apiUrl + '/ReST/v5/class/Site',
@@ -132,7 +123,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 				+ btoa(username + ':' + password)
 		},
 		success : function(response) {
-			console.log(response);
+//			console.debug(response);
 			if(response.results && response.results.length > 0) {
 				var lastSiteId = response.results.length - 1;
 				$.each(response.results, function(i, e) {
@@ -150,13 +141,13 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 								+ btoa(username + ':' + password)
 						},
 						success : function(responseSiteResource) {
-//							console.log(responseSiteResource);
+//							console.debug(responseSiteResource);
 							if(responseSiteResource.results && responseSiteResource.results.length > 0) {
 								var lastId = responseSiteResource.results.length - 1;
 								$.each(responseSiteResource.results, function(index, element) {
 									if(element) {
 										var path = e.name + '/' + element.path;
-										console.log(path);
+//										console.debug('file to write: ' + path);
 										// create folder(s)
 										if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
 											var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
@@ -184,10 +175,10 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 												readAsText(entry, function(result) {
 //													console.log(result);
 													if(result != data) {
-														console.log('rewrite file (or create and write if it does not exist)');
+														console.log('write file: ' + path);
 														entry.createWriter(function(writer) {
 															writer.onwriteend = function(e) {
-																console.log('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+//																console.debug('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
 																if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 																	var currentDate = new Date();
 																	var lastModifiedTimeMillis = currentDate.getTime();
@@ -220,13 +211,13 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 															};
 
 															writer.onerror = function(e) {
-																console.log('Write failed: ' + e.toString());
+																console.error('write failed: ' + e.toString());
 															};
 															writer.write(new Blob([data], {type: 'text/plain'}));
 														});
 													} else {
-														console.log('file is the same, ignore it');
-														console.log('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+														console.log('file already exists and content is the same: ' + path);
+//														console.debug('lastId: ' + lastId + '; index: ' + index + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
 														if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 															var currentDate = new Date();
 															var lastModifiedTimeMillis = currentDate.getTime();
@@ -241,7 +232,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																		title: 'Notification',
 																		message: 'Folder has been synchronized!'
 																	}, function(notificationId) {
-																		console.log('notificationId: ' + notificationId + ' shown! ');
+																		console.debug('notificationId: ' + notificationId + ' shown! ');
 																	});
 																	callback('Folder has been synchronized!');
 																}
@@ -255,9 +246,10 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 								});
 							} else {
 								if (callback && typeof(callback) === "function") {
-									console.log('no files on remote! site: ' + e.name + '; lastSiteId: ' + lastSiteId + '; i: ' + i);
+									console.debug('no files on remote site: ' + e.name); 
+//									console.debug('lastSiteId: ' + lastSiteId + '; i: ' + i);
 									var path = e.name + '/';
-									console.log(path);
+//									console.log(path);
 									// create folder(s)
 									if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
 										var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
@@ -317,30 +309,30 @@ function createDir(rootDirEntry, folders) {
 }
 
 function monitorDir() {
-	console.log('monitorDir');
+//	console.debug('monitorDir');
 	chrome.storage.local.get('stSoftware', function(a){
 		if (a && (a = a['stSoftware'])) {
 			if(a.url_api && a.username && a.password && a.chosen_dir) {
 				// if an entry was retained earlier, see if it can be restored
 				chrome.fileSystem.isRestorable(a.chosen_dir, function(bIsRestorable) {
 					// the entry is still there, load the content
-					console.info("Restoring " + a.chosen_dir);
+//					console.debug("Restoring " + a.chosen_dir);
 					chrome.fileSystem.restoreEntry(a.chosen_dir, function(chosenEntry) {
 						if (chosenEntry) {
 							chrome.storage.local.get('lastModified', function(result) {
 								var tmpLastModified = result['lastModified'].lastModifiedTimeMillis;
-								console.log('1. tmpLastModified: ' + tmpLastModified);
+//								console.debug('1. tmpLastModified: ' + tmpLastModified);
 								if(!tmpLastModified) {
 									var currentDate = new Date();
 									tmpLastModified = currentDate.getTime();
 								}
-								console.log('2. tmpLastModified: ' + tmpLastModified);
+//								console.debug('2. tmpLastModified: ' + tmpLastModified);
 
 								var startLastModified = tmpLastModified;
 								scanChanges(chosenEntry, tmpLastModified, a.sync_dir, 
-										a.url_api, a.site, a.username, a.password, function(tmpLastModified) {
-									console.log('startLastModified: ' + startLastModified);
-									console.log('newTmpLastModified: ' + tmpLastModified);
+										a.url_api, a.username, a.password, function(tmpLastModified) {
+//									console.debug('startLastModified: ' + startLastModified);
+//									console.debug('newTmpLastModified: ' + tmpLastModified);
 									if(tmpLastModified > startLastModified) {
 										var b = {};
 										var time = {'lastModifiedTimeMillis': tmpLastModified};
@@ -358,7 +350,7 @@ function monitorDir() {
 	});
 }
 
-function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username, 
+function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, username, 
 		password, callback) {
 	var nextModified = lastModified;
 	var chosenEntry = _chosenEntry;
@@ -372,8 +364,8 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 			} else {
 				results.forEach(function(item) { 
 					if(item.isDirectory) {
-						scanChanges(item, lastModified, syncDir, apiUrl, site, 
-								username, password, function(tmpModified) {
+						scanChanges(item, lastModified, syncDir, apiUrl, username, 
+								password, function(tmpModified) {
 							if( tmpModified > nextModified) {
 								nextModified = tmpModified;
 							}	
@@ -383,8 +375,8 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 						item.getMetadata(function(data) {
 							var tmpModified = data.modificationTime.getTime()
 							if( tmpModified > lastModified) {
-								console.log('Changed: ' + item);
-								sendFile(item, syncDir, apiUrl, site, username, password);
+//								console.log('Changed: ' + item);
+								sendFile(item, syncDir, apiUrl, username, password);
 								if( tmpModified > nextModified) {
 									nextModified = tmpModified;
 									callback(nextModified);
@@ -401,9 +393,15 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, site, username
 	readEntries(); // Start reading dirs. 
 }
 
-function sendFile(entry, syncDir, apiUrl, site, username, password) {
-	chrome.fileSystem.getDisplayPath(entry, function(path) {
-		console.log('path: ' + path.substring(syncDir.length + 1).replace(/\\/g, '/'));
+function sendFile(entry, syncDir, apiUrl, username, password) {
+	chrome.fileSystem.getDisplayPath(entry, function(p) {
+		var path = p.substring(syncDir.length + 1).replace(/\\/g, '/');
+		console.log('Changed file detected: ' + path);
+		var index = path.indexOf('/');
+		var site = path.substring(0, index);
+		path = path.substring(index + 1);
+//		console.log('site: ' + site + '; path: ' + path);
+
 		var siteKey = null;
 		$.ajax({
 			url : apiUrl + '/ReST/v5/class/Site',
@@ -425,7 +423,7 @@ function sendFile(entry, syncDir, apiUrl, site, username, password) {
 						url : apiUrl + '/ReST/v5/class/SiteResource',
 						type : 'GET',
 						data : {
-							q : 'site IS \'' + siteKey +  '\' and path=\'' + path.substring(syncDir.length + 1).replace(/\\/g, '/') + '\''
+							q : 'site IS \'' + siteKey +  '\' and path=\'' + path + '\''
 						},
 						dataType : 'json',
 						headers : {
@@ -467,12 +465,13 @@ function sendFile(entry, syncDir, apiUrl, site, username, password) {
 												+ btoa(username + ':' + password)
 										},
 										success : function(responseSiteResource) {
-											console.log(responseSiteResource);
+											console.debug('success: ' + responseSiteResource.success 
+													+ '; state: ' + responseSiteResource.state);
 										},
 										error : function(xhr, ajaxOptions,
 												thrownError) {
-											console.log(xhr.status);
-											console.log(thrownError);
+											console.error(xhr.status);
+											console.error(thrownError);
 										}
 									});
 
@@ -502,21 +501,21 @@ function errorHandler(e) {
 
 
 function createWatchService() {
-	console.log('watchservice create');
-//	chrome.storage.local.get('watcher', function(result) {
-//	var watcherId = '0'; 
+	chrome.storage.local.get('watcher', function(result) {
+		var watcherId = '0'; 
 
-//	if(result && result['watcher']) {
-//	watcherId = result['watcher'].watcherId;
-//	// stop watcher
-//	clearInterval(watcherId);
-//	}
+		if(result && result['watcher']) {
+			watcherId = result['watcher'].watcherId;
+			// stop watcher
+			clearInterval(watcherId);
+		}
 
-//	// create new watcher
-//	watcherId = setInterval(monitorDir, 1000);
-//	var b = {};
-//	var c = {'watcherId': watcherId};
-//	b['watcher'] = c;
-//	chrome.storage.local.set(b);
-//	});
+		// create new watcher
+		watcherId = setInterval(monitorDir, 2000);
+		var b = {};
+		var c = {'watcherId': watcherId};
+		b['watcher'] = c;
+		chrome.storage.local.set(b);
+		console.log('watch service created');
+	});
 }
