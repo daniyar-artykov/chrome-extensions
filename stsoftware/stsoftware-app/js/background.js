@@ -1,4 +1,5 @@
 globalWatch = '';
+var siteIds = [];
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	chrome.app.window.create('forms/options.html', {id:"fileWin", innerBounds: {width: 800, height: 500}}, function(win) {
@@ -126,6 +127,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 				+ btoa(username + ':' + password)
 		},
 		success : function(response) {
+			siteIds = [];
 			if(response.results && response.results.length > 0) {
 				var lastSiteId = response.results.length - 1;
 				$.each(response.results, function(i, e) {
@@ -174,6 +176,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 														console.log('write file: ' + path);
 														entry.createWriter(function(writer) {
 															writer.onwriteend = function(e) {
+																console.log('on writeend lastId=' + lastId + '; index=' + index + '; siteId=' + lastSiteId + '; i=' + i);
 																if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 																	var currentDate = new Date();
 																	var lastModifiedTimeMillis = currentDate.getTime();
@@ -192,14 +195,14 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																			});
 																			callback('Folder has been synchronized!');
 																		} else {
-																			chrome.notifications.create('notice', {
-																				type: 'basic',
-																				iconUrl: 'images/icons/128.png',
-																				title: 'Notification',
-																				message: 'File ' + path + ' has been updated!'
-																			}, function(notificationId) {
-//																				console.debug('notificationId: ' + notificationId + ' shown! ');
-																			});
+//																			chrome.notifications.create('notice', {
+//																				type: 'basic',
+//																				iconUrl: 'images/icons/128.png',
+//																				title: 'Notification',
+//																				message: 'File ' + path + ' has been updated!'
+//																			}, function(notificationId) {
+////																				console.debug('notificationId: ' + notificationId + ' shown! ');
+//																			});
 																		}
 																	});
 																}
@@ -211,6 +214,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 															writer.write(new Blob([data], {type: 'text/plain'}));
 														});
 													} else {
+														console.log('lastId=' + lastId + '; index=' + index + '; siteId=' + lastSiteId + '; i=' + i);
 														console.log('file already exists and content is the same: ' + path);
 														if(lastId == index && lastSiteId == i) { // finally set the last modified time in millis
 															var currentDate = new Date();
@@ -240,16 +244,17 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 								});
 							} else {
 								if (callback && typeof(callback) === "function") {
-									console.debug('no files on remote site: ' + e.name); 
+									console.debug('no files on the remote site: ' + e.name); 
 									var path = e.name + '/';
 									// create folder(s)
 									if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
 										var lastIndex = path.lastIndexOf('/') == -1 ? path.lastIndexOf('//') : path.lastIndexOf('/');
 										createDir(chosenEntry, path.substring(0, lastIndex).split('/'));
 									}
-									if(lastSiteId == i) {
-										callback('Folder has been synchronized!');
-									}
+//									TODO
+//									if(lastSiteId == i) {
+//									callback('Folder has been synchronized!');
+//									}
 								}
 							}
 						},
@@ -387,7 +392,7 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 		var index = path.indexOf('/');
 		var site = path.substring(0, index);
 		path = path.substring(index + 1);
-		
+
 		var siteKey = null;
 		$.ajax({
 			url : apiUrl + '/ReST/v5/class/Site',
@@ -421,7 +426,7 @@ function sendFile(entry, syncDir, apiUrl, username, password) {
 								readAsText(entry, function(data) {
 
 									var type = response.results[0].type.code;
-									console.log(type);
+//									console.log(type);
 									var params = {};
 
 									switch (type) {
@@ -483,22 +488,33 @@ function errorHandler(e) {
 	console.error(e);
 }
 
-function createWatchService() {
-	chrome.storage.local.get('watcher', function(result) {
-		var watcherId = '0'; 
-
-		if(result && result['watcher']) {
-			watcherId = result['watcher'].watcherId;
-			// stop watcher
-			clearInterval(watcherId);
+function finish(lastId, currentId, callback) {
+	var flag = true;
+	for(i = 0; i < siteIds.length; i++) {
+		flag = siteIds.indexOf(i) > -1;
+		
+		if(!flag || i == siteIds.length - 1) {
+			callback(flag);
 		}
+	}
+}
 
-		// create new watcher
-		watcherId = setInterval(monitorDir, 2000);
-		var b = {};
-		var c = {'watcherId': watcherId};
-		b['watcher'] = c;
-		chrome.storage.local.set(b);
+function createWatchService() {
+//	chrome.storage.local.get('watcher', function(result) {
+//		var watcherId = '0'; 
+//
+//		if(result && result['watcher']) {
+//			watcherId = result['watcher'].watcherId;
+//			// stop watcher
+//			clearInterval(watcherId);
+//		}
+//
+//		// create new watcher
+//		watcherId = setInterval(monitorDir, 2000);
+//		var b = {};
+//		var c = {'watcherId': watcherId};
+//		b['watcher'] = c;
+//		chrome.storage.local.set(b);
 		console.log('watch service created');
-	});
+//	});
 }
