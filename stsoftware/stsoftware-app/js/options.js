@@ -42,6 +42,12 @@ function chooseEntry() {
 	});
 }
 
+$('#test-btn').click(function() {
+	chrome.runtime.sendMessage( {msg: 'test'}, function(response) {
+		
+	});
+});
+
 $('#save-btn').click(function() {
 	$("#popup-loader-container").show();
 	// use local storage to retain access to this file
