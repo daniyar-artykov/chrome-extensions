@@ -35,8 +35,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 								pullResources(a.url_api, a.username, a.password, chosenEntry, 
 										function(callbackMsg) {
 
-									createWatchService();
-
 									var currentDate = new Date();
 									var startedTimeMillis = currentDate.getTime();
 									var i = 0;
@@ -94,6 +92,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 									}
 									globalWatch = new watchService();
 									globalWatch.init();
+
+									setTimeout(createWatchService, 2000);
+									
 									sendMessage(callbackMsg);
 								});
 							} else {
@@ -264,7 +265,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 								});
 							} else {
 								if (callback && typeof(callback) === "function") {
-									console.debug('no files on the remote site: ' + e.name); 
+//									console.debug('no files on the remote site: ' + e.name); 
 									var path = e.name + '/';
 									// create folder(s)
 									if(path.indexOf('/') > -1 || path.indexOf('\\') > -1) {
@@ -387,8 +388,9 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, username,
 					} else {
 						// read file
 						item.getMetadata(function(data) {
-							var tmpModified = data.modificationTime.getTime()
+							var tmpModified = data.modificationTime.getTime();
 							if(tmpModified > lastModified) {
+//								console.log('tmpModified: ' + tmpModified);
 								sendFile(item, syncDir, apiUrl, username, password, tmpModified);
 								if(tmpModified > nextModified) {
 									nextModified = tmpModified;
@@ -406,15 +408,17 @@ function scanChanges(_chosenEntry, lastModified, syncDir, apiUrl, username,
 	readEntries(); // Start reading dirs. 
 }
 
-function sendFile(entry, syncDir, apiUrl, username, password, modifiedTime) {
+function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 	chrome.fileSystem.getDisplayPath(entry, function(p) {
 		var path = p.substring(syncDir.length + 1).replace(/\\/g, '/');
+//		console.log('path: ' + path + ', modified: ' + tmpModified);
+//		
 //		console.log('1pending: ');
 //		console.log(pending);
-		if(!pending || !pending[path] || pending[path].modifiedTime < modifiedTime) {
+		if(!pending || !pending[path] || pending[path].modifiedTime < tmpModified) {
 
 			var fullPath = path;
-			var modifiedTime = {'modifiedTime' : modifiedTime};
+			var modifiedTime = {'modifiedTime' : tmpModified};
 			pending[fullPath] = modifiedTime;
 			
 			console.log('Changed file detected: ' + path);
@@ -457,7 +461,6 @@ function sendFile(entry, syncDir, apiUrl, username, password, modifiedTime) {
 									readAsText(entry, function(data) {
 
 										var type = response.results[0].type.code;
-//										console.log(type);
 										var params = {};
 
 										switch (type) {
@@ -487,17 +490,11 @@ function sendFile(entry, syncDir, apiUrl, username, password, modifiedTime) {
 											success : function(responseSiteResource) {
 												console.debug('success: ' + responseSiteResource.success 
 														+ '; state: ' + responseSiteResource.state);
-												pending[fullPath] = undefined;
-//												console.log('3pending: ');
-//												console.log(pending);
 											},
 											error : function(xhr, ajaxOptions,
 													thrownError) {
 												console.error(xhr.status);
 												console.error(thrownError);
-												pending[fullPath] = undefined;
-//												console.log('4pending: ');
-//												console.log(pending);
 											}
 										});
 
@@ -508,9 +505,6 @@ function sendFile(entry, syncDir, apiUrl, username, password, modifiedTime) {
 									thrownError) {
 								console.error(xhr.status);
 								console.error(thrownError);
-								pending[fullPath] = undefined;
-//								console.log('5pending: ');
-//								console.log(pending);
 							}
 						});
 					}
@@ -519,9 +513,6 @@ function sendFile(entry, syncDir, apiUrl, username, password, modifiedTime) {
 						thrownError) {
 					console.error(xhr.status);
 					console.error(thrownError);
-					pending[fullPath] = undefined;
-//					console.log('6pending: ');
-//					console.log(pending);
 				}
 			});
 		} else {
@@ -561,6 +552,6 @@ function createWatchService() {
 		var c = {'watcherId': watcherId};
 		b['watcher'] = c;
 		chrome.storage.local.set(b);
-		console.log('watch service created');
+		console.log('watch service for monitoring sync firectory was created');
 	});
 }
