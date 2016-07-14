@@ -3,7 +3,7 @@ var siteIds = [];
 var pending = {};
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
-	chrome.app.window.create('forms/options.html', {id:"fileWin", innerBounds: {width: 800, height: 500}}, function(win) {
+	chrome.app.window.create('forms/options.html', {id:"stSoftware API"}, function(win) {
 		win.contentWindow.launchData = launchData;
 	});
 });

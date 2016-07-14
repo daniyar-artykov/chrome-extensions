@@ -1,3 +1,9 @@
+var LOGGING_LEVEL_DEBUG = "debug";
+var LOGGING_LEVEL_INFO = "info";
+var LOGGING_LEVEL_WARNING = "warning";
+var LOGGING_LEVEL_ERROR = "error";
+var LOGGING_LEVEL_DEBUG = "debug";
+
 $(document).ready(function() {
 	initializeSavedDetails();
 });
@@ -142,6 +148,7 @@ function initializeSavedDetails() {
 			$('#sync-directory').val(a.sync_dir);
 			$("#popup-loader-container").show();
 			// request available sites for test credentials
+			logging(LOGGING_LEVEL_INFO, 'validate credentials...');
 			$.ajax({
 				url : a.url_api + '/ReST/v5/class/Site',
 				type : 'GET',
@@ -155,6 +162,9 @@ function initializeSavedDetails() {
 				success : function(response) {
 					console.debug('Test API credentials RESPONSE')
 					console.debug(response);
+					
+					logging(LOGGING_LEVEL_INFO, 'OK');
+					
 					validate();
 					$("#popup-loader-container").hide();
 				},
@@ -167,6 +177,9 @@ function initializeSavedDetails() {
 							+ xhr.status + ' ' + thrownError);
 					$('#alert-div').show();
 					$("#popup-loader-container").hide();
+
+					logging(LOGGING_LEVEL_ERROR, 'Please enter valid API credentials. Error: ' + xhr.status + ' ' + thrownError);
+					
 					return;
 				}
 			});
@@ -175,6 +188,7 @@ function initializeSavedDetails() {
 }
 
 function validate() {
+	logging(LOGGING_LEVEL_DEBUG, 'validating entered data...');
 	$('#alert-div').hide();
 	var apiUrl = $('#url-api').val();
 	var username = $('#username').val();
@@ -196,5 +210,12 @@ var delay = (function() {
 		timer = setTimeout(callback, ms);
 	};
 })();
+
+function logging(level, msg) {
+	var c = new Date();
+	var text = $('#logging').html();
+	text = text + '<label class="' + level + '"> <b>' + level.toUpperCase() + '</b>: ' + msg + '</label>';
+	$('#logging').html(text);
+}
 
 

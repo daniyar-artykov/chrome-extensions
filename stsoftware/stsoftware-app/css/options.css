@@ -58,3 +58,31 @@ body {
 	.form-settings button, .form-settings select {
 	margin-bottom: 10px;
 }
+
+.logging {
+    height: 250px !important;
+    background-color: #eee !important;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.logging label {
+	font-weight: normal;
+	width: 100%;
+}
+
+.logging .info {
+	color: #3c763d;
+}
+
+.logging .warning {
+	color: #8a6d3b;
+}
+
+.logging .error {
+	color: #a94442;
+}
+
+.logging .debug {
+	color: #2b96be;
+}
