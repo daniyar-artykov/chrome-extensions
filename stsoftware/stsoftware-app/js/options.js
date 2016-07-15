@@ -50,7 +50,7 @@ function chooseEntry() {
 
 $('#test-btn').click(function() {
 	chrome.runtime.sendMessage( {msg: 'test'}, function(response) {
-		
+
 	});
 });
 
@@ -67,12 +67,12 @@ $('#save-btn').click(function() {
 						var apiUrl = $('#url-api').val();
 						var username = $('#username').val();
 						var password = $('#password').val();
-						
+
 						if(apiUrl.slice(-1) == '/') {
 							apiUrl = apiUrl.substring(0, apiUrl.length - 1);
 							$('#url-api').val(apiUrl);
 						}
-						
+
 						// request available sites for test credentials
 						$.ajax({
 							url : apiUrl + '/ReST/v5/class/Site',
@@ -131,11 +131,15 @@ $('#save-btn').click(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	console.log('Got message: \'' + request.msg + '\'');
-	$('#alert-div').removeClass().addClass('alert').addClass(request.msg.indexOf('Error: ') > -1 ? 'alert-danger' : 'alert-success');
-	$('#alert-msg').text(request.msg);
-	$('#alert-div').show();
-	$("#popup-loader-container").hide();
+	if(request.logging) {
+		logging(request.logging, request.msg);
+	} else {
+		$('#alert-div').removeClass().addClass('alert').addClass(request.msg.indexOf('Error: ') > -1 ? 'alert-danger' : 'alert-success');
+		$('#alert-msg').text(request.msg);
+		$('#alert-div').show();
+		$("#popup-loader-container").hide();
+	}
+
 	sendResponse({msg: 'ok'});
 });
 
@@ -162,9 +166,9 @@ function initializeSavedDetails() {
 				success : function(response) {
 					console.debug('Test API credentials RESPONSE')
 					console.debug(response);
-					
+
 					logging(LOGGING_LEVEL_INFO, 'OK');
-					
+
 					validate();
 					$("#popup-loader-container").hide();
 				},
@@ -179,7 +183,7 @@ function initializeSavedDetails() {
 					$("#popup-loader-container").hide();
 
 					logging(LOGGING_LEVEL_ERROR, 'Please enter valid API credentials. Error: ' + xhr.status + ' ' + thrownError);
-					
+
 					return;
 				}
 			});
@@ -213,9 +217,11 @@ var delay = (function() {
 
 function logging(level, msg) {
 	var c = new Date();
-	var text = $('#logging').html();
+	var loggingDiv = $('#logging');
+	var text = loggingDiv.html();
 	text = text + '<label class="' + level + '"> <b>' + level.toUpperCase() + '</b>: ' + msg + '</label>';
-	$('#logging').html(text);
+	loggingDiv.html(text);
+	loggingDiv.scrollTop(loggingDiv.prop('scrollHeight'));
 }
 
 

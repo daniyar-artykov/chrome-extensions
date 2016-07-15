@@ -1,10 +1,16 @@
 globalWatch = '';
 var siteIds = [];
 var pending = {};
+var LOGGING_LEVEL_DEBUG = "debug";
+var LOGGING_LEVEL_INFO = "info";
+var LOGGING_LEVEL_WARNING = "warning";
+var LOGGING_LEVEL_ERROR = "error";
+var LOGGING_LEVEL_DEBUG = "debug";
 
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	chrome.app.window.create('forms/options.html', {id:"stSoftware API"}, function(win) {
 		win.contentWindow.launchData = launchData;
+	    win.maximize();
 	});
 });
 
@@ -44,6 +50,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 										this.init = function() {
 											var ajaxTime = new Date().getTime();
 											console.debug('REQUEST: \'/ReST/v3/sync/SiteResource\', block=\'1 min\', since=\'' + startedTimeMillis + '\'');
+											logging(LOGGING_LEVEL_DEBUG, 'REQUEST: \'/ReST/v3/sync/SiteResource\', block=\'1 min\', since=\'' + startedTimeMillis + '\'');
 											$.ajax({
 												url : a.url_api + '/ReST/v3/sync/SiteResource',
 												type : 'GET',
@@ -73,12 +80,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 												},
 												error : function(xhr, ajaxOptions,
 														thrownError) {
-													console.log(xhr.status);
-													console.log(thrownError);
+													console.error(xhr.status);
+													console.error(thrownError);
 												}
 											}).done(function () {
 												var totalTime = new Date().getTime() - ajaxTime;
 												console.debug('responded time: ' + totalTime);
+												logging(LOGGING_LEVEL_DEBUG, 'responded time: ' + totalTime);
 												if(!destroyed) {
 													i++;
 													globalWatch = new watchService();
@@ -94,19 +102,22 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 									globalWatch.init();
 
 									setTimeout(createWatchService, 2000);
-									
+
 									sendMessage(callbackMsg);
 								});
 							} else {
 								sendMessage('Error: Broken directory.');
+								logging(LOGGING_LEVEL_ERROR, 'couldn\'t open sync directory');
 							}
 						});
 					});
 				} else {
 					sendMessage('Error: API credentials couldn\'t be found');
+					logging(LOGGING_LEVEL_ERROR, 'API credentials couldn\'t be found');
 				}
 			} else {
 				sendMessage('Error: API credentials couldn\'t be found');
+				logging(LOGGING_LEVEL_ERROR, 'API credentials couldn\'t be found');
 			}
 		});
 	}
@@ -116,6 +127,13 @@ function sendMessage(message) {
 	console.debug('Sending message: \'' + message + '\'');
 	chrome.runtime.sendMessage( {msg: message}, function(response) {
 		console.debug('Got response message: \'' + response.msg + '\'');
+	});
+}
+
+function logging(level, message) {
+	console.debug('Logging request : s% s%', level, message);
+	chrome.runtime.sendMessage( {logging: level, msg: message}, function(response) {
+		console.debug('Logging response : %s', response.msg);
 	});
 }
 
@@ -182,6 +200,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 												readAsText(entry, function(result) {
 													if(result != data) {
 														console.log('sync changed (added) file: ' + path);
+														logging(LOGGING_LEVEL_INFO, 'sync changed (added) file: ' + path);
 														entry.createWriter(function(writer) {
 															writer.onwriteend = function(e) {
 //																console.log('on writeend lastId=' + lastId + '; index=' + index + '; siteId=' + lastSiteId + '; i=' + i);
@@ -199,11 +218,12 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																						type: 'basic',
 																						iconUrl: 'images/icons/128.png',
 																						title: 'Notification',
-																						message: 'Folder has been synchronized!'
+																						message: 'The folder has been synchronized!'
 																					}, function(notificationId) {
 //																						console.debug('notificationId: ' + notificationId + ' shown!');
 																					});
-																					callback('Folder has been synchronized!');
+																					callback('The folder has been synchronized!');
+																					logging(LOGGING_LEVEL_INFO, 'synchronization finished');
 																				} else {
 //																					chrome.notifications.create('notice', {
 //																					type: 'basic',
@@ -224,6 +244,7 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 
 															writer.onerror = function(e) {
 																console.error('write failed: ' + e.toString());
+																logging(LOGGING_LEVEL_ERROR, 'write failed: ' + e.toString());
 															};
 															writer.write(new Blob([data], {type: 'text/plain'}));
 														});
@@ -244,11 +265,12 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 																				type: 'basic',
 																				iconUrl: 'images/icons/128.png',
 																				title: 'Notification',
-																				message: 'Folder has been synchronized!'
+																				message: 'The folder has been synchronized!'
 																			}, function(notificationId) {
 																				console.debug('notificationId: ' + notificationId + ' shown! ');
 																			});
-																			callback('Folder has been synchronized!');
+																			callback('The folder has been synchronized!');
+																			logging(LOGGING_LEVEL_INFO, 'synchronization finished');
 																		}
 																	});
 
@@ -274,7 +296,8 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 									}
 									finish(lastSiteId, i, function(a) {
 										if(a) {
-											callback('Folder has been synchronized!');
+											callback('The folder has been synchronized!');
+											logging(LOGGING_LEVEL_INFO, 'synchronized finished');
 										}
 									});
 								}
@@ -282,8 +305,9 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 						},
 						error : function(xhr, ajaxOptions,
 								thrownError) {
-							console.log(xhr.status);
-							console.log(thrownError);
+							console.error(xhr.status);
+							console.error(thrownError);
+							logging(LOGGING_LEVEL_ERROR, xhr.status + ' ' + thrownError);
 							if (callback && typeof(callback) === "function") {
 								callback('Error: ' + xhr.status + ' ' + thrownError);
 							}
@@ -294,8 +318,9 @@ function pullResources(apiUrl, username, password, chosenEntry, callback) {
 		},
 		error : function(xhr, ajaxOptions,
 				thrownError) {
-			console.log(xhr.status);
-			console.log(thrownError);
+			console.error(xhr.status);
+			console.error(thrownError);
+			logging(LOGGING_LEVEL_ERROR, xhr.status + ' ' + thrownError);
 			return;
 		}
 	});
@@ -329,6 +354,7 @@ function createDir(rootDirEntry, folders) {
 
 function monitorDir() {
 	console.log('track dir to changes...');
+	logging(LOGGING_LEVEL_DEBUG, 'track dir to changes...');
 	chrome.storage.local.get('stSoftware', function(a){
 		if (a && (a = a['stSoftware'])) {
 			if(a.url_api && a.username && a.password && a.chosen_dir) {
@@ -412,7 +438,7 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 	chrome.fileSystem.getDisplayPath(entry, function(p) {
 		var path = p.substring(syncDir.length + 1).replace(/\\/g, '/');
 //		console.log('path: ' + path + ', modified: ' + tmpModified);
-//		
+
 //		console.log('1pending: ');
 //		console.log(pending);
 		if(!pending || !pending[path] || pending[path].modifiedTime < tmpModified) {
@@ -420,8 +446,9 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 			var fullPath = path;
 			var modifiedTime = {'modifiedTime' : tmpModified};
 			pending[fullPath] = modifiedTime;
-			
+
 			console.log('Changed file detected: ' + path);
+			logging(LOGGING_LEVEL_INFO, 'Changed file detected: ' + path);
 //			console.log('2pending: ');
 //			console.log(pending);
 			var index = path.indexOf('/');
@@ -474,7 +501,8 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 											params.html = data;
 											break;
 										default:
-											console.error('unknown type: ' + type);
+											console.error('unknown type: ' + type); 
+											logging(LOGGING_LEVEL_ERROR, 'unknown type: ' + type);
 										}
 
 										$.ajax({
@@ -490,11 +518,14 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 											success : function(responseSiteResource) {
 												console.debug('success: ' + responseSiteResource.success 
 														+ '; state: ' + responseSiteResource.state);
+												logging(LOGGING_LEVEL_INFO, 'success: ' + responseSiteResource.success 
+														+ '; state: ' + responseSiteResource.state);
 											},
 											error : function(xhr, ajaxOptions,
 													thrownError) {
 												console.error(xhr.status);
 												console.error(thrownError);
+												logging(LOGGING_LEVEL_ERROR, xhr.status + ' ' + thrownError);
 											}
 										});
 
@@ -505,6 +536,7 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 									thrownError) {
 								console.error(xhr.status);
 								console.error(thrownError);
+								logging(LOGGING_LEVEL_ERROR, xhr.status + ' ' + thrownError);
 							}
 						});
 					}
@@ -513,6 +545,7 @@ function sendFile(entry, syncDir, apiUrl, username, password, tmpModified) {
 						thrownError) {
 					console.error(xhr.status);
 					console.error(thrownError);
+					logging(LOGGING_LEVEL_ERROR, xhr.status + ' ' + thrownError);
 				}
 			});
 		} else {
@@ -552,6 +585,7 @@ function createWatchService() {
 		var c = {'watcherId': watcherId};
 		b['watcher'] = c;
 		chrome.storage.local.set(b);
-		console.log('watch service for monitoring sync firectory was created');
+		console.log('watch service for monitoring sync directory was created');
+		logging(LOGGING_LEVEL_INFO, 'watch service for monitoring sync directory was created');
 	});
 }

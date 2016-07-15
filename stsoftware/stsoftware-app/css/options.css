@@ -60,7 +60,7 @@ body {
 }
 
 .logging {
-    height: 250px !important;
+    height: 220px !important;
     background-color: #eee !important;
     opacity: 1;
     overflow-y: scroll;
