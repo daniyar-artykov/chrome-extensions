@@ -28,7 +28,7 @@ body {
 	height: 100px;
 	display: inline-block;
 	position: relative;
-	top: 40%;
+	top: 20%;
 }
 
 .loader-content {
@@ -85,4 +85,9 @@ body {
 
 .logging .debug {
 	color: #2b96be;
+}
+
+#clear-btn {
+	float: right;
+	margin-bottom: 5px !important;
 }

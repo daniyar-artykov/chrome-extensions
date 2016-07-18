@@ -131,7 +131,7 @@ function sendMessage(message) {
 }
 
 function logging(level, message) {
-	console.debug('Logging request : s% s%', level, message);
+	console.debug('Logging request : %s %s', level, message);
 	chrome.runtime.sendMessage( {logging: level, msg: message}, function(response) {
 		console.debug('Logging response : %s', response.msg);
 	});

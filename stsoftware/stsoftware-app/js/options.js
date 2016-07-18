@@ -191,6 +191,12 @@ function initializeSavedDetails() {
 	});
 }
 
+$('#clear-btn').click(function() {
+	var loggingDiv = $('#logging');
+	loggingDiv.html('');
+	loggingDiv.scrollTop(loggingDiv.prop('scrollHeight'));
+});
+
 function validate() {
 	logging(LOGGING_LEVEL_DEBUG, 'validating entered data...');
 	$('#alert-div').hide();
@@ -216,7 +222,7 @@ var delay = (function() {
 })();
 
 function logging(level, msg) {
-	var c = new Date();
+//	var c = new Date();
 	var loggingDiv = $('#logging');
 	var text = loggingDiv.html();
 	text = text + '<label class="' + level + '"> <b>' + level.toUpperCase() + '</b>: ' + msg + '</label>';
